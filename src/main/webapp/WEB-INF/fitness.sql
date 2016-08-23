@@ -72,7 +72,7 @@ create table member 			--회원정보
 	mem_addr varchar2(100) not null,	--회원주소
 	mem_email varchar2(50) not null,	--이메일
 	mem_age	number(10) not null,	--회원나이
-	mem_gen number(10) not null,	--회원성별
+	mem_gen varchar2(10) not null CHECK ( MEM_GEN IN ('남', '여')),	--회원성별
 	mem_birth date not null,		--생년월일
 	regdate date not null,		--가입일
 	mem_picture varchar2(1000) not null,	--사진파일

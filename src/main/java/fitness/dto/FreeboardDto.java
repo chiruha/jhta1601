@@ -74,5 +74,14 @@ public class FreeboardDto {
 	public void setFb_step(int fb_step) {
 		this.fb_step = fb_step;
 	}
+
+	@Override
+	public String toString() {
+		return "FreeboardDto [fb_num=" + fb_num + ", mem_num=" + mem_num + ", fb_title=" + fb_title + ", fb_date="
+				+ fb_date + ", fb_hit=" + fb_hit + ", fb_ref=" + fb_ref + ", fb_lef=" + fb_lef + ", fb_step=" + fb_step
+				+ "]";
+	}
+	
+	
 	
 }

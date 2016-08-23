@@ -57,6 +57,12 @@ public class NoticeDto {
 	public void setNumber(int number) {
 		this.number = number;
 	}
+
+	@Override
+	public String toString() {
+		return "NoticeDto [nt_num=" + nt_num + ", stf_num=" + stf_num + ", nt_title=" + nt_title + ", nt_content="
+				+ nt_content + ", nt_date=" + nt_date + ", number=" + number + "]";
+	}
 	
 
 

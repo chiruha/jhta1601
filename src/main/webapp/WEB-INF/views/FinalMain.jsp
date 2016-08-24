@@ -6,5 +6,6 @@
 </head>
 <body>
 <h1>main page</h1>
+<img src="resources/img/f1.jpg">
 </body>
 </html>

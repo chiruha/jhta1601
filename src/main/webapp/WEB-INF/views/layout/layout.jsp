@@ -8,10 +8,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Fitness Homepage</title>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/fitness.css'/>">
 </head>
 <body>
 <div id="wrap">
-	<div class="header">
+	<div class="header" >
 		<!-- 주소가 아닌 주소를 가지고 있는 tiles의 attribute 를 가져온다 -->
 		<!-- tiles-def.xml 에 정의된 attribute name  을 사용하여 페이지를 포함한다 -->
 		<tiles:insertAttribute name="header" />

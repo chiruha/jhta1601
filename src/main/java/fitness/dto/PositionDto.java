@@ -4,6 +4,9 @@ public class PositionDto {
 	private String pos_code;
 	private String pos_name;
 	private int dept_code;
+	
+	public PositionDto(){}
+	
 	public PositionDto(String pos_code, String pos_name, int dept_code) {
 		super();
 		this.pos_code = pos_code;

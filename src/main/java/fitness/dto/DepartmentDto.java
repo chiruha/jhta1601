@@ -3,6 +3,9 @@ package fitness.dto;
 public class DepartmentDto {
 	private int dept_code;
 	private String dept_name;
+	
+	public DepartmentDto(){}
+	
 	public DepartmentDto(int dept_code, String dept_name) {
 		super();
 		this.dept_code = dept_code;

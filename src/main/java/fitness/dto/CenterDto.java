@@ -6,6 +6,9 @@ public class CenterDto {
 	private String ct_tel;
 	private String ct_addr;
 	private String ct_intro;
+	
+	public CenterDto() {}
+	
 	public CenterDto(int ct_code, String ct_name, String ct_tel, String ct_addr, String ct_intro) {
 		super();
 		this.ct_code = ct_code;

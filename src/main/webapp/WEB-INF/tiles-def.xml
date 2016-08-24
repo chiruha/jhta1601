@@ -7,6 +7,9 @@
   <put-attribute name="content" value="/WEB-INF/views/FinalMain.jsp"/>
   <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
 </definition>
-
+<!-- 상속 시켜서 위에꺼 그대로 아래 다 사용할수 있음 -->
+	<definition name=".pt" extends=".main">		
+		<put-attribute name="content" value="/WEB-INF/views/pt/PtInsertView.jsp"/>	
+	</definition>
 
 </tiles-definitions>

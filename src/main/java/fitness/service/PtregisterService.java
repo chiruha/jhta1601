@@ -12,6 +12,6 @@ import fitness.dto.PtregisterDto;
 public class PtregisterService {
 	@Autowired PtregisterDao ptregisterDao;
 	public int insert(PtregisterDto dto){
-		return ptregisterDao.insert(dto)
+		return ptregisterDao.insert(dto);
 	}
 }

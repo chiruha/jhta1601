@@ -313,10 +313,10 @@ create table pt_register
 (
 	ptr_num number(20) primary key, --회원등록넘버
 	tr_num number(20) REFERENCES TRAINER(TR_NUM), --트레이너 정보
-	ptr_time(50), --회원시간
+	ptr_time varchar2(50), --회원시간
 	ptr_ok varchar2(15) CHECK ( PTR_OK IN ('승인대기', '승인','승인취소')) --회원승인
 );
-CREATE SEQUENCE PT_REGISTER;
+CREATE SEQUENCE PT_REGISTER_SEQ;
 
 COMMIT;
 

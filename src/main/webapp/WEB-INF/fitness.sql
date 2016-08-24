@@ -49,12 +49,8 @@ drop sequence STAFF_SEQ;	-- 직원 시퀀스
 drop sequence DEPT_SEQ;	-- 부서 시퀀스
 drop sequence MEM_SEQ;	-- 회원 시퀀스
 drop sequence CT_SEQ;	-- 지점 시퀀스
-drop sequence PT_REGISTER; -- pt등록
+drop sequence PTR_SEQ; -- pt등록
 -------------------------------------------
-
-
-
-
 
 create table center				--지점정보
 (
@@ -316,7 +312,7 @@ create table pt_register
 	ptr_time varchar2(50), --회원시간
 	ptr_ok varchar2(15) CHECK ( PTR_OK IN ('승인대기', '승인','승인취소')) --회원승인
 );
-CREATE SEQUENCE PT_REGISTER_SEQ;
+CREATE SEQUENCE PTR_SEQ;
 
 COMMIT;
 

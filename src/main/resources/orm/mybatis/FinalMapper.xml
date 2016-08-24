@@ -8,4 +8,26 @@
 		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{ptr_time},#{ptr_ok})
 	</insert>
 
+
+
+
+	<!-- staff 관련 -->
+	<insert id="stfinsert" parameterType="fitness.dto.StaffDto">
+		 insert into staff values(staff_seq.nextval, #{stf_name}, #{stf_phone}, sysdate , #{stf_picture}, #{pos_code}, #{ct_code})
+	</insert>
+	<select id="stflist" resultType="fitness.dto.StaffDto">
+		select * from staff 
+	</select>
+	<select id="stfdetail" parameterType="int" resultType="fitness.dto.StaffDto">
+		select * from staff where stf_num=#{value}
+	</select>
+	<update id="stfupdate" parameterType="fitness.dto.StaffDto">
+		update staff set stf_name= #{stf_name}, stf_phone= #{stf_phone}, stf_picture= #{stf_picture}, pos_code=#{pos_code}, ct_code= #{ct_code} where stf_num=#{stf_num}
+	</update>
+	<delete id="stfdelete" parameterType="int">
+		delete from staff where stf_num=#{value}
+	</delete>
+	
+	
+	
 </mapper>

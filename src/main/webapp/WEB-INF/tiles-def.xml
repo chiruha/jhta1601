@@ -8,8 +8,15 @@
   <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
 </definition>
 <!-- 상속 시켜서 위에꺼 그대로 아래 다 사용할수 있음 -->
-	<definition name=".pt" extends=".main">		
-		<put-attribute name="content" value="/WEB-INF/views/pt/PtInsertView.jsp"/>	
-	</definition>
+
+
+<!-- Staff 관련 -->
+<definition name=".*.*" extends=".main">
+	<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"></put-attribute>
+</definition>
+
+
+
+
 
 </tiles-definitions>

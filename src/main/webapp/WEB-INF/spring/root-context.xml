@@ -22,6 +22,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	
+	
 	<!-- SqlSession 설정 -->
 	<!-- Spring Bean 자동생성 설정, Controller 제외 -->
 	<context:component-scan base-package="fitness">

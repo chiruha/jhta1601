@@ -14,8 +14,7 @@ public class PtregisterController {
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.GET)
 	public String insert(){
-		System.out.println("zzz");
-		return ".pt";
+		return ".pt.PtInsertView";
 	}
 }
 

@@ -1,4 +1,5 @@
 --테이블초기화----------------------------
+drop table pt_register;
 drop table survey;
 drop table event;
 drop table gx_schedule;
@@ -22,7 +23,7 @@ drop table staff;
 drop table position; 
 drop table department;
 drop table member;
-drop table center;
+drop table center; 
 
 --제약조건은 대문자로 표시해둠 최종수정함!!
 
@@ -48,6 +49,7 @@ drop sequence STAFF_SEQ;	-- 직원 시퀀스
 drop sequence DEPT_SEQ;	-- 부서 시퀀스
 drop sequence MEM_SEQ;	-- 회원 시퀀스
 drop sequence CT_SEQ;	-- 지점 시퀀스
+drop sequence PT_REGISTER; -- pt등록
 -------------------------------------------
 
 
@@ -306,6 +308,15 @@ create table survey
 
 );
 CREATE SEQUENCE SV_SEQ;
+
+create table pt_register
+(
+	ptr_num number(20) primary key, --회원등록넘버
+	tr_num number(20) REFERENCES TRAINER(TR_NUM), --트레이너 정보
+	ptr_time varchar2(50), --회원시간
+	ptr_ok varchar2(15) CHECK ( PTR_OK IN ('승인대기', '승인','승인취소')) --회원승인
+);
+CREATE SEQUENCE PT_REGISTER_SEQ;
 
 COMMIT;
 

@@ -8,4 +8,15 @@
 		insert into pt_register values(PT_REGISTER_SEQ.nextval,#{tr_num},#{ptr_time},#{ptr_ok})
 	</insert>
 
+
+
+
+	<!-- staff 관련 -->
+	<insert id="stfinsert" parameterType="fitness.dto.StaffDto">
+		 insert into staff values(staff_seq.nextval, #{stf_name}, #{stf_phone}, sysdate , #{stf_picture}, #{pos_code}, #{ct_code})
+	</insert>
+	<select id="stflist" resultType="fitness.dto.StaffDto">
+		
+	</select>
+
 </mapper>

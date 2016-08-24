@@ -1,8 +1,8 @@
 @CHARSET "UTF-8";
 *{margin: auto;}
-#wrap{width: 1000px; background-color: #dfdfdf; }
+#wrap{width: 1200px; background-color: #dfdfdf; }
 .header{position: fixed; width: 2000px; height: 150px; background-color: #680233;  left: 0px; }
 .header img{height: 80px;}
-.content{width: 800px; height: 1000px; margin: auto;  background-color: white; padding-top: 150px;}
-.footer{width: 2000px; height: 150px; background-color: #800080; margin: auto; position: absolute; left: 0px;}
+.content{width: 1000px; height: 1000px; margin: auto;  background-color: white; padding-top: 150px;}
+.footer{width: 2000px; height: 150px; background-color: #004080; margin: auto; position: absolute; left: 0px;}
 .footer img{height: 80px;}

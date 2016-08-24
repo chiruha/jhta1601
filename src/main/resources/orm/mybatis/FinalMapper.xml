@@ -22,12 +22,32 @@
 		select * from staff where stf_num=#{value}
 	</select>
 	<update id="stfupdate" parameterType="fitness.dto.StaffDto">
-		update staff set stf_name= #{stf_name}, stf_phone= #{stf_phone}, stf_picture= #{stf_picture}, pos_code=#{pos_code}, ct_code= #{ct_code} where stf_num=#{stf_num}
+		update staff set stf_name= #{stf_name}, stf_phone= #{stf_phone}, stf_picture= #{stf_picture}, 
+										pos_code=#{pos_code}, ct_code= #{ct_code} where stf_num=#{stf_num}
 	</update>
 	<delete id="stfdelete" parameterType="int">
 		delete from staff where stf_num=#{value}
 	</delete>
 	
+	<!-- member 관련 -->
+		<insert id="meminsert" parameterType="fitness.dto.MemberDto">
+		 insert into member values(mem_seq.nextval, #{mem_name}, #{mem_phone}, #{mem_addr}, #{mem_email}, 
+																	 #{mem_age}, #{mem_gen}, #{mem_birth}, sysdate , #{mem_picture}, #{ct_code})
+	</insert>
+	<select id="memlist" resultType="fitness.dto.StaffDto">
+		select * from member 
+	</select>
+	<select id="memdetail" parameterType="int" resultType="fitness.dto.MemberDto">
+		select * from member where mem_num=#{value}
+	</select>
+	<update id="memupdate" parameterType="fitness.dto.MemberDto">
+		update member set mem_name= #{mem_name}, mem_phone= #{mem_phone}, mem_addr= #{mem_addr}, mem_email= #{mem_email},  
+											     mem_age=#{mem_age}, mem_gen=#{mem_gen}, mem_birth=#{mem_birth}, 
+												 mem_picture= #{mem_picture},  ct_code= #{ct_code} where mem_num=#{mem_num}
+	</update>
+	<delete id="memdelete" parameterType="int">
+		delete from member where mem_num=#{value}
+	</delete>
 	
-	
+	<!--  -->
 </mapper>

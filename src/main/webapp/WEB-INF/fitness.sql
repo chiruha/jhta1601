@@ -61,6 +61,8 @@ create table center				--지점정보
 	ct_intro varchar2(4000)		--지점소개
 );
 CREATE SEQUENCE CT_SEQ;
+insert into center values(ct_seq.nextval,'화정지점','031-111-1234','화정역','훌륭한 트레이너');
+--화정지점 ct_code 1등록
 
 create table member 			--회원정보
 (
@@ -84,6 +86,7 @@ create table department			--부서정보
 	dept_name varchar2(50)		--부서이름
 );
 CREATE SEQUENCE DEPT_SEQ;
+insert into department values(dept_seq.nextval,'PT부');
 
 create table position			--직급정보
 (
@@ -91,6 +94,7 @@ create table position			--직급정보
 	pos_name varchar2(50),		--직급이름
 	dept_code number(20) REFERENCES DEPARTMENT(DEPT_CODE) --부서코드 FK
 );
+INSERT INTO position VALUES('a','대표이사',1);
 
 create table staff				--스태프
 (

@@ -7,11 +7,10 @@
 	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
 		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{ptr_time},#{ptr_count},#{ptr_ok})
 	</insert>
+	
 
 
-
-
-	<!-- staff 관련 -->
+<!--////////// staff 관련 - 작성자 : 유예진 //////////-->
 	<insert id="stfinsert" parameterType="fitness.dto.StaffDto">
 		 insert into staff values(staff_seq.nextval, #{stf_name}, #{stf_phone}, sysdate , #{stf_picture}, #{pos_code}, #{ct_code})
 	</insert>
@@ -29,13 +28,25 @@
 		delete from staff where stf_num=#{value}
 	</delete>
 	
-	<!-- member 관련 -->
-		<insert id="meminsert" parameterType="fitness.dto.MemberDto">
-		 insert into member values(mem_seq.nextval, #{mem_name}, #{mem_phone}, #{mem_addr}, #{mem_email}, 
-																	 #{mem_age}, #{mem_gen}, #{mem_birth}, sysdate , #{mem_picture}, #{ct_code})
+<!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
+	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
+		 insert into member values(mem_seq.nextval,#{mem_name},#{mem_phone},#{mem_addr},#{mem_email},#{mem_age},#{mem_gen},#{mem_birth},sysdate,#{mem_picture},#{ct_code})
 	</insert>
-	<select id="memlist" resultType="fitness.dto.StaffDto">
-		select * from member 
+	<!-- member페이징처리(전체글의 갯수) -->
+	<select id="getMemCount" resultType="int">
+		select count(mem_num) cnt from member
+	</select>
+	<!-- 전체목록보기 SelectAll -->
+	<select id="memSelectAll" resultType="fitness.dto.MemberDto">
+		select * from(
+			select  aa.*,rownum rnum from
+			(
+				select * from member
+				order by mem_name asc
+			)aa
+		)
+		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+
 	</select>
 	<select id="memdetail" parameterType="int" resultType="fitness.dto.MemberDto">
 		select * from member where mem_num=#{value}

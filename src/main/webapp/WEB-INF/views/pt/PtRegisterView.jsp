@@ -5,7 +5,7 @@
 <style type="text/css">
 	body{font-size: 0.8em;}
 	h1{text-align: center;}
-	input[type=text],label{margin-bottom: 12px;padding: 0.4em;width: 80%}	
+		
     #ptime{width:100px}
 </style>
 <link rel="stylesheet" type="text/css" href="/fitness/resources/css/jquery-ui.min.css">
@@ -25,10 +25,31 @@
 			autoOpen:false,
 			buttons:{
 				저장:function function_name(argument) {
-					var list="  pt시작일:"+$("#pdate").val()+"  pt시간:"+$("#time").val()
-								+"  pt횟수:"+$("#pcount").val()+"회";
-					$("#list").append(list);
+				/*	var ptdate=$("#pdate").val();
+					var ptime=$("#time").val();
+					var ptcount=$("#pcount").val();
+					$("#ptdate").val(ptdate);
+					$("#ptime").val(ptime);
+					$("#ptcount").val(ptcount);					
+					$("#dlg").dialog("close");		
+					
+				$("#form").submit(function(){
+						
+				});			*/		
+					var ptr_initdate=$("#pdate").val();
+					var ptr_time=$("#time").val();
+					var ptr_count=$("#pcount").val();
 					$("#dlg").dialog("close");
+					$.ajax({
+							url:"/ptrinsert?ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ptr_count="+ptr_count,
+							dataType:"json",
+							type:"post",
+							success:function function_name(data) {
+								$("#result").html(data);
+							}
+							
+					});
+					
 				},
 				닫기:function function_name(argument) {
 					$("#dlg").dialog("close");//다이얼로그 닫기
@@ -56,12 +77,11 @@
 </script>
 
 	<h1 id="open_btn">PT일정(click)</h1>
-	<hr>
-	<div id="list"></div>
+	
 	<div id="box">
 		<div id="dlg" title="PT일정">			
-			<label for="pdate">PT시작일</label>
-			<input type="text" id="pdate" ><br>
+			<label for="pdate">PT시작일</label><br>
+			<input type="text" id="pdate" ><br><br>
 			<label for="ptime">PT시간</label><br>
 			<select name="time" id="time">
 			<option value="06:00">시간선택해주세요</option>
@@ -88,15 +108,10 @@
 			<input type="text" id="pcount" >			
 		</div>
 	</div>
+<div id=result></div>
+	
 
-
-
-
-
-
-
-
-
+	
 
 
 

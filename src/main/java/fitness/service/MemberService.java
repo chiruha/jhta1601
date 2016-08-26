@@ -23,4 +23,20 @@ public class MemberService {
 	public List<MemberDto> list(HashMap<String, Integer> map){
 		return dao.listAll(map);
 	}
+	
+	//----------| 회원상세보기(한명) |----------//
+	public MemberDto listOne(int mem_num){
+		return dao.listOne(mem_num);
+	}
+	//----------| 회원삭제하기 |----------//	
+	public int memDelete(int mem_num){
+		return dao.memDelete(mem_num);
+	}
+	
+	//----------| 회원상세보기(한명) |----------//	
+	public int memUpdate(MemberDto dto){
+		return dao.memUpdate(dto);
+	}
+	
+	
 }

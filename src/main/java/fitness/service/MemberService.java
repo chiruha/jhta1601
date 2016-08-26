@@ -37,6 +37,8 @@ public class MemberService {
 	public int memUpdate(MemberDto dto){
 		return dao.memUpdate(dto);
 	}
-	
-	
+	//----------| 회원검색하기 |----------//	
+	public List<MemberDto> memSearchList(HashMap<String, String> map){
+		return dao.memSearchList(map);
+	}
 }

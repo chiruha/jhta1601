@@ -38,6 +38,8 @@ public class MemberDao {
 	public int memUpdate(MemberDto dto){
 		return sqlSession.update(NAMESPACE+".memUpdate",dto);
 	}
-	
-	
+	//----------| 회원검색하기 |----------//	
+	public List<MemberDto> memSearchList(HashMap<String, String> map){
+		return sqlSession.selectList(NAMESPACE+".memSearchList",map);
+	}
 }

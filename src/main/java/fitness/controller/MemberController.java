@@ -9,16 +9,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.sun.javafx.collections.MappingChange.Map;
+import com.sun.media.jfxmedia.logging.Logger;
 
 import fitness.dto.CenterDto;
 import fitness.dto.MemberDto;
@@ -83,7 +88,7 @@ public class MemberController {
 			return ".member.memError";
 		}
 	}
-	//--------------------| 회원전체목록보기1 |--------------------//
+	//--------------------| 회원전체목록보기 |--------------------//
 	@RequestMapping("/memselectAll")
 	public ModelAndView selectAll(@RequestParam(value="pageNum",defaultValue="1") int pageNum){
 		int totalRowCount=service.getMemCount();
@@ -176,4 +181,33 @@ public class MemberController {
 			return ".member.memError";
 		}
 	}
+	//--------------------| 회원검색하기 |--------------------//
+	@RequestMapping("/memSearchList")
+	public ModelAndView memSearchList(HttpServletRequest request,Model model){
+		String memSearch=request.getParameter("memSearch");
+		String keyword=request.getParameter("keyword");
+		HashMap<String, String> map=new HashMap<String, String>();
+		map.put("memSearch", memSearch);
+		map.put("keyword", keyword);
+		List<MemberDto> searchList=service.memSearchList(map);
+		System.out.println("검색조건보기: "+searchList);
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("list",searchList);
+		mv.setViewName(".member.memListAll");
+		return mv;
+		
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+

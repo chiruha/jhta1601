@@ -43,7 +43,7 @@ public class MemberController {
 			Date regdate,
 			MultipartFile mem_picture,
 			String ct_code, HttpSession session){
-		System.out.println("어디까지왔나");
+		System.out.println("meminsert 컨트롤러 도착");
 		//파일에 대한 정보를 MultipartFile이 가지고 있음
 		//upload경로는 webabb -> resources -> img -> member : 여기에 회원사진을 저장하겠음
 		//upload폴더의 절대경로 얻어오기
@@ -58,7 +58,7 @@ public class MemberController {
 			//전송된 파일을 읽어오기 위한 스트림객체
 			InputStream is=mem_picture.getInputStream();
 			//전송된 파일을 서버에 복사하기 위한 출력스트림객체
-			FileOutputStream fos=new FileOutputStream(path+"\\"+savefilename);
+			FileOutputStream fos=new FileOutputStream(path+"/"+savefilename);
 			//파일 복사하기 : FileCopyUtils(spring이 가진 메소드)
 			FileCopyUtils.copy(is, fos);
 			is.close();
@@ -66,8 +66,8 @@ public class MemberController {
 			System.out.println(path+"/"+savefilename+"[회원사진업로드성공]");
 			int age=Integer.parseInt(mem_age);
 			int code=Integer.parseInt(ct_code);
-
 			MemberDto dto=new MemberDto(0, mem_name, mem_phone, mem_addr, mem_email, age, mem_gen, mem_birth, null, savefilename, code);
+			System.out.println(dto.toString());
 				System.out.println("name"+mem_name);
 			int n=service.insert(dto);
 			System.out.println("success로 안가나??"+n);

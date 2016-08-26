@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div >
-	<h1>header page </h1>
-	<img src="resources/img/a6.jpg">
+	<h1><a href="<c:url value='/'/>">Header Page (홈으로 이동)</a> </h1>
 </div>

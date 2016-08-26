@@ -63,14 +63,14 @@ public class StaffController {
 	@RequestMapping("/stflist")
 	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session){
 		int totalRowCount=service.getStfCount();
-		PageUtil pu=new PageUtil(pageNum, 5, 10, totalRowCount);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount,5,5);
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<StaffDto> stflist=service.listService(map);
 		session.setAttribute("stflist", stflist);
 		session.setAttribute("pu", pu);
-		return ".staff.StaffListView";
+		return ".staff.StfListView";
 	}
 public String detail(){
 		

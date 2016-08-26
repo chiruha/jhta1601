@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<h1>회원기본정보 등록하기</h1>
+<h1>회원기본정보 등록하기1</h1>
 <form method="post" action="meminsert" enctype="multipart/form-data">
 	
 	회원이름<input type="text" name="mem_name"><br>

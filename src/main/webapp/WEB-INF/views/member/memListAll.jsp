@@ -5,7 +5,7 @@
 <h1>전체회원보기</h1>
 <table border="1" width="1000">
 	<tr>
-		<th>회원번호</th>
+		<th>회원번호1</th>
 		<th>이름</th>
 		<th>전화</th>
 		<th>가입일</th>

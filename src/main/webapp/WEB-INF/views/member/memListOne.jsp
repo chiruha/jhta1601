@@ -31,7 +31,7 @@
 		<td colspan="3">${dto.mem_email}</td>
 	</tr>
 	<tr>
-		<td width="100">전화</td>
+		<td width="100">전화1</td>
 		<td colspan="3">${dto.mem_phone}</td>
 	</tr>
 	<tr>

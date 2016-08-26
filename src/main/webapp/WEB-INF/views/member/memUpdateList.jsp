@@ -7,7 +7,7 @@
 <form method="post" action="memUpdate?mem_num=${dto.mem_num}" enctype="multipart/form-data">
 <table border="1" width="700">
 	<tr>
-		<td width="100">회원번호</td>
+		<td width="100">회원번호1</td>
 		<td colspan="2">${dto.mem_num}</td>
 		<td rowspan="5" width="150"><img src="/fitness/resources/img/Member/${dto.mem_picture }" width="150" height="100">
 			사진변경<input type="file" name="mem_picture">

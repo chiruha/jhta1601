@@ -72,11 +72,21 @@ public class StaffController {
 		session.setAttribute("pu", pu);
 		return ".staff.StfListView";
 	}
-public String detail(){
+	@RequestMapping("/stfdetail")
+	public String detail(String stf_num ,HttpSession session){
+		try{
+			int num=Integer.parseInt(stf_num);
+			StaffDto dto=service.detailService(num);
+			session.setAttribute("dto", dto);
+			return ".staff.StfDetailView";
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			session.setAttribute("result", "상세보기 실패!");
+			return ".staff.ResultView";
+		}
 		
 		
 		
-		return ".staff.StfDetailView";
 	}
 
 }

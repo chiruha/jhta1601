@@ -61,7 +61,7 @@
 		delete from staff where stf_num=#{value}
 	</delete>
 	
-<!--////////// 1member 관련(회원등록) - 작성자:이성진 //////////-->
+<!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
 		 insert into member values(mem_seq.nextval,#{mem_name},#{mem_phone},#{mem_addr},#{mem_email},#{mem_age},#{mem_gen},#{mem_birth},sysdate,#{mem_picture},#{ct_code})
 	</insert>
@@ -97,4 +97,11 @@
 											     mem_age=#{mem_age}, mem_gen=#{mem_gen}, mem_birth=#{mem_birth}, 
 												 mem_picture= #{mem_picture},  ct_code= #{ct_code} where mem_num=#{mem_num}
 	</update>
+	<!-- 회원검색 memSearchList -->
+	<select id="memSearchList" resultType="fitness.dto.MemberDto">
+		select * from member
+		<if test="memSearch!=null">
+			where ${memSearch} like '%' || #{keyword} || '%'
+		</if>
+	</select>
 </mapper>

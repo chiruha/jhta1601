@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fitness.dto.PtregisterDto;
 import fitness.service.PtregisterService;
 
 
@@ -21,8 +22,9 @@ public class PtregisterController {
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST)
 	@ResponseBody
 	public String insert(String ptr_initdate,String ptr_time,String ptr_count){
-		System.out.println("여기오나");
-		System.out.println(ptr_initdate+":"+ptr_time+":"+ptr_count);
+		
+		
+		//PtregisterDto dto = new PtregisterDto(0, null, ptr_initdate, ptr_time, ptr_count,null);
 		return ".pt.PtRegisterView";
 	}
 }

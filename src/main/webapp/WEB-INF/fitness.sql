@@ -316,7 +316,7 @@ create table pt_register
 	ptr_initdate varchar2(50), --회원시작일
 	ptr_time varchar2(50), --회원시간
 	ptr_count number(3), --회원횟수
-	ptr_ok varchar2(15) CHECK ( PTR_OK IN ('승인대기', '승인','승인취소')) --회원승인
+	ptr_ok varchar2(15) DEFAULT '승인대기' CHECK ( PTR_OK IN ('승인','승인취소')) --회원승인
 );
 CREATE SEQUENCE PTR_SEQ;
 

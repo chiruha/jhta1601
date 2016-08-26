@@ -4,10 +4,28 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
+	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
 	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
 		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{ptr_time},#{ptr_count},#{ptr_ok})
 	</insert>
 	
+	
+<!--////////// center 관련 - 작성자 : 유예진 //////////-->
+	<insert id="ctinsert" parameterType="fitness.dto.CenterDto">
+		insert into center values(ct_seq.nextval, #{ct_name}, #{ct_tel}, #{ct_addr}, #{ct_intro})
+	</insert>
+	<select id="ctslist" resultType="fitness.dto.CenterDto">
+		select * from center
+	</select>
+	<select id="ctdetail" resultType="fitness.dto.CenterDto" parameterType="String" >
+		select * from center where ct_code=#{value}
+	</select>
+	<update id="ctupdate" parameterType="fitness.dto.CenterDto">
+		update center set ct_name=#{ct_name}, ct_tel=#{ct_tel},ct_addr= #{ct_addr}, ct_intro=#{ct_intro} where ct_code=#{ct_code}
+	</update>
+	<delete id="ctdelete" parameterType="String" >
+		delete center where ct_code=#{value}
+	</delete>
 
 
 <!--////////// staff 관련 - 작성자 : 유예진 //////////-->

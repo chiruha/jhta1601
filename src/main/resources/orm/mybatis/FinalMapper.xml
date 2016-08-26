@@ -48,7 +48,11 @@
 		 insert into staff values(staff_seq.nextval, #{stf_name}, #{stf_phone}, sysdate , #{stf_picture}, #{pos_code}, #{ct_code})
 	</insert>
 	<select id="stflist" resultType="fitness.dto.StaffDto">
-		select * from staff 
+		select * from( select  aa.*,rownum rnum from
+			(select * from staff	)aa
+		)
+		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+
 	</select>
 	<select id="stfdetail" parameterType="int" resultType="fitness.dto.StaffDto">
 		select * from staff where stf_num=#{value}
@@ -60,6 +64,9 @@
 	<delete id="stfdelete" parameterType="int">
 		delete from staff where stf_num=#{value}
 	</delete>
+	<select id="getStfCount" resultType="int">
+		select count(stf_num) cnt from staff
+	</select>
 	
 <!--////////// 1member 관련(회원등록) - 작성자:이성진 //////////-->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">

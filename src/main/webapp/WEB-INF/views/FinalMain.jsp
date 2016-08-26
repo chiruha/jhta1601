@@ -16,6 +16,7 @@
 		<li><a href="<c:url value='/memselectAll'/>">회원전체목록보기(이성진)1</a></li>
 		<li><a href="<c:url value='/ctinsert'/>">센터등록</a></li>
 		<li><a href="<c:url value='/stfinsert'/>">직원등록</a></li>
+		<li><a href="<c:url value='/stflist'/>">직원목록</a></li>
 		<li><a href="<c:url value='/posinsert'/>">직급등록</a></li>
 		<li><a href="<c:url value='/deptinsert'/>">부서등록</a></li>
 		

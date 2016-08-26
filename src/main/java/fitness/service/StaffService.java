@@ -1,5 +1,6 @@
 package fitness.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,13 @@ public class StaffService {
 	public StaffDto detailService(int num){
 		return dao.detailDao(num);
 	}
-	public List<StaffDto> listService(){
-		return dao.listDao();
+	public List<StaffDto> listService(HashMap<String, Integer> map){
+		return dao.listDao(map);
 	}
 	public int deleteService(int num){
 		return dao.deleteDao(num);
+	}
+	public int getStfCount(){
+		return dao.getStfCount();
 	}
 }

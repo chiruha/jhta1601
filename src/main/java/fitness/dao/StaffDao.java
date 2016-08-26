@@ -1,5 +1,6 @@
 package fitness.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,13 +19,16 @@ public class StaffDao {
 	public int updateDao(StaffDto dto){
 		return sqlSession.update(NameSpace+".stfupdate",dto);
 	}
-	public List<StaffDto> listDao(){
-		return sqlSession.selectList(NameSpace+".stflist");
+	public List<StaffDto> listDao(HashMap<String, Integer> map){
+		return sqlSession.selectList(NameSpace+".stflist",map);
 	}
 	public StaffDto detailDao(int num){
 		return sqlSession.selectOne(NameSpace+".stfdetail",num);
 	}
 	public int deleteDao(int num){
-		return sqlSession.delete(NameSpace+".delete",num);
+		return sqlSession.delete(NameSpace+".stfdelete",num);
+	}
+	public int getStfCount(){
+		return   sqlSession.selectOne(NameSpace+".getStfCount");
 	}
 }

@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="StfInsert">
 <h1>직원등록 페이지</h1>
-<form action="stfInsert" method="post" enctype="multipart/form-data">
+<form action="stfinsert" method="post" enctype="multipart/form-data">
 
 직원이름 <input type="text" name="stf_name"><br>
 전화전호 <input type="text" name="stf_phone"><br>
@@ -17,7 +17,7 @@
 		<option value="${clist.ct_code }">${clist.ct_name}</option>	
 	</c:forEach>	
 </select><br>
-사진파일 <input type="file" name="stf_picture"><br>
+사진파일 <input type="file" name="picture"><br>
 
 
 <input type="submit" value="등록">

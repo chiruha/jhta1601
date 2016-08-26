@@ -107,10 +107,10 @@
 			</select>
 			<br><br>
 			지점선택 <select name="ct_code" id="ct_code">
-	<c:forEach var="clist"  items="${ctlist}">
-		<option value="${clist.ct_code }">${clist.ct_name}</option>	
-	</c:forEach>	
-</select><br>			
+					<c:forEach var="clist"  items="${ctlist}">
+						<option value="${clist.ct_code }">${clist.ct_name}</option>	
+					</c:forEach>	
+					</select><br>			
 		</div>
 	</div>
 <div id=result></div>

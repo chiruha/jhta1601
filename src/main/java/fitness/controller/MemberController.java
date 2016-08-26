@@ -30,7 +30,7 @@ public class MemberController {
 	//--------------------| 회원등록 |--------------------//
 	@RequestMapping(value="/meminsert",method= RequestMethod.GET)
 	public String insert(){
-		return ".member.MemberInsert";
+		return ".member.memInsert";
 	}
 	@RequestMapping(value="/meminsert",method= RequestMethod.POST)
 	public String insert( String mem_name,

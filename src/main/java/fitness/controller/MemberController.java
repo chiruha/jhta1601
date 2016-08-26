@@ -36,7 +36,7 @@ import page.util.PageUtil;
 public class MemberController {
 	@Autowired private MemberService service;
 	@Autowired private CenterService cts; // center 정보뽑기
-	//--------------------| 회원등록 |--------------------//
+	//--------------------| 회원등록1 |--------------------//
 	@RequestMapping(value="/meminsert",method= RequestMethod.GET)
 	public String insert(HttpSession session){
 		List<CenterDto> ctlist=cts.listService();

@@ -60,8 +60,21 @@
 	<delete id="stfdelete" parameterType="int">
 		delete from staff where stf_num=#{value}
 	</delete>
+<!--////////// registraion 관련(수강등록-프로그램등록) - 작성자:이성진 //////////-->
+	<!-- 회원 수강등록(프로그램) insert 
+		1. 수강등록하고자 하는 회원번호를 검색한다.
+		2. 뽑아온 번호와 기타정보들을 insert 한다.
+	-->
+	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
+		select * from member
+		<if test="memNum!=null">
+			where ${memNum} like '%' || #{keyword} || '%'
+		</if>
+	</select>
+
 	
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
+	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
 		 insert into member values(mem_seq.nextval,#{mem_name},#{mem_phone},#{mem_addr},#{mem_email},#{mem_age},#{mem_gen},#{mem_birth},sysdate,#{mem_picture},#{ct_code})
 	</insert>

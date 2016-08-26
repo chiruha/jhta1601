@@ -29,7 +29,7 @@ public class MemberDao {
 	public MemberDto listOne(int mem_num){
 		return sqlSession.selectOne(NAMESPACE+".memListOne",mem_num);
 	}
-	//----------| 회원삭제보기 |----------//	
+	//----------| 회원삭제보기1 |----------//	
 	public int memDelete(int mem_num){
 		return sqlSession.delete(NAMESPACE+".memDelete",mem_num);
 	}

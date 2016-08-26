@@ -8,7 +8,7 @@
 	<form action="memSearchList">
 회원검색 : 
 	<select name="memSearch">
-		<option value="mem_num">회원번호</option>
+		<option value="mem_num">회원번호1</option>
 		<option value="mem_name">회원이름</option>
 		<option value="mem_phone">회원전화</option>
 	</select>

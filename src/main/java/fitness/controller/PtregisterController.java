@@ -16,7 +16,7 @@ public class PtregisterController {
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.GET)
 	public String insert(){
-		return ".pt.PtRegisterView";
+		return ".exercise.PtRegisterView";
 	}
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST)
@@ -25,7 +25,7 @@ public class PtregisterController {
 		
 		
 		//PtregisterDto dto = new PtregisterDto(0, null, ptr_initdate, ptr_time, ptr_count,null);
-		return ".pt.PtRegisterView";
+		return ".exercise.PtRegisterView";
 	}
 }
 

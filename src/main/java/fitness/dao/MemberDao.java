@@ -14,15 +14,30 @@ public class MemberDao {
 	@Autowired private SqlSession sqlSession;
 	
 	private String NAMESPACE="orm.mybatis.FinalMapper";
-//----------| 회원등록 |----------//
+	//----------| 회원등록1 |----------//
 	public int insert(MemberDto dto){
 		return sqlSession.insert(NAMESPACE+".meminsert", dto);
 	}
-//----------| 회원전체목록보기 |----------//
+	//----------| 회원전체목록보기 |----------//
 	public int getMemCount(){//페이징처리(count구하기)
 		return sqlSession.selectOne(NAMESPACE+".getMemCount");
 	}
 	public List<MemberDto> listAll(HashMap<String, Integer> map){
 		return sqlSession.selectList(NAMESPACE+".memSelectAll",map);
 	}
+	//----------| 회원상세보기(한명) |----------//	
+	public MemberDto listOne(int mem_num){
+		return sqlSession.selectOne(NAMESPACE+".memListOne",mem_num);
+	}
+	//----------| 회원삭제보기 |----------//	
+	public int memDelete(int mem_num){
+		return sqlSession.delete(NAMESPACE+".memDelete",mem_num);
+	}
+	
+	//----------| 회원수정하기 |----------//	
+	public int memUpdate(MemberDto dto){
+		return sqlSession.update(NAMESPACE+".memUpdate",dto);
+	}
+	
+	
 }

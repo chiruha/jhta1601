@@ -46,7 +46,7 @@
 		delete from staff where stf_num=#{value}
 	</delete>
 	
-<!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
+<!--////////// 1member 관련(회원등록) - 작성자:이성진 //////////-->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
 		 insert into member values(mem_seq.nextval,#{mem_name},#{mem_phone},#{mem_addr},#{mem_email},#{mem_age},#{mem_gen},#{mem_birth},sysdate,#{mem_picture},#{ct_code})
 	</insert>
@@ -54,7 +54,7 @@
 	<select id="getMemCount" resultType="int">
 		select count(mem_num) cnt from member
 	</select>
-	<!-- 전체목록보기 SelectAll -->
+	<!-- 전체목록보기 listAll -->
 	<select id="memSelectAll" resultType="fitness.dto.MemberDto">
 		select * from(
 			select  aa.*,rownum rnum from
@@ -66,17 +66,20 @@
 		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 
 	</select>
-	<select id="memdetail" parameterType="int" resultType="fitness.dto.MemberDto">
+	<!-- 한명상세보기 ListOne -->
+	<select id="memListOne" parameterType="int" resultType="fitness.dto.MemberDto">
 		select * from member where mem_num=#{value}
 	</select>
-	<update id="memupdate" parameterType="fitness.dto.MemberDto">
+	
+	<!-- 회원삭제 memDelete -->
+	<delete id="memDelete" parameterType="int">
+		delete from member where mem_num=#{value}
+	</delete>
+	
+	<!-- 회원수정 memUpdate -->
+	<update id="memUpdate" parameterType="fitness.dto.MemberDto">
 		update member set mem_name= #{mem_name}, mem_phone= #{mem_phone}, mem_addr= #{mem_addr}, mem_email= #{mem_email},  
 											     mem_age=#{mem_age}, mem_gen=#{mem_gen}, mem_birth=#{mem_birth}, 
 												 mem_picture= #{mem_picture},  ct_code= #{ct_code} where mem_num=#{mem_num}
 	</update>
-	<delete id="memdelete" parameterType="int">
-		delete from member where mem_num=#{value}
-	</delete>
-	
-	<!--  -->
 </mapper>

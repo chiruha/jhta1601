@@ -11,7 +11,6 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
-import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -21,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import fitness.dto.CenterDto;
 import fitness.dto.MemberDto;
+import fitness.service.CenterService;
 import fitness.service.MemberService;
 import page.util.PageUtil;
 
@@ -29,14 +30,17 @@ import page.util.PageUtil;
 @Controller
 public class MemberController {
 	@Autowired private MemberService service;
+	@Autowired private CenterService cts; // center 정보뽑기
 	//--------------------| 회원등록 |--------------------//
 	@RequestMapping(value="/meminsert",method= RequestMethod.GET)
-	public String insert(){
+	public String insert(HttpSession session){
+		List<CenterDto> ctlist=cts.listService();
+		session.setAttribute("ctlist", ctlist);
 		return ".member.memInsert";
 	}
 	@RequestMapping(value="/meminsert",method= RequestMethod.POST)
 	public String insert( String mem_name,
-			 String mem_phone,
+			String mem_phone,
 			String mem_addr,
 			String mem_email,
 			String mem_age,

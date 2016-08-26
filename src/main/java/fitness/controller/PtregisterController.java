@@ -32,7 +32,7 @@ public class PtregisterController {
 	@ResponseBody
 	public String insert(String ptr_initdate,String ptr_time,String ct_code){
 		
-		System.out.println("오나"+ct_code);
+		System.out.println("ptregisterController테스트:ct_code"+ct_code);
 		//PtregisterDto dto = new PtregisterDto(0, null, ptr_initdate, ptr_time, ptr_count,ct_code,null);
 		return ".exercise.PtRegisterView";
 	}

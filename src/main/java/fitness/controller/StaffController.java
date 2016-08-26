@@ -70,8 +70,6 @@ public class StaffController {
 		List<StaffDto> stflist=service.listService(map);
 		session.setAttribute("stflist", stflist);
 		session.setAttribute("pu", pu);
-		//return ".staff.StfListView";
-		//return ".staff.ResultView";
 		return ".staff.StaffListView";
 	}
 public String detail(){

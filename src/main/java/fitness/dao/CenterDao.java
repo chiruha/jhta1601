@@ -18,4 +18,7 @@ public class CenterDao {
 	public List<CenterDto> listDao(){
 		return sqlsession.selectList(NAMESPACE+".ctlist");
 	}
+	public CenterDto detailDao(){
+		return sqlsession.selectOne(NAMESPACE+".ctdetail");
+	}
 }

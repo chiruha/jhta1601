@@ -17,4 +17,7 @@ public class CenterService {
 	public List<CenterDto> listService(){
 		return dao.listDao();
 	}
+	public CenterDto detailService(){
+		return dao.detailDao();
+	}
 }

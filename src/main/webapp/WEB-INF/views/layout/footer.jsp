@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <div >
 	<h1>footer page </h1>
-	<img src="resources/img/a4.gif">
+	<img src="resources/img/a6.jpg">
 </div>

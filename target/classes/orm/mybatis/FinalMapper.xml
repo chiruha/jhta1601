@@ -45,7 +45,7 @@
 		delete from staff where stf_num=#{value}
 	</delete>
 	
-<!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
+<!--////////// 1member 관련(회원등록) - 작성자:이성진 //////////-->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
 		 insert into member values(mem_seq.nextval,#{mem_name},#{mem_phone},#{mem_addr},#{mem_email},#{mem_age},#{mem_gen},#{mem_birth},sysdate,#{mem_picture},#{ct_code})
 	</insert>

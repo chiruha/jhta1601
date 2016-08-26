@@ -14,7 +14,7 @@ public class MemberDao {
 	@Autowired private SqlSession sqlSession;
 	
 	private String NAMESPACE="orm.mybatis.FinalMapper";
-	//----------| 회원등록 |----------//
+	//----------| 회원등록1 |----------//
 	public int insert(MemberDto dto){
 		return sqlSession.insert(NAMESPACE+".meminsert", dto);
 	}

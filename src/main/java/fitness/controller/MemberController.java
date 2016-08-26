@@ -79,7 +79,7 @@ public class MemberController {
 			return ".member.memError";
 		}
 	}
-	//--------------------| 회원전체목록보기 |--------------------//
+	//--------------------| 회원전체목록보기1 |--------------------//
 	@RequestMapping("/memselectAll")
 	public ModelAndView selectAll(@RequestParam(value="pageNum",defaultValue="1") int pageNum){
 		int totalRowCount=service.getMemCount();

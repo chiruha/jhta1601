@@ -12,7 +12,7 @@ import fitness.dto.MemberDto;
 @Service
 public class MemberService {
 	@Autowired MemberDao dao;
-	//----------| 회원등록 |----------//
+	//----------| 회원등록1 |----------//
 	public int insert(MemberDto dto){
 		return dao.insert(dto);
 	}

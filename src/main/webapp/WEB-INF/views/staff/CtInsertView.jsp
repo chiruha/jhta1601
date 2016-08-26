@@ -11,7 +11,4 @@
 <input type="submit" value="등록">
 <input type="reset" value="취소">
 </form>
-
-
-
 </div>

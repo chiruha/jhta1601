@@ -7,13 +7,28 @@
 	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
 		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{ptr_time},#{ptr_count},#{ptr_ok})
 	</insert>
+
+<!--////////// department 관련 - 작성자 : 유예진 //////////-->
+	<insert id="deptinsert" parameterType="fitness.dto.DepartmentDto">
+		insert into department values(#{dept_code},#{dept_name})
+	</insert>
+	<select id="deptlist" resultType="fitness.dto.DepartmentDto">
+		select * from department
+	</select>
 	
 	
+<!--////////// position 관련 - 작성자 : 유예진 //////////-->
+	<insert id="posinsert" parameterType="fitness.dto.PositionDto">
+		insert into position values(#{pos_code},#{pos_name},#{dept_code})
+	</insert>
+	<select id="poslist" resultType="fitness.dto.PositionDto">
+		select * from position
+	</select>
 <!--////////// center 관련 - 작성자 : 유예진 //////////-->
 	<insert id="ctinsert" parameterType="fitness.dto.CenterDto">
 		insert into center values(ct_seq.nextval, #{ct_name}, #{ct_tel}, #{ct_addr}, #{ct_intro})
 	</insert>
-	<select id="ctslist" resultType="fitness.dto.CenterDto">
+	<select id="ctlist" resultType="fitness.dto.CenterDto">
 		select * from center
 	</select>
 	<select id="ctdetail" resultType="fitness.dto.CenterDto" parameterType="String" >

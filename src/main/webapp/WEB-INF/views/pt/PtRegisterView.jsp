@@ -41,9 +41,10 @@
 					var ptr_count=$("#pcount").val();
 					$("#dlg").dialog("close");
 					$.ajax({
-							url:"/ptrinsert?ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ptr_count="+ptr_count,
+							url:"/fitness/ptrinsert",
 							dataType:"json",
 							type:"post",
+							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ptr_count="+ptr_count,
 							success:function function_name(data) {
 								$("#result").html(data);
 							}

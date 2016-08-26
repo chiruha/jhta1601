@@ -22,7 +22,7 @@ public class PtregisterController {
 	@ResponseBody
 	public String insert(String ptr_initdate,String ptr_time,String ptr_count){
 		System.out.println("여기오나");
-		System.out.println(ptr_initdate);
+		System.out.println(ptr_initdate+":"+ptr_time+":"+ptr_count);
 		return ".pt.PtRegisterView";
 	}
 }

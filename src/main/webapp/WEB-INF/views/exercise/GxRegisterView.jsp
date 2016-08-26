@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <style type="text/css">
@@ -39,13 +38,13 @@
 				});			*/		
 					var ptr_initdate=$("#pdate").val();
 					var ptr_time=$("#time").val();
-					var ct_code=$("#ct_code").val();
+					var ptr_count=$("#pcount").val();
 					$("#dlg").dialog("close");
 					$.ajax({
 							url:"/fitness/ptrinsert",
 							dataType:"json",
 							type:"post",
-							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code,
+							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ptr_count="+ptr_count,
 							success:function function_name(data) {
 								$("#result").html(data);
 							}
@@ -106,11 +105,8 @@
 			<option value="22:00">22:00</option>		
 			</select>
 			<br><br>
-			지점선택 <select name="ct_code" id="ct_code">
-	<c:forEach var="clist"  items="${ctlist}">
-		<option value="${clist.ct_code }">${clist.ct_name}</option>	
-	</c:forEach>	
-</select><br>			
+			<label for="pcount">PT횟수</label>
+			<input type="text" id="pcount" >			
 		</div>
 	</div>
 <div id=result></div>

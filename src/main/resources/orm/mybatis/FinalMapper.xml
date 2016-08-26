@@ -48,7 +48,11 @@
 		 insert into staff values(staff_seq.nextval, #{stf_name}, #{stf_phone}, sysdate , #{stf_picture}, #{pos_code}, #{ct_code})
 	</insert>
 	<select id="stflist" resultType="fitness.dto.StaffDto">
-		select * from staff 
+		select * from( select  aa.*,rownum rnum from
+			(select * from staff	)aa
+		)
+		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+
 	</select>
 	<select id="stfdetail" parameterType="int" resultType="fitness.dto.StaffDto">
 		select * from staff where stf_num=#{value}
@@ -57,11 +61,26 @@
 		update staff set stf_name= #{stf_name}, stf_phone= #{stf_phone}, stf_picture= #{stf_picture}, 
 										pos_code=#{pos_code}, ct_code= #{ct_code} where stf_num=#{stf_num}
 	</update>
-	<delete id="stfdelete" parameterType="int">
-		delete from staff where stf_num=#{value}
-	</delete>
-	
-<!--////////// 1member 관련(회원등록) - 작성자:이성진 //////////-->
+
+
+	<select id="getStfCount" resultType="int">
+		select count(stf_num) cnt from staff
+	</select>
+
+<!--////////// registraion 관련(수강등록-프로그램등록) - 작성자:이성진 //////////-->
+	<!-- 회원 수강등록(프로그램) insert 
+		1. 수강등록하고자 하는 회원번호를 검색한다.
+		2. 뽑아온 번호와 기타정보들을 insert 한다.
+	-->
+	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
+		select * from member
+		<if test="memNum!=null">
+			where ${memNum} like '%' || #{keyword} || '%'
+		</if>
+	</select>
+
+<!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
+	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
 		 insert into member values(mem_seq.nextval,#{mem_name},#{mem_phone},#{mem_addr},#{mem_email},#{mem_age},#{mem_gen},#{mem_birth},sysdate,#{mem_picture},#{ct_code})
 	</insert>
@@ -97,4 +116,11 @@
 											     mem_age=#{mem_age}, mem_gen=#{mem_gen}, mem_birth=#{mem_birth}, 
 												 mem_picture= #{mem_picture},  ct_code= #{ct_code} where mem_num=#{mem_num}
 	</update>
+	<!-- 회원검색 memSearchList -->
+	<select id="memSearchList" resultType="fitness.dto.MemberDto">
+		select * from member
+		<if test="memSearch!=null">
+			where ${memSearch} like '%' || #{keyword} || '%'
+		</if>
+	</select>
 </mapper>

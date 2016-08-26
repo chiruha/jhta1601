@@ -3,6 +3,19 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <h1>전체회원보기</h1>
+<br>
+<div><!-- 회원검색하기 : 회원검색 후 -> 프로그램등록(registration) -->
+	<form action="memSearchList">
+회원검색 : 
+	<select name="memSearch">
+		<option value="mem_num">회원번호1</option>
+		<option value="mem_name">회원이름</option>
+		<option value="mem_phone">회원전화</option>
+	</select>
+	<input type="text" name="keyword">
+	<input type="submit" value="회원검색">
+	</form>
+</div>
 <table border="1" width="1000">
 	<tr>
 		<th>회원번호1</th>

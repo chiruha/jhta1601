@@ -28,7 +28,7 @@ public class MemberService {
 	public MemberDto listOne(int mem_num){
 		return dao.listOne(mem_num);
 	}
-	//----------| 회원삭제하기 |----------//	
+	//----------| 회원삭제하기1 |----------//	
 	public int memDelete(int mem_num){
 		return dao.memDelete(mem_num);
 	}
@@ -37,6 +37,8 @@ public class MemberService {
 	public int memUpdate(MemberDto dto){
 		return dao.memUpdate(dto);
 	}
-	
-	
+	//----------| 회원검색하기 |----------//	
+	public List<MemberDto> memSearchList(HashMap<String, String> map){
+		return dao.memSearchList(map);
+	}
 }

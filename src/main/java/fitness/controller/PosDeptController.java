@@ -39,7 +39,7 @@ public class PosDeptController {
 	}
 	@RequestMapping(value="/deptinsert", method=RequestMethod.GET)
 	public String deptinsert(){
-		return ".staff.PosInsertView";
+		return ".staff.DeptInsertView";
 	}
 	@RequestMapping(value="/deptinsert", method=RequestMethod.POST)
 	public String deptinsert(DepartmentDto ddto, HttpSession session){

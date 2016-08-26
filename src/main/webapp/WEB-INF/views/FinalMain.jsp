@@ -12,7 +12,6 @@
 <img src="resources/img/f1.jpg"><br>
 	<ul>
 		<li><a href="<c:url value='/ptrinsert'/>">테스트 예약</a></li>		
-		<li><a href="<c:url value='/stfinsert'/>">테스트 직원추가</a></li>	
 		<li><a href="<c:url value='/meminsert'/>">회원등록(이성진)</a></li>
 		<li><a href="<c:url value='/memselectAll'/>">회원전체목록보기(이성진)1</a></li>
 		<li><a href="<c:url value='/ctinsert'/>">센터등록</a></li>

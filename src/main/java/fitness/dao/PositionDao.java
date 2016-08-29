@@ -18,5 +18,13 @@ public class PositionDao {
 	public int insertDao(PositionDto dto){
 		return sqlSession.insert(NAMESPACE+".posinsert",dto);
 	}
-	
+	public PositionDto detailDao(String pos){
+		return sqlSession.selectOne(NAMESPACE+".posdetail",pos);
+	}
+	public int deleteDao(String pos){
+		return sqlSession.delete(NAMESPACE+".posdelete",pos);
+	}
+	public int updateDao(PositionDto dto){
+		return sqlSession.update(NAMESPACE+".posupdate",dto);
+	}
 }

@@ -16,7 +16,9 @@
 	<select id="deptlist" resultType="fitness.dto.DepartmentDto">
 		select * from department
 	</select>
-	
+	<select id="deptdetail" resultType="fitness.dto.DepartmentDto" parameterType="int">
+		select * from department where dept_code=#{value}	
+	</select>
 	
 <!--////////// position 관련 - 작성자 : 유예진 //////////-->
 	<insert id="posinsert" parameterType="fitness.dto.PositionDto">
@@ -24,6 +26,9 @@
 	</insert>
 	<select id="poslist" resultType="fitness.dto.PositionDto">
 		select * from position
+	</select>
+	<select id="posdetail" resultType="fitness.dto.PositionDto" parameterType="String">
+		select * from position where pos_code=#{value}	
 	</select>
 <!--////////// center 관련 - 작성자 : 유예진 //////////-->
 	<insert id="ctinsert" parameterType="fitness.dto.CenterDto">

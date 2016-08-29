@@ -355,7 +355,7 @@ create table pt_register
 	rg_num number(20) REFERENCES REGISTRATION(RG_NUM), --회원 정보
 	ptr_initdate varchar2(50), --회원시작일
 	ptr_time varchar2(50), --회원시간
-	ptr_count number(3), --회원횟수
+	ptr_count number(3), --PT횟수
 	ct_code number(20), --지점코드
 	ptr_ok varchar2(15) DEFAULT '승인대기' CHECK ( PTR_OK IN ('승인','승인취소')) --회원승인
 );

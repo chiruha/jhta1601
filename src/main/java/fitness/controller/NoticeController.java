@@ -50,7 +50,7 @@ public class NoticeController {
 		
 		ModelAndView mv = new ModelAndView("noclist");
 		mv.addObject("noclist",list);
-		mv.addObject("pu",pu);
+		mv.addObject("pu",pu); 
 		return mv;		
 		
 	}

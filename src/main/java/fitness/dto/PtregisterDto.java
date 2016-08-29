@@ -3,6 +3,7 @@ package fitness.dto;
 public class PtregisterDto {
 	private int ptr_num;
 	private int tr_num;
+	private int rg_num;
 	private String ptr_initdate;
 	private String ptr_time;
 	private int ptr_count;	
@@ -10,10 +11,12 @@ public class PtregisterDto {
 	
 	public PtregisterDto() {}
 
-	public PtregisterDto(int ptr_num, int tr_num, String ptr_initdate, String ptr_time, int ptr_count, String ptr_ok) {
+	public PtregisterDto(int ptr_num, int tr_num, int rg_num, String ptr_initdate, String ptr_time, int ptr_count,
+			String ptr_ok) {
 		super();
 		this.ptr_num = ptr_num;
 		this.tr_num = tr_num;
+		this.rg_num = rg_num;
 		this.ptr_initdate = ptr_initdate;
 		this.ptr_time = ptr_time;
 		this.ptr_count = ptr_count;
@@ -34,6 +37,14 @@ public class PtregisterDto {
 
 	public void setTr_num(int tr_num) {
 		this.tr_num = tr_num;
+	}
+
+	public int getRg_num() {
+		return rg_num;
+	}
+
+	public void setRg_num(int rg_num) {
+		this.rg_num = rg_num;
 	}
 
 	public String getPtr_initdate() {
@@ -70,9 +81,12 @@ public class PtregisterDto {
 
 	@Override
 	public String toString() {
-		return "PtregisterDto [ptr_num=" + ptr_num + ", tr_num=" + tr_num + ", ptr_initdate=" + ptr_initdate
-				+ ", ptr_time=" + ptr_time + ", ptr_count=" + ptr_count + ", ptr_ok=" + ptr_ok + "]";
+		return "PtregisterDto [ptr_num=" + ptr_num + ", tr_num=" + tr_num + ", rg_num=" + rg_num + ", ptr_initdate="
+				+ ptr_initdate + ", ptr_time=" + ptr_time + ", ptr_count=" + ptr_count + ", ptr_ok=" + ptr_ok + "]";
 	}
+	
+	
+
 	
 	
 

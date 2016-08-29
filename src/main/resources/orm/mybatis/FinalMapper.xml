@@ -20,7 +20,9 @@
 	<select id="deptlist" resultType="fitness.dto.DepartmentDto">
 		select * from department
 	</select>
-	
+	<select id="deptdetail" resultType="fitness.dto.DepartmentDto" parameterType="int">
+		select * from department where dept_code=#{value}	
+	</select>
 	
 <!--////////// position 관련 - 작성자 : 유예진 //////////-->
 	<insert id="posinsert" parameterType="fitness.dto.PositionDto">
@@ -28,6 +30,9 @@
 	</insert>
 	<select id="poslist" resultType="fitness.dto.PositionDto">
 		select * from position
+	</select>
+	<select id="posdetail" resultType="fitness.dto.PositionDto" parameterType="String">
+		select * from position where pos_code=#{value}	
 	</select>
 <!--////////// center 관련 - 작성자 : 유예진 //////////-->
 	<insert id="ctinsert" parameterType="fitness.dto.CenterDto">
@@ -78,6 +83,10 @@
 		1. 수강등록하고자 하는 회원번호를 검색한다.
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
+<<<<<<< HEAD
+	<!-- 1.(table명: member)회원번호검색 -->
+=======
+>>>>>>> b49ba4162fbb65eaf1252579bb2d9f0936a3ad09
 	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
 		select * from member
 		<if test="memNum!=null">
@@ -85,11 +94,19 @@
 		</if>
 	</select>
 
+<<<<<<< HEAD
+	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
+=======
 
 
 	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
+>>>>>>> b49ba4162fbb65eaf1252579bb2d9f0936a3ad09
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
 		select * from programprice
+	</select>
+	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt)프로그램 이름 뽑아오기 -->
+	<select id="ptProgramName" parameterType="hashmap" resultType="fitness.dto.PtPriceDto">
+		select * from ptprice
 	</select>
 
 
@@ -138,7 +155,7 @@
 		</if>
 	</select>
 	
-	<!-- notice 관련  김재원 작성-->  
+<!--////////// notice 관련  김재원 작성 //////////-->	
 	<insert id="nocinsert" parameterType="fitness.dto.NoticeDto">
 		insert into notice values(notice_seq.nextval,#{stf_num},#{nt_title},#{nt_content},sysdate,#{nt_hit})
 	</insert>

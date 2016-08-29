@@ -17,4 +17,13 @@ public class PositionService {
 	public List<PositionDto> listService(){
 		return dao.listDao();
 	}
+	public PositionDto detailService(String pos){
+		return dao.detailDao(pos);
+	}
+	public int updateService(PositionDto dto){
+		return dao.updateDao(dto);
+	}
+	public int deleteService(String pos){
+		return dao.deleteDao(pos);
+	}
 }

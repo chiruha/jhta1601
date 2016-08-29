@@ -17,7 +17,14 @@ public class CenterService {
 	public List<CenterDto> listService(){
 		return dao.listDao();
 	}
-	public CenterDto detailService(){
-		return dao.detailDao();
+	public CenterDto detailService(int num){
+		return dao.detailDao(num);
 	}
+	public int deleteService(int num){
+		return dao.deleteDao(num);
+	}
+	public int updateService(CenterDto dto){
+		return dao.updateDao(dto);
+	}
+	
 }

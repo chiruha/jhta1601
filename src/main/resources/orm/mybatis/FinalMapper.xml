@@ -74,10 +74,9 @@
 		1. 수강등록하고자 하는 회원번호를 검색한다.
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
-<<<<<<< HEAD
+
 	<!-- 1.(table명: member)회원번호검색 -->
-=======
->>>>>>> b49ba4162fbb65eaf1252579bb2d9f0936a3ad09
+
 	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
 		select * from member
 		<if test="memNum!=null">
@@ -85,13 +84,10 @@
 		</if>
 	</select>
 
-<<<<<<< HEAD
+
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
-=======
-
-
 	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
->>>>>>> b49ba4162fbb65eaf1252579bb2d9f0936a3ad09
+
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
 		select * from programprice
 	</select>

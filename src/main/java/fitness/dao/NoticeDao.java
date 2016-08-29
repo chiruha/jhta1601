@@ -26,13 +26,11 @@ public class NoticeDao {
 	public int update(NoticeDto dto){
 		return sqlSession.update(NAMESPACE+".nocupdate",dto);
 	}
-	public List<NoticeDto> list(HashMap<String, Integer> map) {
+	public List<NoticeDto> list(HashMap<String, String> map) {
 		return sqlSession.selectList(NAMESPACE+".noclist",map);
 	}
 	public int getCount(){
-		return sqlSession.selectOne(NAMESPACE+".getCount");
+		return sqlSession.selectOne(NAMESPACE+".nocgetCount");
 	}
-	public List<NoticeDto> list1(HashMap<String, String> map){
-		return sqlSession.selectList(NAMESPACE+".noclist1",map);
-	}
+
 }

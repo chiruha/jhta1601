@@ -29,7 +29,7 @@ public class CenterController {
 			session.setAttribute("result", "지점정보 추가 완료!");
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			session.setAttribute("result", "지점정보 추가 실패!");
+			session.setAttribute("result", "지점정보 추가 실패!"); 
 		}
 		return ".staff.ResultView";
 	}

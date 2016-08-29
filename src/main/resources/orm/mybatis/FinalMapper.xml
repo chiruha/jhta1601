@@ -123,4 +123,42 @@
 			where ${memSearch} like '%' || #{keyword} || '%'
 		</if>
 	</select>
+	
+	<!-- notice 관련  김재원 작성-->  
+	<insert id="nocinsert" parameterType="fitness.dto.NoticeDto">
+		insert into notice values(notice_seq.nextval,#{stf_num},#{nt_title},#{nt_content},sysdate,#{nt_hit})
+	</insert>
+	
+	<delete id="nocdelete" parameterType="int">
+		delete from notice where nt_num=#{value}
+	</delete>
+	
+	<update id="nocupdate" parameterType="fitness.dto.NoticeDto">
+		update notice set nt_title=#{nt_title},nt_content=#{nt_content} where nt_num=#{nt_num}
+	</update>
+
+	<select id="nocdetail" resultType="fitness.dto.NoticeDto" parameterType="int">
+		select * from notice where nt_num=#{value}
+	</select>
+	
+	<select id="nocgetCount" resultType="int">
+		select nvl(count(num),0) from notice
+	</select>
+	
+	
+	<select id="nocList" parameterType="hashmap" resultType="fitness.dto.NoticeDto">
+		select * from(
+		select aa.*,rownum rnum from
+		(select * from notice <where>
+			<if test="nt_title!=null">
+				or title like '%'||#{keyword}||'%'
+			</if>
+			<if test="nt_content!=null">
+				or content like '%'||#{keyword}||'%'
+			</if>			
+		</where>order by nt_num desc)aa
+  		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+ 		
+		
+	</select>
 </mapper>

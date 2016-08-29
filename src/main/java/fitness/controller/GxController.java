@@ -28,14 +28,15 @@ public class GxController {
 		return ".exercise.GxRegisterView";
 	}
 	
-	/*@RequestMapping(value="/ptrinsert",method=RequestMethod.POST)
+	@RequestMapping(value="/gxinsert",method=RequestMethod.POST)
 	@ResponseBody
-	public String insert(String ptr_initdate,String ptr_time,String ptr_count){
-		
+	public String insert(String[] gxDay){
+		System.out.println("여기오나22gxinsert");
+		System.out.println(gxDay[0]);
 		
 		//PtregisterDto dto = new PtregisterDto(0, null, ptr_initdate, ptr_time, ptr_count,null);
-		return ".exercise.PtRegisterView";
-	}*/
+		return ".exercise.GxRegisterView";
+	}
 }
 
 

@@ -29,7 +29,7 @@ import page.util.PageUtil;
 public class StaffController {
 	@Autowired private StaffService service;
 	@Autowired private CenterService cts;
-	@Autowired private PositionService pos;
+	@Autowired private PositionService pos;	
 	
 	@RequestMapping(value="/stfinsert",method= RequestMethod.GET)
 	public String insert(HttpSession session){

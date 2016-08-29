@@ -25,13 +25,10 @@ public class NoticeService {
 	public NoticeDto detail(int num){
 		return noticeDao.detail(num);
 	}
-	public List<NoticeDto> list(HashMap<String, Integer>map){
-		return noticeDao.list(map);
-	}
 	public int update(NoticeDto dto){
 		return noticeDao.update(dto);
 	}
-	public List<NoticeDto> list1(HashMap<String, String> map) {
-		return noticeDao.list1(map);
+	public List<NoticeDto> list(HashMap<String, String> map) {
+		return noticeDao.list(map);
 	}
 }

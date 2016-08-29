@@ -12,20 +12,19 @@
 	$(document).ready(function (){
 		alert("Ajax실행");
 		$.ajax({
-			url:"/list/xml",
+			url:"/fitness/list/xml",
 			success:function(data){
-				alert("잘되나?");
-				$(data).find("proname").each(function(){
+				alert("잘되나?" +data);
+			
+				$(data).find("pro").each(function(){
 					var pro_num=$(this).find("pro_num").text();
+					alert("pro_num?" +pro_num);
 					var pro_code=$(this).find("pro_code").text();
 					var pro_name=$(this).find("pro_name").text();
 					var pro_subname=$(this).find("pro_subname").text();
 					var pro_price=$(this).find("pro_price").text();
-					$("#Pname").append(pro_name);
-					
-					function priceChange(){
-						
-					}
+					$("#PName").append("<option value='"+ pro_name+"'>"+ pro_name +"</option>");
+				
 				});
 			}
 		});

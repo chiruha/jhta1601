@@ -3,18 +3,16 @@ package fitness.dto;
 public class ProgramPriceDto {
 	private int pro_num;//프로그램번호
 	private String pro_code;//프로그램코드
-	private String pro_name;//프로그램이름
-	private String pro_subname;//등록개월수(1개월,3개월,6개월...)
+	private String pro_name;//프로그램이름 및 등록개월수
 	private int pro_price;//프로그램가격
 	
 	public ProgramPriceDto(){}
-	
-	public ProgramPriceDto(int pro_num, String pro_code, String pro_name, String pro_subname, int pro_price) {
+
+	public ProgramPriceDto(int pro_num, String pro_code, String pro_name, int pro_price) {
 		super();
 		this.pro_num = pro_num;
 		this.pro_code = pro_code;
 		this.pro_name = pro_name;
-		this.pro_subname = pro_subname;
 		this.pro_price = pro_price;
 	}
 
@@ -42,14 +40,6 @@ public class ProgramPriceDto {
 		this.pro_name = pro_name;
 	}
 
-	public String getPro_subname() {
-		return pro_subname;
-	}
-
-	public void setPro_subname(String pro_subname) {
-		this.pro_subname = pro_subname;
-	}
-
 	public int getPro_price() {
 		return pro_price;
 	}
@@ -60,9 +50,11 @@ public class ProgramPriceDto {
 
 	@Override
 	public String toString() {
-		return "ProgramDto [pro_num=" + pro_num + ", pro_code=" + pro_code + ", pro_name=" + pro_name + ", pro_subname="
-				+ pro_subname + ", pro_price=" + pro_price + "]";
+		return "ProgramPriceDto [pro_num=" + pro_num + ", pro_code=" + pro_code + ", pro_name=" + pro_name
+				+ ", pro_price=" + pro_price + "]";
 	}
+	
+	
 	
 	
 }

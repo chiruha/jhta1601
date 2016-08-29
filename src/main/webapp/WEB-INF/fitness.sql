@@ -24,7 +24,7 @@ drop table position;
 drop table department;
 drop table member;
 drop table center; 
-drop table pro_price; --프로그램 가격 테이블
+
 --제약조건은 대문자로 표시해둠 최종수정함!!
 
 drop sequence SV_SEQ;	-- 설문지 시퀀스
@@ -50,18 +50,10 @@ drop sequence DEPT_SEQ;	-- 부서 시퀀스
 drop sequence MEM_SEQ;	-- 회원 시퀀스
 drop sequence CT_SEQ;	-- 지점 시퀀스
 drop sequence PTR_SEQ; -- pt등록
-drop sequence PROPRICE_SEQ; --프로그램가격 시퀀스
+
 -------------------------------------------
 
-create table pro_price
-(
-	proprice_num number(20) primary key,       --등록번호
-	proprice_code varchar2(20),       --등록유형코드
-	pro_name varchar2(100),       --프로그램이름
-	pro_subname varchar2(100),       --등록유형개월수
-	pro_totprice number       --총등록금액
-);
-create sequence PROPRICE_SEQ;
+
 insert into pro_price values(proprice_seq.nextval,'a1','health','1month',70000);
 insert into pro_price values(proprice_seq.nextval,'a2','health','3month',180000);
 insert into pro_price values(proprice_seq.nextval,'a3','health','6month',300000);
@@ -355,7 +347,7 @@ create table pt_register
 	rg_num number(20) REFERENCES REGISTRATION(RG_NUM), --회원 정보
 	ptr_initdate varchar2(50), --회원시작일
 	ptr_time varchar2(50), --회원시간
-	ptr_count number(3), --회원횟수
+	ptr_count number(3), --PT횟수
 	ct_code number(20), --지점코드
 	ptr_ok varchar2(15) DEFAULT '승인대기' CHECK ( PTR_OK IN ('승인','승인취소')) --회원승인
 );

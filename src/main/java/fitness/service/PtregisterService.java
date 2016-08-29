@@ -14,4 +14,8 @@ public class PtregisterService {
 	public int insert(PtregisterDto dto){
 		return ptregisterDao.insert(dto);
 	}
+	public PtregisterDto detailService(int num){
+		return ptregisterDao.detailDao(num);
+	}
+	
 }

@@ -4,10 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
+	
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
 	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
-		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{ptr_time},#{ptr_count},#{ptr_ok})
+		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},#{ptr_ok})
 	</insert>
+	<select id="ptrinfo" resultType="fitness.dto.RegistrationDto" parameterType="int">
+		select * from pt_register where ptr_num=#{value}
+	</select>
 
 <!--////////// department 관련 - 작성자 : 유예진 //////////-->
 	<insert id="deptinsert" parameterType="fitness.dto.DepartmentDto">
@@ -16,7 +20,9 @@
 	<select id="deptlist" resultType="fitness.dto.DepartmentDto">
 		select * from department
 	</select>
-	
+	<select id="deptdetail" resultType="fitness.dto.DepartmentDto" parameterType="int">
+		select * from department where dept_code=#{value}	
+	</select>
 	
 <!--////////// position 관련 - 작성자 : 유예진 //////////-->
 	<insert id="posinsert" parameterType="fitness.dto.PositionDto">
@@ -24,6 +30,9 @@
 	</insert>
 	<select id="poslist" resultType="fitness.dto.PositionDto">
 		select * from position
+	</select>
+	<select id="posdetail" resultType="fitness.dto.PositionDto" parameterType="String">
+		select * from position where pos_code=#{value}	
 	</select>
 <!--////////// center 관련 - 작성자 : 유예진 //////////-->
 	<insert id="ctinsert" parameterType="fitness.dto.CenterDto">
@@ -61,7 +70,6 @@
 		update staff set stf_name= #{stf_name}, stf_phone= #{stf_phone}, stf_picture= #{stf_picture}, 
 										pos_code=#{pos_code}, ct_code= #{ct_code} where stf_num=#{stf_num}
 	</update>
-
 	<delete id="stfdelete" parameterType="int">
 		delete from staff where stf_num=#{value}
 	</delete>
@@ -75,7 +83,9 @@
 		1. 수강등록하고자 하는 회원번호를 검색한다.
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
-	<!-- 1.회원번호검색 -->
+
+	<!-- 1.(table명: member)회원번호검색 -->
+
 	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
 		select * from member
 		<if test="memNum!=null">
@@ -84,9 +94,18 @@
 	</select>
 
 
+	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
+
+
+
 	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
+
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
 		select * from programprice
+	</select>
+	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt)프로그램 이름 뽑아오기 -->
+	<select id="ptProgramName" parameterType="hashmap" resultType="fitness.dto.PtPriceDto">
+		select * from ptprice
 	</select>
 
 
@@ -135,7 +154,7 @@
 		</if>
 	</select>
 	
-	<!-- notice 관련  김재원 작성-->  
+<!--////////// notice 관련  김재원 작성 //////////-->	
 	<insert id="nocinsert" parameterType="fitness.dto.NoticeDto">
 		insert into notice values(notice_seq.nextval,#{stf_num},#{nt_title},#{nt_content},sysdate,#{nt_hit})
 	</insert>

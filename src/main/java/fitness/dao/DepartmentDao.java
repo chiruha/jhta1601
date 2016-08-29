@@ -18,4 +18,13 @@ public class DepartmentDao {
 	public List<DepartmentDto> listDao(){
 		return sqlsession.selectList(NAMESPACE+".deptlist");
 	}
+	public int updateDao(DepartmentDto dto){
+		return sqlsession.update(NAMESPACE+".deptupdate",dto);
+	}
+	public int deleteDao(int num){
+		return sqlsession.delete(NAMESPACE+".deptdelete",num);
+	}
+	public DepartmentDto detailDao(int num){
+		return sqlsession.selectOne(NAMESPACE+".deptdetail",num);
+	}
 }

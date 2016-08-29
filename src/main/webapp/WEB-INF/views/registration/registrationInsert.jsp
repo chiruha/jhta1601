@@ -9,25 +9,25 @@
 </head>
 <script type="text/javascript" src="/resources/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function (){
+	$(document).ready(function(){
 		alert("Ajax실행");
-		$.ajax({
-			url:"/fitness/list/xml",
-			success:function(data){
-				alert("잘되나?" +data);
-			
-				$(data).find("pro").each(function(){
-					var pro_num=$(this).find("pro_num").text();
-					alert("pro_num?" +pro_num);
-					var pro_code=$(this).find("pro_code").text();
-					var pro_name=$(this).find("pro_name").text();
-					var pro_subname=$(this).find("pro_subname").text();
-					var pro_price=$(this).find("pro_price").text();
-					$("#PName").append("<option value='"+ pro_name+"'>"+ pro_name +"</option>");
-				
-				});
-			}
-		});
+			//alert("단과과목 클릭!!");
+			$.ajax({
+				url:"/fitness/list/xml",
+				success:function(data){
+					alert("잘되나?" +data);
+					$(data).find("pro").each(function(){
+						var pro_num=$(this).find("pro_num").text();
+						alert("pro_num?" +pro_num);
+						var pro_code=$(this).find("pro_code").text();
+						var pro_name=$(this).find("pro_name").text();
+						var pro_subname=$(this).find("pro_subname").text();
+						var pro_price=$(this).find("pro_price").text();
+						$("#PName").append("<option value='"+ pro_name+"'>"+ pro_name +"</option>");
+					
+					});
+				}
+			});
 	});
 
 </script>
@@ -48,28 +48,65 @@
 		<input type="submit" name="검색">
 </form>
 </div>
-<br>
+<br><br>
 <form method="post" action="registrationInsert">
-<br>
+<br><br>
 <!-- 회원번호를 select해서 input="text"에 집어넣기!! -->
-회원번호<input type="text" disabled="disabled" name="mem_num" value="${searchMem.mem_num }">
-	<input type="hidden" name="mem_num" value="${searchMem.mem_num }">
-<br>
-프로그램이름<select id="PName" onchange="priceChange()">
-			<option value="default">---프로그램선택---</option>
-		</select>
-<br>	
-등록개월수<select id="PSubName" name="pro_subname">
-		<option value="default">---등록개월수선택---</option>
-	</select>
 
-등록가격<input type="text" name="rg_price" onclick="signPrice()">
+회원번호 mem_num<br>
+	<input type="text" disabled="disabled" name="mem_num" value="${searchMem.mem_num }">
+	<input type="hidden" name="mem_num" value="${searchMem.mem_num }">
+
+<br><br>
+
+등록유형 rg_type<br>
+	<input type="radio" value="단과과목" name="rg_type" id="simple_subject" checked="checked">단과과목
+	<input type="radio" value="PT" name="rg_type" id="pt_subject">PT
+	<input type="radio" value="여러과목" name="rg_type" id="multiple_subject">복합과목
+
+<br><br>
+
+<!-- //////////등록유형에 따라 선택된 프로그램이 다름/////////// -->
+
+단과과목 프로그램이름<br>
+	<select id="PName" onchange="priceChange()">
+		<option value="default">---프로그램선택---</option>
+	</select>
+	프로그램가격 : <input type="text" name="pro_price">
+
+<br><br>
+
+pt등록유형<br>
+	<select id="PTName">
+		<option value="default">---등록유형선택---</option>
+	</select>
+	<br>
+	프로그램가격 : <input type="text" name="pt_price">
+
+<br><br>
+
+여러과목등록<br>
+	프로그램가격 : <input type="text" name="multiple_price">
+
+
+<!-- ///////////////////// -->
+<br><br>
+
+락카 신청 여부 Locker_price<br><!-- 컬럼명 변경하기 -->
+	<input type="radio" value="신청" name="locker" id="locYes" checked="checked">신청
+	<input type="radio" value="신청안함" name="locker" id="locNo">신청안함
+
+<br><br>
+
+운동복 신청 여부 wear_price<br><!-- 컬럼명 변경하기 -->
+	<input type="radio" value="신청" name="wear" id="wearYes" checked="checked">신청
+	<input type="radio" value="신청안함" name="wear" id="wearNo">신청안함
+<br><br>
+총등록가격 rg_price<br><!-- 프로그램가격+락카여부or운동복여부 -->
+	<input type="button" value="총 등록가격 계산" name="sum_price" onclick="signTotPrice()">
+	<input type="text" name="rg_price" id="rg_price">
+
 <br>
-락카 신청 여부<input type="radio" value="신청" name="locker_yes">신청
-	<input type="radio" value="신청안함" name="locker_no">신청안함
-<br>
-운동복 신청 여부<input type="radio" value="신청" name="wear_yes">신청
-	<input type="radio" value="신청안함" name="wear_no">신청안함
 
 </form>
 </body>

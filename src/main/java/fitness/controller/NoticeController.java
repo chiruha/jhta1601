@@ -63,7 +63,7 @@ public class NoticeController {
 		System.out.println("전체보기"+list); //전체 찍어본결과값 잘온다 
 		ModelAndView mv = new ModelAndView(".notice.NoticeView"); //.파일명.파일이름으로 써준다 
 		mv.addObject("noclist",list);
-		mv.addObject("pu",pu);
+		mv.addObject("pu",pu); 
 		return mv;		
 		
 	}

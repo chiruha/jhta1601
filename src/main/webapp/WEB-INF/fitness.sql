@@ -24,7 +24,7 @@ drop table position;
 drop table department;
 drop table member;
 drop table center; 
-drop table pro_price; --프로그램 가격 테이블
+
 --제약조건은 대문자로 표시해둠 최종수정함!!
 
 drop sequence SV_SEQ;	-- 설문지 시퀀스
@@ -50,18 +50,10 @@ drop sequence DEPT_SEQ;	-- 부서 시퀀스
 drop sequence MEM_SEQ;	-- 회원 시퀀스
 drop sequence CT_SEQ;	-- 지점 시퀀스
 drop sequence PTR_SEQ; -- pt등록
-drop sequence PROPRICE_SEQ; --프로그램가격 시퀀스
+
 -------------------------------------------
 
-create table pro_price
-(
-	proprice_num number(20) primary key,       --등록번호
-	proprice_code varchar2(20),       --등록유형코드
-	pro_name varchar2(100),       --프로그램이름
-	pro_subname varchar2(100),       --등록유형개월수
-	pro_totprice number       --총등록금액
-);
-create sequence PROPRICE_SEQ;
+
 insert into pro_price values(proprice_seq.nextval,'a1','health','1month',70000);
 insert into pro_price values(proprice_seq.nextval,'a2','health','3month',180000);
 insert into pro_price values(proprice_seq.nextval,'a3','health','6month',300000);

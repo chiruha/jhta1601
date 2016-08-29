@@ -8,18 +8,18 @@ public class NoticeDto {
 	private String nt_title;
 	private String nt_content;
 	private Date nt_date;
-	private int number;
+	private int nt_hit;
 	
 	public NoticeDto(){}
 
-	public NoticeDto(int nt_num, int stf_num, String nt_title, String nt_content, Date nt_date, int number) {
+	public NoticeDto(int nt_num, int stf_num, String nt_title, String nt_content, Date nt_date, int nt_hit) {
 		super();
 		this.nt_num = nt_num;
 		this.stf_num = stf_num;
 		this.nt_title = nt_title;
 		this.nt_content = nt_content;
 		this.nt_date = nt_date;
-		this.number = number;
+		this.nt_hit = nt_hit;
 	}
 	public int getNt_num() {
 		return nt_num;
@@ -51,17 +51,19 @@ public class NoticeDto {
 	public void setNt_date(Date nt_date) {
 		this.nt_date = nt_date;
 	}
-	public int getNumber() {
-		return number;
+
+	public int getNt_hit() {
+		return nt_hit;
 	}
-	public void setNumber(int number) {
-		this.number = number;
+
+	public void setNt_hit(int nt_hit) {
+		this.nt_hit = nt_hit;
 	}
 
 	@Override
 	public String toString() {
 		return "NoticeDto [nt_num=" + nt_num + ", stf_num=" + stf_num + ", nt_title=" + nt_title + ", nt_content="
-				+ nt_content + ", nt_date=" + nt_date + ", number=" + number + "]";
+				+ nt_content + ", nt_date=" + nt_date + ", nt_hit=" + nt_hit + "]";
 	}
 	
 

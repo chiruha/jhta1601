@@ -43,13 +43,17 @@ public class StaffController {
 	public String insert(StaffDto dto, MultipartFile picture,HttpSession session){
 		try{
 			String path=session.getServletContext().getRealPath("/resources/img/Staff");
-			String orgfile=picture.getOriginalFilename();
-			String stf_picture=UUID.randomUUID()+"_"+orgfile;
-			InputStream is=picture.getInputStream();
-			FileOutputStream fos=new FileOutputStream(path+"/"+stf_picture);
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
+			String stf_picture=picture.getOriginalFilename();
+			if(stf_picture!=""){   // 사진 등록할 경우만 파일명 복잡하게 만들기
+				System.out.println("사진1:"+stf_picture);
+				stf_picture=UUID.randomUUID()+"_"+stf_picture;
+				System.out.println("사진2:"+stf_picture);
+				InputStream is=picture.getInputStream();
+				FileOutputStream fos=new FileOutputStream(path+"/"+stf_picture);
+				FileCopyUtils.copy(is, fos);
+				is.close();
+				fos.close();
+			}
 			dto.setStf_picture(stf_picture);
 			System.out.println(dto.toString());
 			service.insertService(dto);
@@ -77,7 +81,6 @@ public class StaffController {
 		try{
 			int num=Integer.parseInt(stf_num);
 			StaffDto dto=service.detailService(num);
-			System.out.println("젠장");
 			session.setAttribute("dto", dto);
 			return ".staff.StfDetailView";
 		}catch(Exception e){
@@ -85,9 +88,6 @@ public class StaffController {
 			session.setAttribute("result", "상세보기 실패!");
 			return ".staff.ResultView";
 		}
-		
-		
-		
 	}
 
 }

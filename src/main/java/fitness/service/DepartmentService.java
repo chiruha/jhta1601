@@ -17,4 +17,13 @@ public class DepartmentService {
 	public List<DepartmentDto> listService(){
 		return dao.listDao();
 	}
+	public DepartmentDto detailService(int num){
+		return dao.detailDao(num);
+	}
+	public int updateService(DepartmentDto dto){
+		return dao.updateDao(dto);
+	}
+	public int deleteService(int num){
+		return dao.deleteDao(num);
+	}
 }

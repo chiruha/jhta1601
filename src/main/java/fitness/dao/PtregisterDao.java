@@ -14,6 +14,10 @@ public class PtregisterDao {
 	public int insert(PtregisterDto dto){
 		return sqlSession.insert(NAMESPACE+".ptrinsert",dto);
 	}
+	public PtregisterDto detailDao(int num){
+		return sqlSession.selectOne(NAMESPACE+".ptrinfo",num);
+	}
+	
 }
 
 

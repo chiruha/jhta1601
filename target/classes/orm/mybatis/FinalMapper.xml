@@ -4,10 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
+	
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
 	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
-		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{ptr_time},#{ptr_count},#{ptr_ok})
+		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},#{ptr_ok})
 	</insert>
+	<select id="ptrinfo" resultType="fitness.dto.RegistrationDto" parameterType="int">
+		select * from pt_register where ptr_num=#{value}
+	</select>
 
 <!--////////// department 관련 - 작성자 : 유예진 //////////-->
 	<insert id="deptinsert" parameterType="fitness.dto.DepartmentDto">
@@ -16,7 +20,9 @@
 	<select id="deptlist" resultType="fitness.dto.DepartmentDto">
 		select * from department
 	</select>
-	
+	<select id="deptdetail" resultType="fitness.dto.DepartmentDto" parameterType="int">
+		select * from department where dept_code=#{value}	
+	</select>
 	
 <!--////////// position 관련 - 작성자 : 유예진 //////////-->
 	<insert id="posinsert" parameterType="fitness.dto.PositionDto">
@@ -24,6 +30,9 @@
 	</insert>
 	<select id="poslist" resultType="fitness.dto.PositionDto">
 		select * from position
+	</select>
+	<select id="posdetail" resultType="fitness.dto.PositionDto" parameterType="String">
+		select * from position where pos_code=#{value}	
 	</select>
 <!--////////// center 관련 - 작성자 : 유예진 //////////-->
 	<insert id="ctinsert" parameterType="fitness.dto.CenterDto">
@@ -84,6 +93,13 @@
 		</if>
 	</select>
 
+<<<<<<< HEAD
+=======
+
+	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
+
+
+>>>>>>> 60e356d3db91cb5fe03274a9b29c4a75b6ca3452
 
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
 	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->

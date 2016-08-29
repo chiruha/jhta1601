@@ -31,8 +31,10 @@ public class ProgramPriceController {
 			sb.append("<pro_name>"+dto.getPro_name()+"</pro_name>");
 			sb.append("<pro_subname>"+dto.getPro_subname()+"</pro_subname>");
 			sb.append("<pro_price>"+dto.getPro_price()+"</pro_price>");
+			sb.append("</pro>");
 		}
 		sb.append("</proname>");
+		System.out.println("ddd:" + sb.toString());
 		return sb.toString();
 	}
 }

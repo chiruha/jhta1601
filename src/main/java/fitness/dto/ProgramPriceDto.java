@@ -7,6 +7,8 @@ public class ProgramPriceDto {
 	private String pro_subname;//등록개월수(1개월,3개월,6개월...)
 	private int pro_price;//프로그램가격
 	
+	public ProgramPriceDto(){}
+	
 	public ProgramPriceDto(int pro_num, String pro_code, String pro_name, String pro_subname, int pro_price) {
 		super();
 		this.pro_num = pro_num;

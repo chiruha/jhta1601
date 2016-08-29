@@ -29,7 +29,7 @@ import page.util.PageUtil;
 public class StaffController {
 	@Autowired private StaffService service;
 	@Autowired private CenterService cts;
-	@Autowired private PositionService pos;
+	@Autowired private PositionService pos;	
 	
 	@RequestMapping(value="/stfinsert",method= RequestMethod.GET)
 	public String insert(HttpSession session){
@@ -63,22 +63,30 @@ public class StaffController {
 	@RequestMapping("/stflist")
 	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session){
 		int totalRowCount=service.getStfCount();
-		PageUtil pu=new PageUtil(pageNum, 5, 10, totalRowCount);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount,5,5);
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<StaffDto> stflist=service.listService(map);
 		session.setAttribute("stflist", stflist);
 		session.setAttribute("pu", pu);
-		//return ".staff.StfListView";
-		//return ".staff.ResultView";
-		return ".staff.StaffListView";
+		return ".staff.StfListView";
 	}
-public String detail(){
+	@RequestMapping("/stfdetail")
+	public String detail(String stf_num ,HttpSession session){
+		try{
+			int num=Integer.parseInt(stf_num);
+			StaffDto dto=service.detailService(num);
+			session.setAttribute("dto", dto);
+			return ".staff.StfDetailView";
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			session.setAttribute("result", "상세보기 실패!");
+			return ".staff.ResultView";
+		}
 		
 		
 		
-		return ".staff.StfDetailView";
 	}
 
 }

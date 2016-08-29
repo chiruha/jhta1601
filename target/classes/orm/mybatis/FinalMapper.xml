@@ -61,14 +61,9 @@
 		update staff set stf_name= #{stf_name}, stf_phone= #{stf_phone}, stf_picture= #{stf_picture}, 
 										pos_code=#{pos_code}, ct_code= #{ct_code} where stf_num=#{stf_num}
 	</update>
-
 	<delete id="stfdelete" parameterType="int">
 		delete from staff where stf_num=#{value}
 	</delete>
-<<<<<<< HEAD
-=======
-	
->>>>>>> 6e57d32efb20a0db8d9adcf29a41d9d3254ca609
 
 	<select id="getStfCount" resultType="int">
 		select count(stf_num) cnt from staff
@@ -79,7 +74,6 @@
 		1. 수강등록하고자 하는 회원번호를 검색한다.
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
-	<!-- 1.회원번호검색 -->
 	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
 		select * from member
 		<if test="memNum!=null">
@@ -88,15 +82,12 @@
 	</select>
 
 
+
 	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
 		select * from programprice
 	</select>
 
-<<<<<<< HEAD
-=======
-	
->>>>>>> 6e57d32efb20a0db8d9adcf29a41d9d3254ca609
 
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->

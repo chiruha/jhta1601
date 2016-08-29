@@ -77,6 +77,7 @@ public class StaffController {
 		try{
 			int num=Integer.parseInt(stf_num);
 			StaffDto dto=service.detailService(num);
+			System.out.println("¡®¿Â");
 			session.setAttribute("dto", dto);
 			return ".staff.StfDetailView";
 		}catch(Exception e){

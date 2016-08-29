@@ -65,10 +65,6 @@
 	<delete id="stfdelete" parameterType="int">
 		delete from staff where stf_num=#{value}
 	</delete>
-<<<<<<< HEAD
-=======
-	
->>>>>>> 6e57d32efb20a0db8d9adcf29a41d9d3254ca609
 
 	<select id="getStfCount" resultType="int">
 		select count(stf_num) cnt from staff
@@ -93,10 +89,6 @@
 		select * from programprice
 	</select>
 
-<<<<<<< HEAD
-=======
-	
->>>>>>> 6e57d32efb20a0db8d9adcf29a41d9d3254ca609
 
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->

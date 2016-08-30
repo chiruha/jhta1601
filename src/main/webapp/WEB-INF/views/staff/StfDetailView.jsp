@@ -49,17 +49,20 @@
 		});
 		
 		$("button").click(function(event) {
+			event.preventDefault();
 			var id=event.target.getAttribute('id');
 			//alert($(this).attr('id'));  id 찍어보기 방법2 
-			var form=document
+			var form=document.detailform;
+			form.action=id;
 			if(id=='stfupdate'){
+				alert($(this).attr('id'));
 			}else if(id=='stfdelete'){
+				alert($(this).attr('id'));
 			}else if(id=='trinsert'){
-				
+				alert(id);
 			}
-		
+			form.submit();
 			
-			event.preventDefault();
 		});
 		
 		
@@ -68,7 +71,7 @@
 </script>
 <fieldset>
 <legend>직원상세보기</legend>
-<form method="post">
+<form method="post" name="detailform">
 <table border="2">
 <tr>
 	<td>직원번호<span id="num"> ${dto.stf_num }</span>

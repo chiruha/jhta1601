@@ -97,9 +97,7 @@ public class StaffController {
 	public String delete(StaffDto dto, HttpSession session){
 		System.out.println("stfdelete : "+dto.toString());
 		try{
-			
-			//int num=Integer.parseInt(stf_num);
-			//service.deleteService(num);
+			service.deleteService(dto.getStf_num());
 			session.setAttribute("result", "삭제 성공!");
 		}catch(Exception e){
 			System.out.println(e.getMessage());

@@ -355,6 +355,19 @@ CREATE SEQUENCE PTR_SEQ;
 
 COMMIT;
 
+create table gx_register
+(
+	gx_num number(20) primary key, --회원등록넘버		
+	ct_code number(20), --지점코드
+	gx_exercise varchar2(20), -- gx운동
+	gx_day varchar2(50), -- 월수금/화목
+	gx_time varchar2(50), -- 시간
+	rg_num number(20) REFERENCES REGISTRATION(RG_NUM) --회원 정보
+);
+commit;
+
+CREATE SEQUENCE GX_SEQ;
+
 --------------------------------------------------------
 --제약조건 추가줄때 옵션 예)
 --ALTER TABLE GROUPS

@@ -6,11 +6,19 @@
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
 	
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
-	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
-		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},#{ptr_ok})
+	<insert id="ptrinsert" parameterType="fitness.dto.PtregisterDto">
+		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
 	</insert>
-	<select id="ptrinfo" resultType="fitness.dto.RegistrationDto" parameterType="int">
+	<select id="ptrinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
 		select * from pt_register where ptr_num=#{value}
+	</select>
+	
+	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
+	<insert id="gxinsert" parameterType="fitness.dto.PtregisterDto">
+		insert into gx_register values(gx_seq.nextval,#{ct_code},#{gx_exercise},#{gx_day},#{gx_time},#{rg_num})
+	</insert>
+	<select id="getInfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
+		select * from gx_register where gx_num=#{value}
 	</select>
 	
 	

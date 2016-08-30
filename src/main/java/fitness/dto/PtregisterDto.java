@@ -7,12 +7,13 @@ public class PtregisterDto {
 	private String ptr_initdate;
 	private String ptr_time;
 	private int ptr_count;	
+	private int ct_code;
 	private String ptr_ok;
 	
 	public PtregisterDto() {}
 
 	public PtregisterDto(int ptr_num, int tr_num, int rg_num, String ptr_initdate, String ptr_time, int ptr_count,
-			String ptr_ok) {
+			int ct_code, String ptr_ok) {
 		super();
 		this.ptr_num = ptr_num;
 		this.tr_num = tr_num;
@@ -20,6 +21,7 @@ public class PtregisterDto {
 		this.ptr_initdate = ptr_initdate;
 		this.ptr_time = ptr_time;
 		this.ptr_count = ptr_count;
+		this.ct_code = ct_code;
 		this.ptr_ok = ptr_ok;
 	}
 
@@ -71,6 +73,14 @@ public class PtregisterDto {
 		this.ptr_count = ptr_count;
 	}
 
+	public int getCt_code() {
+		return ct_code;
+	}
+
+	public void setCt_code(int ct_code) {
+		this.ct_code = ct_code;
+	}
+
 	public String getPtr_ok() {
 		return ptr_ok;
 	}
@@ -82,8 +92,11 @@ public class PtregisterDto {
 	@Override
 	public String toString() {
 		return "PtregisterDto [ptr_num=" + ptr_num + ", tr_num=" + tr_num + ", rg_num=" + rg_num + ", ptr_initdate="
-				+ ptr_initdate + ", ptr_time=" + ptr_time + ", ptr_count=" + ptr_count + ", ptr_ok=" + ptr_ok + "]";
+				+ ptr_initdate + ", ptr_time=" + ptr_time + ", ptr_count=" + ptr_count + ", ct_code=" + ct_code
+				+ ", ptr_ok=" + ptr_ok + "]";
 	}
+
+	
 	
 	
 

@@ -25,18 +25,7 @@
 		$("#dlg").dialog({
 			autoOpen:false,
 			buttons:{
-				저장:function function_name(argument) {
-				/*	var ptdate=$("#pdate").val();
-					var ptime=$("#time").val();
-					var ptcount=$("#pcount").val();
-					$("#ptdate").val(ptdate);
-					$("#ptime").val(ptime);
-					$("#ptcount").val(ptcount);					
-					$("#dlg").dialog("close");		
-					
-				$("#form").submit(function(){
-						
-				});			*/		
+				저장:function function_name(argument) {				
 					var ptr_initdate=$("#pdate").val();
 					var ptr_time=$("#time").val();
 					var ct_code=$("#ct_code").val();
@@ -47,8 +36,19 @@
 							type:"post",
 							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code,
 							success:function function_name(data) {
-								$("#result").html(data);
-							}
+								alert(data.ptr_num);
+								var str = "회원등록:" + data.ptr_num +"<br>" +
+										  "트레이너:"+ data.tr_num +"<br>" +
+										  "회원:" + data.rg_num + "<br>" +
+										  "회원시작일:" + data.ptr_initdate + "<br>" +
+								          "회원시간:" +  data.ptr_time + "<br>" +
+								          "PT횟수:" + data.ptr_count + "<br>" +
+								          "지점코드:" + data.ct_code + "<br>" +
+								          "회원승인:" + data.ptr_ok	+ "<br>" +
+								          "수정은 개인정보 회원란에서 해주쉬면됩니다.";
+								alert(str); 
+								 $("#result").html(str);	
+							}			  				
 							
 					});
 					
@@ -113,8 +113,10 @@
 					</select><br>			
 		</div>
 	</div>
-<div id=result></div>
-	
+<div id="result"></div>
+<div >
+	<a href="<c:url value='/'/>">Header Page (홈으로 이동)</a> 
+</div>
 
 	
 

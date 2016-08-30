@@ -1,9 +1,13 @@
 package fitness.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +22,7 @@ import fitness.service.CenterService;
 import fitness.service.PtregisterService;
 import fitness.service.RegistrationService;
 import fitness.service.StaffService;
+import fitness.service.TrainerService;
 
 
 @Controller
@@ -25,7 +30,7 @@ public class PtregisterController {
 	@Autowired private PtregisterService service;
 	@Autowired private CenterService cts;
 	@Autowired private RegistrationService reservice;
-	@Autowired private StaffService staffservice;
+	@Autowired private TrainerService trservice;
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.GET)
 	public String insert(HttpSession session){
@@ -34,16 +39,29 @@ public class PtregisterController {
 		return ".exercise.PtRegisterView";
 	}
 	
-	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST)
+	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST,produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String insert(PtregisterDto dto,NoticeDto ndto){		
+	public Object insert(PtregisterDto dto){		
+		System.out.println("ptrinsert µµÂø");
+		int n=trservice.detailService(3).getTr_num();
+		dto.setTr_num(n);
 		dto.setRg_num(1);
+		System.out.println("dto"+dto);
 		service.insert(dto);
+		System.out.println("dto°á°ú"+dto);		
+		  PtregisterDto ptrdto =null;
+		try{
+			ptrdto =  service.detailService(4);
+			System.out.println("ptrdto"+ptrdto);			  
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}		
 		
-		
-		
-		return ".exercise.PtRegisterView";
+		return   ptrdto;
 	}
+	
+	
 }
 
 

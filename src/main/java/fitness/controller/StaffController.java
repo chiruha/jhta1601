@@ -93,5 +93,16 @@ public class StaffController {
 			return ".staff.ResultView";
 		}
 	}
-
+	@RequestMapping("/stfdelete")
+	public String delete(StaffDto dto, HttpSession session){
+		System.out.println("stfdelete : "+dto.toString());
+		try{
+			service.deleteService(dto.getStf_num());
+			session.setAttribute("result", "삭제 성공!");
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			session.setAttribute("result", "삭제 실패!");
+		}
+		return ".staff.ResultView";
+	}
 }

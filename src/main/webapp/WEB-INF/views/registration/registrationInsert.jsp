@@ -13,7 +13,7 @@
 		alert("Ajax실행");
 		$("#simple_subject").click(function(){
 			alert("단과과목 클릭!!");
-			$("#programName").empty();//안에 있는 내용(모든자식요소들)지우기
+			$("#programName").empty();
 			$("#programName").append("<option value='default'>---프로그램선택---</option>");
 			$.ajax({
 				url:"/fitness/list/xml",
@@ -21,7 +21,7 @@
 					//alert("잘되나?" +data);
 					$(data).find("pro").each(function(){
 						var pro_num=$(this).find("pro_num").text();
-						//alert("pro_num?" +pro_num);
+						alert("pro_num?" +pro_num);
 						var pro_code=$(this).find("pro_code").text();
 						var pro_name=$(this).find("pro_name").text();
 						var pro_subname=$(this).find("pro_subname").text();
@@ -34,7 +34,7 @@
 		});
 		$("#pt_subject").click(function(){
 			alert("pt과목 클릭!!");
-			$("#programName").empty();//안에 있는 내용(모든자식요소들)지우기
+			$("#programName").empty();
 			$("#programName").append("<option value='default'>---프로그램선택---</option>");
 			$.ajax({
 				url:"/fitness/ptlist/xml",
@@ -42,7 +42,7 @@
 					//alert("pt되나??"+data);
 					$(data).find("pt").each(function(){
 						var pt_num=$(this).find("pt_num").text();
-						//alert("pt_num?"+pt_num);
+						alert("pt_num?"+pt_num);
 						var pt_code=$(this).find("pt_code").text();
 						var pt_month=$(this).find("pt_month").text();
 						var pt_cnt=$(this).find("pt_cnt").text();
@@ -54,11 +54,6 @@
 				}
 			});
 		});
-		<%-- 여러과목 등록!!
-		$("#multiple_subject").click(function(){
-			
-		});
-		--%>
 	});
 
 </script>
@@ -98,14 +93,31 @@
 
 <br><br>
 
-<!-- //////////등록유형(rg_type)에 따라 선택된 프로그램이 다름/////////// -->
+<!-- //////////등록유형에 따라 선택된 프로그램이 다름/////////// -->
 프로그램 선택<br>
 <select id="programName">
 	<option value="default">---프로그램선택---</option>
 </select>
+<!-- 
+단과과목 프로그램이름<br>
+	<select id="PName" onchange="programPriceChange()">
+		<option value="default">---프로그램선택---</option>
+	</select>
+	프로그램가격 : <input type="text" name="pro_price">
 
 <br><br>
-프로그램가격 : <input type="text" name="programPrice" id="programPrice">
+
+pt등록유형<br>
+	<select id="PTName" onchange="ptPriceChange()">
+		<option value="default">---등록유형선택---</option>
+	</select>
+	<br>
+	프로그램가격 : <input type="text" name="pt_price">
+ -->
+<br><br>
+
+여러과목등록<br>
+	프로그램가격 : <input type="text" name="multiple_price">
 
 
 <!-- ///////////////////// -->
@@ -114,16 +126,13 @@
 락카 신청 여부 Locker_price<br><!-- 컬럼명 변경하기 -->
 	<input type="radio" value="신청" name="locker" id="locYes" checked="checked">신청
 	<input type="radio" value="신청안함" name="locker" id="locNo">신청안함
-락카가격 : <input type="text" name="" id="">
+
 <br><br>
 
 운동복 신청 여부 wear_price<br><!-- 컬럼명 변경하기 -->
 	<input type="radio" value="신청" name="wear" id="wearYes" checked="checked">신청
 	<input type="radio" value="신청안함" name="wear" id="wearNo">신청안함
-운동복가격 : <input type="text" name="" id="">
-
 <br><br>
-
 총등록가격 rg_price<br><!-- 프로그램가격+락카여부or운동복여부 -->
 	<input type="button" value="총 등록가격 계산" name="sum_price" onclick="signTotPrice()">
 	<input type="text" name="rg_price" id="rg_price">

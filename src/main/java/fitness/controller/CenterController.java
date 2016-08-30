@@ -1,6 +1,7 @@
 package fitness.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +22,8 @@ public class CenterController {
 		
 		return ".staff.CtInsertView";
 	}
+	
+	
 	@RequestMapping(value="/ctinsert", method=RequestMethod.POST)
 	public String insert(CenterDto dto, HttpSession session){
 		System.out.println(dto.toString());

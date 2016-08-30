@@ -25,18 +25,7 @@
 		$("#dlg").dialog({
 			autoOpen:false,
 			buttons:{
-				저장:function function_name(argument) {
-				/*	var ptdate=$("#pdate").val();
-					var ptime=$("#time").val();
-					var ptcount=$("#pcount").val();
-					$("#ptdate").val(ptdate);
-					$("#ptime").val(ptime);
-					$("#ptcount").val(ptcount);					
-					$("#dlg").dialog("close");		
-					
-				$("#form").submit(function(){
-						
-				});			*/		
+				저장:function function_name(argument) {						
 					var ptr_initdate=$("#pdate").val();
 					var ptr_time=$("#time").val();
 					var ct_code=$("#ct_code").val();

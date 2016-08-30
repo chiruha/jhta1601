@@ -12,6 +12,7 @@
 	<select id="ptrinfo" resultType="fitness.dto.RegistrationDto" parameterType="int">
 		select * from pt_register where ptr_num=#{value}
 	</select>
+	
 
 <!--////////// department 관련 - 작성자 : 유예진 //////////-->
 	<insert id="deptinsert" parameterType="fitness.dto.DepartmentDto">
@@ -102,15 +103,13 @@
 			where ${memNum} like '%' || #{keyword} || '%'
 		</if>
 	</select>
-
-<<<<<<< HEAD
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
-=======
+
 
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
 
 
->>>>>>> 2e1ff167879fb884883caa8094dffca1d1cf6036
+
 	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
 
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">

@@ -7,7 +7,7 @@
 	
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
 	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
-		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},#{ptr_ok})
+		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
 	</insert>
 	<select id="ptrinfo" resultType="fitness.dto.RegistrationDto" parameterType="int">
 		select * from pt_register where ptr_num=#{value}
@@ -103,14 +103,10 @@
 		</if>
 	</select>
 
-<<<<<<< HEAD
-	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
-=======
 
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
 
 
->>>>>>> 2e1ff167879fb884883caa8094dffca1d1cf6036
 	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
 
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
@@ -120,10 +116,8 @@
 	<select id="ptProgramName" parameterType="hashmap" resultType="fitness.dto.PtPriceDto">
 		select * from ptprice
 	</select>
-	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (여러과목 pt+기타과목)프로그램 이름 뽑아오기 -->
-	<select id="multiProgram" parameterType="hashmap" resultType="fitness.dto.MultiPriceDto">
-	
-	</select>
+
+
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
@@ -187,7 +181,7 @@
 	</select>
 	
 	<select id="nocgetCount" resultType="int">
-		select nvl(count(num),0) from notice
+		select nvl(count(nt_num),0) from notice
 	</select>
 	
 	

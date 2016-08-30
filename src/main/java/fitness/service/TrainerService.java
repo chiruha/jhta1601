@@ -21,6 +21,9 @@ public class TrainerService {
 	public TrainerDto detailService(int num){
 		return dao.detailDao(num);
 	}
+	public TrainerDto detail2Service(int num){
+		return dao.detail2Dao(num);
+	}
 	public List<TrainerDto> listService(HashMap<String, Integer> map){
 		return dao.listDao(map);
 	}

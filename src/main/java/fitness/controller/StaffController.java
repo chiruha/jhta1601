@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import fitness.dto.CenterDto;
 import fitness.dto.PositionDto;
@@ -97,9 +96,7 @@ public class StaffController {
 	public String delete(StaffDto dto, HttpSession session){
 		System.out.println("stfdelete : "+dto.toString());
 		try{
-			
-			//int num=Integer.parseInt(stf_num);
-			//service.deleteService(num);
+			service.deleteService(dto.getStf_num());
 			session.setAttribute("result", "삭제 성공!");
 		}catch(Exception e){
 			System.out.println(e.getMessage());

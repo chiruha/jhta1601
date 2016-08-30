@@ -24,10 +24,10 @@
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">
-		insert into trainer values(tr_seq.nextval, #{str_num}, #{tr_career}, #{tr_intro} )
+		insert into trainer values(tr_seq.nextval, #{stf_num}, #{tr_career}, #{tr_intro} )
 	</insert>
 	<update id="trupdate" parameterType="fitness.dto.TrainerDto" >
-		update trainer set str_num=#{str_num}, tr_career=#{tr_career}, tr_intro=#{tr_intro} where tr_num=#{tr_num}
+		update trainer set stf_num=#{stf_num}, tr_career=#{tr_career}, tr_intro=#{tr_intro} where tr_num=#{tr_num}
 	</update>
 	<select id="trlist" resultType="fitness.dto.TrainerDto" parameterType="hashmap">
 		select * from( select  tr.*,rownum rnum from
@@ -38,6 +38,9 @@
 	</select>
 	<select id="trdetail" parameterType="int" resultType="fitness.dto.TrainerDto">
 		select * from trainer where tr_num=#{value}
+	</select>
+		<select id="trdetail2" parameterType="int" resultType="fitness.dto.TrainerDto">
+		select * from trainer where stf_num=#{value}
 	</select>
 	<delete id="trdelete" parameterType="int">
 		delete from trainer where tr_num=#{value}
@@ -138,19 +141,36 @@
 		</if>
 	</select>
 
-
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
 
 
-	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
 
+	<!-- 2.insert 할 때 selectBox에 넣을 (헬스&GX등록)프로그램 이름 뽑아오기 -->
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
 		select * from programprice
 	</select>
+	<!-- 2. (헬스&GX)프로그램 선택하면, input type="text"에 가격 입력하기 -->
+	<select id="programPrice" parameterType="String" resultType="fitness.dto.ProgramPriceDto">
+		select * from programprice where pro_name=#{value}
+	</select> 
+	
 	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt)프로그램 이름 뽑아오기 -->
 	<select id="ptProgramName" parameterType="hashmap" resultType="fitness.dto.PtPriceDto">
 		select * from ptprice
 	</select>
+
+	<!-- 2. (pt)프로그램 선택하면, input type="text"에 가격 입력하기 -->
+	<select id="ptPrice" parameterType="String" resultType="fitness.dto.PtPriceDto">
+		select * from ptprice where pt_month=#{value}
+	</select> 
+	<!-- (pt)insert -->
+	
+	
+	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt+기타과목)-->
+	<select id="multiProgram" parameterType="hashmap" resultType="fitness.dto.MultiPriceDto">
+		select pro_code, pro_price, pt_code, pt_price, 
+	</select>
+	<!-- multiProgram 가격계산 후 insert하기 -->
 
 
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->

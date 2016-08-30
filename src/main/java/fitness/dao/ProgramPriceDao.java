@@ -15,12 +15,20 @@ public class ProgramPriceDao {
 	@Autowired private SqlSession sqlSession;
 	private final String NAMESPACE="orm.mybatis.FinalMapper";
 	//------------------|단과과목 select(테이블명: programprice)|------------------//
-	public List<ProgramPriceDto> list(HashMap<String, Integer>map){
+	public List<ProgramPriceDto> list(HashMap<String, Integer>map){//전체과목명 뽑아오기
 		return sqlSession.selectList(NAMESPACE+".programName",map);
+	}
+	public ProgramPriceDto proPrice(String pro_name){//과목선택하면 가격뽑아오기
+		System.out.println("proPrice DAO : "+pro_name);
+		return sqlSession.selectOne(NAMESPACE+".programPrice",pro_name);
 	}
 	
 	//------------------|pt과목 select(테이블명: ptprice)|------------------//
-	public List<PtPriceDto> ptlist(HashMap<String, Integer>map){
+	public List<PtPriceDto> ptlist(HashMap<String, Integer>map){//전체과목명뽑아오기
 		return sqlSession.selectList(NAMESPACE+".ptProgramName",map);
+	}
+	public PtPriceDto ptPrice(String pt_month){//과목선택하면 가격뽑아오기
+		System.out.println("ptPrice DAO: "+pt_month);
+		return sqlSession.selectOne(NAMESPACE+".ptPrice",pt_month);
 	}
 }

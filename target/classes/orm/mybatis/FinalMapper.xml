@@ -16,10 +16,10 @@
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">
-		insert into trainer values(tr_seq.nextval, #{str_num}, #{tr_career}, #{tr_intro} )
+		insert into trainer values(tr_seq.nextval, #{stf_num}, #{tr_career}, #{tr_intro} )
 	</insert>
 	<update id="trupdate" parameterType="fitness.dto.TrainerDto" >
-		update trainer set str_num=#{str_num}, tr_career=#{tr_career}, tr_intro=#{tr_intro} where tr_num=#{tr_num}
+		update trainer set str_num=#{stf_num}, tr_career=#{tr_career}, tr_intro=#{tr_intro} where tr_num=#{tr_num}
 	</update>
 	<select id="trlist" resultType="fitness.dto.TrainerDto" parameterType="hashmap">
 		select * from( select  tr.*,rownum rnum from

@@ -17,8 +17,15 @@ public class ProgramPriceService {
 	public List<ProgramPriceDto> list(HashMap<String, Integer> map){
 		return dao.list(map);
 	}
+	public ProgramPriceDto proPirce(String pro_name){//과목선택하면 해당가격 뽑아오기
+		return dao.proPrice(pro_name);
+	}
 	//------------------|pt과목 select(테이블명: ptprice)|------------------//
 	public List<PtPriceDto> ptlist(HashMap<String, Integer> map){
 		return dao.ptlist(map);
+	}
+	public PtPriceDto ptPrice(String pt_month){//과목선택하면 해당가격 뽑아오기
+		System.out.println("ptPrice Service: "+pt_month);
+		return dao.ptPrice(pt_month);
 	}
 }

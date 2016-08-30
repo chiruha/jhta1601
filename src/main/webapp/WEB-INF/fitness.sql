@@ -349,7 +349,7 @@ create table pt_register
 	ptr_time varchar2(50), --회원시간
 	ptr_count number(3), --PT횟수
 	ct_code number(20), --지점코드
-	ptr_ok varchar2(15) DEFAULT '승인대기' CHECK ( PTR_OK IN ('승인','승인취소','승인대기')) --회원승인
+	ptr_ok varchar2(15) DEFAULT '승인대기' CHECK ( PTR_OK IN ('승인','승인취소')) --회원승인
 );
 CREATE SEQUENCE PTR_SEQ;
 

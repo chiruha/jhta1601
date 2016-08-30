@@ -1,7 +1,6 @@
 package fitness.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,8 +21,6 @@ public class CenterController {
 		
 		return ".staff.CtInsertView";
 	}
-	
-	
 	@RequestMapping(value="/ctinsert", method=RequestMethod.POST)
 	public String insert(CenterDto dto, HttpSession session){
 		System.out.println(dto.toString());
@@ -40,19 +37,18 @@ public class CenterController {
 	@RequestMapping(value="/ctlist", produces="application/xml;charset=utf-8")
 	@ResponseBody  // 리턴된 값(String)을 페이지가 아닌 ajax에 대한 응답으로 처리하게 만들어 주는 것
 	public String getCtName(){
-		System.out.println("getCenter 도착");
-		ArrayList<CenterDto> clist=new ArrayList<CenterDto>();
+		ArrayList<CenterDto> clist=(ArrayList<CenterDto>) service.listService();
+		System.out.println(clist);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		sb.append("<centers>");
 		for(CenterDto dto : clist){
 			sb.append("<center>");
-			sb.append("<code>"+dto.getCt_code()+"</code>");
-			sb.append("<name>"+dto.getCt_name()+"</name>");
+			sb.append("<ctcode>"+dto.getCt_code()+"</ctcode>");
+			sb.append("<ctname>"+dto.getCt_name()+"</ctname>");
 			sb.append("</center>");
 		}
 		sb.append("</centers>");
-		
 		return sb.toString();
 	}
 	

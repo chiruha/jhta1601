@@ -1,6 +1,5 @@
 package fitness.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -26,7 +25,7 @@ public class PtregisterController {
 	@Autowired private PtregisterService service;
 	@Autowired private CenterService cts;
 	@Autowired private RegistrationService reservice;
-	
+	@Autowired private StaffService staffservice;
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.GET)
 	public String insert(HttpSession session){
@@ -37,27 +36,23 @@ public class PtregisterController {
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST)
 	@ResponseBody
+<<<<<<< HEAD
 	public String insert(PtregisterDto dto){
 		System.out.println("ptrinsert µµÂø");
 		int n; //staffservice.detailService(1).getStf_num();
 		//dto.setTr_num(n);
 		//dto.setRg_num(1);
 		System.out.println("dto"+dto);
+=======
+	public String insert(PtregisterDto dto,NoticeDto ndto){		
+		dto.setRg_num(1);
+>>>>>>> 204a656b0f152cc5cede501a193cd6849b782be1
 		service.insert(dto);
-		System.out.println("dto°á°ú"+dto);
 		
 		
 		
 		return ".exercise.PtRegisterView";
 	}
-	@RequestMapping(value = "/jsontest")
-	public @ResponseBody Object jsonTest(){
-		//CenterDto dto=new CenterDto(1, "ct_name", "ct_tel", "ct_addr", "ct_intro");
-			HashMap<String,String> map=new HashMap<String, String>();
-			map.put("id","aaaa");
-			map.put("pwd","bbbb");
-		return map;
-		}
 }
 
 

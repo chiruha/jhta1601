@@ -25,6 +25,9 @@ public class TrainerDao {
 	public TrainerDto detailDao(int num){
 		return sqlSession.selectOne(NameSpace+".trdetail",num);
 	}
+	public TrainerDto detail2Dao(int num){
+		return sqlSession.selectOne(NameSpace+".trdetail2",num);
+	}
 	public int deleteDao(int num){
 		return sqlSession.delete(NameSpace+".trdelete",num);
 	}

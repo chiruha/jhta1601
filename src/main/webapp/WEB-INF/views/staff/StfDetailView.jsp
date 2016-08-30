@@ -58,7 +58,7 @@
 				alert($(this).attr('id'));
 			}else if(id=='stfdelete'){
 				alert($(this).attr('id'));
-			}else if(id=='trinsert'){
+			}else if(id=='trpage'){
 				alert(id);
 			}
 			form.submit();
@@ -95,7 +95,7 @@
 </table>
 <button  id="update">수정</button>
 <button id="stfdelete">삭제</button>
-<button id="trinsert">강사등록</button>
+<button id="trpage">강사등록/수정</button>
 </form>
 
 </fieldset>

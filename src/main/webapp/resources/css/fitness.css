@@ -3,6 +3,28 @@
 #wrap{width: 1200px; background-color: #dfdfdf; }
 .header{position: fixed; width: 2000px; height: 150px; background-color: #680233;  left: 0px; }
 .header a{color: white; text-decoration: none; position: relative; top: 20px; left: 50px;}
+#dropmenu li.main{
+		float:left;
+		width:200px;
+		list-style: none;
+		text-align: center;
+	}
+	li.main ul{ /* 하위메뉴 */
+		list-style: none;
+		padding:0;
+	}
+	li.main a{
+		width:180px;
+		display: block;
+		padding:10px;
+		text-decoration: none;
+		color:white;
+		font-weight: bold;
+		background-color: #770d4a;
+	}
+	li.main a:hover{
+		background-color: #badcfe;
+	}
 .content{width: 1000px; height: 1000px; margin: auto;  background-color: white; padding-top: 150px;}
 .footer{width: 2000px; height: 150px; background-color: #004080; margin: auto; position: absolute; left: 0px;}
 .footer img{height: 80px;}

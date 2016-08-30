@@ -5,17 +5,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import fitness.dto.StaffDto;
 import fitness.dto.TrainerDto;
-import fitness.service.StaffService;
 import fitness.service.TrainerService;
 
 @Controller
 public class TrainerController {
 	@Autowired private TrainerService service;
-	@Autowired private StaffService stf;
 	
 	@RequestMapping("/trpage")
 	public String page(StaffDto sdto, HttpSession session){

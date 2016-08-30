@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sun.javafx.collections.MappingChange.Map;
-import com.sun.media.jfxmedia.logging.Logger;
 
 import fitness.dto.CenterDto;
 import fitness.dto.MemberDto;

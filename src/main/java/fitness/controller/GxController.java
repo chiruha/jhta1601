@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fitness.dto.CenterDto;
-import fitness.dto.PtregisterDto;
 import fitness.service.CenterService;
 import fitness.service.PtregisterService;
 

@@ -39,7 +39,7 @@ public class PtregisterController {
 	@ResponseBody
 	public String insert(PtregisterDto dto){
 		System.out.println("ptrinsert µµÂø");
-		//int n=staffservice.detailService(1).getStf_num();
+		int n; //staffservice.detailService(1).getStf_num();
 		//dto.setTr_num(n);
 		//dto.setRg_num(1);
 		System.out.println("dto"+dto);

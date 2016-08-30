@@ -3,24 +3,28 @@
 #wrap{width: 1200px; background-color: #dfdfdf; }
 .header{position: fixed; width: 2000px; height: 150px; background-color: #680233;  left: 0px; }
 .header a{color: white; text-decoration: none; position: relative; top: 20px; left: 50px;}
+
 #dropmenu li.main{
+		position:relative;
+		top:50px;
 		float:left;
-		width:200px;
+		width:190px;
 		list-style: none;
 		text-align: center;
 	}
+	#dropmenu li.main a:hover{color: #228cf7}
 	li.main ul{ /* 하위메뉴 */
 		list-style: none;
 		padding:0;
 	}
 	li.main a{
-		width:180px;
+		width:170px;
 		display: block;
-		padding:10px;
+		padding:5px;
 		text-decoration: none;
 		color:white;
 		font-weight: bold;
-		background-color: #770d4a;
+		background-color: hsl(0, 100%, 10%);
 	}
 	li.main a:hover{
 		background-color: #badcfe;

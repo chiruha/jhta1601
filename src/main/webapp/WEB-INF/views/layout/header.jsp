@@ -6,19 +6,16 @@
 <script type="text/javascript">
  $(document).ready(function() {
 	$(".main ul").hide();  // 하위메뉴 숨기기
-	$(".main").hover(function() { // Mouse in
-		$(".mainmenu > a").css("backgroundColor","black");
-		$(this).find("a:first").css("backgroundColor","#fed8ea");
+		$(".main").find("a:first").css("backgroundColor","hsl(330, 100%, 20%)");
+	$(".main").hover(function() { // Mouse in	
 		$(this).find("ul").stop().slideDown(500);  // 하위 메뉴 펼치기
 	}, function() {  // Mouse out
-		$(this).find("a:first").css("backgroundColor", "#770d4a")
 		$(this).find("ul").stop().slideUp(500);	
 	});
 	
 });
 
 </script>
-<div >
 	<h1><a href="<c:url value='/'/>">Header Page (홈으로 이동)</a> </h1>
 	<ul id="dropmenu">
 		<li class="main">
@@ -53,4 +50,3 @@
 		</li>
 	
 	</ul>
-</div>

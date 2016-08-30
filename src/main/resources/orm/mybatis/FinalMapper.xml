@@ -23,7 +23,12 @@
 	<select id="deptdetail" resultType="fitness.dto.DepartmentDto" parameterType="int">
 		select * from department where dept_code=#{value}	
 	</select>
-	
+	<update id="deptupdate" parameterType="fitness.dto.DepartmentDto">
+		update department set dept_name=#{dept_name} where dept_code=#{dept_code} 
+	</update>
+	<delete id="deptdelete" parameterType="int">
+		delete department where dept_code=#{value}
+	</delete>
 <!--////////// position 관련 - 작성자 : 유예진 //////////-->
 	<insert id="posinsert" parameterType="fitness.dto.PositionDto">
 		insert into position values(#{pos_code},#{pos_name},#{dept_code})
@@ -34,6 +39,12 @@
 	<select id="posdetail" resultType="fitness.dto.PositionDto" parameterType="String">
 		select * from position where pos_code=#{value}	
 	</select>
+	<update id="posupdate" parameterType="fitness.dto.PositionDto">
+		update position set pos_name=#{pos_name}, dept_code=#{dept_code} where pos_code=#{pos_code}
+	</update>
+	<delete id="posdelete" parameterType="String">
+		delete from position where pos_code=#{value}
+	</delete>
 <!--////////// center 관련 - 작성자 : 유예진 //////////-->
 	<insert id="ctinsert" parameterType="fitness.dto.CenterDto">
 		insert into center values(ct_seq.nextval, #{ct_name}, #{ct_tel}, #{ct_addr}, #{ct_intro})
@@ -47,7 +58,7 @@
 	<update id="ctupdate" parameterType="fitness.dto.CenterDto">
 		update center set ct_name=#{ct_name}, ct_tel=#{ct_tel},ct_addr= #{ct_addr}, ct_intro=#{ct_intro} where ct_code=#{ct_code}
 	</update>
-	<delete id="ctdelete" parameterType="String" >
+	<delete id="ctdelete" parameterType="int" >
 		delete center where ct_code=#{value}
 	</delete>
 
@@ -83,7 +94,6 @@
 		1. 수강등록하고자 하는 회원번호를 검색한다.
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
-
 	<!-- 1.(table명: member)회원번호검색 -->
 
 	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
@@ -93,7 +103,14 @@
 		</if>
 	</select>
 
+<<<<<<< HEAD
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
+=======
+
+	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
+
+
+>>>>>>> 2e1ff167879fb884883caa8094dffca1d1cf6036
 	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
 
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
@@ -169,33 +186,24 @@
 		select * from notice where nt_num=#{value}
 	</select>
 	
-	
-	<!-- nocgetCount,nocList 목록받아오기  -->
 	<select id="nocgetCount" resultType="int">
-		select nvl(count(nt_num),0) from notice
+		select nvl(count(num),0) from notice
 	</select>
-	<select id="noclist" parameterType="hashmap" resultType="fitness.dto.NoticeDto">
-			select * from(
-	    select aa.*,rownum rnum from
-	    (select * from notice order by nt_num desc)aa
-  		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
-	</select>
-	<select id="noclist1" parameterType="hashmap" resultType="fitness.dto.NoticeDto">
-		 select * from(
-	    select aa.*,rownum rnum from
-	    (select * from notice <where>		
-			<if test="writer!=null">
-				stf_num like '%'||#{keyword}||'%'
+	
+	
+	<select id="nocList" parameterType="hashmap" resultType="fitness.dto.NoticeDto">
+		select * from(
+		select aa.*,rownum rnum from
+		(select * from notice <where>
+			<if test="nt_title!=null">
+				or title like '%'||#{keyword}||'%'
 			</if>
-			<if test="title!=null">
-				or nt_ like '%'||#{keyword}||'%'
-			</if>
-			<if test="content!=null">
+			<if test="nt_content!=null">
 				or content like '%'||#{keyword}||'%'
 			</if>			
-		</where>order by num desc)aa
+		</where>order by nt_num desc)aa
   		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+ 		
+		
 	</select>
-	
-	
 </mapper>

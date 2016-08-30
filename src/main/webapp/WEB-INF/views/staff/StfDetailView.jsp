@@ -7,10 +7,12 @@
 		$("option").attr("disabled",true);
 		$("#update").click(function() {
 			$("input").prop("disabled",false).css("background-color","#ffffe6");
+			$.ajax({
+				url:""
+			})
+			$(".code").remove();
 		});
-		$("#pos").click(function() {
-			$("#pos").prop("")
-		});
+	
 	});
 
 </script>
@@ -23,11 +25,7 @@
 	<td rowspan="2"><img src="/fitness/resources/img/Staff/${dto.stf_picture }"></td>
 </tr>
 <tr>
-	<td>직급 <input type="text" id="pos"	name="pos_code" value="${dto.pos_code }">
-		<select>
-		<option value="${dto.pos_code }"></option>
-		</select>
-	</td>
+	<td>직급 <input type="text" class="code"	name="pos_code" value="${pdto.pos_name }">	</td>
 	
 </tr>
 <tr>
@@ -36,7 +34,7 @@
 </tr>
 <tr>
 	<td>등록일 <input type="text"	name="pos_code" value="${dto.stf_date }">	</td>
-	<td>지점 	 <input type="text" id="ct"	name="pos_code" value="${dto.ct_code }"></td>
+	<td>지점 	 <input type="text" class="code" name="pos_code" value="${cdto.ct_name }"></td>
 </tr>
 
 </table>

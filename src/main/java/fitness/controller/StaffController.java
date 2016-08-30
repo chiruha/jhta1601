@@ -81,6 +81,10 @@ public class StaffController {
 		try{
 			int num=Integer.parseInt(stf_num);
 			StaffDto dto=service.detailService(num);
+			PositionDto pdto=pos.detailService(dto.getPos_code());
+			CenterDto cdto=cts.detailService(dto.getCt_code());
+			session.setAttribute("pdto", pdto);
+			session.setAttribute("cdto", cdto);
 			session.setAttribute("dto", dto);
 			return ".staff.StfDetailView";
 		}catch(Exception e){

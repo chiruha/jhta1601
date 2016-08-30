@@ -51,6 +51,7 @@ public class TrainerController {
 	@RequestMapping("/trupdate")
 	public String update(TrainerDto dto, HttpSession session){
 	try{
+		System.out.println(dto.toString());
 		service.updateService(dto);
 		session.setAttribute("result", "강사 수정 성공!");
 	}catch(Exception e){

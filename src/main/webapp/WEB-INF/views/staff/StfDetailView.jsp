@@ -55,11 +55,11 @@
 			var form=document.detailform;
 			form.action=id;
 			if(id=='stfupdate'){
-				alert($(this).attr('id'));
+				//alert($(this).attr('id'));
 			}else if(id=='stfdelete'){
-				alert($(this).attr('id'));
+				//alert($(this).attr('id'));
 			}else if(id=='trpage'){
-				alert(id);
+				//alert(id);
 			}
 			form.submit();
 			

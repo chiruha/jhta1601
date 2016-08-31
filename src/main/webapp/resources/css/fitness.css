@@ -14,7 +14,6 @@
 		width:190px;
 		list-style: none;
 		text-align: center;
-		
 	}
 	#dropmenu li.main a:hover{color: #228cf7}
 	li.main ul{ /* 하위메뉴 */

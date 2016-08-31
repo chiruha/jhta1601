@@ -9,12 +9,10 @@ public class RegistrationDto {
 	private int rg_price;//프로그램가격
 	private int locker_price;//락카가격
 	private int wear_price;//운동복가격
-	private Date signdate;//프로그램등록날짜(환불계산 시 필요)
 	
 	public RegistrationDto() {}
 	
-	public RegistrationDto(int rg_num, int mem_num, String rg_type, int rg_price, int locker_price, int wear_price,
-			Date signdate) {
+	public RegistrationDto(int rg_num, int mem_num, String rg_type, int rg_price, int locker_price, int wear_price) {
 		super();
 		this.rg_num = rg_num;
 		this.mem_num = mem_num;
@@ -22,14 +20,6 @@ public class RegistrationDto {
 		this.rg_price = rg_price;
 		this.locker_price = locker_price;
 		this.wear_price = wear_price;
-		this.signdate = signdate;
-	}
-
-	@Override
-	public String toString() {
-		return "RegistrationDto [rg_num=" + rg_num + ", mem_num=" + mem_num + ", rg_type=" + rg_type + ", rg_price="
-				+ rg_price + ", locker_price=" + locker_price + ", wear_price=" + wear_price + ", signdate=" + signdate
-				+ "]";
 	}
 
 	public int getRg_num() {
@@ -80,13 +70,11 @@ public class RegistrationDto {
 		this.wear_price = wear_price;
 	}
 
-	public Date getSigndate() {
-		return signdate;
+	@Override
+	public String toString() {
+		return "RegistrationDto [rg_num=" + rg_num + ", mem_num=" + mem_num + ", rg_type=" + rg_type + ", rg_price="
+				+ rg_price + ", locker_price=" + locker_price + ", wear_price=" + wear_price + "]";
 	}
 
-	public void setSigndate(Date signdate) {
-		this.signdate = signdate;
-	}
-	
 	
 }

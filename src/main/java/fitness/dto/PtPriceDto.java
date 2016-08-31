@@ -5,16 +5,18 @@ public class PtPriceDto {
 	private String pt_code;//pt프로그램 코드
 	private String pt_month;//등록개월 및 주 몇회
 	private int ptr_count;//pt횟수
+	private int pt_signmonth;//pt등록개월 수
 	private int pt_price;//pt가격
 	
 	public PtPriceDto(){}
 
-	public PtPriceDto(int pt_num, String pt_code, String pt_month, int ptr_count, int pt_price) {
+	public PtPriceDto(int pt_num, String pt_code, String pt_month, int ptr_count, int pt_signmonth, int pt_price) {
 		super();
 		this.pt_num = pt_num;
 		this.pt_code = pt_code;
 		this.pt_month = pt_month;
 		this.ptr_count = ptr_count;
+		this.pt_signmonth = pt_signmonth;
 		this.pt_price = pt_price;
 	}
 
@@ -50,6 +52,14 @@ public class PtPriceDto {
 		this.ptr_count = ptr_count;
 	}
 
+	public int getPt_signmonth() {
+		return pt_signmonth;
+	}
+
+	public void setPt_signmonth(int pt_signmonth) {
+		this.pt_signmonth = pt_signmonth;
+	}
+
 	public int getPt_price() {
 		return pt_price;
 	}
@@ -61,8 +71,8 @@ public class PtPriceDto {
 	@Override
 	public String toString() {
 		return "PtPriceDto [pt_num=" + pt_num + ", pt_code=" + pt_code + ", pt_month=" + pt_month + ", ptr_count="
-				+ ptr_count + ", pt_price=" + pt_price + "]";
+				+ ptr_count + ", pt_signmonth=" + pt_signmonth + ", pt_price=" + pt_price + "]";
 	}
-	
+
 	
 }

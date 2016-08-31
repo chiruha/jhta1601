@@ -4,15 +4,17 @@ public class ProgramPriceDto {
 	private int pro_num;//프로그램번호
 	private String pro_code;//프로그램코드
 	private String pro_name;//프로그램이름 및 등록개월수
+	private int pro_signmonth;//프로그램 등록개월수
 	private int pro_price;//프로그램가격
 	
 	public ProgramPriceDto(){}
 
-	public ProgramPriceDto(int pro_num, String pro_code, String pro_name, int pro_price) {
+	public ProgramPriceDto(int pro_num, String pro_code, String pro_name, int pro_signmonth, int pro_price) {
 		super();
 		this.pro_num = pro_num;
 		this.pro_code = pro_code;
 		this.pro_name = pro_name;
+		this.pro_signmonth = pro_signmonth;
 		this.pro_price = pro_price;
 	}
 
@@ -40,6 +42,14 @@ public class ProgramPriceDto {
 		this.pro_name = pro_name;
 	}
 
+	public int getPro_signmonth() {
+		return pro_signmonth;
+	}
+
+	public void setPro_signmonth(int pro_signmonth) {
+		this.pro_signmonth = pro_signmonth;
+	}
+
 	public int getPro_price() {
 		return pro_price;
 	}
@@ -51,10 +61,8 @@ public class ProgramPriceDto {
 	@Override
 	public String toString() {
 		return "ProgramPriceDto [pro_num=" + pro_num + ", pro_code=" + pro_code + ", pro_name=" + pro_name
-				+ ", pro_price=" + pro_price + "]";
+				+ ", pro_signmonth=" + pro_signmonth + ", pro_price=" + pro_price + "]";
 	}
-	
-	
-	
+
 	
 }

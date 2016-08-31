@@ -1,6 +1,5 @@
 package fitness.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,31 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.HashMap;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.omg.CORBA.INTERNAL;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
-
-import fitness.dto.MemberDto;
-
-
+import fitness.dto.ProperiodDto;
 import fitness.dto.ProsignDto;
+import fitness.dto.PtperiodDto;
 import fitness.dto.PtsignDto;
 import fitness.dto.RegistrationDto;
-
-import fitness.service.MemberService;
-
 
 import fitness.service.RegistrationService;
 
@@ -60,20 +39,26 @@ public class RegistrationController {
 		String pro_code=req.getParameter("pro_code");
 		String pt_code=req.getParameter("pt_code");
 		int ptr_count=Integer.parseInt(req.getParameter("ptr_count"));
-		RegistrationDto dto1=new RegistrationDto(0, mem_num, rg_type, rg_price, locker_price, wear_price, null);
+		int pro_signmonth=Integer.parseInt(req.getParameter("pro_signmonth"));
+		int pt_signmonth=Integer.parseInt(req.getParameter("pt_signmonth"));
 		
+		RegistrationDto dto1=new RegistrationDto(0, mem_num, rg_type, rg_price, locker_price, wear_price);
+		ProperiodDto dto4=new ProperiodDto(0, mem_num, pro_signmonth, null, null);
+		PtperiodDto dto5=new PtperiodDto(0, mem_num, pt_signmonth, null, null);
 		try{
 			System.out.println("regi컨트롤러: "+dto1.toString());
 			service.regiInsert(dto1);//registration테이블에 insert
+			service.properiodInsert(dto4);//properiod테이블에 insert
+			service.ptperiodInsert(dto5);//ptperiod테이블에 insert
 			if(pro_code.equals("")){//pt과목만 신청한 경우
-				PtsignDto dto3=new PtsignDto(0, mem_num, pt_code, ptr_count, null);
+				PtsignDto dto3=new PtsignDto(0, mem_num, pt_code, ptr_count);
 				service.ptsignInsert(dto3);//ptsign테이블에 insert
 			}else if(pt_code.equals("")){//단과과목만 신청한 경우
-				ProsignDto dto2=new ProsignDto(0, mem_num, pro_code, null);
+				ProsignDto dto2=new ProsignDto(0, mem_num, pro_code);
 				service.prosignInsert(dto2);//prosign테이블에 insert
 			}else{//복합과목(단과과목+PT과목)신청한 경우
-				ProsignDto dto2=new ProsignDto(0, mem_num, pro_code, null);
-				PtsignDto dto3=new PtsignDto(0, mem_num, pt_code, ptr_count, null);
+				ProsignDto dto2=new ProsignDto(0, mem_num, pro_code);
+				PtsignDto dto3=new PtsignDto(0, mem_num, pt_code, ptr_count);
 				service.prosignInsert(dto2);//prosign테이블에 insert
 				service.ptsignInsert(dto3);//ptsign테이블에 insert
 			}

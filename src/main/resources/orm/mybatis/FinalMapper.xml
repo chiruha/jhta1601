@@ -143,11 +143,6 @@
 
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 452cc29f6bd5105dc0e34169bffa9b4df49d0f26
 	<!-- 2.insert 할 때 selectBox에 넣을 (헬스&GX등록)프로그램 이름 뽑아오기 -->
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
 		select * from programprice
@@ -173,8 +168,8 @@
 	<select id="multiProgram" parameterType="hashmap" resultType="fitness.dto.MultiPriceDto">
 		select pro_code, pro_price, pt_code, pt_price, 
 	</select>
-	<!-- multiProgram 가격계산 후 insert하기 -->
-<<<<<<< HEAD
+
+
 <!--////////// 수강등록-프로그램등록 - 작성자:이성진 //////////-->	
 	<!-- 수강정보등록 insert(테이블명: registration) -->
 	<insert id="regiInsert" parameterType="fitness.dto.RegistrationDto">
@@ -189,10 +184,6 @@
 		insert into ptsign values(ptsign_seq.nextval,#{mem_num},#{pt_code},#{ptr_count},sysdate)
 	</insert>
 	
-=======
-
-
->>>>>>> 452cc29f6bd5105dc0e34169bffa9b4df49d0f26
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
@@ -275,4 +266,8 @@
  		
 		
 	</select>
+<!--////////// 로그인기능 - 작성자:이성진 //////////-->
+	<select id="loginMem" parameterType="hashmap" resultType="hashmap">
+		select * from member where mem_num=#{mem_num} and mem_phone=#{mem_phone}
+	</select>	
 </mapper>

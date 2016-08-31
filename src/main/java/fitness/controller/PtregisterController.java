@@ -1,15 +1,18 @@
 package fitness.controller;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpSession;
 
+<<<<<<< HEAD
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+=======
+>>>>>>> 8a9a569c12aaab0ad7ec7ba4e44d624f6bf17230
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fitness.dto.CenterDto;
-import fitness.dto.NoticeDto;
+
 import fitness.dto.PtregisterDto;
 import fitness.service.CenterService;
 import fitness.service.PtregisterService;
 import fitness.service.RegistrationService;
-import fitness.service.StaffService;
+
 import fitness.service.TrainerService;
 
 

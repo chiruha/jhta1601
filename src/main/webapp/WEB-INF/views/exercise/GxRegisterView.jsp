@@ -26,26 +26,26 @@
 			autoOpen:false,
 			buttons:{
 				저장:function function_name(argument) {	
-					var params=$("#selectAll").serialize(); 
-					alert(params);							
+					var params=$("#selectAll").serialize();
+										
 					$.ajax({
 							url:"/fitness/gxinsert",
 							dataType:"json",
 							type:"post",
-							data:params,
+							data:params,							
 							success:function function_name(data) {
-								alert(왜안와);
-								alert(data.gx_num);
-								var str = "회원등록:" + data.gx_num +"<br>" +
-								  "지점코드:"+ data.ct_code +"<br>" +
-								  "gx운동:" + data.gx_exercise + "<br>" +
-								  "요일:" + data.gx_day + "<br>" +
-						          "회원시간:" +  data.gx_time + "<br>" +
-						          "PT회원 정보:" + data.rg_num + "<br>" +
-						          "수정은 개인정보 회원란에서 해주쉬면됩니다.";
-								 alert(str); 
+								$("#dlg").dialog("close");		
+								for(var i=0; i<data.length; i++){
+								var str = "회원등록:" + data[i].gx_num +"<br>" +
+								  "지점코드:"+ data[i].ct_code +"<br>" +
+								  "gx운동:" + data[i].gx_exercise + "<br>" +
+								  "요일:" + data[i].gx_day + "<br>" +
+						          "회원시간:" +  data[i].gx_time + "<br>" +
+						          "PT회원 정보:" + data[i].rg_num + "<br>" +
+						          "수정은 개인정보 회원란에서 해주쉬면됩니다.";								 
 								 $("#result").html(str);
-							}
+							}							
+						}
 					
 					});
 					
@@ -58,7 +58,8 @@
 		
 	});
 	
-	 $(document).on("click","button[name=addGX]",function(){         
+	 $(document).on("click","button[name=addGX]",function(event){
+		 	event.preventDefault();
 	        var addGXText =  '<tr name="trChoice">'+            
 	            '   <td class="tdpoChoice">'+
 	            '   <select name="ct_code" id="ct_code">'+

@@ -179,10 +179,11 @@
 		insert into ptsign values(ptsign_seq.nextval,#{mem_num},#{pt_code},#{ptr_count})
 	</insert>
 	
-	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt+기타과목)-->
+	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt+기타과목)
 	<select id="multiProgram" parameterType="hashmap" resultType="fitness.dto.MultiPriceDto">
 		select pro_code, pro_price, pt_code, pt_price, 
 	</select>
+	-->
 	<!-- properiod(단과-운동기간등록) table -->
 	<insert id="properiodInsert" parameterType="fitness.dto.ProperiodDto">
 		insert into properiod values(properiod_seq.nextval,#{mem_num},#{pro_signmonth},sysdate,add_months(sysdate,${pro_signmonth}))

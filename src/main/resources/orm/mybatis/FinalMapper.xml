@@ -5,7 +5,13 @@
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
 
-
+	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
+	<insert id="gxinsert" parameterType="fitness.dto.PtregisterDto">
+		insert into gx_register values(gx_seq.nextval,#{ct_code},#{gx_exercise},#{gx_day},#{gx_time},#{rg_num})
+	</insert>
+	<select id="getInfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
+		select * from gx_register where gx_num=#{value}
+	</select>
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
 	<insert id="ptrinsert" parameterType="fitness.dto.PtregisterDto">
 		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
@@ -13,8 +19,7 @@
 	<select id="ptrinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
 		select * from pt_register where ptr_num=#{value}
 	</select>
-	
-<<<<<<< HEAD
+
 <!--////////// mem_att 관련 - 작성자 : 유예진 //////////-->
 	<insert id="mattinsert" parameterType="fitness.dto.Mem_attDto">
 		insert into mem_att values(matt_seq.nextval, sysdate, #{mem_num}, #{ct_code} )	
@@ -30,17 +35,8 @@
 	<select id="sattlist" parameterType="hashmap" resultType="fitness.dto.Stf_attDto">
 		select * from stf_att order by satt_date desc
 	</select>
-=======
-	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
-	<insert id="gxinsert" parameterType="fitness.dto.PtregisterDto">
-		insert into gx_register values(gx_seq.nextval,#{ct_code},#{gx_exercise},#{gx_day},#{gx_time},#{rg_num})
-	</insert>
-	<select id="getInfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
-		select * from gx_register where gx_num=#{value}
-	</select>
-	
 
->>>>>>> 9cab2cadf209d4b784c9287ba62ff1f40efc2770
+
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">

@@ -1,6 +1,6 @@
 package fitness.controller;
 
-<<<<<<< HEAD
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-=======
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,15 +26,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import fitness.dto.MemberDto;
->>>>>>> df75843388f5fc85c069abd8ac6c4aae09bcaadc
+
 
 import fitness.dto.ProsignDto;
 import fitness.dto.PtsignDto;
 import fitness.dto.RegistrationDto;
-<<<<<<< HEAD
-=======
+
 import fitness.service.MemberService;
->>>>>>> df75843388f5fc85c069abd8ac6c4aae09bcaadc
+
 
 import fitness.service.RegistrationService;
 

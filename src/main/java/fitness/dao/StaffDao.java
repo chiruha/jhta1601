@@ -19,7 +19,7 @@ public class StaffDao {
 	public int updateDao(StaffDto dto){
 		return sqlSession.update(NameSpace+".stfupdate",dto);
 	}
-	public List<StaffDto> listDao(HashMap<String, Integer> map){
+	public List<StaffDto> listDao(HashMap<String, Object> map){
 		return sqlSession.selectList(NameSpace+".stflist",map);
 	}
 	public StaffDto detailDao(int num){
@@ -28,7 +28,7 @@ public class StaffDao {
 	public int deleteDao(int num){
 		return sqlSession.delete(NameSpace+".stfdelete",num);
 	}
-	public int getStfCount(){
-		return   sqlSession.selectOne(NameSpace+".getStfCount");
+	public int getStfCount(HashMap<String, Object> map){
+		return   sqlSession.selectOne(NameSpace+".getStfCount", map);
 	}
 }

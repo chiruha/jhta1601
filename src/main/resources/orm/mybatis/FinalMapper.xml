@@ -13,6 +13,21 @@
 		select * from pt_register where ptr_num=#{value}
 	</select>
 	
+<!--////////// mem_att 관련 - 작성자 : 유예진 //////////-->
+	<insert id="mattinsert" parameterType="fitness.dto.Mem_attDto">
+		insert into mem_att values(matt_seq.nextval, sysdate, #{mem_num}, #{ct_code} )	
+	</insert>
+	<select id="mattlist" parameterType="hashmap" resultType="fitness.dto.Mem_attDto">
+		select * from mem_att order by matt_date desc
+	</select>
+	
+<!--////////// stf_att 관련 - 작성자 : 유예진 //////////-->
+	<insert id="sattinsert" parameterType="fitness.dto.Stf_attDto">
+		insert into stf_att values(satt_seq.nextval, sysdate, #{stf_num}, #{ct_code} )	
+	</insert>
+	<select id="sattlist" parameterType="hashmap" resultType="fitness.dto.Stf_attDto">
+		select * from stf_att order by satt_date desc
+	</select>
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">
@@ -99,10 +114,43 @@
 	</insert>
 	<select id="stflist" resultType="fitness.dto.StaffDto" parameterType="hashmap">
 		select * from( select  aa.*,rownum rnum from
-			(select * from staff	)aa
+			(select * from staff	
+			<where>
+			<if test="ct_code!=null">
+				ct_code like '%'||#{ct_code}||'%'
+			</if>
+			<if test="pos_code!=null">
+				and pos_code like '%'||#{pos_code}||'%'
+			</if>
+			<if test="stf_name!=null">
+				and stf_name like '%'||#{keyword}||'%'
+			</if>
+			<if test="stf_phone!=null">
+				and stf_phone like '%'||#{keyword}||'%'
+			</if>
+			
+		</where>
+			)aa
 		)
 		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-
+	</select>
+	<select id="getStfCount" resultType="int">
+		select count(stf_num) cnt from staff
+		<where>
+			<if test="ct_code!=null">
+				ct_code like '%'||#{ct_code}||'%'
+			</if>
+			<if test="pos_code!=null">
+				and pos_code like '%'||#{pos_code}||'%'
+			</if>
+			<if test="stf_name!=null">
+				and stf_name like '%'||#{keyword}||'%'
+			</if>
+			<if test="stf_phone!=null">
+				and stf_phone like '%'||#{keyword}||'%'
+			</if>
+			
+		</where>
 	</select>
 	<select id="stfdetail" parameterType="int" resultType="fitness.dto.StaffDto">
 		select * from staff where stf_num=#{value}
@@ -115,9 +163,7 @@
 		delete from staff where stf_num=#{value}
 	</delete>
 
-	<select id="getStfCount" resultType="int">
-		select count(stf_num) cnt from staff
-	</select>
+	
 
 <!--////////// registraion 관련(수강등록-프로그램등록) - 작성자:이성진 //////////-->
 	<!-- 회원 수강등록(프로그램) insert 

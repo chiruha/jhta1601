@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,15 +64,37 @@ public class StaffController {
 		}
 		return ".staff.ResultView";
 	}
-	@RequestMapping("/stflist")
-	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session){
-		int totalRowCount=service.getStfCount();
-		PageUtil pu=new PageUtil(pageNum, totalRowCount,5,5);
-		HashMap<String, Integer> map=new HashMap<String, Integer>();
+	@RequestMapping("/stflist") // 검색 기능 포함한 목록보기 
+	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session,
+			HttpServletRequest request){
+		String ct_code=request.getParameter("ct_code");
+		String pos_code=request.getParameter("pos_code");
+		String stf_name=request.getParameter("stf_name");
+		String stf_phone=request.getParameter("stf_phone");
+		String keyword=request.getParameter("keyword");
+		// 체크박스 선택 유지를 위한 값 보내주기
+
+		// 아무것도 선택되지 않았을 때
+		System.out.println("stf검색:"+ct_code+","+pos_code+","+stf_name+","+stf_phone+","+keyword);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("ct_code", ct_code);
+		map.put("pos_code", pos_code);
+		map.put("stf_name", stf_name);
+		map.put("stf_phone", stf_phone);
+		map.put("keyword", keyword);
+		
+		int totalRowCount=service.getStfCount(map);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<StaffDto> stflist=service.listService(map);
+		session.setAttribute("ct_code", ct_code);
+		session.setAttribute("pos_code", pos_code);
+		session.setAttribute("stf_name", stf_name);  
+		session.setAttribute("stf_phone", stf_phone); 
+		session.setAttribute("keyword", keyword);
 		session.setAttribute("stflist", stflist);
+		//System.out.println("stflist컨트롤 :"+stflist);
 		session.setAttribute("pu", pu);
 		return ".staff.StfListView";
 	}

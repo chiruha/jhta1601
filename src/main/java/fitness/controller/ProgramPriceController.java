@@ -27,6 +27,7 @@ public class ProgramPriceController {
 		System.out.println("검색한 키워드 : "+keyword);
 		HashMap<String, String> map=new HashMap<String, String>();
 		map.put("keyword", keyword);
+		System.out.println("getMemnum");
 		List<MemberDto> list=service.memNum(map);
 
 		System.out.println("검색어 보기 : "+list);

@@ -288,7 +288,7 @@
 <!-- 회원번호 검색 -->
 
 회원번호: <input type="text" name="keyword" id="keyword">
-		<input type="button" name="memSearch" value="회원검색" id="memSearch">
+		<input type="button" value="회원검색" id="memSearch">
 <br><br>
 		<table border="1" width="300">
 			<tr>

@@ -3,12 +3,12 @@
 <script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
-		$(".show").prop("disabled",true).css("background-color","white");  // input 비활성화하기
+		$("input").prop("disabled",true).css("background-color","white");  // input 비활성화하기
 		$("option").attr("disabled",true);
 		$("#update").click(function() {
 			alert($("#update").attr('id'));
 			if($("#update").attr('id')=="update"){
-				$(".show").prop("disabled",false).css("background-color","#ffffe6");
+				$("input").prop("disabled",false).css("background-color","#ffffe6");
 				$.ajax({
 					url:"/fitness/poslist",
 					dataType : "xml",
@@ -56,12 +56,15 @@
 			form.action=id;
 			if(id=='stfupdate'){
 				//alert($(this).attr('id'));
+				form.submit();
 			}else if(id=='stfdelete'){
 				//alert($(this).attr('id'));
+				form.submit();
 			}else if(id=='trpage'){
 				//alert(id);
+				form.submit();
 			}
-			form.submit();
+		
 			
 		});
 		
@@ -80,22 +83,22 @@
 	<td rowspan="2"><img src="/fitness/resources/img/Staff/${dto.stf_picture }"></td>
 </tr>
 <tr>
-	<td id="pos">직급 <input type="text" class="show" id="pcode"	value="${pdto.pos_name }">	 </td>
+	<td id="pos">직급 <input type="text"  id="pcode"	value="${pdto.pos_name }">	 </td>
 	
 </tr>
 <tr>
-	<td>이름   <input type="text" class="show" name="stf_name" value="${dto.stf_name }">  </td>
-	<td>전화 	 <input type="text" class="show" name="stf_phone" value="${dto.stf_phone }"></td>
+	<td>이름   <input type="text" name="stf_name" value="${dto.stf_name }">  </td>
+	<td>전화 	 <input type="text"  name="stf_phone" value="${dto.stf_phone }"></td>
 </tr>
 <tr>
 	<td>등록일 <input type="text"	name="stf_date" value="${dto.stf_date }">	</td>
-	<td id="ct">지점 	 <input type="text"class="show"  id="ccode" value="${cdto.ct_name }"></td>
+	<td id="ct">지점 	 <input type="text"  id="ccode" value="${cdto.ct_name }"></td>
 </tr>
 
 </table>
-<button  id="update">수정</button>
+</form>
+<button id="update">수정</button>
 <button id="stfdelete">삭제</button>
 <button id="trpage">강사등록/수정</button>
-</form>
 
 </fieldset>

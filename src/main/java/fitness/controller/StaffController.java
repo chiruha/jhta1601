@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import fitness.dto.CenterDto;
 import fitness.dto.PositionDto;
 import fitness.dto.StaffDto;
+import fitness.dto.TrainerDto;
 import fitness.service.CenterService;
 import fitness.service.PositionService;
 import fitness.service.StaffService;
@@ -32,7 +33,7 @@ public class StaffController {
 	@Autowired private PositionService pos;	
 	
 	@RequestMapping(value="/stfinsert",method= RequestMethod.GET)
-	public String insert(HttpSession session){
+	public String insert(HttpSession session){  // insert 페이지로 이동
 		List<CenterDto> ctlist=cts.listService();
 		List<PositionDto>poslist=pos.listService();
 		session.setAttribute("poslist", poslist);
@@ -40,7 +41,7 @@ public class StaffController {
 		return ".staff.StfInsertView";
 	}
 	@RequestMapping(value="/stfinsert",method= RequestMethod.POST)
-	public String insert(StaffDto dto, MultipartFile picture,HttpSession session){
+	public String insert(StaffDto dto, MultipartFile picture,HttpSession session){  // DB에 insert
 		try{
 			String path=session.getServletContext().getRealPath("/resources/img/Staff");
 			String stf_picture=picture.getOriginalFilename();
@@ -72,7 +73,6 @@ public class StaffController {
 		String stf_name=request.getParameter("stf_name");
 		String stf_phone=request.getParameter("stf_phone");
 		String keyword=request.getParameter("keyword");
-		// 체크박스 선택 유지를 위한 값 보내주기
 
 		// 아무것도 선택되지 않았을 때
 		System.out.println("stf검색:"+ct_code+","+pos_code+","+stf_name+","+stf_phone+","+keyword);
@@ -88,9 +88,10 @@ public class StaffController {
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<StaffDto> stflist=service.listService(map);
+		// 체크박스 선택 유지를 위한 값 보내주기
 		session.setAttribute("ct_code", ct_code);
 		session.setAttribute("pos_code", pos_code);
-		session.setAttribute("stf_name", stf_name);  
+		session.setAttribute("stf_name", stf_name);
 		session.setAttribute("stf_phone", stf_phone); 
 		session.setAttribute("keyword", keyword);
 		session.setAttribute("stflist", stflist);
@@ -125,6 +126,18 @@ public class StaffController {
 			System.out.println(e.getMessage());
 			session.setAttribute("result", "삭제 실패!");
 		}
+		return ".staff.ResultView";
+	}
+	@RequestMapping("/stfupdate")
+	public String update(StaffDto dto, HttpSession session){
+	try{
+		System.out.println(dto.toString());
+		service.updateService(dto);
+		session.setAttribute("result", "직원 수정 성공!");
+	}catch(Exception e){
+		System.out.println(e.getMessage());
+		session.setAttribute("result", "직원 수정 실패!");
+	}
 		return ".staff.ResultView";
 	}
 }

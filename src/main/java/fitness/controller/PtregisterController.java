@@ -6,13 +6,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-=======
->>>>>>> 8a9a569c12aaab0ad7ec7ba4e44d624f6bf17230
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

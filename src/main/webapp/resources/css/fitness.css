@@ -4,6 +4,9 @@
 .header{position: fixed; width: 2000px; height: 150px; background-color: #680233;  left: 0px; }
 .header a{color: white; text-decoration: none; position: relative; top: 20px; left: 50px;}
 
+.content{width: 1000px; height: 3000px; margin: auto;  background-color: white; padding-top: 150px;}
+
+
 #dropmenu li.main{
 		position:relative;
 		top:50px;
@@ -30,6 +33,7 @@
 	li.main a:hover{
 		background-color: #badcfe;
 	}
-.content{width: 1000px; height: 1000px; margin: auto;  background-color: white; padding-top: 150px;}
+.content{width: 1000px; height: 3000px; margin: auto;  background-color: white; padding-top: 150px;}
+
 .footer{width: 2000px; height: 150px; background-color: #004080; margin: auto; position: absolute; left: 0px;}
 .footer img{height: 80px;}

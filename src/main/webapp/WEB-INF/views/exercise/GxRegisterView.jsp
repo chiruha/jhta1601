@@ -25,19 +25,28 @@
 			width: 900,
 			autoOpen:false,
 			buttons:{
-				저장:function function_name(argument) {					
-					var params=$("#selectAll").serialize(); 
-					alert(params);				
-					$("#dlg").dialog("close");
+				저장:function function_name(argument) {	
+					var params=$("#selectAll").serialize();
+										
 					$.ajax({
 							url:"/fitness/gxinsert",
 							dataType:"json",
 							type:"post",
-							data:params,
+							data:params,							
 							success:function function_name(data) {
-								$("#result").html(data);
-							}
-							
+								$("#dlg").dialog("close");		
+								for(var i=0; i<data.length; i++){
+								var str = "회원등록:" + data[i].gx_num +"<br>" +
+								  "지점코드:"+ data[i].ct_code +"<br>" +
+								  "gx운동:" + data[i].gx_exercise + "<br>" +
+								  "요일:" + data[i].gx_day + "<br>" +
+						          "회원시간:" +  data[i].gx_time + "<br>" +
+						          "PT회원 정보:" + data[i].rg_num + "<br>" +
+						          "수정은 개인정보 회원란에서 해주쉬면됩니다.";								 
+								 $("#result").html(str);
+							}							
+						}
+					
 					});
 					
 				},
@@ -49,64 +58,70 @@
 		
 	});
 	
-	//추가 버튼
-    $(document).on("click","button[name=addGX]",function(){         
-        var addGXText =  '<tr name="trChoice">'+            
-            '   <td class="tdpoChoice">'+
-        	'	<select name="ct_code" id="ct_code">'+
-			'		<c:forEach var="clist"  items="${ctlist}">'+
-			'		<option value="${clist.ct_code }">${clist.ct_name}</option>'+	
-			'		</c:forEach>'+	
-			'	</select>'+
-            '   </td>'+
-            '   <td class="tdgxChoice">'+
-            '       <select class="gxChoice" name="gxChoice">'+
-            '           <option value="mwfDay">에어로빅</option>'+
-            '           <option value="ttDay">ABT</option>'+
-            '           <option value="ttDay">요가</option>'+
-            '           <option value="ttDay">스텝</option>'+
-            '           <option value="ttDay">바디펌프</option>'+
-            '           <option value="ttDay">필라테스</option>'+
-            '       </select>'+
-            '   </td>'+
-            '   <td class="tddayChoice">'+            
-            '       <select class="gxDay" name="gxDay">'+
-            '           <option value="mwfDay">월수금</option>'+
-            '           <option value="ttDay">화목</option>'+
-            '       </select>'+
-            '   </td>'+
-            '   <td class="tdgxTime">'+
-            '       <select class="gxTime" name="gxTime">'+
-            '           <option value="mwfDay">월수금</option>'+
-            '           <option value="ttDay">화목</option>'+
-            '       </select>'+
-            '   </td>'+            
-            '   <td class="tdCancel">'+
-            '       <button class="cancel" name="cancel">취소</button>'+
-            '   </td>'+            
-            '</tr>';
-             
-        var trHtml = $( "tr[name=trChoice]:last" ); //last를 사용하여 trChoice라는 명을 가진 마지막 테그 호출
-         
-        trHtml.after(addGXText); //마지막 trStaff명 뒤에 붙인다.
-         
-    });
-     
-    //삭제 버튼
-    $(document).on("click","button[name=cancel]",function(){         
-        var trHtml = $(this).parent().parent();         
-        trHtml.remove(); //tr 테그 삭제         
-    });
+	 $(document).on("click","button[name=addGX]",function(event){
+		 	event.preventDefault();
+	        var addGXText =  '<tr name="trChoice">'+            
+	            '   <td class="tdpoChoice">'+
+	            '   <select name="ct_code" id="ct_code">'+
+	            '       <c:forEach var="clist"  items="${ctlist}">'+
+	            '       <option value="${clist.ct_code }">${clist.ct_name}</option>'+   
+	            '       </c:forEach>'+  
+	            '   </select>'+
+	            '   </td>'+
+	            '   <td class="tdgxChoice">'+
+	            '       <select class="gx_exercise" name="gx_exercise">'+
+	            '           <option value="에어로빅">에어로빅</option>'+
+	            '           <option value="ABT">ABT</option>'+
+	            '           <option value="요가">요가</option>'+
+	            '           <option value="스텝">스텝</option>'+
+	            '           <option value="바디펌프">바디펌프</option>'+
+	            '           <option value="필라테스">필라테스</option>'+
+	            '       </select>'+
+	            '   </td>'+
+	            '   <td class="tddayChoice">'+            
+	            '       <select class="gx_day" name="gx_day">'+
+	            '           <option value="월수금">월수금</option>'+
+	            '           <option value="화목">화목</option>'+
+	            '       </select>'+
+	            '   </td>'+
+	            '   <td class="tdgxTime">'+
+	            '       <select class="gx_time" name="gx_time">'+
+	            '           <option value="09:00~09:50">09:00~09:50</option>'+
+	            '           <option value="10:00~10:50">10:00~10:50</option>'+
+	            '           <option value="11:00~11:50">11:00~11:50</option>'+
+	            '           <option value="19:00~19:50">19:00~19:50</option>'+
+	            '           <option value="20:00~20:5">20:00~20:50</option>'+
+	            '           <option value="21:00~21:50">21:00~21:50</option>'+
+	            '       </select>'+
+	            '   </td>'+            
+	            '   <td class="tdCancel">'+
+	            '       <button class="cancel" name="cancel">취소</button>'+
+	            '   </td>'+            
+	            '</tr>';
+	             
+	        var trHtml = $( "tr[name=trChoice]:last" ); //last를 사용하여 trChoice라는 명을 가진 마지막 테그 호출
+	         
+	        trHtml.after(addGXText); //마지막 trStaff명 뒤에 붙인다.
+	         
+	    });
+	     
+	    //삭제 버튼
+	    $(document).on("click","button[name=cancel]",function(){         
+	        var trHtml = $(this).parent().parent();         
+	        trHtml.remove(); //tr 테그 삭제         
+	    });
+	
 </script>
 
 	<h1 id="open_btn">GX일정(click)</h1>
 	
 	<div id="box">
+		
 		<div id="dlg" title="PT일정">		
-		<form id="selectAll">		
-		 	<table border="1" style="width:800px">
+		<form id="selectAll">
+			<table border="1" style="width:800px">
         <tbody>            
-            <tr>                
+           <tr>                
                 <td ><strong>지점</strong></td>
                 <td ><strong>GX선택</strong></td>
                 <td ><strong>GXDAY</strong></td>
@@ -115,14 +130,14 @@
             </tr>
             <tr name="trChoice">               
                 <td >
-                   	<select name="ct_code" id="ct_code">
-						<c:forEach var="clist"  items="${ctlist}">
-							<option value="${clist.ct_code }">${clist.ct_name}</option>	
-						</c:forEach>	
-					</select>
+                    <select name="ct_code" id="ct_code">
+                        <c:forEach var="clist"  items="${ctlist}">
+                            <option value="${clist.ct_code }">${clist.ct_name}</option> 
+                        </c:forEach>    
+                    </select>
                 </td>
                 <td >
-                    <select name="gxChoice">
+                    <select name="gx_exercise">
                         <option value="에어로빅">에어로빅</option>
                         <option value="ABT">ABT</option>
                         <option value="요가">요가</option>
@@ -132,13 +147,13 @@
                     </select>
                 </td>
                 <td >                    
-                    <select name="gxDay">
+                    <select name="gx_day">
                         <option value="월수금">월수금</option>
                         <option value="화목">화목</option>
                     </select>
                 </td>
                 <td >
-                    <select name="gxTime">
+                    <select name="gx_time">
                         <option value="09:00~09:50">09:00~09:50</option>
                         <option value="10:00~10:50">10:00~10:50</option>
                         <option value="11:00~11:50">11:00~11:50</option>
@@ -151,11 +166,15 @@
             </tr>         
         </tbody>
     </table>
-	</form>			
+    </form>	
 		</div>
+		
 	</div>
 
-	
+<div id="result"></div>
+<div >
+	<a href="<c:url value='/'/>">Header Page (홈으로 이동)</a> 
+</div>	
 
 	
 

@@ -41,6 +41,12 @@ public class PtregisterController {
 		return ".exercise.PtRegisterView";
 	}
 	
+	@RequestMapping(value="/ptment",method=RequestMethod.GET)
+	public String insert(){
+		
+		return ".exercise.PtMent";
+	}
+	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST,produces="application/json;charset=utf-8")
 	@ResponseBody
 	public Object insert(PtregisterDto dto){		

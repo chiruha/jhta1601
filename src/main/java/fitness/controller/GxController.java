@@ -72,21 +72,7 @@ public class GxController {
 			System.out.println("gxdto"+gxdto);
 			service.insert(gxdto);
 		}
-		
-	/*	
-		JSONArray arr = new JSONArray();
-		for(GxregisterDto dto2:list){
-			JSONObject jo=new JSONObject();
-			jo.put("gx_num", dto2.getGx_num());
-			jo.put("ct_code", dto2.getCt_code());
-			jo.put("gx_exercise", dto2.getGx_exercise());
-			jo.put("gx_day", dto2.getGx_day());
-			jo.put("gx_time", dto2.getGx_time());
-			jo.put("rg_num", dto2.getRg_num());
-			arr.add(jo);
-		}
-		System.out.println("arr"+arr.toString());
-		return arr.toString();*/
+			
 		return list;
 		
 

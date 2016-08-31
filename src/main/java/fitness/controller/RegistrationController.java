@@ -17,13 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import fitness.dto.MemberDto;
-<<<<<<< HEAD
+
 import fitness.dto.ProsignDto;
 import fitness.dto.PtsignDto;
 import fitness.dto.RegistrationDto;
 import fitness.service.MemberService;
-=======
->>>>>>> 452cc29f6bd5105dc0e34169bffa9b4df49d0f26
+
+
 import fitness.service.RegistrationService;
 
 /*

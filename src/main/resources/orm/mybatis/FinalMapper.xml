@@ -116,31 +116,21 @@
 		select count(stf_num) cnt from staff
 	</select>
 
-<!--////////// registraion 관련(수강등록-프로그램등록) - 작성자:이성진 //////////-->
+<!--////////// 등록금액 계산(수강등록-프로그램등록) - 작성자:이성진 //////////-->
 	<!-- 회원 수강등록(프로그램) insert 
 		1. 수강등록하고자 하는 회원번호를 검색한다.
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
 	<!-- 1.(table명: member)회원번호검색 -->
 
-	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
+	<select id="searchMemNum" parameterType="hashmap" resultType="fitness.dto.MemberDto">
 		select * from member
-		<if test="memNum!=null">
-			where ${memNum} like '%' || #{keyword} || '%'
+		<if test="keyword!=null">
+			where mem_num=#{keyword}
 		</if>
 	</select>
 
-<<<<<<< HEAD
-
-
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
-=======
-
-	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
-
-
-	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
->>>>>>> b12cc747e9afc982c8fd1c0d4141b0461071480c
 
 	<!-- 2.insert 할 때 selectBox에 넣을 (헬스&GX등록)프로그램 이름 뽑아오기 -->
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
@@ -155,7 +145,7 @@
 	<select id="ptProgramName" parameterType="hashmap" resultType="fitness.dto.PtPriceDto">
 		select * from ptprice
 	</select>
-<<<<<<< HEAD
+
 	<!-- 2. (pt)프로그램 선택하면, input type="text"에 가격 입력하기 -->
 	<select id="ptPrice" parameterType="String" resultType="fitness.dto.PtPriceDto">
 		select * from ptprice where pt_month=#{value}
@@ -168,11 +158,20 @@
 		select pro_code, pro_price, pt_code, pt_price, 
 	</select>
 	<!-- multiProgram 가격계산 후 insert하기 -->
+<!--////////// 수강등록-프로그램등록 - 작성자:이성진 //////////-->	
+	<!-- 수강정보등록 insert(테이블명: registration) -->
+	<insert id="regiInsert" parameterType="fitness.dto.RegistrationDto">
+		insert into registration values(REGI_SEQ.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price},sysdate)
+	</insert>
+	<!-- 단과과목수강회원 insert (테이블명 : prosign) -작성자:이성진  -->
+	<insert id="prosignInsert" parameterType="fitness.dto.ProsignDto">
+		insert into prosign values(prosign_seq.nextval,#{mem_num},#{pro_code},sysdate)
+	</insert>
+	<!-- PT수강회원 insert (테이블명 : ) -작성자:이성진 -->
+	<insert id="ptsignInsert" parameterType="fitness.dto.PtsignDto">
+		insert into ptsign values(ptsign_seq.nextval,#{mem_num},#{pt_code},#{ptr_count},sysdate)
+	</insert>
 	
-=======
-
-
->>>>>>> b12cc747e9afc982c8fd1c0d4141b0461071480c
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
@@ -214,7 +213,7 @@
 	<select id="memSearchList" resultType="fitness.dto.MemberDto">
 		select * from member
 		<if test="memSearch!=null">
-			where ${memSearch} like '%' || #{keyword} || '%'
+			where #{memSearch} like '%' || #{keyword} || '%'
 		</if>
 	</select>
 	

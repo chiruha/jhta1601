@@ -7,11 +7,38 @@
 	
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
 	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
-		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
+		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},#{ptr_ok})
 	</insert>
 	<select id="ptrinfo" resultType="fitness.dto.RegistrationDto" parameterType="int">
 		select * from pt_register where ptr_num=#{value}
 	</select>
+	
+	
+<!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
+	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">
+		insert into trainer values(tr_seq.nextval, #{str_num}, #{tr_career}, #{tr_intro} )
+	</insert>
+	<update id="trupdate" parameterType="fitness.dto.TrainerDto" >
+		update trainer set str_num=#{str_num}, tr_career=#{tr_career}, tr_intro=#{tr_intro} where tr_num=#{tr_num}
+	</update>
+	<select id="trlist" resultType="fitness.dto.TrainerDto" parameterType="hashmap">
+		select * from( select  tr.*,rownum rnum from
+			(select * from trainer	)tr
+		)
+		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		
+	</select>
+	<select id="trdetail" parameterType="int" resultType="fitness.dto.TrainerDto">
+		select * from trainer where tr_num=#{value}
+	</select>
+	<delete id="trdelete" parameterType="int">
+		delete from trainer where tr_num=#{value}
+	</delete>
+	
+	<select id="getTrCount" resultType="int">
+		select count(tr_num) cnt from trainer
+	</select>
+	
 
 <!--////////// department 관련 - 작성자 : 유예진 //////////-->
 	<insert id="deptinsert" parameterType="fitness.dto.DepartmentDto">
@@ -67,7 +94,7 @@
 	<insert id="stfinsert" parameterType="fitness.dto.StaffDto">
 		 insert into staff values(staff_seq.nextval, #{stf_name}, #{stf_phone}, sysdate , #{stf_picture}, #{pos_code}, #{ct_code})
 	</insert>
-	<select id="stflist" resultType="fitness.dto.StaffDto">
+	<select id="stflist" resultType="fitness.dto.StaffDto" parameterType="hashmap">
 		select * from( select  aa.*,rownum rnum from
 			(select * from staff	)aa
 		)
@@ -89,31 +116,21 @@
 		select count(stf_num) cnt from staff
 	</select>
 
-<!--////////// registraion 관련(수강등록-프로그램등록) - 작성자:이성진 //////////-->
+<!--////////// 등록금액 계산(수강등록-프로그램등록) - 작성자:이성진 //////////-->
 	<!-- 회원 수강등록(프로그램) insert 
 		1. 수강등록하고자 하는 회원번호를 검색한다.
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
 	<!-- 1.(table명: member)회원번호검색 -->
 
-	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
+	<select id="searchMemNum" parameterType="hashmap" resultType="fitness.dto.MemberDto">
 		select * from member
-		<if test="memNum!=null">
-			where ${memNum} like '%' || #{keyword} || '%'
+		<if test="keyword!=null">
+			where mem_num=#{keyword}
 		</if>
 	</select>
 
-<<<<<<< HEAD
-
-
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
-=======
-
-	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
-
-
-	<!-- 2.insert 할 때 selectBox에 넣을 프로그램 이름 뽑아오기 -->
->>>>>>> b12cc747e9afc982c8fd1c0d4141b0461071480c
 
 	<!-- 2.insert 할 때 selectBox에 넣을 (헬스&GX등록)프로그램 이름 뽑아오기 -->
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
@@ -128,7 +145,7 @@
 	<select id="ptProgramName" parameterType="hashmap" resultType="fitness.dto.PtPriceDto">
 		select * from ptprice
 	</select>
-<<<<<<< HEAD
+
 	<!-- 2. (pt)프로그램 선택하면, input type="text"에 가격 입력하기 -->
 	<select id="ptPrice" parameterType="String" resultType="fitness.dto.PtPriceDto">
 		select * from ptprice where pt_month=#{value}
@@ -141,11 +158,20 @@
 		select pro_code, pro_price, pt_code, pt_price, 
 	</select>
 	<!-- multiProgram 가격계산 후 insert하기 -->
+<!--////////// 수강등록-프로그램등록 - 작성자:이성진 //////////-->	
+	<!-- 수강정보등록 insert(테이블명: registration) -->
+	<insert id="regiInsert" parameterType="fitness.dto.RegistrationDto">
+		insert into registration values(REGI_SEQ.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price},sysdate)
+	</insert>
+	<!-- 단과과목수강회원 insert (테이블명 : prosign) -작성자:이성진  -->
+	<insert id="prosignInsert" parameterType="fitness.dto.ProsignDto">
+		insert into prosign values(prosign_seq.nextval,#{mem_num},#{pro_code},sysdate)
+	</insert>
+	<!-- PT수강회원 insert (테이블명 : ) -작성자:이성진 -->
+	<insert id="ptsignInsert" parameterType="fitness.dto.PtsignDto">
+		insert into ptsign values(ptsign_seq.nextval,#{mem_num},#{pt_code},#{ptr_count},sysdate)
+	</insert>
 	
-=======
-
-
->>>>>>> b12cc747e9afc982c8fd1c0d4141b0461071480c
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
@@ -187,7 +213,7 @@
 	<select id="memSearchList" resultType="fitness.dto.MemberDto">
 		select * from member
 		<if test="memSearch!=null">
-			where ${memSearch} like '%' || #{keyword} || '%'
+			where #{memSearch} like '%' || #{keyword} || '%'
 		</if>
 	</select>
 	
@@ -209,7 +235,7 @@
 	</select>
 	
 	<select id="nocgetCount" resultType="int">
-		select nvl(count(nt_num),0) from notice
+		select nvl(count(num),0) from notice
 	</select>
 	
 	

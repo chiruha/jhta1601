@@ -14,11 +14,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fitness.dto.CenterDto;
+<<<<<<< HEAD
 import fitness.dto.GxregisterDto;
 import fitness.dto.PtregisterDto;
 
 import fitness.dto.GxregisterDto;
 
+=======
+
+import fitness.dto.GxregisterDto;
+import fitness.dto.PtregisterDto;
+
+
+import fitness.dto.GxregisterDto;
+
+
+
+>>>>>>> 3409dc25b1082d204efd5bebfd8e3827568602e3
 import fitness.service.CenterService;
 
 import fitness.service.gxregisterService;

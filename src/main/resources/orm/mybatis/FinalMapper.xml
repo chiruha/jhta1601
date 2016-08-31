@@ -5,6 +5,7 @@
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
 	
+<<<<<<< HEAD
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////	-->
 	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
 		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},#{ptr_ok})
@@ -13,6 +14,24 @@
 		select * from pt_register where ptr_num=#{value}
 	</select>
 
+=======
+	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
+	<insert id="ptrinsert" parameterType="fitness.dto.PtregisterDto">
+		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
+	</insert>
+	<select id="ptrinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
+		select * from pt_register where ptr_num=#{value}
+	</select>
+	
+	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
+	<insert id="gxinsert" parameterType="fitness.dto.PtregisterDto">
+		insert into gx_register values(gx_seq.nextval,#{ct_code},#{gx_exercise},#{gx_day},#{gx_time},#{rg_num})
+	</insert>
+	<select id="getInfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
+		select * from gx_register where gx_num=#{value}
+	</select>
+	
+>>>>>>> df75843388f5fc85c069abd8ac6c4aae09bcaadc
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">
@@ -126,14 +145,27 @@
 	-->
 	<!-- 1.(table명: member)회원번호검색 -->
 
+<<<<<<< HEAD
 	<select id="searchMemNum" parameterType="hashmap" resultType="fitness.dto.MemberDto">
 		select * from member
 		<if test="keyword!=null">
 			where mem_num= #{keyword}
+=======
+	<select id="searchMemNum" parameterType="fitness.dto.MemberDto">
+		select * from member
+		<if test="memNum!=null">
+			where ${memNum} like '%' || #{keyword} || '%'
+>>>>>>> df75843388f5fc85c069abd8ac6c4aae09bcaadc
 		</if>
 	</select>
 
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> df75843388f5fc85c069abd8ac6c4aae09bcaadc
 	<!-- 2.insert 할 때 selectBox에 넣을 (헬스&GX등록)프로그램 이름 뽑아오기 -->
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
 		select * from programprice
@@ -152,6 +184,7 @@
 	<select id="ptPrice" parameterType="String" resultType="fitness.dto.PtPriceDto">
 		select * from ptprice where pt_month=#{value}
 	</select> 
+<<<<<<< HEAD
 	
 	
 	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt+기타과목)
@@ -173,6 +206,18 @@
 		insert into ptsign values(ptsign_seq.nextval,#{mem_num},#{pt_code},#{ptr_count},sysdate)
 	</insert>
 	
+=======
+	<!-- (pt)insert -->
+	
+	
+	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt+기타과목)-->
+	<select id="multiProgram" parameterType="hashmap" resultType="fitness.dto.MultiPriceDto">
+		select pro_code, pro_price, pt_code, pt_price, 
+	</select>
+	<!-- multiProgram 가격계산 후 insert하기 -->
+
+
+>>>>>>> df75843388f5fc85c069abd8ac6c4aae09bcaadc
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
@@ -223,6 +268,7 @@
 		insert into notice values(notice_seq.nextval,#{stf_num},#{nt_title},#{nt_content},sysdate,#{nt_hit})
 	</insert>
 	
+<<<<<<< HEAD
 	<select id="getNocCount" resultType="int">
 		select nvl(count(nt_num),0) from notice
 	</select>
@@ -245,4 +291,38 @@
 	<update id="NocUpdate" parameterType="fitness.dto.NoticeDto">
 		update notice set nt_title=#{nt_title},nt_content=#{nt_content} where nt_num=#{nt_num}
 	</update>
+=======
+	<delete id="nocdelete" parameterType="int">
+		delete from notice where nt_num=#{value}
+	</delete>
+	
+	<update id="nocupdate" parameterType="fitness.dto.NoticeDto">
+		update notice set nt_title=#{nt_title},nt_content=#{nt_content} where nt_num=#{nt_num}
+	</update>
+
+	<select id="nocdetail" resultType="fitness.dto.NoticeDto" parameterType="int">
+		select * from notice where nt_num=#{value}
+	</select>
+	
+	<select id="nocgetCount" resultType="int">
+		select nvl(count(num),0) from notice
+	</select>
+	
+	
+	<select id="nocList" parameterType="hashmap" resultType="fitness.dto.NoticeDto">
+		select * from(
+		select aa.*,rownum rnum from
+		(select * from notice <where>
+			<if test="nt_title!=null">
+				or title like '%'||#{keyword}||'%'
+			</if>
+			<if test="nt_content!=null">
+				or content like '%'||#{keyword}||'%'
+			</if>			
+		</where>order by nt_num desc)aa
+  		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+ 		
+		
+	</select>
+>>>>>>> df75843388f5fc85c069abd8ac6c4aae09bcaadc
 </mapper>

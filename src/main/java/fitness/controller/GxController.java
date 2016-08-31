@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,14 +12,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fitness.dto.CenterDto;
+<<<<<<< HEAD
+import fitness.dto.GxregisterDto;
 import fitness.dto.PtregisterDto;
+=======
+>>>>>>> 930c514b495f9cba6297ab45a1a21d451e3364ed
 import fitness.service.CenterService;
 import fitness.service.PtregisterService;
+import fitness.service.gxregisterService;
 
 
 @Controller
 public class GxController {
-	@Autowired private PtregisterService service;
+	@Autowired private gxregisterService service;
 	@Autowired private CenterService cts;
 	
 	@RequestMapping(value="/gxinsert",method=RequestMethod.GET)
@@ -28,14 +34,28 @@ public class GxController {
 		return ".exercise.GxRegisterView";
 	}
 	
-	@RequestMapping(value="/gxinsert",method=RequestMethod.POST)
+	@RequestMapping(value="/gxinsert",method=RequestMethod.POST,produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String insert(String[] gxDay){
-		System.out.println("여기오나22gxinsert");
-		System.out.println(gxDay[0]);
+	public Object insert(GxregisterDto dto){
+		System.out.println("gxinsert 도착");		
+		dto.setRg_num(1);
+		System.out.println("dto"+dto);
+		//service.insert(dto);
+		GxregisterDto gxdto=null;
+		try{
+			gxdto=service.detail(1);
+			System.out.println("gxdto"+gxdto);
 		
-		//PtregisterDto dto = new PtregisterDto(0, null, ptr_initdate, ptr_time, ptr_count,null);
-		return ".exercise.GxRegisterView";
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+		return gxdto;		
+		
+		
+		
+
+		
 	}
 }
 

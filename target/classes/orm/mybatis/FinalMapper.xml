@@ -6,13 +6,35 @@
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
 	
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
+<<<<<<< HEAD
 	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
 		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},#{ptr_ok})
+=======
+<<<<<<< HEAD
+	<insert id="ptrinsert" parameterType="fitness.dto.PtregisterDto">
+		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
+=======
+	<insert id="ptrinsert" parameterType="fitness.dto.RegistrationDto">
+		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},#{ptr_ok})
+>>>>>>> 930c514b495f9cba6297ab45a1a21d451e3364ed
+>>>>>>> 452cc29f6bd5105dc0e34169bffa9b4df49d0f26
 	</insert>
-	<select id="ptrinfo" resultType="fitness.dto.RegistrationDto" parameterType="int">
+	<select id="ptrinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
 		select * from pt_register where ptr_num=#{value}
 	</select>
 	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
+	<insert id="gxinsert" parameterType="fitness.dto.PtregisterDto">
+		insert into gx_register values(gx_seq.nextval,#{ct_code},#{gx_exercise},#{gx_day},#{gx_time},#{rg_num})
+	</insert>
+	<select id="getInfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
+		select * from gx_register where gx_num=#{value}
+	</select>
+	
+>>>>>>> 452cc29f6bd5105dc0e34169bffa9b4df49d0f26
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">
@@ -20,6 +42,18 @@
 	</insert>
 	<update id="trupdate" parameterType="fitness.dto.TrainerDto" >
 		update trainer set str_num=#{str_num}, tr_career=#{tr_career}, tr_intro=#{tr_intro} where tr_num=#{tr_num}
+<<<<<<< HEAD
+=======
+=======
+	
+<!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
+	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">
+		insert into trainer values(tr_seq.nextval, #{stf_num}, #{tr_career}, #{tr_intro} )
+	</insert>
+	<update id="trupdate" parameterType="fitness.dto.TrainerDto" >
+		update trainer set stf_num=#{stf_num}, tr_career=#{tr_career}, tr_intro=#{tr_intro} where tr_num=#{tr_num}
+>>>>>>> 930c514b495f9cba6297ab45a1a21d451e3364ed
+>>>>>>> 452cc29f6bd5105dc0e34169bffa9b4df49d0f26
 	</update>
 	<select id="trlist" resultType="fitness.dto.TrainerDto" parameterType="hashmap">
 		select * from( select  tr.*,rownum rnum from
@@ -31,6 +65,15 @@
 	<select id="trdetail" parameterType="int" resultType="fitness.dto.TrainerDto">
 		select * from trainer where tr_num=#{value}
 	</select>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		<select id="trdetail2" parameterType="int" resultType="fitness.dto.TrainerDto">
+		select * from trainer where stf_num=#{value}
+	</select>
+>>>>>>> 930c514b495f9cba6297ab45a1a21d451e3364ed
+>>>>>>> 452cc29f6bd5105dc0e34169bffa9b4df49d0f26
 	<delete id="trdelete" parameterType="int">
 		delete from trainer where tr_num=#{value}
 	</delete>
@@ -132,6 +175,11 @@
 
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 452cc29f6bd5105dc0e34169bffa9b4df49d0f26
 	<!-- 2.insert 할 때 selectBox에 넣을 (헬스&GX등록)프로그램 이름 뽑아오기 -->
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
 		select * from programprice
@@ -158,6 +206,7 @@
 		select pro_code, pro_price, pt_code, pt_price, 
 	</select>
 	<!-- multiProgram 가격계산 후 insert하기 -->
+<<<<<<< HEAD
 <!--////////// 수강등록-프로그램등록 - 작성자:이성진 //////////-->	
 	<!-- 수강정보등록 insert(테이블명: registration) -->
 	<insert id="regiInsert" parameterType="fitness.dto.RegistrationDto">
@@ -172,6 +221,10 @@
 		insert into ptsign values(ptsign_seq.nextval,#{mem_num},#{pt_code},#{ptr_count},sysdate)
 	</insert>
 	
+=======
+
+
+>>>>>>> 452cc29f6bd5105dc0e34169bffa9b4df49d0f26
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">

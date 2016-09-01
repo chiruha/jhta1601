@@ -5,7 +5,7 @@
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
 	
-	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
+	<!--////////// pt관련 - 작성자 : 고석곤 ////////-->
 	<insert id="ptrinsert" parameterType="fitness.dto.PtregisterDto">
 		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
 	</insert>

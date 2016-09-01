@@ -11,7 +11,8 @@
 <img src="resources/img/f1.jpg"><br>
 	<ul>
 		<li><a href="<c:url value='/ptrinsert'/>">PT 예약</a></li>
-		<li><a href="<c:url value='/gxinsert'/>">GX 예약</a></li>		
+		<li><a href="<c:url value='/gxinsert'/>">GX 예약</a></li>
+		<li><a href="<c:url value='/ptment'/>">PT 관리</a></li>			
 		<li><a href="<c:url value='/meminsert'/>">회원등록(이성진)</a></li>
 		<li><a href="<c:url value='/memselectAll'/>">회원전체목록보기(이성진)</a></li>
 		<li><a href="<c:url value='/regiInsert'/>">수강등록(insert만 완성)-프로그램등록(이성진)</a></li>

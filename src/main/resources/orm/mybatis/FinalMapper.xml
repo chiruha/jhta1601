@@ -4,15 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
-	
-	<!--////////// pt관련 - 작성자 : 고석곤 ////////-->
-	<insert id="ptrinsert" parameterType="fitness.dto.PtregisterDto">
-		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
-	</insert>
-	<select id="ptrinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
-		select * from pt_register where ptr_num=#{value}
-	</select>
-	
+
 	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
 	<insert id="gxinsert" parameterType="fitness.dto.PtregisterDto">
 		insert into gx_register values(gx_seq.nextval,#{ct_code},#{gx_exercise},#{gx_day},#{gx_time},#{rg_num})
@@ -20,6 +12,31 @@
 	<select id="getInfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
 		select * from gx_register where gx_num=#{value}
 	</select>
+	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
+	<insert id="ptrinsert" parameterType="fitness.dto.PtregisterDto">
+		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
+	</insert>
+	<select id="ptrinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
+		select * from pt_register where ptr_num=#{value}
+	</select>
+
+<!--////////// mem_att 관련 - 작성자 : 유예진 //////////-->
+	<insert id="mattinsert" parameterType="fitness.dto.Mem_attDto">
+		insert into mem_att values(matt_seq.nextval, sysdate, #{mem_num}, #{ct_code} )	
+	</insert>
+	<select id="mattlist" parameterType="hashmap" resultType="fitness.dto.Mem_attDto">
+		select * from mem_att order by matt_date desc
+	</select>
+	
+<!--////////// stf_att 관련 - 작성자 : 유예진 //////////-->
+	<insert id="sattinsert" parameterType="fitness.dto.Stf_attDto">
+		insert into stf_att values(satt_seq.nextval, sysdate, #{stf_num}, #{ct_code} )	
+	</insert>
+	<select id="sattlist" parameterType="hashmap" resultType="fitness.dto.Stf_attDto">
+		select * from stf_att order by satt_date desc
+	</select>
+
+
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">
@@ -106,10 +123,43 @@
 	</insert>
 	<select id="stflist" resultType="fitness.dto.StaffDto" parameterType="hashmap">
 		select * from( select  aa.*,rownum rnum from
-			(select * from staff	)aa
+			(select * from staff	
+			<where>
+			<if test="ct_code!=null">
+				ct_code like '%'||#{ct_code}||'%'
+			</if>
+			<if test="pos_code!=null">
+				and pos_code like '%'||#{pos_code}||'%'
+			</if>
+			<if test="stf_name!=null">
+				and stf_name like '%'||#{keyword}||'%'
+			</if>
+			<if test="stf_phone!=null">
+				and stf_phone like '%'||#{keyword}||'%'
+			</if>
+			
+		</where>
+			)aa
 		)
 		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-
+	</select>
+	<select id="getStfCount" resultType="int">
+		select count(stf_num) cnt from staff
+		<where>
+			<if test="ct_code!=null">
+				ct_code like '%'||#{ct_code}||'%'
+			</if>
+			<if test="pos_code!=null">
+				and pos_code like '%'||#{pos_code}||'%'
+			</if>
+			<if test="stf_name!=null">
+				and stf_name like '%'||#{keyword}||'%'
+			</if>
+			<if test="stf_phone!=null">
+				and stf_phone like '%'||#{keyword}||'%'
+			</if>
+			
+		</where>
 	</select>
 	<select id="stfdetail" parameterType="int" resultType="fitness.dto.StaffDto">
 		select * from staff where stf_num=#{value}
@@ -122,9 +172,7 @@
 		delete from staff where stf_num=#{value}
 	</delete>
 
-	<select id="getStfCount" resultType="int">
-		select count(stf_num) cnt from staff
-	</select>
+	
 
 <!--////////// registraion 관련(수강등록-프로그램등록) - 작성자:이성진 //////////-->
 	<!-- 회원 수강등록(프로그램) insert 
@@ -132,6 +180,7 @@
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
 	<!-- 1.(table명: member)회원번호검색 -->
+
 
 	<select id="searchMemNum" parameterType="hashmap" resultType="fitness.dto.MemberDto">
 		select * from member
@@ -141,6 +190,7 @@
 	</select>
 
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
+
 	<!-- 2.insert 할 때 selectBox에 넣을 (헬스&GX등록)프로그램 이름 뽑아오기 -->
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
 		select * from programprice
@@ -159,34 +209,39 @@
 	<select id="ptPrice" parameterType="String" resultType="fitness.dto.PtPriceDto">
 		select * from ptprice where pt_month=#{value}
 	</select> 
-	
-<!--////////// 수강등록 관련(회원등록) - 작성자:이성진 //////////-->
-	<!-- registration(기본정보등록) table -->
-	<insert id="regiInsert" parameterType="fitness.dto.RegistrationDto">
-		insert into registration values(regi_seq.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price})
-	</insert>
-	<!-- prosign(단과과목등록) table -->
-	<insert id="prosignInsert" parameterType="fitness.dto.ProsignDto">
-		insert into prosign values(prosign_seq.nextval,#{mem_num},#{pro_code})
-	</insert>
-	<!-- ptsign(pt등록) table -->
-	<insert id="ptsignInsert" parameterType="fitness.dto.PtsignDto">
-		insert into ptsign values(ptsign_seq.nextval,#{mem_num},#{pt_code},#{ptr_count})
-	</insert>
+
 	
 	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt+기타과목)
 	<select id="multiProgram" parameterType="hashmap" resultType="fitness.dto.MultiPriceDto">
 		select pro_code, pro_price, pt_code, pt_price, 
 	</select>
-	-->
-	<!-- properiod(단과-운동기간등록) table -->
-	<insert id="properiodInsert" parameterType="fitness.dto.ProperiodDto">
-		insert into properiod values(properiod_seq.nextval,#{mem_num},#{pro_signmonth},sysdate,add_months(sysdate,${pro_signmonth}))
+	 -->
+<!--////////// 수강등록 관련(회원등록) - 작성자:이성진 //////////-->
+	<!-- registration table -->
+	<insert id="regiInsert" parameterType="fitness.dto.RegistrationDto">
+		insert into registration values(regi_seq.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price},sysdate)
 	</insert>
-	<!-- ptperiod(pt-운동기간등록) table -->
-	<insert id="ptperiodInsert" parameterType="fitness.dto.PtperiodDto">
-		insert into ptperiod values(ptperiod_seq.nextval,#{mem_num},#{pt_signmonth},sysdate, add_months(sysdate ,${pt_signmonth}))
+	<!-- prosign table -->
+	<insert id="prosignInsert" parameterType="fitness.dto.ProsignDto">
+		insert into prosign values(prosign_seq.nextval,#{mem_num},#{pro_code},sysdate)
 	</insert>
+	<!-- ptsign table -->
+	<insert id="ptsignInsert" parameterType="fitness.dto.PtsignDto">
+		insert into ptsign values(ptsign_seq.nextval,#{mem_num},#{pt_code},#{ptr_count},sysdate)
+	</insert>
+	
+
+	<!-- (pt)insert -->
+	
+	
+	<!-- 2.(table명: ptprice) insert 할 때 selectBox에 넣을 (pt+기타과목)-->
+	<select id="multiProgram" parameterType="hashmap" resultType="fitness.dto.MultiPriceDto">
+		select pro_code, pro_price, pt_code, pt_price, 
+	</select>
+	<!-- multiProgram 가격계산 후 insert하기 -->
+
+
+
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">
@@ -237,6 +292,7 @@
 		insert into notice values(notice_seq.nextval,#{stf_num},#{nt_title},#{nt_content},sysdate,#{nt_hit})
 	</insert>
 	
+
 	<select id="getNocCount" resultType="int">
 		select nvl(count(nt_num),0) from notice
 	</select>
@@ -289,15 +345,8 @@
 			</if>			
 		</where>order by nt_num desc)aa
   		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+ 		
+		
+	</select>
 
-	</select>
-<!--////////// 로그인 - 작성자:이성진 //////////-->
-	<!-- 회원인경우 -->
-	<select id="loginMem" parameterType="hashmap" resultType="hashmap">
-		select * from member where mem_name=#{mem_name} and mem_phone=#{mem_phone}
-	</select>
-	<!-- 직원인경우 -->
-	<select id="loginAdmin" parameterType="hashmap" resultType="hashmap">
-		select * from staff where stf_name=#{stf_name} and stf_phone=#{stf_phone}
-	</select>
 </mapper>

@@ -72,7 +72,7 @@ public class RegistrationDto {
 
 	@Override
 	public String toString() {
-		return "RegistrationDto [rg_num=" + rg_num + ", mem_num=" + mem_num + ", rg_type=" + rg_type + ", rg_price="
+		return "\n RegistrationDto [rg_num=" + rg_num + ", mem_num=" + mem_num + ", rg_type=" + rg_type + ", rg_price="
 				+ rg_price + ", locker_price=" + locker_price + ", wear_price=" + wear_price + "]";
 	}
 

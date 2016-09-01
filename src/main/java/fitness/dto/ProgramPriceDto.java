@@ -60,7 +60,7 @@ public class ProgramPriceDto {
 
 	@Override
 	public String toString() {
-		return "ProgramPriceDto [pro_num=" + pro_num + ", pro_code=" + pro_code + ", pro_name=" + pro_name
+		return "\n ProgramPriceDto [pro_num=" + pro_num + ", pro_code=" + pro_code + ", pro_name=" + pro_name
 				+ ", pro_signmonth=" + pro_signmonth + ", pro_price=" + pro_price + "]";
 	}
 

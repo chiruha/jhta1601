@@ -91,7 +91,7 @@ public class SurveyDto {
 
 	@Override
 	public String toString() {
-		return "SurveyDto [sv_num=" + sv_num + ", sv_route=" + sv_route + ", sv_anamnesis=" + sv_anamnesis
+		return "\n SurveyDto [sv_num=" + sv_num + ", sv_route=" + sv_route + ", sv_anamnesis=" + sv_anamnesis
 				+ ", sv_lifestyle=" + sv_lifestyle + ", sv_goal=" + sv_goal + ", sv_memo=" + sv_memo + ", mem_num="
 				+ mem_num + ", sv_agree=" + sv_agree + "]";
 	}

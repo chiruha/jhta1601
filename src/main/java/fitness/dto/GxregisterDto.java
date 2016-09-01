@@ -70,7 +70,7 @@ public class GxregisterDto {
 
 	@Override
 	public String toString() {
-		return "GxregisterDto [gx_num=" + gx_num + ", ct_code=" + ct_code + ", gx_exercise=" + gx_exercise + ", gx_day="
+		return "\n GxregisterDto [gx_num=" + gx_num + ", ct_code=" + ct_code + ", gx_exercise=" + gx_exercise + ", gx_day="
 				+ gx_day + ", gx_time=" + gx_time + ", rg_num=" + rg_num + "]";
 	}
 	

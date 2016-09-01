@@ -76,7 +76,7 @@ public class StaffController {
 		String keyword=request.getParameter("keyword");
 
 		// 아무것도 선택되지 않았을 때
-		System.out.println("stf검색:"+ct_code+","+pos_code+","+stf_name+","+stf_phone+","+keyword);
+		System.out.println("(직원검색) 지점: "+ct_code+", 직급: "+pos_code+", 이름: "+stf_name+", 전화: "+stf_phone+", 검색어: "+keyword);
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("ct_code", ct_code);
 		map.put("pos_code", pos_code);
@@ -96,7 +96,7 @@ public class StaffController {
 		session.setAttribute("stf_phone", stf_phone); 
 		session.setAttribute("keyword", keyword);
 		session.setAttribute("stflist", stflist);
-		//System.out.println("stflist컨트롤 :"+stflist);
+		System.out.println("stflist컨트롤 :"+stflist);
 		session.setAttribute("pu", pu);
 		return ".staff.StfListView";
 	}

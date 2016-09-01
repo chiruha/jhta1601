@@ -41,7 +41,7 @@ public class RefundDto {
 	}
 	@Override
 	public String toString() {
-		return "RefundDto [rf_num=" + rf_num + ", rg_num=" + rg_num + ", rf_left=" + rf_left + ", pri_num=" + pri_num
+		return "\n RefundDto [rf_num=" + rf_num + ", rg_num=" + rg_num + ", rf_left=" + rf_left + ", pri_num=" + pri_num
 				+ "]";
 	}
 	

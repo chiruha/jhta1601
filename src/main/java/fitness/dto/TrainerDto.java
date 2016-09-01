@@ -39,7 +39,7 @@ public class TrainerDto {
 	}
 	@Override
 	public String toString() {
-		return "TrainerDto [tr_num=" + tr_num + ", stf_num=" + stf_num + ", tr_career=" + tr_career + ", tr_intro="
+		return "\n TrainerDto [tr_num=" + tr_num + ", stf_num=" + stf_num + ", tr_career=" + tr_career + ", tr_intro="
 				+ tr_intro + "]";
 	}
 	

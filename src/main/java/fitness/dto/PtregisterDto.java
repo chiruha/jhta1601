@@ -91,7 +91,7 @@ public class PtregisterDto {
 
 	@Override
 	public String toString() {
-		return "PtregisterDto [ptr_num=" + ptr_num + ", tr_num=" + tr_num + ", rg_num=" + rg_num + ", ptr_initdate="
+		return "\n PtregisterDto [ptr_num=" + ptr_num + ", tr_num=" + tr_num + ", rg_num=" + rg_num + ", ptr_initdate="
 				+ ptr_initdate + ", ptr_time=" + ptr_time + ", ptr_count=" + ptr_count + ", ct_code=" + ct_code
 				+ ", ptr_ok=" + ptr_ok + "]";
 	}

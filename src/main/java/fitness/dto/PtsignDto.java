@@ -52,7 +52,7 @@ public class PtsignDto {
 
 	@Override
 	public String toString() {
-		return "PtsignDto [ptsign_num=" + ptsign_num + ", mem_num=" + mem_num + ", pt_code=" + pt_code + ", ptr_count="
+		return "\n PtsignDto [ptsign_num=" + ptsign_num + ", mem_num=" + mem_num + ", pt_code=" + pt_code + ", ptr_count="
 				+ ptr_count + "]";
 	}
 

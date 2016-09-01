@@ -42,7 +42,7 @@ public class ProsignDto {
 
 	@Override
 	public String toString() {
-		return "ProsignDto [prosign_num=" + prosign_num + ", mem_num=" + mem_num + ", pro_code=" + pro_code + "]";
+		return "\n ProsignDto [prosign_num=" + prosign_num + ", mem_num=" + mem_num + ", pro_code=" + pro_code + "]";
 	}
 
 	

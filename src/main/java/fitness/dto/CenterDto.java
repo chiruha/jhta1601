@@ -49,7 +49,7 @@ public class CenterDto {
 	}
 	@Override
 	public String toString() {
-		return "CenterDto [ct_code=" + ct_code + ", ct_name=" + ct_name + ", ct_tel=" + ct_tel + ", ct_addr=" + ct_addr
+		return "\n CenterDto [ct_code=" + ct_code + ", ct_name=" + ct_name + ", ct_tel=" + ct_tel + ", ct_addr=" + ct_addr
 				+ ", ct_intro=" + ct_intro + "]";
 	}
 	

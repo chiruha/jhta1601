@@ -31,7 +31,7 @@ public class SalesDto {
 	}
 	@Override
 	public String toString() {
-		return "SalesDto [sal_num=" + sal_num + ", sal_money=" + sal_money + ", ct_code=" + ct_code + "]";
+		return "\n SalesDto [sal_num=" + sal_num + ", sal_money=" + sal_money + ", ct_code=" + ct_code + "]";
 	}
 	
 }

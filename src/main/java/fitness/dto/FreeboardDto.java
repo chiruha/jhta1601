@@ -77,7 +77,7 @@ public class FreeboardDto {
 
 	@Override
 	public String toString() {
-		return "FreeboardDto [fb_num=" + fb_num + ", mem_num=" + mem_num + ", fb_title=" + fb_title + ", fb_date="
+		return "\n FreeboardDto [fb_num=" + fb_num + ", mem_num=" + mem_num + ", fb_title=" + fb_title + ", fb_date="
 				+ fb_date + ", fb_hit=" + fb_hit + ", fb_ref=" + fb_ref + ", fb_lef=" + fb_lef + ", fb_step=" + fb_step
 				+ "]";
 	}

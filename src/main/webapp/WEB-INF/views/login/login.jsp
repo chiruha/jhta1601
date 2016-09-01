@@ -40,10 +40,10 @@
 <h1>로그인하기</h1>
 
 <form method="post" action="login">
-<input type="checkbox" value="관리자로그인" name="adminCheck" onclick="adminMode()">관리자로그인
 아이디<input type="text" name="mem_name" id="id"><br>
 비밀번호<input type="password" name="mem_phone" id="pwd"><br>
 
+<input type="checkbox" value="관리자로그인" name="adminCheck" onclick="adminMode()">관리자로그인
 <div id="errMsg">${requestScope.errMsg }</div>
 <input type="submit" value="로그인">
 <input type="reset" value="취소">

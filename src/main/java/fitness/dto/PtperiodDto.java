@@ -62,7 +62,7 @@ public class PtperiodDto {
 
 	@Override
 	public String toString() {
-		return "PtperiodDto [ptperiod_num=" + ptperiod_num + ", mem_num=" + mem_num + ", pt_signmonth=" + pt_signmonth
+		return "\n PtperiodDto [ptperiod_num=" + ptperiod_num + ", mem_num=" + mem_num + ", pt_signmonth=" + pt_signmonth
 				+ ", ptr_initdate=" + ptr_initdate + ", pt_expiration=" + pt_expiration + "]";
 	}
 	

@@ -83,7 +83,7 @@ public class StaffDto {
 
 	@Override
 	public String toString() {
-		return "StaffDto [stf_num=" + stf_num + ", stf_name=" + stf_name + ", stf_phone=" + stf_phone + ", stf_date="
+		return "\n StaffDto [stf_num=" + stf_num + ", stf_name=" + stf_name + ", stf_phone=" + stf_phone + ", stf_date="
 				+ stf_date + ", stf_picture=" + stf_picture + ", pos_code=" + pos_code + ", ct_code=" + ct_code + "]";
 	}
 	

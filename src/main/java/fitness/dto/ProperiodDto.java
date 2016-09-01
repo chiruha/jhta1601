@@ -62,7 +62,7 @@ public class ProperiodDto {
 
 	@Override
 	public String toString() {
-		return "ProperiodDto [properiod_num=" + properiod_num + ", mem_num=" + mem_num + ", pro_signmonth="
+		return "\n ProperiodDto [properiod_num=" + properiod_num + ", mem_num=" + mem_num + ", pro_signmonth="
 				+ pro_signmonth + ", pro_regdate=" + pro_regdate + ", pro_expiration=" + pro_expiration + "]";
 	}
 	

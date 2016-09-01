@@ -41,7 +41,7 @@ public class Mem_attDto {
 	}
 	@Override
 	public String toString() {
-		return "Mem_attDto [matt_num=" + matt_num + ", matt_date=" + matt_date + ", mem_num=" + mem_num + ", ct_code="
+		return "\n Mem_attDto [matt_num=" + matt_num + ", matt_date=" + matt_date + ", mem_num=" + mem_num + ", ct_code="
 				+ ct_code + "]";
 	}
 	

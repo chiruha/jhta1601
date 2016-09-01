@@ -25,7 +25,7 @@ public class DepartmentDto {
 	}
 	@Override
 	public String toString() {
-		return "DepartmentDto [dept_code=" + dept_code + ", dept_name=" + dept_name + "]";
+		return "\n DepartmentDto [dept_code=" + dept_code + ", dept_name=" + dept_name + "]";
 	}
 	
 }

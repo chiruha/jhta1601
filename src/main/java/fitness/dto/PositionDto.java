@@ -33,7 +33,7 @@ public class PositionDto {
 	}
 	@Override
 	public String toString() {
-		return "PositionDto [pos_code=" + pos_code + ", pos_name=" + pos_name + ", dept_code=" + dept_code + "]";
+		return "\n PositionDto [pos_code=" + pos_code + ", pos_name=" + pos_name + ", dept_code=" + dept_code + "]";
 	}
 	
 }

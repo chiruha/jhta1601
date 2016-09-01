@@ -6,15 +6,12 @@
 	$(document).ready(function() {
 		//alert("start");
 		if($("#cbox").val()!=' '){
-			ctload();
-			$("#ct_code option").val($("#cbox").val()).attr("selected","selected");
-			//$("#ct_code").val($("#cbox").val()).attr("selected","selected");
 			console.log("cbox : "+$("#cbox").val());
+			ctload();
 		}
 		if($("#pbox").val()!=' '){
-			posload();
-			$("#pos_code").val($("#pbox").val()).attr("selected","selected");
 			console.log("pbox : "+$("#pbox").val());
+			posload();
 		}
 
 		$("input:checkbox").on("click", function() {
@@ -44,6 +41,9 @@
 						option1.value=$(this).find("ctcode").text();
 						option1.text=$(this).find("ctcode").text()+":"+$(this).find("ctname").text();
 						select1.appendChild(option1);
+						if(option1.value==$("#cbox").val().trim()){
+						$(option1).attr("selected","selected");
+						}
 					});
 					$("#cspan").empty();
 					$(select1).appendTo("#cspan");
@@ -64,6 +64,9 @@
 						option.value=$(this).find("poscode").text();
 						option.text=$(this).find("poscode").text()+":"+$(this).find("posname").text();
 						select.appendChild(option);
+						if(option.value==$("#pbox").val().trim()){
+							$(option).attr("selected","selected");
+							}
 					});
 					$("#pspan").empty();
 					$(select).appendTo("#pspan");

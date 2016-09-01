@@ -70,7 +70,7 @@ public class PtPriceDto {
 
 	@Override
 	public String toString() {
-		return "PtPriceDto [pt_num=" + pt_num + ", pt_code=" + pt_code + ", pt_month=" + pt_month + ", ptr_count="
+		return "\n PtPriceDto [pt_num=" + pt_num + ", pt_code=" + pt_code + ", pt_month=" + pt_month + ", ptr_count="
 				+ ptr_count + ", pt_signmonth=" + pt_signmonth + ", pt_price=" + pt_price + "]";
 	}
 

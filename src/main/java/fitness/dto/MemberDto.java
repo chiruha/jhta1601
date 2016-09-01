@@ -123,7 +123,7 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "MemberDto [mem_num=" + mem_num + ", mem_name=" + mem_name + ", mem_phone=" + mem_phone + ", mem_addr="
+		return "\n MemberDto [mem_num=" + mem_num + ", mem_name=" + mem_name + ", mem_phone=" + mem_phone + ", mem_addr="
 				+ mem_addr + ", mem_email=" + mem_email + ", mem_age=" + mem_age + ", mem_gen=" + mem_gen
 				+ ", mem_birth=" + mem_birth + ", regdate=" + regdate + ", mem_picture=" + mem_picture + ", ct_code="
 				+ ct_code + "]";

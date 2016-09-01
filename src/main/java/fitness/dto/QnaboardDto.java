@@ -103,7 +103,7 @@ public class QnaboardDto {
 
 	@Override
 	public String toString() {
-		return "QnaboardDto [qna_num=" + qna_num + ", mem_num=" + mem_num + ", qna_title=" + qna_title
+		return "\n QnaboardDto [qna_num=" + qna_num + ", mem_num=" + mem_num + ", qna_title=" + qna_title
 				+ ", qna_content=" + qna_content + ", qna_date=" + qna_date + ", qna_hit=" + qna_hit + ", qna_ref="
 				+ qna_ref + ", qna_lev=" + qna_lev + ", qna_step=" + qna_step + "]";
 	}

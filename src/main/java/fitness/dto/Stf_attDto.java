@@ -66,7 +66,7 @@ public class Stf_attDto {
 	}
 	@Override
 	public String toString() {
-		return "Stf_attDto [stf_num=" + stf_num + ", stf_name=" + stf_name + ", stf_phone=" + stf_phone + ", stf_date="
+		return "\n Stf_attDto [stf_num=" + stf_num + ", stf_name=" + stf_name + ", stf_phone=" + stf_phone + ", stf_date="
 				+ stf_date + ", stf_picture=" + stf_picture + ", pos_code=" + pos_code + ", ct_code=" + ct_code + "]";
 	}
 	

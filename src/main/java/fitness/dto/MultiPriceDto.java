@@ -51,6 +51,12 @@ public class MultiPriceDto {
 	public void setPt_price(int pt_price) {
 		this.pt_price = pt_price;
 	}
+
+	@Override
+	public String toString() {
+		return "\n MultiPriceDto [pro_code=" + pro_code + ", pro_price=" + pro_price + ", pt_code=" + pt_code
+				+ ", pt_price=" + pt_price + "]";
+	}
 	
 	
 }

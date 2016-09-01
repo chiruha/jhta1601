@@ -57,7 +57,7 @@ public class PeriodDto {
 	}
 	@Override
 	public String toString() {
-		return "PeriodDto [pri_num=" + pri_num + ", pri_start=" + pri_start + ", pri_end=" + pri_end + ", pri_left="
+		return "\n PeriodDto [pri_num=" + pri_num + ", pri_start=" + pri_start + ", pri_end=" + pri_end + ", pri_left="
 				+ pri_left + ", today=" + today + ", rg_num=" + rg_num + "]";
 	}
 	

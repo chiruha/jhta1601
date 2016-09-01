@@ -41,7 +41,7 @@ public class PaymentDto {
 	}
 	@Override
 	public String toString() {
-		return "PaymentDto [pay_num=" + pay_num + ", pay_tot=" + pay_tot + ", date=" + date + ", satt_num=" + satt_num
+		return "\n PaymentDto [pay_num=" + pay_num + ", pay_tot=" + pay_tot + ", date=" + date + ", satt_num=" + satt_num
 				+ "]";
 	}
 	

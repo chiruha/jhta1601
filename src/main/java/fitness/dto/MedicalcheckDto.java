@@ -60,7 +60,7 @@ public class MedicalcheckDto {
 
 	@Override
 	public String toString() {
-		return "MedicalcheckDto [md_num=" + md_num + ", mem_num=" + mem_num + ", relative=" + relative + ", absolute="
+		return "\n MedicalcheckDto [md_num=" + md_num + ", mem_num=" + mem_num + ", relative=" + relative + ", absolute="
 				+ absolute + ", par_q=" + par_q + "]";
 	}
 	

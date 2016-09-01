@@ -91,7 +91,7 @@ public class EventDto {
 
 	@Override
 	public String toString() {
-		return "EventDto [ev_num=" + ev_num + ", ev_title=" + ev_title + ", stf_num=" + stf_num + ", ev_content="
+		return "\n EventDto [ev_num=" + ev_num + ", ev_title=" + ev_title + ", stf_num=" + stf_num + ", ev_content="
 				+ ev_content + ", re_writer=" + re_writer + ", re_content=" + re_content + ", re_ref=" + re_ref
 				+ ", re_step=" + re_step + "]";
 	}

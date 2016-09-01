@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<<<<<<< HEAD
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
 		$("input:checkbox").on("click", function() {
 			//alert($(this).val());
 			if($(this).val()=="ct" && $(this).prop("checked")){
@@ -82,10 +84,7 @@
 	
 </script>
 <h1><a href="<c:url value='/stflist'/>">직원목록</a></h1>
-=======
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<h1>직원목록</h1>
->>>>>>> 243edd86c1d3207f099cee83970a4f9a042ec0d4
+
 <table border="1" >
 	<tr>
 		<th>직원번호</th>

@@ -43,24 +43,30 @@ public class RegistrationController {
 		int pt_signmonth=Integer.parseInt(req.getParameter("pt_signmonth"));
 		
 		RegistrationDto dto1=new RegistrationDto(0, mem_num, rg_type, rg_price, locker_price, wear_price);
-		ProperiodDto dto4=new ProperiodDto(0, mem_num, pro_signmonth, null, null);
-		PtperiodDto dto5=new PtperiodDto(0, mem_num, pt_signmonth, null, null);
+		
 		try{
 			System.out.println("regi컨트롤러: "+dto1.toString());
 			service.regiInsert(dto1);//registration테이블에 insert
-			service.properiodInsert(dto4);//properiod테이블에 insert
-			service.ptperiodInsert(dto5);//ptperiod테이블에 insert
-			if(pro_code.equals("")){//pt과목만 신청한 경우
+
+			if(pro_code.equals("") && pro_signmonth==0){//pt과목만 신청한 경우
 				PtsignDto dto3=new PtsignDto(0, mem_num, pt_code, ptr_count);
+				PtperiodDto dto5=new PtperiodDto(0, mem_num, pt_signmonth, null, null);
 				service.ptsignInsert(dto3);//ptsign테이블에 insert
-			}else if(pt_code.equals("")){//단과과목만 신청한 경우
+				service.ptperiodInsert(dto5);//ptperiod테이블에 insert
+			}else if(pt_code.equals("") && pt_signmonth==0){//단과과목만 신청한 경우
 				ProsignDto dto2=new ProsignDto(0, mem_num, pro_code);
+				ProperiodDto dto4=new ProperiodDto(0, mem_num, pro_signmonth, null, null);
 				service.prosignInsert(dto2);//prosign테이블에 insert
+				service.properiodInsert(dto4);//properiod테이블에 insert
 			}else{//복합과목(단과과목+PT과목)신청한 경우
 				ProsignDto dto2=new ProsignDto(0, mem_num, pro_code);
 				PtsignDto dto3=new PtsignDto(0, mem_num, pt_code, ptr_count);
+				ProperiodDto dto4=new ProperiodDto(0, mem_num, pro_signmonth, null, null);
+				PtperiodDto dto5=new PtperiodDto(0, mem_num, pt_signmonth, null, null);
 				service.prosignInsert(dto2);//prosign테이블에 insert
 				service.ptsignInsert(dto3);//ptsign테이블에 insert
+				service.properiodInsert(dto4);//properiod테이블에 insert
+				service.ptperiodInsert(dto5);//ptperiod테이블에 insert
 			}
 			return ".member.memSuccess";
 		}catch(Exception e){

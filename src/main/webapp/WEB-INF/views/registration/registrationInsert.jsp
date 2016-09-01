@@ -200,7 +200,7 @@
 					$("#pt_code").val(null);
 					$("#ptr_count").val(0);
 					$("#pro_signmonth").val(pro_signmonth);
-					$("#pt_signmonth").val(null);
+					$("#pt_signmonth").val(0);
 					
 				});
 			}
@@ -227,7 +227,7 @@
 					$("#ptr_count").val(ptr_count);
 					$("#pro_code").val(null);
 					$("#pt_signmonth").val(pt_signmonth);
-					$("#pro_signmonth").val(null);
+					$("#pro_signmonth").val(0);
 				});
 			}
 		});

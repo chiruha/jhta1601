@@ -34,7 +34,7 @@ public class StaffController {
 	@Autowired private PositionService pos;	
 	
 	@RequestMapping(value="/stfinsert",method= RequestMethod.GET)
-	public String insert(HttpSession session){  // insert ÆäÀÌÁö·Î ÀÌµ¿
+	public String insert(HttpSession session){  // insert ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 		List<CenterDto> ctlist=cts.listService();
 		List<PositionDto>poslist=pos.listService();
 		session.setAttribute("poslist", poslist);
@@ -42,7 +42,7 @@ public class StaffController {
 		return ".staff.StfInsertView";
 	}
 	@RequestMapping(value="/stfinsert",method= RequestMethod.POST)
-	public String insert(StaffDto dto, MultipartFile picture,HttpSession session){  // DB¿¡ insert
+	public String insert(StaffDto dto, MultipartFile picture,HttpSession session){  // DBï¿½ï¿½ insert
 		try{
 			String path=session.getServletContext().getRealPath("/resources/img/Staff");
 			String stf_picture=picture.getOriginalFilename();
@@ -66,37 +66,15 @@ public class StaffController {
 		}
 		return ".staff.ResultView";
 	}
-	@RequestMapping("/stflist") // °Ë»ö ±â´É Æ÷ÇÔÇÑ ¸ñ·Ïº¸±â 
-	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session,
-			HttpServletRequest request){
-		String ct_code=request.getParameter("ct_code");
-		String pos_code=request.getParameter("pos_code");
-		String stf_name=request.getParameter("stf_name");
-		String stf_phone=request.getParameter("stf_phone");
-		String keyword=request.getParameter("keyword");
-
-		// ¾Æ¹«°Íµµ ¼±ÅÃµÇÁö ¾Ê¾ÒÀ» ¶§
-		System.out.println("stf°Ë»ö:"+ct_code+","+pos_code+","+stf_name+","+stf_phone+","+keyword);
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("ct_code", ct_code);
-		map.put("pos_code", pos_code);
-		map.put("stf_name", stf_name);
-		map.put("stf_phone", stf_phone);
-		map.put("keyword", keyword);
-		
-		int totalRowCount=service.getStfCount(map);
-		PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
+	@RequestMapping("/stflist")
+	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session){
+		int totalRowCount=service.getStfCount();
+		PageUtil pu=new PageUtil(pageNum, totalRowCount,5,5);
+		HashMap<String, Integer> map=new HashMap<String, Integer>();
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<StaffDto> stflist=service.listService(map);
-		// Ã¼Å©¹Ú½º ¼±ÅÃ À¯Áö¸¦ À§ÇÑ °ª º¸³»ÁÖ±â
-		session.setAttribute("ct_code", ct_code);
-		session.setAttribute("pos_code", pos_code);
-		session.setAttribute("stf_name", stf_name);
-		session.setAttribute("stf_phone", stf_phone); 
-		session.setAttribute("keyword", keyword);
 		session.setAttribute("stflist", stflist);
-		//System.out.println("stflistÄÁÆ®·Ñ :"+stflist);
 		session.setAttribute("pu", pu);
 		return ".staff.StfListView";
 	}

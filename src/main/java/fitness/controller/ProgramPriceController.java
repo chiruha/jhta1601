@@ -63,6 +63,7 @@ public class ProgramPriceController {
 			sb.append("<pro_num>"+dto.getPro_num()+"</pro_num>");
 			sb.append("<pro_code>"+dto.getPro_code()+"</pro_code>");
 			sb.append("<pro_name>"+dto.getPro_name()+"</pro_name>");
+			sb.append("<pro_signmonth>"+dto.getPro_signmonth()+"</pro_signmonth>");
 			sb.append("<pro_price>"+dto.getPro_price()+"</pro_price>");
 			sb.append("</pro>");
 		}
@@ -83,6 +84,7 @@ public class ProgramPriceController {
 		sb.append("<pro_num>"+dto.getPro_num()+"</pro_num>");
 		sb.append("<pro_code>"+dto.getPro_code()+"</pro_code>");
 		sb.append("<pro_name>"+dto.getPro_name()+"</pro_name>");
+		sb.append("<pro_signmonth>"+dto.getPro_signmonth()+"</pro_signmonth>");
 		sb.append("<pro_price>"+dto.getPro_price()+"</pro_price>");
 		sb.append("</proprice>");
 		System.out.println("proprice:" + sb.toString());
@@ -106,6 +108,7 @@ public class ProgramPriceController {
 			br.append("<pt_code>"+dto.getPt_code()+"</pt_code>");
 			br.append("<pt_month>"+dto.getPt_month()+"</pt_month>");
 			br.append("<ptr_count>"+dto.getPtr_count() +"</ptr_count>");
+			br.append("<pt_signmonth>"+dto.getPt_signmonth()+"</pt_signmonth>");
 			br.append("<pt_price>"+dto.getPt_price()+"</pt_price>");
 			br.append("</pt>");
 		}
@@ -126,6 +129,7 @@ public class ProgramPriceController {
 		sb.append("<pt_code>"+dto.getPt_code()+"</pt_code>");
 		sb.append("<pt_month>"+dto.getPt_month()+"</pt_month>");
 		sb.append("<pt_price>"+dto.getPt_price()+"</pt_price>");
+		sb.append("<pt_signmonth>"+dto.getPt_signmonth()+"</pt_signmonth>");
 		sb.append("<ptr_count>"+dto.getPtr_count()+"</ptr_count>");
 		sb.append("</ptprice>");
 		System.out.println("ptprice:" + sb.toString());

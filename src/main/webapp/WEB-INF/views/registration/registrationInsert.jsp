@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
+
 <script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -59,6 +54,7 @@
 						//alert("pro_num?" +pro_num);
 						var pro_code=$(this).find("pro_code").text();
 						var pro_name=$(this).find("pro_name").text();
+						var pro_signmonth=$(this).find("pro_signmonth").text();
 						var pro_price=$(this).find("pro_price").text();
 						//$("#PName").append("<option value='"+ pro_name+"'>"+ pro_name +"</option>");
 						$("#programName").append("<option value='"+ pro_name+"'>"+ pro_name +"</option>");						
@@ -91,6 +87,7 @@
 						var pt_code=$(this).find("pt_code").text();
 						var pt_month=$(this).find("pt_month").text();
 						var ptr_count=$(this).find("ptr_count").text();
+						var pt_signmonth=$(this).find("pt_signmonth").text();
 						var pt_price=$(this).find("pt_price").text();
 						$("#PTProgramName").append("<option value'"+pt_month+"'>"+pt_month+"</option>");
 						
@@ -122,6 +119,7 @@
 						var pro_name=$(this).find("pro_name").text();
 						var pro_subname=$(this).find("pro_subname").text();
 						var pro_price=$(this).find("pro_price").text();
+						var pro_signmonth=$(this).find("pro_signmonth").text();
 						$("#proName").append("<option value='"+ pro_name+"'>"+ pro_name +"</option>");						
 					});
 				}
@@ -137,6 +135,7 @@
 						var pt_month=$(this).find("pt_month").text();
 						var ptr_count=$(this).find("ptr_count").text();
 						var pt_price=$(this).find("pt_price").text();
+						var pt_signmonth=$(this).find("pt_signmonth").text();
 						//$("#PTName").append("<option value'"+pt_month+"'>"+pt_month+"</option>");
 						$("#ptName").append("<option value'"+pt_month+"'>"+pt_month+"</option>");
 						
@@ -193,12 +192,16 @@
 					var pro_num=$(this).find("pro_num").text();
 					var pro_code=$(this).find("pro_code").text();
 					var pro_name=$(this).find("pro_name").text();
+					var pro_signmonth=$(this).find("pro_signmonth").text();
 					var pro_price=$(this).find("pro_price").text();
 					//alert("num: "+pro_num+" code: "+pro_code+" name: "+pro_name+" price: "+pro_price);
 					$("#rg_price").val(pro_price);			
 					$("#pro_code").val(pro_code);
 					$("#pt_code").val(null);
 					$("#ptr_count").val(0);
+					$("#pro_signmonth").val(pro_signmonth);
+					$("#pt_signmonth").val(0);
+					
 				});
 			}
 		});
@@ -215,6 +218,7 @@
 					var pt_code=$(this).find("pt_code").text();
 					var pt_month=$(this).find("pt_month").text();
 					var pt_price=$(this).find("pt_price").text();
+					var pt_signmonth=$(this).find("pt_signmonth").text();
 					var ptr_count=$(this).find("ptr_count").text();
 					//alert("pt_price"+pt_price);
 					//alert("num: "+pt_num+" code: "+pt_code+" month: "+pt_month+" price: "+pt_price);
@@ -222,6 +226,8 @@
 					$("#pt_code").val(pt_code);
 					$("#ptr_count").val(ptr_count);
 					$("#pro_code").val(null);
+					$("#pt_signmonth").val(pt_signmonth);
+					$("#pro_signmonth").val(0);
 				});
 			}
 		});
@@ -239,10 +245,12 @@
 					var pro_num=$(this).find("pro_num").text();
 					var pro_code=$(this).find("pro_code").text();
 					var pro_name=$(this).find("pro_name").text();
+					var pro_signmonth=$(this).find("pro_signmonth").text();
 					var pro_price=$(this).find("pro_price").text();
 					//alert("num: "+pro_num+" code: "+pro_code+" name: "+pro_name+" price: "+pro_price);
 					$("#simplePrice").val(pro_price);		
 					$("#pro_code").val(pro_code);
+					$("#pro_signmonth").val(pro_signmonth);
 				});
 			}
 		});
@@ -259,12 +267,14 @@
 					var pt_code=$(this).find("pt_code").text();
 					var pt_month=$(this).find("pt_month").text();
 					var pt_price=$(this).find("pt_price").text();
+					var pt_signmonth=$(this).find("pt_signmonth").text();
 					var ptr_count=$(this).find("ptr_count").text();
 					//alert("pt_price"+pt_price);
 					//alert("num: "+pt_num+" code: "+pt_code+" month: "+pt_month+" price: "+pt_price);
 					$("#ptSelectPrice").val(pt_price);
 					$("#pt_code").val(pt_code);
 					$("#ptr_count").val(ptr_count);
+					$("#pt_signmonth").val(pt_signmonth);
 				});
 			}
 		});
@@ -272,7 +282,7 @@
 
 
 </script>
-<body>
+
 <!-- 
 	[ 회원 프로그램 등록 페이지 ]
 	회원번호를 검색해서 그 번호에 프로그램정보 등록
@@ -336,7 +346,6 @@ pt프로그램 선택<br>
 	<option value="default">---프로그램선택---</option>
 </select>
 <br><br>
-<!-- //////////등록유형에 따라 선택된 프로그램이 다름/////////// -->
 
 여러과목 프로그램 선택<br>
 <select id="proName" onchange="simpleSelect(this.value)">
@@ -352,7 +361,10 @@ pt프로그램 선택<br>
 <br><br>
 총 프로그램가격rg_price : <input type="text" name="rg_price" id="rg_price">
 <br><br>
-
+<!-- //////////프로그램을 선택하면 아래에 등록개월수가 input됨/////////// -->
+단과과목 등록개월수 pro_signmonth: <input type="text" name="pro_signmonth" id="pro_signmonth"><br>
+PT과목 등록개월수 pt_signmonth: <input type="text" name="pt_signmonth" id="pt_signmonth"><br>
+<br><br>
 <!-- //////////등록한 프로그램코드 및 pt횟수 받아와서 보내주기/////////// -->
 pro_code 단과과목 : <input type="text" name="pro_code" id="pro_code"><br>
 pt_code pt과목 : <input type="text" name="pt_code" id="pt_code"><br>
@@ -382,5 +394,3 @@ ptr_count (pt횟수): <input type="text" name="ptr_count" id="ptr_count"><br>
 <input type="submit" value="프로그램신청">
 <input type="reset" value="취소">
 </form>
-</body>
-</html>

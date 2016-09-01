@@ -26,8 +26,8 @@ public class LoginController {
 		int mem_num=Integer.parseInt(req.getParameter("mem_num"));
 		String mem_phone=req.getParameter("mem_phone");
 		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("mem_num", mem_num);
-		map.put("mem_phone", mem_phone);
+		map.put("mem_num", mem_num);//id역할
+		map.put("mem_phone", mem_phone);//pwd역할
 		
 		HashMap<String, Object> user=service.loginMem(map);
 		if(user==null){
@@ -35,13 +35,15 @@ public class LoginController {
 			return ".login.login";//로그인페이지로 이동
 		}else{
 			HttpSession session=req.getSession();//세션얻어오기
-			session.setAttribute("mem_num", mem_num);
-			return "FinalMain";//메인가기
+			//System.out.println("session나오나?"+session);
+			session.setAttribute("memnum", mem_num);
+			//System.out.println("담아졌나?"+ mem_num);
+			return "redirect:/";//메인가기
 		}
 	}
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session){
 		session.invalidate();
-		return "FinalMain";//메인가기
+		return ".main";//로그인페이지로 이동
 	}
 }

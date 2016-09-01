@@ -16,15 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import fitness.dto.CenterDto;
 
 import fitness.dto.GxregisterDto;
-
-
-
 import fitness.dto.GxregisterDto;
-
-
-
-
-
 import fitness.service.CenterService;
 
 import fitness.service.gxregisterService;

@@ -95,6 +95,7 @@ public class StaffController {
 		session.setAttribute("stf_name", stf_name);
 		session.setAttribute("stf_phone", stf_phone); 
 		session.setAttribute("keyword", keyword);
+		
 		session.setAttribute("stflist", stflist);
 		System.out.println("stflistÄÁÆ®·Ñ :"+stflist);
 		session.setAttribute("pu", pu);

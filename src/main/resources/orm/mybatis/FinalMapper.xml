@@ -19,6 +19,7 @@
 	<select id="ptrinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
 		select * from pt_register where ptr_num=#{value}
 	</select>
+<<<<<<< HEAD
 
 <!--////////// mem_att 관련 - 작성자 : 유예진 //////////-->
 	<insert id="mattinsert" parameterType="fitness.dto.Mem_attDto">
@@ -26,6 +27,14 @@
 	</insert>
 	<select id="mattlist" parameterType="hashmap" resultType="fitness.dto.Mem_attDto">
 		select * from mem_att order by matt_date desc
+=======
+	<select id="ptrlistAll" parameterType="int" resultType="fitness.dto.PtregisterDto">
+		select aa.*,m.mem_name from 
+		(select pt.*,rg.mem_num from pt_register pt, registration rg 
+			where pt.rg_num=rg.rg_num and pt.tr_num=#{value}
+		)aa,member m
+		where aa.mem_num=m.mem_num
+>>>>>>> sub_koni
 	</select>
 	
 <!--////////// stf_att 관련 - 작성자 : 유예진 //////////-->
@@ -37,6 +46,7 @@
 	</select>
 
 
+	
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">

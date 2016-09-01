@@ -6,7 +6,7 @@
 		$("input").prop("disabled",true).css("background-color","white");  // input 비활성화하기
 		$("option").attr("disabled",true);
 		$("#update").click(function() {
-			alert($("#update").attr('id'));
+			//alert($("#update").attr('id'));
 			if($("#update").attr('id')=="update"){
 				$("input").prop("disabled",false).css("background-color","#ffffe6");
 				$.ajax({

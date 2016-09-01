@@ -38,10 +38,11 @@
 					//alert(data);
 					var select1=document.createElement("select");
 					select1.name="ct_code";
+					select1.classList.add('dropdown-select');
 					$(data).find("center").each(function() {
 						var option1=document.createElement("option");
 						option1.value=$(this).find("ctcode").text();
-						option1.text=$(this).find("ctcode").text()+": "+$(this).find("ctname").text();
+						option1.text=$(this).find("ctcode").text()+":"+$(this).find("ctname").text();
 						select1.appendChild(option1);
 					});
 					$("#cspan").empty();
@@ -57,10 +58,11 @@
 					//alert(data);
 					var select=document.createElement("select");
 					select.name="pos_code";
+					select.classList.add('dropdown-select');
 					$(data).find("position").each(function() {
 						var option=document.createElement("option");
 						option.value=$(this).find("poscode").text();
-						option.text=$(this).find("poscode").text()+": "+$(this).find("posname").text();
+						option.text=$(this).find("poscode").text()+":"+$(this).find("posname").text();
 						select.appendChild(option);
 					});
 					$("#pspan").empty();

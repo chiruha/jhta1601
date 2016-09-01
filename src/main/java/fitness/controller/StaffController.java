@@ -1,5 +1,6 @@
 package fitness.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -129,8 +130,34 @@ public class StaffController {
 		return ".staff.ResultView";
 	}
 	@RequestMapping("/stfupdate")
-	public String update(StaffDto dto, HttpSession session){
+	public String update(StaffDto dto,MultipartFile picture ,HttpSession session){
 	try{
+		String path=session.getServletContext().getRealPath("/resources/img/Staff");
+		String stf_picture=picture.getOriginalFilename();
+		if(stf_picture!=""){   // 사진 등록할 경우만 파일명 복잡하게 만들기
+			File delfile=new File(path+"/"+dto.getStf_picture());
+			boolean result=delfile.delete();
+			if(result==true){ 
+				System.out.println("기존파일 삭제 완료");
+			}else{
+				System.out.println("기존파일 삭제 실패");
+				System.out.println(path+"/"+dto.getStf_picture());
+			}
+			System.out.println("사진1:"+stf_picture);
+			stf_picture=UUID.randomUUID()+"_"+stf_picture;
+			System.out.println("사진2:"+stf_picture);
+			InputStream is=picture.getInputStream();
+			FileOutputStream fos=new FileOutputStream(path+"/"+stf_picture);
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+		}
+		dto.setStf_picture(stf_picture);
+		System.out.println(dto.toString());
+
+		
+		
+		
 		System.out.println(dto.toString());
 		service.updateService(dto);
 		session.setAttribute("result", "직원 수정 성공!");

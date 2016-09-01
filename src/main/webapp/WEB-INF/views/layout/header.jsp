@@ -56,7 +56,7 @@
 			<c:when test="${sessionScope.user==0 }"> <!-- 회원일 경우 분별미정-->
 				<li class="main"><a href="">Logout</a></li>
 				<li class="main">
-					<a href="">MyPage</a>	
+					<a href="">MyPage< /a>	
 					<ul>
 						<li><a href="">회원정보</a></li>
 						<li><a href="">수강정보</a></li>

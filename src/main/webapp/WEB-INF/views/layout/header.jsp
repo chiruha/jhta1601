@@ -16,11 +16,14 @@
 });
 
 </script>
+
 	<h1><a href="<c:url value='/'/>">Header Page (홈으로 이동)</a> </h1>
+
 	<c:if test="${not empty sessionScope.user }"> <!-- not empty : 값이 있을 경우 -->
 		<h5>${sessionScope.user } 님 반갑습니다!</h5>
 	</c:if>
 	
+<nav>
 	<ul id="dropmenu">
 		<li class="main">
 			<a href="">Introduce</a>
@@ -109,3 +112,4 @@
 		</c:choose>
 	
 	</ul>
+</nav>

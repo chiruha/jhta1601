@@ -1,11 +1,13 @@
 package fitness.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import fitness.dto.CenterDto;
 import fitness.dto.PositionDto;
 import fitness.dto.StaffDto;
+import fitness.dto.TrainerDto;
 import fitness.service.CenterService;
 import fitness.service.PositionService;
 import fitness.service.StaffService;
@@ -31,7 +34,7 @@ public class StaffController {
 	@Autowired private PositionService pos;	
 	
 	@RequestMapping(value="/stfinsert",method= RequestMethod.GET)
-	public String insert(HttpSession session){
+	public String insert(HttpSession session){  // insert ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 		List<CenterDto> ctlist=cts.listService();
 		List<PositionDto>poslist=pos.listService();
 		session.setAttribute("poslist", poslist);
@@ -39,7 +42,7 @@ public class StaffController {
 		return ".staff.StfInsertView";
 	}
 	@RequestMapping(value="/stfinsert",method= RequestMethod.POST)
-	public String insert(StaffDto dto, MultipartFile picture,HttpSession session){
+	public String insert(StaffDto dto, MultipartFile picture,HttpSession session){  // DBï¿½ï¿½ insert
 		try{
 			String path=session.getServletContext().getRealPath("/resources/img/Staff");
 			String stf_picture=picture.getOriginalFilename();
@@ -102,6 +105,44 @@ public class StaffController {
 			System.out.println(e.getMessage());
 			session.setAttribute("result", "»èÁ¦ ½ÇÆÐ!");
 		}
+		return ".staff.ResultView";
+	}
+	@RequestMapping("/stfupdate")
+	public String update(StaffDto dto,MultipartFile picture ,HttpSession session){
+	try{
+		String path=session.getServletContext().getRealPath("/resources/img/Staff");
+		String stf_picture=picture.getOriginalFilename();
+		if(stf_picture!=""){   // »çÁø µî·ÏÇÒ °æ¿ì¸¸ ÆÄÀÏ¸í º¹ÀâÇÏ°Ô ¸¸µé±â
+			File delfile=new File(path+"/"+dto.getStf_picture());
+			boolean result=delfile.delete();
+			if(result==true){ 
+				System.out.println("±âÁ¸ÆÄÀÏ »èÁ¦ ¿Ï·á");
+			}else{
+				System.out.println("±âÁ¸ÆÄÀÏ »èÁ¦ ½ÇÆÐ");
+				System.out.println(path+"/"+dto.getStf_picture());
+			}
+			System.out.println("»çÁø1:"+stf_picture);
+			stf_picture=UUID.randomUUID()+"_"+stf_picture;
+			System.out.println("»çÁø2:"+stf_picture);
+			InputStream is=picture.getInputStream();
+			FileOutputStream fos=new FileOutputStream(path+"/"+stf_picture);
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+		}
+		dto.setStf_picture(stf_picture);
+		System.out.println(dto.toString());
+
+		
+		
+		
+		System.out.println(dto.toString());
+		service.updateService(dto);
+		session.setAttribute("result", "Á÷¿ø ¼öÁ¤ ¼º°ø!");
+	}catch(Exception e){
+		System.out.println(e.getMessage());
+		session.setAttribute("result", "Á÷¿ø ¼öÁ¤ ½ÇÆÐ!");
+	}
 		return ".staff.ResultView";
 	}
 }

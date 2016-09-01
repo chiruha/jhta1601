@@ -14,7 +14,6 @@ drop table pt_schedule;
 drop table timetable;
 drop table trainer;
 drop table refund;
-drop table period;
 drop table registration;
 drop table mem_att;
 drop table qnaboard;
@@ -40,7 +39,6 @@ drop sequence PTS_SEQ;	-- PT스케줄 시퀀스
 drop sequence TT_SEQ;	-- 시간표 시퀀스
 drop sequence TR_SEQ;	-- 트레이너 시퀀스
 drop sequence RF_SEQ;	-- 환불 시퀀스
-drop sequence PRI_SEQ;	-- 기간정보 시퀀스
 drop sequence REGI_SEQ;	-- 등록 시퀀스
 drop sequence MATT_SEQ;	-- 회원출석 시퀀스 (member attendance)
 drop sequence QNA_SEQ;	-- QnA 시퀀스
@@ -63,6 +61,7 @@ create table center				--지점정보
 CREATE SEQUENCE CT_SEQ;
 insert into center values(ct_seq.nextval,'화정지점','031-111-1234','화정역','훌륭한 트레이너');
 insert into center values(ct_seq.nextval,'종로지점','02-222-2224','종로3가역','종로 트레이너');
+insert into center values(ct_seq.nextval,'본점','02-333-4444','종로3가역','종로 트레이너');
 --화정지점 ct_code 1등록
 
 create table member 			--회원정보
@@ -98,9 +97,11 @@ create table position			--직급정보
 	dept_code number(20) REFERENCES DEPARTMENT(DEPT_CODE) --부서코드 FK
 );
 INSERT INTO position VALUES('A','대표이사',1);
-INSERT INTO position VALUES('B','본부장',1);
-INSERT INTO position VALUES('C','PT부장',2);
-INSERT INTO position VALUES('D','GX부장',3);
+INSERT INTO position VALUES('A','본부장',1);
+INSERT INTO position VALUES('B','PT부장',2);
+INSERT INTO position VALUES('C','GX부장',3);
+INSERT INTO position VALUES('D','PT직원',2);
+INSERT INTO position VALUES('E','GX직원',3);
 
 create table staff				--스태프
 (
@@ -161,26 +162,6 @@ create table registration			--등록정보
 	wear_price number(30) DEFAULT 0	--운동복가격
 );
 CREATE SEQUENCE REGI_SEQ;
-
-create table period				--기간테이블
-(
-	pri_num number(20) primary key,	--기간번호 PK
-	pri_start date,			--등록시작일
-	pri_end date,			--등록만료일
-	pri_left date,			--잔여일
-	today date,			--오늘
-	rg_num number(20) REFERENCES REGISTRATION(RG_NUM)	--등록번호 FK
-);
-CREATE SEQUENCE PRI_SEQ;
-
-create table refund				--환불
-(
-	rf_num number(20) primary key,	--환불번호 PK
-	rg_num number(20) REFERENCES REGISTRATION(RG_NUM),	--등록번호 FK
-	rf_left date,			--잔여일
-	pri_num number(20) REFERENCES PERIOD(PRI_NUM)--기간번호 FK
-);
-CREATE SEQUENCE RF_SEQ;
 
 create table trainer				--강사정보
 (
@@ -310,7 +291,7 @@ create table survey
 	sv_goal varchar2(1000),
 	sv_memo varchar2(2000),
 	mem_num number(20) REFERENCES MEMBER(MEM_NUM),
-	sv_agree varchar2(10) CHECK ( SV_AGREE IN ('YES', 'NO'))
+	sv_agree varchar2(10) CHECK(SV_AGREE IN ('YES','NO'))
 
 );
 CREATE SEQUENCE SV_SEQ;
@@ -348,3 +329,5 @@ CREATE SEQUENCE GX_SEQ;
 --ALTER TABLE GROUPS
 --ADD CONSTRAINTS FK_GROUPS_LEADER FOREIGN KEY(id)
 --REFERENCES MEMBER(ID);
+--DEFAULT : 값을 지정하지않으면 저절로 값이 들어가게 하는 것
+--CHECK : 조건에 맞는 데이터만 입력되도록 조건을 부여한 제약조건(예, 점수에 해당되는 컬럼을 저장할 때 최대점수가 100점이면, 100점보다 많은 데이터는 입력 못하도록 조건을 걸어놈 또는 성별의 경우엔 남과 여만 입력이 가능하도록 함.)

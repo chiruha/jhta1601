@@ -14,4 +14,7 @@ public class LoginService {
 	public HashMap<String, Object> loginMem(HashMap<String, Object> map){
 		return dao.loginMem(map);
 	}
+	public HashMap<String, Object> loginAdmin(HashMap<String, Object> map){
+		return dao.loginAdmin(map);
+	}
 }

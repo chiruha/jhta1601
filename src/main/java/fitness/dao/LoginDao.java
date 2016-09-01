@@ -16,4 +16,7 @@ public class LoginDao {
 	public HashMap<String, Object> loginMem(HashMap<String, Object> map){
 		return sqlSession.selectOne(NAMESPACE+".loginMem",map);
 	}
+	public HashMap<String, Object> loginAdmin(HashMap<String, Object> map){
+		return sqlSession.selectOne(NAMESPACE+".loginAdmin",map);
+	}
 }

@@ -1,5 +1,7 @@
-alter table registration drop column signdate; --registration 테이블 signdate삭제
-
+alter table member add(id varchar(20));
+alter table member add(pwd varchar(20));
+alter table staff add(id varchar(20));
+alter table staff add(pwd varchar(20));
 
 drop sequence ptprice_seq;
 drop table ptprice;
@@ -68,7 +70,7 @@ create table prosign --단과과목 등록한 회원명단 테이블
 );
 
 drop sequence properiod_seq;
-drop table properiod
+drop table properiod;
 create sequence properiod_seq;
 create table properiod --단과과목 등록기간테이블
 (
@@ -79,7 +81,7 @@ create table properiod --단과과목 등록기간테이블
 	pro_expiration date --PT만료일
 );
 drop sequence ptperiod_seq;
-drop table ptperiod
+drop table ptperiod;
 create sequence ptperiod_seq;
 create table ptperiod --PT과목 등록기간테이블
 (

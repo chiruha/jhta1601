@@ -9,6 +9,8 @@ public class PtregisterDto {
 	private int ptr_count;	
 	private int ct_code;
 	private String ptr_ok;
+	private int mem_num;
+	private String mem_name;
 	
 	public PtregisterDto() {}
 
@@ -23,6 +25,21 @@ public class PtregisterDto {
 		this.ptr_count = ptr_count;
 		this.ct_code = ct_code;
 		this.ptr_ok = ptr_ok;
+	}
+
+	public PtregisterDto(int ptr_num, int tr_num, int rg_num, String ptr_initdate, String ptr_time, int ptr_count,
+			int ct_code, String ptr_ok, int mem_num, String mem_name) {
+		super();
+		this.ptr_num = ptr_num;
+		this.tr_num = tr_num;
+		this.rg_num = rg_num;
+		this.ptr_initdate = ptr_initdate;
+		this.ptr_time = ptr_time;
+		this.ptr_count = ptr_count;
+		this.ct_code = ct_code;
+		this.ptr_ok = ptr_ok;
+		this.mem_num = mem_num;
+		this.mem_name = mem_name;
 	}
 
 	public int getPtr_num() {
@@ -89,13 +106,30 @@ public class PtregisterDto {
 		this.ptr_ok = ptr_ok;
 	}
 
+	public int getMem_num() {
+		return mem_num;
+	}
+
+	public void setMem_num(int mem_num) {
+		this.mem_num = mem_num;
+	}
+
+	public String getMem_name() {
+		return mem_name;
+	}
+
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
+
 	@Override
 	public String toString() {
 		return "PtregisterDto [ptr_num=" + ptr_num + ", tr_num=" + tr_num + ", rg_num=" + rg_num + ", ptr_initdate="
 				+ ptr_initdate + ", ptr_time=" + ptr_time + ", ptr_count=" + ptr_count + ", ct_code=" + ct_code
-				+ ", ptr_ok=" + ptr_ok + "]";
+				+ ", ptr_ok=" + ptr_ok + ", mem_num=" + mem_num + ", mem_name=" + mem_name + "]";
 	}
 
+	
 	
 	
 	

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fitness.dto.CenterDto;
-
+import fitness.dto.PtperiodDto;
 import fitness.dto.PtregisterDto;
 import fitness.service.CenterService;
 import fitness.service.PtregisterService;
@@ -48,8 +48,13 @@ public class PtregisterController {
 	}
 	
 	@RequestMapping(value="/PTscOkView",method=RequestMethod.GET)
-	public String ptscOkviewmove(){
+	public String ptscOkviewmove(HttpSession session){
+		//int n=trservice.detailService(3).getTr_num();
+		int n=3;
+		List<PtregisterDto> list = service.ptOkService(n);	
 		
+		session.setAttribute("list", list);		
+		System.out.println(list);
 		return ".exercise.PTscOkView";
 	}
 	

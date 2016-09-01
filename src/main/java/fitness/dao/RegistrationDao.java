@@ -38,4 +38,7 @@ public class RegistrationDao {
 	public int ptperiodInsert(PtperiodDto dto5){
 		return sqlSession.insert(NAMESPACE+".ptperiodInsert",dto5);
 	}
+	
+
+
 }

@@ -99,6 +99,7 @@
 	});
 	
 </script>
+<div class="innerpage">
 <h1><a href="<c:url value='/stflist'/>">직원목록</a></h1>
 <table border="1" >
 	<tr>
@@ -172,3 +173,4 @@
 	</c:otherwise>
 </c:choose>
 	
+</div>

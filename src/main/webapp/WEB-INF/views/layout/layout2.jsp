@@ -13,15 +13,59 @@
   <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/BootStrap.css'/>">
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      
+    <script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
+       <script>
+$(document).ready(function(){
+  // Initialize Tooltip
+  $('[data-toggle="tooltip"]').tooltip();
+  
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+
+      // Prevent default anchor click behavior
+      event.preventDefault();
+		alert(this.hash);
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+</script>
+      
+      
+      
+      
+      
+      
 </head>
 <body>
 <div id="wrap">
 
 		<!-- 주소가 아닌 주소를 가지고 있는 tiles의 attribute 를 가져온다 -->
 		<!-- tiles-def.xml 에 정의된 attribute name  을 사용하여 페이지를 포함한다 -->
-		<tiles:insertAttribute name="header" />
-
-		<tiles:insertAttribute name="content" />
+		<div id="headDiv">
+			<tiles:insertAttribute name="header" />
+		</div>
+		<div id="contentDiv">
+			<tiles:insertAttribute name="content" />
+		</div>
+		<div id="footDiv">
+			<tiles:insertAttribute name="footer" />
+		</div>
 </div>
 </body>
 </html>

@@ -17,12 +17,16 @@
   <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
 </definition>
 
-<!-- Staff 관련 -->
+<!-- 
 <definition name=".*.*" extends=".main">
 	<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"></put-attribute>
 </definition>
+ -->
 
-
+<!-- test 관련 -->
+<definition name=".*.*" extends=".bootmain">
+	<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"></put-attribute>
+</definition>
 
 
 

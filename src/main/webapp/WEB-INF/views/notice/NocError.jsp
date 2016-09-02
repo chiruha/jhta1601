@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>success</title>
+<title>error</title>
 </head>
 <body>
-	<h1>요청하신 작업에 실패하였습니다.</h1>
-	<a href="/FinalMain.jsp">홈으로 이동</a>
-	<a href="/NocListView.jsp">공지사항으로 이동</a>
+	<h1>권한이 없습니다.</h1>
+	<a href=".FinalMain">홈으로 이동</a>
+	<a href="/memselectAll">공지사항으로 이동</a>
 </body>
 </html>

@@ -15,6 +15,5 @@
 		<input type="submit" value="공지사항추가">
 	</form>
 	
-	//권한이 없습니다 제이쿼리하는거 보면된다 ajax써서 
 </body>
 </html>

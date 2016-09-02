@@ -114,6 +114,10 @@ create table staff				--스태프
 	ct_code number(20) DEFAULT 0 REFERENCES CENTER(CT_CODE) --지점코드 FK
 );
 CREATE SEQUENCE STAFF_SEQ;
+insert into staff values(staff_seq.nextval,'STF_KIM','011',sysdate,'kim.jpg','A',2);
+insert into staff values(staff_seq.nextval,'STF_LEE','017',sysdate,'lee.jpg','B',2);
+insert into staff values(staff_seq.nextval,'STF_MOON','019',sysdate,'moon.jpg','C',);
+
 
 create table freeboard			--자유게시판
 ( 
@@ -250,6 +254,10 @@ create table notice				--공지사항
 	nt_hit number(20)			--조회수
 );
 CREATE SEQUENCE NOTICE_SEQ;
+insert into notice values(notice_seq.nextval,'1','공지사항입니다','겨울할인행사',sysdate,0);
+insert into notice values(notice_seq.nextval,'2','공지사항입니다','운동복할인',sysdate,0);
+insert into notice values(notice_seq.nextval,'3','공지사항입니다','락커룸할인',sysdate,0);
+
 
 create table subject				--과목정보
 (

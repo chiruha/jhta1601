@@ -106,7 +106,7 @@ public class ProgramPriceController {
 			br.append("<pt>");
 			br.append("<pt_num>"+dto.getPt_num()+"</pt_num>");
 			br.append("<pt_code>"+dto.getPt_code()+"</pt_code>");
-			br.append("<pt_month>"+dto.getPt_month()+"</pt_month>");
+			br.append("<pt_name>"+dto.getPt_name()+"</pt_name>");
 			br.append("<ptr_count>"+dto.getPtr_count() +"</ptr_count>");
 			br.append("<pt_signmonth>"+dto.getPt_signmonth()+"</pt_signmonth>");
 			br.append("<pt_price>"+dto.getPt_price()+"</pt_price>");
@@ -118,16 +118,16 @@ public class ProgramPriceController {
 	}
 	@RequestMapping(value="/ptprice/xml",produces="application/xml;charset=utf-8")
 	@ResponseBody
-	public String ptPrice(String pt_month){//select박스에서 프로그램 선택하면 input박스에 가격넣기
-		System.out.println("pt가격 컨트롤러: "+pt_month);
-		PtPriceDto dto=service.ptPrice(pt_month);
+	public String ptPrice(String pt_name){//select박스에서 프로그램 선택하면 input박스에 가격넣기
+		System.out.println("pt가격 컨트롤러: "+pt_name);
+		PtPriceDto dto=service.ptPrice(pt_name);
 		System.out.println("pt dto: "+dto);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		sb.append("<ptprice>");
 		sb.append("<pt_num>"+dto.getPt_num() +"</pt_num>");
 		sb.append("<pt_code>"+dto.getPt_code()+"</pt_code>");
-		sb.append("<pt_month>"+dto.getPt_month()+"</pt_month>");
+		sb.append("<pt_name>"+dto.getPt_name()+"</pt_name>");
 		sb.append("<pt_price>"+dto.getPt_price()+"</pt_price>");
 		sb.append("<pt_signmonth>"+dto.getPt_signmonth()+"</pt_signmonth>");
 		sb.append("<ptr_count>"+dto.getPtr_count()+"</ptr_count>");

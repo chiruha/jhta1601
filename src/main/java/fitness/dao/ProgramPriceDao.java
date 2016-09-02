@@ -38,8 +38,8 @@ public class ProgramPriceDao {
 	public List<PtPriceDto> ptlist(HashMap<String, Integer>map){//전체과목명뽑아오기
 		return sqlSession.selectList(NAMESPACE+".ptProgramName",map);
 	}
-	public PtPriceDto ptPrice(String pt_month){//과목선택하면 가격뽑아오기
-		System.out.println("ptPrice DAO: "+pt_month);
-		return sqlSession.selectOne(NAMESPACE+".ptPrice",pt_month);
+	public PtPriceDto ptPrice(String pt_name){//과목선택하면 가격뽑아오기
+		System.out.println("ptPrice DAO: "+pt_name);
+		return sqlSession.selectOne(NAMESPACE+".ptPrice",pt_name);
 	}
 }

@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class PtperiodDto {
 	private int ptperiod_num;
+	private int rg_num;//등록번호 references registration(rg_num)
 	private int mem_num;
 	private int pt_signmonth;//등록개월수
 	private Date ptr_initdate;//운동시작일
@@ -11,9 +12,11 @@ public class PtperiodDto {
 	
 	public PtperiodDto() {}
 
-	public PtperiodDto(int ptperiod_num, int mem_num, int pt_signmonth, Date ptr_initdate, Date pt_expiration) {
+	public PtperiodDto(int ptperiod_num, int rg_num, int mem_num, int pt_signmonth, Date ptr_initdate,
+			Date pt_expiration) {
 		super();
 		this.ptperiod_num = ptperiod_num;
+		this.rg_num = rg_num;
 		this.mem_num = mem_num;
 		this.pt_signmonth = pt_signmonth;
 		this.ptr_initdate = ptr_initdate;
@@ -26,6 +29,14 @@ public class PtperiodDto {
 
 	public void setPtperiod_num(int ptperiod_num) {
 		this.ptperiod_num = ptperiod_num;
+	}
+
+	public int getRg_num() {
+		return rg_num;
+	}
+
+	public void setRg_num(int rg_num) {
+		this.rg_num = rg_num;
 	}
 
 	public int getMem_num() {
@@ -62,8 +73,10 @@ public class PtperiodDto {
 
 	@Override
 	public String toString() {
-		return "\n PtperiodDto [ptperiod_num=" + ptperiod_num + ", mem_num=" + mem_num + ", pt_signmonth=" + pt_signmonth
-				+ ", ptr_initdate=" + ptr_initdate + ", pt_expiration=" + pt_expiration + "]";
+		return "PtperiodDto [ptperiod_num=" + ptperiod_num + ", rg_num=" + rg_num + ", mem_num=" + mem_num
+				+ ", pt_signmonth=" + pt_signmonth + ", ptr_initdate=" + ptr_initdate + ", pt_expiration="
+				+ pt_expiration + "]";
 	}
+
 	
 }

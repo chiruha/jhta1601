@@ -1,15 +1,10 @@
-alter table member add(id varchar(20));
-alter table member add(pwd varchar(20));
-alter table staff add(id varchar(20));
-alter table staff add(pwd varchar(20));
-
 drop sequence ptprice_seq;
 drop table ptprice;
 create table ptprice --pt가격테이블
 (
 	pt_num number(20) primary key, --pt유형번호
 	pt_code varchar2(20), --프로그램코드
-	pt_month varchar2(20), --pt 등록개월및주몇회
+	pt_name varchar2(20), --pt이름및개월
 	ptr_count number(20), --pt횟수
 	pt_signmonth number(6), --등록개월수
 	pt_price number --pt가격
@@ -54,8 +49,10 @@ create sequence ptsign_seq;
 create table ptsign --pt등록한 회원명단 테이블
 (
 	ptsign_num number(20),
+	rg_num number(20) references registration(rg_num),
 	mem_num number(20) references member(mem_num),
 	pt_code varchar2(20),
+	pt_name varchar2(20), --pt이름및개월
 	ptr_count number(20) --pt횟수
 );
 
@@ -65,7 +62,9 @@ create sequence prosign_seq;
 create table prosign --단과과목 등록한 회원명단 테이블
 (
 	prosign_num number(20),
+	rg_num number(20) references registration(rg_num),
 	mem_num number(20) references member(mem_num),
+	pro_name varchar2(20),       --프로그램이름및등록개월
 	pro_code varchar2(20)
 );
 
@@ -75,6 +74,7 @@ create sequence properiod_seq;
 create table properiod --단과과목 등록기간테이블
 (
 	properiod_num number(20) primary key,
+	rg_num number(20) references registration(rg_num),
 	mem_num number(20) references member(mem_num),
 	pro_signmonth number(6), --등록개월수
 	pro_regdate date, --단과과목 시작일
@@ -86,6 +86,7 @@ create sequence ptperiod_seq;
 create table ptperiod --PT과목 등록기간테이블
 (
 	ptperiod_num number(20) primary key,
+	rg_num number(20) references registration(rg_num),
 	mem_num number(20) references member(mem_num),
 	pt_signmonth number(6), --등록개월수
 	ptr_initdate date, --PT과목 시작일

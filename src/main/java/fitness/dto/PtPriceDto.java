@@ -3,18 +3,18 @@ package fitness.dto;
 public class PtPriceDto {
 	private int pt_num;//pt프로그램 번호
 	private String pt_code;//pt프로그램 코드
-	private String pt_month;//등록개월 및 주 몇회
+	private String pt_name;//등록개월 및 주 몇회
 	private int ptr_count;//pt횟수
 	private int pt_signmonth;//pt등록개월 수
 	private int pt_price;//pt가격
 	
 	public PtPriceDto(){}
 
-	public PtPriceDto(int pt_num, String pt_code, String pt_month, int ptr_count, int pt_signmonth, int pt_price) {
+	public PtPriceDto(int pt_num, String pt_code, String pt_name, int ptr_count, int pt_signmonth, int pt_price) {
 		super();
 		this.pt_num = pt_num;
 		this.pt_code = pt_code;
-		this.pt_month = pt_month;
+		this.pt_name = pt_name;
 		this.ptr_count = ptr_count;
 		this.pt_signmonth = pt_signmonth;
 		this.pt_price = pt_price;
@@ -36,12 +36,12 @@ public class PtPriceDto {
 		this.pt_code = pt_code;
 	}
 
-	public String getPt_month() {
-		return pt_month;
+	public String getPt_name() {
+		return pt_name;
 	}
 
-	public void setPt_month(String pt_month) {
-		this.pt_month = pt_month;
+	public void setPt_name(String pt_name) {
+		this.pt_name = pt_name;
 	}
 
 	public int getPtr_count() {
@@ -70,7 +70,7 @@ public class PtPriceDto {
 
 	@Override
 	public String toString() {
-		return "\n PtPriceDto [pt_num=" + pt_num + ", pt_code=" + pt_code + ", pt_month=" + pt_month + ", ptr_count="
+		return "PtPriceDto [pt_num=" + pt_num + ", pt_code=" + pt_code + ", pt_month=" + pt_name + ", ptr_count="
 				+ ptr_count + ", pt_signmonth=" + pt_signmonth + ", pt_price=" + pt_price + "]";
 	}
 

@@ -2,6 +2,7 @@ package fitness.dao;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,8 +24,8 @@ public class PtregisterDao {
 		return sqlSession.selectOne(NAMESPACE+".ptrinfo",num);
 	}
 	
-	public List<PtregisterDto> list(int num){
-		return sqlSession.selectList(NAMESPACE+".ptrlistAll",num);
+	public List<PtregisterDto> list(HashMap<String, Object> map){
+		return sqlSession.selectList(NAMESPACE+".ptrlistAll",map);
 	}
 	
 }

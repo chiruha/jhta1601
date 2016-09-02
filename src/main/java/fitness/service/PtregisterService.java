@@ -1,5 +1,6 @@
 package fitness.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class PtregisterService {
 	public PtregisterDto detailService(int num){
 		return ptregisterDao.detailDao(num);
 	}
-	public List<PtregisterDto>  ptOkService(int num){
-		return ptregisterDao.list(num);
+	public List<PtregisterDto>  ptOkService(HashMap<String, Object> map){
+		return ptregisterDao.list(map);
 	}
 	
 	

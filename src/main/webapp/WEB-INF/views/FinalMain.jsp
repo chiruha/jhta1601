@@ -17,8 +17,8 @@
 		
 		<li><a href="<c:url value='/meminsert'/>">회원등록(이성진)</a></li>
 		<li><a href="<c:url value='/memselectAll'/>">회원전체목록보기(이성진)</a></li>
-		<li><a href="<c:url value='/regiInsert'/>">수강등록(insert만 완성)-프로그램등록(이성진)</a></li>
-		 
+		 <li><a href="<c:url value='/regiInsert'/>">수강등록(insert)-프로그램등록(이성진)</a></li>
+		<li><a href="<c:url value='/regiSelect'/>">수강등록 (selectList)전체목록보기(이성진)</a></li> 
 		<c:choose>
 			<c:when test="${empty sessionScope.memnum}">
 			<li><a href="<c:url value='/login'/>">로그인하기(이성진)</a></li>	

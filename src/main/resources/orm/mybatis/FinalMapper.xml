@@ -20,10 +20,10 @@
 		select * from pt_register where ptr_num=#{value}
 	</select>
 
-	<select id="ptrlistAll" parameterType="int" resultType="fitness.dto.PtregisterDto">
+	<select id="ptrlistAll" parameterType="hashmap" resultType="fitness.dto.PtregisterDto">
 		select aa.*,m.mem_name from 
 		(select pt.*,rg.mem_num from pt_register pt, registration rg 
-			where pt.rg_num=rg.rg_num and pt.tr_num=#{value}
+			where pt.rg_num=rg.rg_num and pt.tr_num=#{tr_num}
 		)aa,member m
 		where aa.mem_num=m.mem_num
 
@@ -244,6 +244,7 @@
 	<insert id="ptperiodInsert" parameterType="fitness.dto.PtperiodDto">
 		insert into ptperiod values(ptperiod_seq.nextval,#{rg_num},#{mem_num},#{pt_signmonth},sysdate, add_months(sysdate ,${pt_signmonth}))
 	</insert>
+	
 	<!-- 2.select - registration(기본정보등록) table -->
 	<!-- 전체 글의 갯수 -->
 	<select id="getCountRegi" resultType="int">
@@ -267,24 +268,11 @@
 			where s.rg_num=p.rg_num
 		and s.mem_num=#{mem_num} and s.rg_num=#{rg_num}
 	</select>
-	<!-- 단과명, 등록개월수 뽑아오기-->
-	<select id="regiSimpleListOneName" parameterType="String" resultType="fitness.dto.ProsignDto">
-	
-		select * from prosign s, programprice p
-		where s.pro_code=p.pro_code
-	and p.pro_code=#{pro_code}
-	</select>
 	<!-- pt과목 등록정보뽑아오기-->
 	<select id="regiPTListOne" parameterType="hashmap" resultType="fitness.dto.PtsignDto">
 			select * from ptsign s, ptperiod p
 			where s.rg_num=p.rg_num
 		and s.mem_num=#{mem_num} and s.rg_num=#{rg_num}
-	</select>
-	<!-- pt명, 등록개월수, 횟수 뽑아오기 -->
-	<select id="regiPTListOneName" parameterType="String" resultType="fitness.dto.PtsignDto">
-		select * from ptsign s, ptprice p
-			where s.pt_code=p.pt_code
-		and s.pt_code=#{pt_code}
 	</select>
 
 

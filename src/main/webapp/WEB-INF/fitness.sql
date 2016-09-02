@@ -14,15 +14,17 @@ drop table pt_schedule;
 drop table timetable;
 drop table trainer;
 drop table refund;
-drop table registration;
 drop table mem_att;
 drop table qnaboard;
 drop table freeboard;
 drop table staff;
 drop table position; 
 drop table department;
-drop table member;
 drop table center; 
+drop table gx_register
+drop table period
+drop table registration
+drop table member
 
 --제약조건은 대문자로 표시해둠 최종수정함!!
 
@@ -48,6 +50,7 @@ drop sequence DEPT_SEQ;	-- 부서 시퀀스
 drop sequence MEM_SEQ;	-- 회원 시퀀스
 drop sequence CT_SEQ;	-- 지점 시퀀스
 drop sequence PTR_SEQ; -- pt등록
+drop sequence GX_SEQ; -- pt등록
 
 -------------------------------------------
 create table center				--지점정보

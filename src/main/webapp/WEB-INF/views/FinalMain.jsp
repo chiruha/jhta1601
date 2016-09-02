@@ -36,7 +36,7 @@
 		<li><a href="<c:url value='/nocinsert'/>">공지사항 등록</a></li>
 		<li><a href="<c:url value='/noclist'/>">공지사항목록</a></li>
 		
-		
+		<li><a href="<c:url value='/?test=goboot'/>">bootstrap test</a></li>
 	</ul>
 
 

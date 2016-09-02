@@ -1,6 +1,7 @@
 package fitness.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -50,8 +51,10 @@ public class PtregisterController {
 	@RequestMapping(value="/PTscOkView",method=RequestMethod.GET)
 	public String ptscOkviewmove(HttpSession session){
 		//int n=trservice.detailService(3).getTr_num();
-		int n=3;
-		List<PtregisterDto> list = service.ptOkService(n);	
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("tr_num", 3);
+		List<PtregisterDto> list = service.ptOkService(map);
+		System.out.println(map);
 		
 		session.setAttribute("list", list);		
 		System.out.println(list);

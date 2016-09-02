@@ -13,7 +13,6 @@ public class MainController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(@RequestParam(value="test", defaultValue="none") String test) {
 		if(test.equals("goboot")){
-			System.out.println("∏ﬁ¿Œ : "+test);
 			return ".bootmain";
 		}
 		return ".main";

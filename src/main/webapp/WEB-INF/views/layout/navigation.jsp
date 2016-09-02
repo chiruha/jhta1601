@@ -45,6 +45,16 @@
           <!-- Information  메뉴 -->
         <li><a href="#tour">Information</a></li>
         
+        <!-- 수강  dropdown 메뉴 -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">수강
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="<c:url value='/regiInsert'/>">수강등록</a></li>
+            <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
+          </ul>
+          
+          
           <!-- ~ 메뉴 -->
         <li><a href="#contact">미정</a></li>
         

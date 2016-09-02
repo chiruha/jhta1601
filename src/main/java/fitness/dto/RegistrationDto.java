@@ -1,7 +1,5 @@
 package fitness.dto;
 
-import java.sql.Date;
-
 public class RegistrationDto {
 	private  int rg_num;
 	private int mem_num;

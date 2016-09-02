@@ -122,6 +122,7 @@
 </table>
 <input type="hidden" id="cbox" value="${ct_code} ">
 <input type="hidden" id="pbox" value="${pos_code} ">
+
 <form action="stflist" method="post" name="listform">
 	<input type="checkbox" name="stf_name"  value="name" <c:if test="${stf_name ne null }">checked="checked"</c:if>>이름
 	<input type="checkbox" name="stf_phone"  value="tel" <c:if test="${stf_phone ne null }">checked="checked"</c:if>>전화

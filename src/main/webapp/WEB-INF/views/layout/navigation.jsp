@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav navbar-right">
       
       <!-- Home 메뉴 -->
-        <li><a href="/fitness">HOME</a></li>
+        <li><a href="<c:url value='/?test=goboot'/>">HOME</a></li>
         
       <!-- Introduce  dropdown 메뉴 -->
         <li>   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Introduce

@@ -12,23 +12,35 @@ import fitness.dto.NoticeDto;
 @Service
 public class NoticeService {
 	@Autowired NoticeDao noticeDao;
-	
-	public int insert(NoticeDto dto){
-		return noticeDao.insert(dto);
-	}
-	public int getCount(){
-		return noticeDao.getCount();
-	}
-	public int delete(int num){
-		return noticeDao.delete(num);
-	}
-	public NoticeDto detail(int num){
-		return noticeDao.detail(num);
-	}
-	public int update(NoticeDto dto){
-		return noticeDao.update(dto);
-	}
-	public List<NoticeDto> list(HashMap<String, String> map) {
-		return noticeDao.list(map);
-	}
+		//글등록하기 인서트
+		public int insert(NoticeDto dto){
+			return noticeDao.insert(dto);
+		}
+		//글목록전체보기 리스트
+		public int getNocCount(HashMap<String, Object> map){
+			return noticeDao.getNocCount(map);
+		}
+		public List<NoticeDto> list(HashMap<String, Object> map){
+			return noticeDao.listAll(map);
+		}
+		
+		//글하나보기 
+		public NoticeDto listOne(int nt_num){
+			return noticeDao.listOne(nt_num);
+		}
+		
+		//글삭제하기
+		public int NocDelete(int nt_num){
+			return noticeDao.NocDelete(nt_num);
+		}
+		
+		//글수정하기
+		public int NocUpdate(NoticeDto dto){
+			return noticeDao.NocUpdate(dto);
+		}
+		
+		// 조회수
+		public int addHit(int nt_num){
+			return noticeDao.addHit(nt_num);
+		}
 }

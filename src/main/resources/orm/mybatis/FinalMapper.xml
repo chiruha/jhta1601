@@ -321,25 +321,52 @@
 		</if>
 	</select>
 	
-<!--////////// notice 관련  김재원 작성 //////////-->	
-	<insert id="nocinsert" parameterType="fitness.dto.NoticeDto">
+	<!--////////// notice 공지사항  - 작성자 : 김재원 //////////-->
+	
+	<insert id="Nocinsert" parameterType="fitness.dto.NoticeDto">
 		insert into notice values(notice_seq.nextval,#{stf_num},#{nt_title},#{nt_content},sysdate,#{nt_hit})
 	</insert>
 	
-
-	<select id="getNocCount" resultType="int">
-		select nvl(count(nt_num),0) from notice
-	</select>
+	<select id="getNocCount" parameterType="hashmap"  resultType="int">
+		select nvl(count(nt_num),0) from 
+		(select aa.*,rownum rnum from
+	    (select n.*,s.stf_name 
+	    from notice n,staff s
+	    where n.stf_num=s.stf_num
+		<if test="nt_num!=null">
+		    OR nt_num like '%'||#{nt_num}||'%'
+		</if>
+		<if test="title!=null">
+		    OR nt_title like '%'||#{keyword}||'%'
+		</if>
+			<if test="writer!=null">
+		    OR stf_name like '%'||#{keyword}||'%'
+		</if>
+		    order by n.nt_num desc)aa
+	  	)
+	</select>	
 	
 	<select id="NocSelectAll" parameterType="hashmap" resultType="fitness.dto.NoticeDto">
-			select * from(
+		select * from(
 	    select aa.*,rownum rnum from
-	    (select * from notice order by nt_num desc)aa
-  		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+	    (select n.*,s.stf_name 
+	    from notice n,staff s
+	    where n.stf_num=s.stf_num  
+		<if test="title!=null">   
+		    and nt_title like '%'||#{keyword}||'%'
+		</if>   
+		<if test="writer!=null">
+		    and stf_name like '%'||#{keyword}||'%'
+		</if>
+		    order by n.nt_num desc)aa
+	  	)
+		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	
 	<select id="NocListOne" resultType="fitness.dto.NoticeDto" parameterType="int">
-		select * from notice where nt_num=#{value}
+		select n.nt_num, n.stf_num, n.nt_title, n.nt_content,n.nt_date,n.nt_hit,s.stf_name
+		 from notice n,staff s
+	    where n.stf_num=s.stf_num and nt_num=#{value}
 	</select>
 	
 	<delete id="NocDelete" parameterType="int">
@@ -349,38 +376,11 @@
 	<update id="NocUpdate" parameterType="fitness.dto.NoticeDto">
 		update notice set nt_title=#{nt_title},nt_content=#{nt_content} where nt_num=#{nt_num}
 	</update>
-
-	<delete id="nocdelete" parameterType="int">
-		delete from notice where nt_num=#{value}
-	</delete>
 	
-	<update id="nocupdate" parameterType="fitness.dto.NoticeDto">
-		update notice set nt_title=#{nt_title},nt_content=#{nt_content} where nt_num=#{nt_num}
+	<update id="addHit" parameterType="int">
+		<![CDATA[
+			UPDATE notice set nt_hit = NVL(nt_hit, 0) + 1 where nt_num = #{nt_num}	
+		]]>                    
 	</update>
-
-	<select id="nocdetail" resultType="fitness.dto.NoticeDto" parameterType="int">
-		select * from notice where nt_num=#{value}
-	</select>
-	
-	<select id="nocgetCount" resultType="int">
-		select nvl(count(num),0) from notice
-	</select>
-	
-	
-	<select id="nocList" parameterType="hashmap" resultType="fitness.dto.NoticeDto">
-		select * from(
-		select aa.*,rownum rnum from
-		(select * from notice <where>
-			<if test="nt_title!=null">
-				or title like '%'||#{keyword}||'%'
-			</if>
-			<if test="nt_content!=null">
-				or content like '%'||#{keyword}||'%'
-			</if>			
-		</where>order by nt_num desc)aa
-  		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
- 		
-		
-	</select>
 
 </mapper>

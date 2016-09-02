@@ -85,11 +85,11 @@
 						var pt_num=$(this).find("pt_num").text();
 						//alert("pt_num?"+pt_num);
 						var pt_code=$(this).find("pt_code").text();
-						var pt_month=$(this).find("pt_month").text();
+						var pt_name=$(this).find("pt_name").text();
 						var ptr_count=$(this).find("ptr_count").text();
 						var pt_signmonth=$(this).find("pt_signmonth").text();
 						var pt_price=$(this).find("pt_price").text();
-						$("#PTProgramName").append("<option value'"+pt_month+"'>"+pt_month+"</option>");
+						$("#PTProgramName").append("<option value'"+pt_name+"'>"+pt_name+"</option>");
 						
 					});
 				}
@@ -132,12 +132,12 @@
 						var pt_num=$(this).find("pt_num").text();
 						//alert("pt_num?"+pt_num);
 						var pt_code=$(this).find("pt_code").text();
-						var pt_month=$(this).find("pt_month").text();
+						var pt_name=$(this).find("pt_name").text();
 						var ptr_count=$(this).find("ptr_count").text();
 						var pt_price=$(this).find("pt_price").text();
 						var pt_signmonth=$(this).find("pt_signmonth").text();
-						//$("#PTName").append("<option value'"+pt_month+"'>"+pt_month+"</option>");
-						$("#ptName").append("<option value'"+pt_month+"'>"+pt_month+"</option>");
+						//$("#PTName").append("<option value'"+pt_name+"'>"+pt_name+"</option>");
+						$("#ptName").append("<option value'"+pt_name+"'>"+pt_name+"</option>");
 						
 					});
 				}
@@ -201,33 +201,36 @@
 					$("#ptr_count").val(0);
 					$("#pro_signmonth").val(pro_signmonth);
 					$("#pt_signmonth").val(0);
-					
+					$("#pro_name").val(pro_name);
+					$("#pt_name").val(null);
 				});
 			}
 		});
 	}
-	function ptPriceChange(pt_month){
-		//alert("..ptPrice: "+pt_month);
+	function ptPriceChange(pt_name){
+		//alert("..ptPrice: "+pt_name);
 		$("#programPrice").empty();
 		$.ajax({
-			url:"/fitness/ptprice/xml?pt_month="+pt_month,
+			url:"/fitness/ptprice/xml?pt_name="+pt_name,
 			success:function(data){
 				$(data).find("ptprice").each(function(){
-					//alert("pt는 어디까지 되나??"+pt_month);
+					//alert("pt는 어디까지 되나??"+pt_name);
 					var pt_num=$(this).find("pt_num").text();
 					var pt_code=$(this).find("pt_code").text();
-					var pt_month=$(this).find("pt_month").text();
+					var pt_name=$(this).find("pt_name").text();
 					var pt_price=$(this).find("pt_price").text();
 					var pt_signmonth=$(this).find("pt_signmonth").text();
 					var ptr_count=$(this).find("ptr_count").text();
 					//alert("pt_price"+pt_price);
-					//alert("num: "+pt_num+" code: "+pt_code+" month: "+pt_month+" price: "+pt_price);
+					//alert("num: "+pt_num+" code: "+pt_code+" name: "+pt_name+" price: "+pt_price);
 					$("#rg_price").val(pt_price);
 					$("#pt_code").val(pt_code);
 					$("#ptr_count").val(ptr_count);
 					$("#pro_code").val(null);
 					$("#pt_signmonth").val(pt_signmonth);
 					$("#pro_signmonth").val(0);
+					$("#pt_name").val(pt_name);
+					$("#pro_name").val(null);
 				});
 			}
 		});
@@ -251,30 +254,32 @@
 					$("#simplePrice").val(pro_price);		
 					$("#pro_code").val(pro_code);
 					$("#pro_signmonth").val(pro_signmonth);
+					$("#pro_name").val(pro_name);
 				});
 			}
 		});
 	}
-	function ptSelect(pt_month){//pt과목 선택 시
-		//alert("..ptPrice: "+pt_month);
+	function ptSelect(pt_name){//pt과목 선택 시
+		//alert("..ptPrice: "+pt_name);
 		$("#programPrice").empty();
 		$.ajax({
-			url:"/fitness/ptprice/xml?pt_month="+pt_month,
+			url:"/fitness/ptprice/xml?pt_name="+pt_name,
 			success:function(data){
 				$(data).find("ptprice").each(function(){
-					alert("pt는 어디까지 되나??"+pt_month);
+					alert("pt는 어디까지 되나??"+pt_name);
 					var pt_num=$(this).find("pt_num").text();
 					var pt_code=$(this).find("pt_code").text();
-					var pt_month=$(this).find("pt_month").text();
+					var pt_name=$(this).find("pt_name").text();
 					var pt_price=$(this).find("pt_price").text();
 					var pt_signmonth=$(this).find("pt_signmonth").text();
 					var ptr_count=$(this).find("ptr_count").text();
 					//alert("pt_price"+pt_price);
-					//alert("num: "+pt_num+" code: "+pt_code+" month: "+pt_month+" price: "+pt_price);
+					//alert("num: "+pt_num+" code: "+pt_code+" month: "+pt_name+" price: "+pt_price);
 					$("#ptSelectPrice").val(pt_price);
 					$("#pt_code").val(pt_code);
 					$("#ptr_count").val(ptr_count);
 					$("#pt_signmonth").val(pt_signmonth);
+					$("#pt_name").val(pt_name);
 				});
 			}
 		});
@@ -366,6 +371,8 @@ pt프로그램 선택<br>
 PT과목 등록개월수 pt_signmonth: <input type="text" name="pt_signmonth" id="pt_signmonth"><br>
 <br><br>
 <!-- //////////등록한 프로그램코드 및 pt횟수 받아와서 보내주기/////////// -->
+pro_name 단과과목 : <input type="text" name="pro_name" id="pro_name"><br>
+pt_name PT과목 : <input type="text" name="pt_name" id="pt_name"><br>
 pro_code 단과과목 : <input type="text" name="pro_code" id="pro_code"><br>
 pt_code pt과목 : <input type="text" name="pt_code" id="pt_code"><br>
 ptr_count (pt횟수): <input type="text" name="ptr_count" id="ptr_count"><br>

@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class ProperiodDto {
 	private int properiod_num;
+	private int rg_num;//등록번호 references registration(rg_num)
 	private int mem_num;
 	private int pro_signmonth;//등록개월수
 	private Date pro_regdate;//운동시작일
@@ -11,9 +12,11 @@ public class ProperiodDto {
 	
 	public ProperiodDto() {}
 
-	public ProperiodDto(int properiod_num, int mem_num, int pro_signmonth, Date pro_regdate, Date pro_expiration) {
+	public ProperiodDto(int properiod_num, int rg_num, int mem_num, int pro_signmonth, Date pro_regdate,
+			Date pro_expiration) {
 		super();
 		this.properiod_num = properiod_num;
+		this.rg_num = rg_num;
 		this.mem_num = mem_num;
 		this.pro_signmonth = pro_signmonth;
 		this.pro_regdate = pro_regdate;
@@ -26,6 +29,14 @@ public class ProperiodDto {
 
 	public void setProperiod_num(int properiod_num) {
 		this.properiod_num = properiod_num;
+	}
+
+	public int getRg_num() {
+		return rg_num;
+	}
+
+	public void setRg_num(int rg_num) {
+		this.rg_num = rg_num;
 	}
 
 	public int getMem_num() {
@@ -62,9 +73,10 @@ public class ProperiodDto {
 
 	@Override
 	public String toString() {
-		return "\n ProperiodDto [properiod_num=" + properiod_num + ", mem_num=" + mem_num + ", pro_signmonth="
-				+ pro_signmonth + ", pro_regdate=" + pro_regdate + ", pro_expiration=" + pro_expiration + "]";
+		return "ProperiodDto [properiod_num=" + properiod_num + ", rg_num=" + rg_num + ", mem_num=" + mem_num
+				+ ", pro_signmonth=" + pro_signmonth + ", pro_regdate=" + pro_regdate + ", pro_expiration="
+				+ pro_expiration + "]";
 	}
-	
+
 	
 }

@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>FitBoot</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-</head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
 
@@ -268,7 +257,3 @@ marker.setMap(map);
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
-
-
-</body>
-</html>

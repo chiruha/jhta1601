@@ -8,13 +8,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Fitness Homepage</title>
+ <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/BootStrap.css'/>">
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-      
-    <script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
+ <script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
        <script>
 $(document).ready(function(){
   // Initialize Tooltip

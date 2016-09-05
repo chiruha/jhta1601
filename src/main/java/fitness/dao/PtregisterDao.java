@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fitness.dto.PtregisterDto;
+import fitness.dto.StaffDto;
 
 @Repository
 public class PtregisterDao {
@@ -26,6 +27,10 @@ public class PtregisterDao {
 	
 	public List<PtregisterDto> list(HashMap<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+".ptrlistAll",map);
+	}
+	
+	public int ptrOkupdate(PtregisterDto dto){
+		return sqlSession.update(NAMESPACE+".ptrResult",dto);
 	}
 	
 }

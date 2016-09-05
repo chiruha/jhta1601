@@ -72,8 +72,9 @@
 		delete from trainer where tr_num=#{value}
 	</delete>
 	
-	<select id="getTrCount" resultType="int">
+	<select id="getTrCount" resultType="int"  parameterType="hashmap">
 		select count(tr_num) cnt from trainer
+	
 	</select>
 	
 

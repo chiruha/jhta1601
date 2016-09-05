@@ -132,6 +132,7 @@ public class StaffController {
 	}
 	@RequestMapping("/stfupdate")
 	public String update(StaffDto dto,MultipartFile picture ,HttpSession session){
+		System.out.println("stf업데이트 : "+dto.toString()+"pic : "+picture);
 	try{
 		String path=session.getServletContext().getRealPath("/resources/img/Staff");
 		String stf_picture=picture.getOriginalFilename();
@@ -144,9 +145,9 @@ public class StaffController {
 				System.out.println("기존파일 삭제 실패");
 				System.out.println(path+"/"+dto.getStf_picture());
 			}
-			System.out.println("사진1:"+stf_picture);
+			System.out.println("사진1 :"+stf_picture);
 			stf_picture=UUID.randomUUID()+"_"+stf_picture;
-			System.out.println("사진2:"+stf_picture);
+			System.out.println("사진2 :"+stf_picture);
 			InputStream is=picture.getInputStream();
 			FileOutputStream fos=new FileOutputStream(path+"/"+stf_picture);
 			FileCopyUtils.copy(is, fos);

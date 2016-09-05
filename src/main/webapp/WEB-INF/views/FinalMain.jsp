@@ -33,6 +33,7 @@
 		<li><a href="<c:url value='/stflist'/>">직원목록</a></li>
 		<li><a href="<c:url value='/posinsert'/>">직급등록</a></li>
 		<li><a href="<c:url value='/deptinsert'/>">부서등록</a></li>
+		<li><a href="<c:url value='/trlist'/>">강사목록</a></li>
 		<li><a href="<c:url value='/nocinsert'/>">공지사항 등록</a></li>
 		<li><a href="<c:url value='/noclist'/>">공지사항목록</a></li>
 		

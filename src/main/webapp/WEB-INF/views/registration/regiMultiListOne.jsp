@@ -25,7 +25,8 @@
 		<td>${dto1.pro_expiration }</td>
 	</tr>
 </table>
-<br><br>
+<br>
+<br>
 <h3>PT과목</h3>
 <table border="1" width="700">
 	<tr>
@@ -53,3 +54,4 @@
 		<td>${dto2.pt_expiration }</td>
 	</tr>
 </table>
+<br>

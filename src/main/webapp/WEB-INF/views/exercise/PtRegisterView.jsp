@@ -11,12 +11,16 @@
 </style>
 <link rel="stylesheet" type="text/css" href="/fitness/resources/css/jquery-ui.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<%--
 <link rel="stylesheet" href="/fitness/resources/css/jquery.timepicker.css">
+ --%>
 <script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="/fitness/resources/js/jquery-ui.min.js"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<%--
 <script type="text/javascript" src="/fitness/resources/jquery/jquery.timepicker.js"></script>
+--%>
 <script type="text/javascript">
 	$(function function_name(argument) {
 		$("#open_btn").click(function function_name(argument) {
@@ -34,7 +38,7 @@
 							url:"/fitness/ptrinsert",
 							dataType:"json",
 							type:"post",
-							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code,
+							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code,							
 							success:function function_name(data) {
 								alert(data.ptr_num);
 								var str = "회원등록:" + data.ptr_num +"<br>" +

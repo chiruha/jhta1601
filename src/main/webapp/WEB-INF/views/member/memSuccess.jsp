@@ -5,3 +5,4 @@
 <br>
 <a href=".FinalMain">메인가기</a>
 <a href="memselectAll">회원전체목록</a>
+<a href="regiSelect">수강등록 (selectList)전체목록보기(이성진)</a>

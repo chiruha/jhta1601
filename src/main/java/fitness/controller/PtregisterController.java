@@ -65,12 +65,15 @@ public class PtregisterController {
 	@ResponseBody
 	public Object insert(PtregisterDto dto){		
 		System.out.println("ptrinsert 도착");
-		int n=trservice.detailService(3).getTr_num();
+		System.out.println("trservice"+trservice);
+		int n=trservice.detailService(6).getTr_num();
+		System.out.println("n"+n);		
 		dto.setTr_num(n);
-		dto.setRg_num(1);
+		dto.setRg_num(1);		
 		System.out.println("dto"+dto);
 		service.insert(dto);
-		System.out.println("dto결과"+dto);		
+		System.out.println("dto결과"+dto);	
+		
 		  PtregisterDto ptrdto =null;
 		try{
 			ptrdto =  service.detailService(4);
@@ -78,7 +81,7 @@ public class PtregisterController {
 			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-		}		
+		}
 		
 		return   ptrdto;
 	}

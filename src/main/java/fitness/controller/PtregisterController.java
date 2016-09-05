@@ -4,7 +4,7 @@ package fitness.controller;
 import java.util.HashMap;
 import java.util.List;
 
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -52,13 +52,28 @@ public class PtregisterController {
 	public String ptscOkviewmove(HttpSession session){
 		//int n=trservice.detailService(3).getTr_num();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("tr_num", 3);
+		map.put("tr_num", 6);
 		List<PtregisterDto> list = service.ptOkService(map);
 		System.out.println(map);
 		
 		session.setAttribute("list", list);		
 		System.out.println(list);
 		return ".exercise.PTscOkView";
+	}
+	
+	@RequestMapping(value="/PTokmResult",method=RequestMethod.POST)
+	public String ptokmresult(HttpServletRequest request,PtregisterDto dto){
+		String pokm = request.getParameter("okm");
+		String ptr_num = request.getParameter("ptr_num");
+		System.out.println("trainer 전송결과:"+pokm+","+ptr_num);
+		
+		dto.setPtr_num(Integer.parseInt(ptr_num));
+		dto.setPtr_ok(pokm);
+		System.out.println("ok"+dto.getPtr_ok());
+		System.out.println("num"+dto.getPtr_num());
+		service.ptrOkupdate(dto);
+		System.out.println("수정된 dto"+dto);
+		return "redirect:/PTscOkView";
 	}
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST,produces="application/json;charset=utf-8")

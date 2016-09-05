@@ -26,8 +26,11 @@
 			where pt.rg_num=rg.rg_num and pt.tr_num=#{tr_num}
 		)aa,member m
 		where aa.mem_num=m.mem_num
-
 	</select>
+	
+	<update id="ptrResult" parameterType="fitness.dto.PtregisterDto">
+		update pt_register set ptr_ok=#{ptr_ok} where ptr_num=#{ptr_num}
+	</update>
 
 <!--////////// mem_att 관련 - 작성자 : 유예진 //////////-->
 	<insert id="mattinsert" parameterType="fitness.dto.Mem_attDto">

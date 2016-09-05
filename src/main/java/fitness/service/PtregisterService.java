@@ -24,5 +24,9 @@ public class PtregisterService {
 		return ptregisterDao.list(map);
 	}
 	
+	public int ptrOkupdate(PtregisterDto dto){
+		return ptregisterDao.ptrOkupdate(dto);
+	}
+	
 	
 }

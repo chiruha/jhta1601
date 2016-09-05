@@ -276,7 +276,7 @@
 			where s.rg_num=p.rg_num
 		and s.mem_num=#{mem_num} and s.rg_num=#{rg_num}
 	</select>
-<<<<<<< HEAD
+
 	
 	<!-- 3.update하기 위한 getInfo -->
 	<select id="regiGetInfo" parameterType="hashmap" resultType="fitness.dto.RegistrationDto">
@@ -303,13 +303,7 @@
 		where rg_num=#{rg_num} and mem_num=#{mem_num}
 	</update>
 	-->
-	<!-- 3.update 수강정보 :properiod(단과-운동기간등록) table 
-	<update id="properiodUpdate" parameterType="fitness.dto.ProperiodDto">
-		update properiod
-		set pro_signmonth=#{pro_signmonth}
-		where rg_num=#{rg_num} and mem_num=#{mem_num}
-	</update>
-	-->
+
 	<!-- 3.update 수강정보 :ptperiod(pt-운동기간등록) table 
 	<update id="ptperiodUpdate" parameterType="fitness.dto.PtperiodDto">
 		update ptperiod
@@ -317,7 +311,7 @@
 		where rg_num=#{rg_num} and mem_num=#{mem_num}
 	</update>
 	-->
-	<!-- 4. delete 수강정보 -->	
+
 	<!-- 4.delete 수강정보 -registration(기본정보등록) table -->
 	<delete id="regiDel" parameterType="int">
 		delete from registration where rg_num=#{rg_num}
@@ -339,11 +333,6 @@
 		delete from ptperiod where rg_num=#{rg_num}
 	</delete>
 	
-	
-=======
-
-
->>>>>>> 2128da51618a5d959c57f3faca676559629edebe
 <!--////////// member 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 회원기본정보등록 insert -->
 	<insert id="meminsert" parameterType="fitness.dto.MemberDto">

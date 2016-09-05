@@ -19,8 +19,8 @@ public class TrainerDao {
 	public int updateDao(TrainerDto dto){
 		return sqlSession.update(NameSpace+".trupdate",dto);
 	}
-	public List<TrainerDto> listDao(HashMap<String, Integer> map){
-		return sqlSession.selectList(NameSpace+".trflist",map);
+	public List<TrainerDto> listDao(HashMap<String, Object> map){
+		return sqlSession.selectList(NameSpace+".trlist",map);
 	}
 	public TrainerDto detailDao(int num){
 		return sqlSession.selectOne(NameSpace+".trdetail",num);
@@ -31,7 +31,7 @@ public class TrainerDao {
 	public int deleteDao(int num){
 		return sqlSession.delete(NameSpace+".trdelete",num);
 	}
-	public int getTrCount(){
-		return   sqlSession.selectOne(NameSpace+".getTrCount");
+	public int getTrCount(HashMap<String, Object> map){
+		return   sqlSession.selectOne(NameSpace+".getTrCount",map);
 	}
 }

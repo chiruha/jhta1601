@@ -26,13 +26,13 @@ public class TrainerService {
 	public TrainerDto detail2Service(int num){
 		return dao.detail2Dao(num);
 	}
-	public List<TrainerDto> listService(HashMap<String, Integer> map){
+	public List<TrainerDto> listService(HashMap<String, Object> map){
 		return dao.listDao(map);
 	}
 	public int deleteService(int num){
 		return dao.deleteDao(num);
 	}
-	public int getTrCount(){
-		return dao.getTrCount();
+	public int getTrCount(HashMap<String, Object> map){
+		return dao.getTrCount(map);
 	}
 }

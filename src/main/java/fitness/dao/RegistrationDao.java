@@ -25,8 +25,9 @@ public class RegistrationDao {
 		return sqlSession.insert(NAMESPACE+".regiInsert",dto1);
 	}
 	public int getRgnum(){//가장 큰 rg_num얻어오기
-		return sqlSession.insert(NAMESPACE+".rgNum");
+		return sqlSession.selectOne(NAMESPACE+".rgNum");
 	}
+	
 	//----------| 단과과목등록(insert)(테이블명: prosign) |----------//
 	public int prosignInsert(ProsignDto dto2){
 		return sqlSession.insert(NAMESPACE+".prosignInsert", dto2);
@@ -72,8 +73,54 @@ public class RegistrationDao {
 	public PtsignDto ptsingListoneName(String pt_code){
 		return sqlSession.selectOne(NAMESPACE+".regiPTListOneName");
 	}
+////////////////////////////////--| Update |--////////////////////////////////	
+	//update하기 위한 getInfo
+	public RegistrationDto regiGetInfo(HashMap<String, Integer>map){
+		return sqlSession.selectOne(NAMESPACE+".regiGetInfo",map);
+	}
 	
+	//----------| 회원수강등록(Update)(테이블명: registration) |----------//
+	public int regiUpdate(RegistrationDto dto1){
+		return sqlSession.update(NAMESPACE+".regiUpdate",dto1);
+	}
 	
+	//----------| 단과과목등록(Update)(테이블명: prosign) |----------//
+	public int prosignUpdate(ProsignDto dto2){
+		return sqlSession.update(NAMESPACE+".prosignUpdate",dto2);
+	}
 	
+	//----------| pt과목등록(Update)(테이블명: ptsign) |----------//
+	public int ptsignUpdate(PtsignDto dto3){
+		return sqlSession.update(NAMESPACE+".ptsignUpdate",dto3);
+	}
 	
+	//----------| 단과과목 기간등록(Update)(테이블명: properiod) |----------//
+	public int properiodUpdate(ProperiodDto dto4){
+		return sqlSession.update(NAMESPACE+".properiodUpdate",dto4);
+	}
+	
+	//----------| pt과목 기간등록(Update)(테이블명: ptperiod) |----------//
+	public int ptperiodUpdate(PtperiodDto dto5){
+		return sqlSession.update(NAMESPACE+".ptperiodUpdate",dto5);
+	}
+////////////////////////////////--| Delete |--////////////////////////////////	
+	//-- 4.delete 수강정보 :prosign(단과과목등록) table -->
+	public int regiDel(int rg_num){
+		return sqlSession.delete(NAMESPACE+".regiDel",rg_num);
+	}
+	public int prosignDel(int rg_num){
+		return sqlSession.delete(NAMESPACE+".prosignDel",rg_num);
+	}
+	//-- 4.delete 수강정보 :ptsign(pt등록) table -->
+	public int ptsignDel(int rg_num){
+		return sqlSession.delete(NAMESPACE+".ptsignDel",rg_num);
+	}
+	//-- 4.delete 수강정보 :properiod(단과-운동기간등록) table-->
+	public int properiodDel(int rg_num){
+		return sqlSession.delete(NAMESPACE+".properiodDel",rg_num);
+	}
+	//-- 4.delete 수강정보 :ptperiod(pt-운동기간등록) table -->
+	public int ptperiodDel(int rg_num){
+		return sqlSession.delete(NAMESPACE+".ptperiodDel",rg_num);
+	}
 }

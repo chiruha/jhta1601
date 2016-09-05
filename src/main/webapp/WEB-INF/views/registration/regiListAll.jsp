@@ -4,7 +4,7 @@
 <!-- registration 전체목록보기(완료) -->
 <!-- 검색은 과목별로 볼 수 있도록!!(할 일) -->
 <h1>회원 수강등록정보보기</h1>
-<table border="1" width="500">
+<table border="1" width="800">
 	<tr>
 		<th>등록번호</th>
 		<th>회원번호</th>
@@ -12,6 +12,8 @@
 		<th>프로그램등록비</th>
 		<th>락카비</th>
 		<th>운동복비</th>
+		<th>수정하기</th>
+		<th>삭제하기</th>
 	</tr>
 	<c:forEach var="dto" items="${listAll}">
 	<tr>
@@ -33,6 +35,12 @@
 		<td>${dto.rg_price }</td>
 		<td>${dto.locker_price }</td>
 		<td>${dto.wear_price }</td>
+		<td>
+			<a href="regiUpdate?mem_num=${dto.mem_num }&rg_num=${dto.rg_num}">수정하기</a>
+		</td>
+		<td>
+			<a href="regiDelete?rg_num=${dto.rg_num}&rg_type=${dto.rg_type}">삭제하기</a>
+		</td>
 	</tr>
 	</c:forEach>
 </table>

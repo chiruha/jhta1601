@@ -1,6 +1,7 @@
 package fitness.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -50,8 +51,10 @@ public class PtregisterController {
 	@RequestMapping(value="/PTscOkView",method=RequestMethod.GET)
 	public String ptscOkviewmove(HttpSession session){
 		//int n=trservice.detailService(3).getTr_num();
-		int n=3;
-		List<PtregisterDto> list = service.ptOkService(n);	
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("tr_num", 3);
+		List<PtregisterDto> list = service.ptOkService(map);
+		System.out.println(map);
 		
 		session.setAttribute("list", list);		
 		System.out.println(list);
@@ -62,12 +65,15 @@ public class PtregisterController {
 	@ResponseBody
 	public Object insert(PtregisterDto dto){		
 		System.out.println("ptrinsert 도착");
-		int n=trservice.detailService(3).getTr_num();
+		System.out.println("trservice"+trservice);
+		int n=trservice.detailService(6).getTr_num();
+		System.out.println("n"+n);		
 		dto.setTr_num(n);
-		dto.setRg_num(1);
+		dto.setRg_num(1);		
 		System.out.println("dto"+dto);
 		service.insert(dto);
-		System.out.println("dto결과"+dto);		
+		System.out.println("dto결과"+dto);	
+		
 		  PtregisterDto ptrdto =null;
 		try{
 			ptrdto =  service.detailService(4);
@@ -75,7 +81,7 @@ public class PtregisterController {
 			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-		}		
+		}
 		
 		return   ptrdto;
 	}

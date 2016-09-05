@@ -14,15 +14,17 @@ drop table pt_schedule;
 drop table timetable;
 drop table trainer;
 drop table refund;
-drop table registration;
 drop table mem_att;
 drop table qnaboard;
 drop table freeboard;
 drop table staff;
 drop table position; 
 drop table department;
-drop table member;
 drop table center; 
+drop table gx_register
+drop table period
+drop table registration
+drop table member
 
 --제약조건은 대문자로 표시해둠 최종수정함!!
 
@@ -48,6 +50,7 @@ drop sequence DEPT_SEQ;	-- 부서 시퀀스
 drop sequence MEM_SEQ;	-- 회원 시퀀스
 drop sequence CT_SEQ;	-- 지점 시퀀스
 drop sequence PTR_SEQ; -- pt등록
+drop sequence GX_SEQ; -- pt등록
 
 -------------------------------------------
 create table center				--지점정보
@@ -114,6 +117,10 @@ create table staff				--스태프
 	ct_code number(20) DEFAULT 0 REFERENCES CENTER(CT_CODE) --지점코드 FK
 );
 CREATE SEQUENCE STAFF_SEQ;
+insert into staff values(staff_seq.nextval,'STF_KIM','011',sysdate,'kim.jpg','A',2);
+insert into staff values(staff_seq.nextval,'STF_LEE','017',sysdate,'lee.jpg','B',2);
+insert into staff values(staff_seq.nextval,'STF_MOON','019',sysdate,'moon.jpg','C',);
+
 
 create table freeboard			--자유게시판
 ( 
@@ -250,6 +257,10 @@ create table notice				--공지사항
 	nt_hit number(20)			--조회수
 );
 CREATE SEQUENCE NOTICE_SEQ;
+insert into notice values(notice_seq.nextval,'1','공지사항입니다','겨울할인행사',sysdate,0);
+insert into notice values(notice_seq.nextval,'2','공지사항입니다','운동복할인',sysdate,0);
+insert into notice values(notice_seq.nextval,'3','공지사항입니다','락커룸할인',sysdate,0);
+
 
 create table subject				--과목정보
 (
@@ -305,7 +316,7 @@ create table pt_register
 	ptr_time varchar2(50), --회원시간
 	ptr_count number(3), --PT횟수
 	ct_code number(20), --지점코드
-	ptr_ok varchar2(15) DEFAULT '승인대기' CHECK ( PTR_OK IN ('승인','승인취소')) --회원승인
+	ptr_ok varchar2(15) DEFAULT '승인대기' CHECK ( PTR_OK IN ('승인','승인취소','승인대기')) --회원승인
 );
 CREATE SEQUENCE PTR_SEQ;
 

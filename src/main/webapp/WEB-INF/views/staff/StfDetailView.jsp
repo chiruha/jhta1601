@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("input").prop("disabled",true).css("background-color","white");  // input 비활성화하기

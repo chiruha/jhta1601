@@ -4,11 +4,8 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	
-    $(document).on("change","select[name=okm]",function(){
-        var okmvalue = $("select[name=okm] option:selected").val();        
-        alert(okmvalue);
-    });
+
+    
        
 });
 </script>

@@ -28,6 +28,16 @@
 		where aa.mem_num=m.mem_num
 	</select>
 	
+	<select id="ptrmemlistAll" parameterType="hashmap" resultType="fitness.dto.PtregisterDto">
+		select tt.*, pt.ptr_initdate, pt.ptr_time, pt.ptr_count, pt.ptr_ok, pt.mem_name  from
+   		( select aa.*,m.mem_name from 
+        	(select pt.*,rg.mem_num from pt_register pt, registration rg 
+         	where pt.rg_num=rg.rg_num and pt.tr_num=#{tr_num}
+         	)aa,member m where aa.mem_num=m.mem_num)pt,
+    	(select tr_num, stf_name from trainer tr, staff st 
+            where tr.stf_num=st.stf_num)tt where tt.tr_num=pt.tr_num;
+	</select>
+	
 	<update id="ptrResult" parameterType="fitness.dto.PtregisterDto">
 		update pt_register set ptr_ok=#{ptr_ok} where ptr_num=#{ptr_num}
 	</update>
@@ -194,7 +204,8 @@
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
 	<!-- 1.(table명: member)회원번호검색 -->
-
+	
+	
 	<select id="searchMemNum" parameterType="hashmap" resultType="fitness.dto.MemberDto">
 		select * from member
 		<if test="keyword!=null">
@@ -381,6 +392,16 @@
 			where ${memSearch} like '%' || #{keyword} || '%'
 		</if>
 	</select>
+	
+  <!--////////// 로그인 - 작성자:이성진 //////////-->
+   <!-- 회원인경우 -->
+   <select id="loginMem" parameterType="hashmap" resultType="hashmap">
+      select * from member where mem_name=#{mem_name} and mem_phone=#{mem_phone}
+   </select>
+   <!-- 직원인경우 -->
+   <select id="loginAdmin" parameterType="hashmap" resultType="hashmap">
+      select * from staff where stf_name=#{stf_name} and stf_phone=#{stf_phone}
+   </select>
 	
 	<!--////////// notice 공지사항  - 작성자 : 김재원 //////////-->
 	

@@ -119,6 +119,7 @@
               <button type="submit" class="btn btn-block">Login
                 <span class="glyphicon glyphicon-ok"></span>
               </button>
+              <input type="checkbox" value="관리자로그인" name="adminCheck" onclick="adminMode()">Admin
           </form>
         </div>
         <div class="modal-footer">
@@ -131,5 +132,26 @@
     </div>
   </div>
 
+
+<script type="text/javascript">
+	var check;
+	function adminMode(){
+		check=$("input[name$='adminCheck']").is(":checked");
+		if(check==true){
+			alert("I am Staff");
+			
+		}else{
+			alert("I am Member");
+			$("#adminCheck").val(null);
+		}
+		
+	}
+</script>
+<!-- 
+회원아이디 : 이름(mem_name)
+회원비밀번호 : 전화번호(mem_phone)
+관리자아이디 : 이름(stf_name)
+관리자비밀번호 : 전화번호(stf_phone)
+ -->
 
    

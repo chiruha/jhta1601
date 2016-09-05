@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Fitness Homepage</title>
+<title>Fitness Lay1</title>
+ <script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/fitness.css'/>">
 </head>
 <body>

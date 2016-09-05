@@ -107,19 +107,20 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body">
-          <form role="form">
+          <form role="form" method="post" action="login">
             <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-shopping-cart"></span> Login</label>
-              <input type="number" class="form-control" id="psw" placeholder="Write your name ">
+              <label for="psw"><span class="glyphicon glyphicon-user"></span> Login</label>
+              <input type="text" class="form-control"  name="mem_name"  placeholder="Write your name">
             </div>
             <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span>Phone</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Write your phone number">
+              <label for="usrname"><span class="glyphicon glyphicon-phone"></span> Phone</label>
+              <input type="text" class="form-control" id="usrname" name="mem_phone"  placeholder="Write your phone number">
             </div>
               <button type="submit" class="btn btn-block">Login
                 <span class="glyphicon glyphicon-ok"></span>
               </button>
               <input type="checkbox" value="관리자로그인" name="adminCheck" onclick="adminMode()">Admin
+                <div id="errMsg">${requestScope.errMsg }</div>
           </form>
         </div>
         <div class="modal-footer">
@@ -147,11 +148,6 @@
 		
 	}
 </script>
-<!-- 
-회원아이디 : 이름(mem_name)
-회원비밀번호 : 전화번호(mem_phone)
-관리자아이디 : 이름(stf_name)
-관리자비밀번호 : 전화번호(stf_phone)
- -->
+
 
    

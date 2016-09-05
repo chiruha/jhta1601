@@ -59,7 +59,7 @@ public class PtregisterController {
 	public String ptscOkviewmove(HttpSession session){
 		//int n=trservice.detailService(3).getTr_num();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("tr_num", 6);
+		map.put("tr_num", 1);
 		List<PtregisterDto> list = service.ptOkService(map);
 		System.out.println(map);
 		
@@ -88,7 +88,11 @@ public class PtregisterController {
 	public Object insert(PtregisterDto dto){		
 		System.out.println("ptrinsert µµÂø");
 		System.out.println("trservice"+trservice);
+<<<<<<< HEAD
 		int n=trservice.detailService(7).getTr_num();
+=======
+		int n=trservice.detailService(1).getTr_num();
+>>>>>>> 734a80750bdbd680a1a7d25093562cc163985e87
 		System.out.println("n"+n);		
 		dto.setTr_num(n);
 		dto.setRg_num(2);		

@@ -38,7 +38,7 @@
 							url:"/fitness/ptrinsert",
 							dataType:"json",
 							type:"post",
-							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code,
+							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code,							
 							success:function function_name(data) {
 								alert(data.ptr_num);
 								var str = "회원등록:" + data.ptr_num +"<br>" +

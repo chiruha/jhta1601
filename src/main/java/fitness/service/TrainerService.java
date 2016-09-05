@@ -19,6 +19,8 @@ public class TrainerService {
 		return dao.updateDao(dto);
 	}
 	public TrainerDto detailService(int num){
+		System.out.println("dao:"+dao+","+ dao.detailDao(num));
+		
 		return dao.detailDao(num);
 	}
 	public TrainerDto detail2Service(int num){

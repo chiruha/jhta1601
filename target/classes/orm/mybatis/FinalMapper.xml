@@ -382,6 +382,16 @@
 		</if>
 	</select>
 	
+	<!--////////// 로그인 - 작성자:이성진 //////////-->
+   <!-- 회원인경우 -->
+   <select id="loginMem" parameterType="hashmap" resultType="hashmap">
+      select * from member where mem_name=#{mem_name} and mem_phone=#{mem_phone}
+   </select>
+   <!-- 직원인경우 -->
+   <select id="loginAdmin" parameterType="hashmap" resultType="hashmap">
+      select * from staff where stf_name=#{stf_name} and stf_phone=#{stf_phone}
+   </select>
+	
 	<!--////////// notice 공지사항  - 작성자 : 김재원 //////////-->
 	
 	<insert id="Nocinsert" parameterType="fitness.dto.NoticeDto">

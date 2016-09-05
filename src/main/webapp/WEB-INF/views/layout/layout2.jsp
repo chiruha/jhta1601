@@ -32,7 +32,7 @@ $(document).ready(function(){
 
       // Prevent default anchor click behavior
       event.preventDefault();
-		alert(this.hash);
+	//	alert("이건가?"+this.hash);
       // Store hash
       var hash = this.hash;
 

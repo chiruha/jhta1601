@@ -4,8 +4,10 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-
-    
+	$("#ptr_okm").on("change",function(event){
+		alert($(this).val());
+		
+	});    
        
 });
 </script>
@@ -44,8 +46,10 @@ $(document).ready(function() {
 			<th>승인</th>	       
         </tr>
     </thead>
-    <tbody>        
-        <c:forEach var="dto" items="${list }" varStatus="status">         	 
+    <tbody>    	        
+        <c:forEach var="dto" items="${list }" varStatus="status">
+        	<c:choose>         	 
+					<c:when test="${dto.ptr_ok=='승인대기' }">					
          	 <tr>
          	 	<td><c:out value="${dto.mem_name }"/></td>
 				<td><c:out value="${dto.ptr_initdate }"/></td>
@@ -53,20 +57,18 @@ $(document).ready(function() {
 				<td><c:out value="${dto.ptr_count }"/></td>
 				<td>
 				<form name="pokm" action="PTokmResult" method="post">
-				<input type="hidden" name="ptr_num" value="<c:out value="${dto.ptr_num}"/>"> 
-				<c:choose>
-					<c:when test="${dto.ptr_ok=='승인대기' }">					
-					<select name="okm">
+				<input type="hidden" name="ptr_num" value="<c:out value="${dto.ptr_num}"/>">		
+					<select name="okm" id="ptr_okm">
 						<option>선택해주세요</option>
 						<option value="승인">승인</option>
 						<option value="승인취소">승인취소</option>
 					</select>
-					</c:when>
-				</c:choose>
 				 <input type="submit" value="보내기">
 				</form>				
-				</td>               
+				</td> 
            	</tr>
+			</c:when>				
+			</c:choose>              
         </c:forEach>
     </tbody>
 </table>	
@@ -94,7 +96,9 @@ $(document).ready(function() {
         </tr>
     </thead>
     <tbody>        
-        <c:forEach var="dto" items="${list }" varStatus="status">         	 
+        <c:forEach var="dto" items="${list }" varStatus="status">
+        <c:choose>         	 
+			<c:when test="${dto.ptr_ok=='승인' }">         	 
          	 <tr>
          	 	<td><c:out value="${dto.mem_name }"/></td>
 				<td><c:out value="${dto.ptr_initdate }"/></td>
@@ -102,6 +106,8 @@ $(document).ready(function() {
 				<td><c:out value="${dto.ptr_count }"/></td>
 				<td><c:out value="${dto.ptr_ok }"/></td>				    
            	</tr>
+           </c:when>				
+		   </c:choose>
         </c:forEach>
     </tbody>
 </table>	
@@ -129,7 +135,9 @@ $(document).ready(function() {
         </tr>
     </thead>
     <tbody>        
-        <c:forEach var="dto" items="${list }" varStatus="status">         	 
+        <c:forEach var="dto" items="${list }" varStatus="status">
+        <c:choose>         	 
+			<c:when test="${dto.ptr_ok=='승인' }">         	 
          	 <tr>
          	 	<td><c:out value="${dto.mem_name }"/></td>
 				<td><c:out value="${dto.ptr_initdate }"/></td>
@@ -137,6 +145,8 @@ $(document).ready(function() {
 				<td><c:out value="${dto.ptr_count }"/></td>
 				<td><c:out value="${dto.ptr_ok }"/></td>	   
            	</tr>
+          </c:when>				
+		  </c:choose>
         </c:forEach>
     </tbody>
 </table>	

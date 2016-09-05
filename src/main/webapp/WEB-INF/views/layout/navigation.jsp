@@ -22,9 +22,9 @@
         <li>   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Introduce
         	 <span class="caret"></span></a>
          	 <ul class="dropdown-menu">
-          		  <li> <a href="#band">Center</a></li>
-          		  <li><a href="#">Extras</a></li>
-         		   <li><a href="#">Media</a></li>
+          		  <li> <a href="#">Center</a></li>
+          		  <li><a href="#">Company</a></li>
+         		   <li><a href="<c:url value='/trlist'/>">Trainer</a></li>
           </ul>
         </li>
         

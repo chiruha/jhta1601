@@ -32,5 +32,8 @@ public class PtregisterService {
 		return ptregisterDao.ptrOkupdate(dto);
 	}
 	
+	public int ptmaxNum(){
+		return ptregisterDao.ptmaxNum();
+	}
 	
 }

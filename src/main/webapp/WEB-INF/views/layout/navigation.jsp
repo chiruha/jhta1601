@@ -10,7 +10,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/fitness">Logo</a>
+      <a class="navbar-brand" href="<c:url value='/?test=goboot'/>">
+		Fitness
+	</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -52,6 +54,8 @@
           <ul class="dropdown-menu">
             <li><a href="<c:url value='/regiInsert'/>">수강등록</a></li>
             <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
+             <li><a href="<c:url value='/ptrinsert'/>">Pt 예약</a></li>
+              <li><a href="<c:url value='/gxinsert'/>">Gx 예약</a></li>
           </ul>
           
           
@@ -74,7 +78,15 @@
       
       
         <!-- Member Mypage dropdown 메뉴 -->
-
+ 		<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyPage
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              <li><a href="<c:url value='/MemPtscOkView'/>">Pt 예약확인</a></li>
+              <c:if test="${not empty sessionScope.mnum}">
+             <li><a href="<c:url value='/listOne?mem_num=${sessionScope.mnum}'/>">개인정보</a></li>
+          </c:if>
+          </ul>
 
           
           <!-- Staff Mypage dropdown 메뉴 -->
@@ -82,13 +94,18 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">AdPage
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<c:url value='/stflist'/>">StaffList</a></li>
-            <li><a href="<c:url value='/stfinsert'/>">Staff Sign up</a></li>
-            <li><a href="#">Media</a></li>
+            <li><a href="<c:url value='/stflist'/>">직원목록</a></li>
+           <li><a href="<c:url value='/memselectAll'/>">회원목록</a></li>
+            <li><a href="<c:url value='/PtscOkView'/>">Pt강사승인</a></li>
+            <li><a href="<c:url value='/ptment'/>">Pt 관리</a></li>
+            <li><a href="<c:url value='/stfinsert'/>">직원등록</a></li>
+               <li><a href="<c:url value='/trlist'/>">강사목록</a></li>
+             <li><a href="<c:url value='/ctinsert'/>">지점등록</a></li>
+                <li><a href="<c:url value='/deptinsert'/>">부서등록</a></li>
           </ul>
           
            <!-- sitemap  메뉴 -->
-        <li><a href="">SiteMap</a></li>
+        <li><a href="<c:url value='/'/>">SiteMap</a></li>
         
       </ul>
    
@@ -141,8 +158,8 @@ $(document).ready(function(){
 	
 // Login errMsg 유무 판단
 	//alert("errMsg: ${requestScope.errMsg }");
-	alert("session: ${sessionScope.memnum }");
-	
+	//alert("session: ${sessionScope.memnum }");
+	 //  alert("${sessionScope.mnum}");
 	var msg="${requestScope.errMsg}";
 	if(msg!=""&&msg!=null){
 		$("#LoginModal").modal();
@@ -170,7 +187,7 @@ $(document).ready(function(){
 		}
 		
 	}
-</script>
+	</script>
 
 
    

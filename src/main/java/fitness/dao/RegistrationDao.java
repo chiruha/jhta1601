@@ -123,4 +123,10 @@ public class RegistrationDao {
 	public int ptperiodDel(int rg_num){
 		return sqlSession.delete(NAMESPACE+".ptperiodDel",rg_num);
 	}
+////////////////////////////////--| PTregister |--////////////////////////////////
+	
+	public RegistrationDto ptRe(int mem_num){
+		return sqlSession.selectOne(NAMESPACE+".regtDetail",mem_num);
+	}
+	
 }

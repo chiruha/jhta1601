@@ -1,6 +1,7 @@
 package fitness.controller;
 
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,8 +23,7 @@ import fitness.dto.PtregisterDto;
 import fitness.dto.ptrMemDto;
 import fitness.service.CenterService;
 import fitness.service.PtregisterService;
-
-
+import fitness.service.RegistrationService;
 import fitness.service.TrainerService;
 
 
@@ -32,6 +32,7 @@ public class PtregisterController {
 	@Autowired private PtregisterService service;
 	@Autowired private CenterService cts;	
 	@Autowired private TrainerService trservice;
+	@Autowired private RegistrationService regiservice;
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.GET)
 	public String insert(HttpSession session){
@@ -64,6 +65,7 @@ public class PtregisterController {
 	@RequestMapping(value="/PTscOkView",method=RequestMethod.GET)
 	public String ptscOkviewmove(HttpSession session){
 		//int n=trservice.detailService(3).getTr_num();
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("tr_num", 6);
 		List<PtregisterDto> list = service.ptOkService(map);
@@ -91,20 +93,33 @@ public class PtregisterController {
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST,produces="application/json;charset=utf-8")
 	@ResponseBody
-	public Object insert(PtregisterDto dto){		
+	public Object insert(PtregisterDto dto,HttpSession session){		
 		System.out.println("ptrinsert 도착");
-		System.out.println("trservice"+trservice);
-		int n=trservice.detailService(7).getTr_num();
+		
+		System.out.println(session.getAttribute("mnum"));
+		BigDecimal mnum= (BigDecimal) session.getAttribute("mnum");
+		System.out.println("mnum"+mnum);
+	//	System.out.println("mem_num"+session.getAttribute("mnum"));
+		//멤버 정보 추출
+		int rg_num=regiservice.ptRe(mnum.intValue()).getRg_num();		
+		System.out.println("rg_num:"+rg_num);
+		
+		//스태프 정보 추출
+		int tr_num=service.detailService(rg_num).getTr_num();
+		
+		int n=trservice.detailService(tr_num).getTr_num();
 		System.out.println("n"+n);		
 		dto.setTr_num(n);
-		dto.setRg_num(2);		
+		dto.setRg_num(rg_num);		
 		System.out.println("dto"+dto);
 		service.insert(dto);
-		System.out.println("dto결과"+dto);	
-		
-		  PtregisterDto ptrdto =null;
+		System.out.println("dto결과"+dto);
+	  
+		PtregisterDto ptrdto =null;
 		try{
-			ptrdto =  service.detailService(4);
+			int maxnum=service.ptmaxNum();
+			System.out.println(maxnum);
+			ptrdto =  service.detailService(maxnum);
 			System.out.println("ptrdto"+ptrdto);			  
 			
 		}catch(Exception e){

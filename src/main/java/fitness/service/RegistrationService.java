@@ -112,4 +112,9 @@ public class RegistrationService {
 	public int ptperiodDel(int rg_num){
 		return dao.ptperiodDel(rg_num);
 	}
+	//-- pt¿ë register
+	public RegistrationDto ptRe(int mem_num){
+		return dao.ptRe(mem_num);
+	}
+	
 }

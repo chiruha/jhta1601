@@ -31,4 +31,8 @@ public class StaffDao {
 	public int getStfCount(HashMap<String, Object> map){
 		return   sqlSession.selectOne(NameSpace+".getStfCount", map);
 	}
+	public List<StaffDto> ptstafflist(){
+		return   sqlSession.selectList(NameSpace+".ptstafflist");
+	}
+	
 }

@@ -33,12 +33,14 @@
 					var ptr_initdate=$("#pdate").val();
 					var ptr_time=$("#time").val();
 					var ct_code=$("#ct_code").val();
+					var tr_num=$("#st_code").val();
+					alert(tr_num)
 					$("#dlg").dialog("close");
 					$.ajax({
 							url:"/fitness/ptrinsert",
 							dataType:"json",
 							type:"post",
-							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code,							
+							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code+"&tr_num="+tr_num,							
 							success:function function_name(data) {
 								alert(data.ptr_num);
 								var str = "회원등록:" + data.ptr_num +"<br>" +
@@ -114,7 +116,13 @@
 					<c:forEach var="clist"  items="${ctlist}">
 						<option value="${clist.ct_code }">${clist.ct_name}</option>	
 					</c:forEach>	
-					</select><br>			
+					</select><br><br>
+			강사선택 <select name="st_code" id="st_code">
+					<c:forEach var="slist"  items="${stlist}">
+						<option value="${slist.stf_num }">${slist.stf_name}</option>	
+					</c:forEach>	
+					</select><br><br>	
+					
 		</div>
 	</div>
 <div id="result"></div>

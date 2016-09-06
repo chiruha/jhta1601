@@ -41,7 +41,7 @@
     <tbody>     	
        	 <c:forEach var="dto" items="${list }" varStatus="status">
        	 <tr>       	 
-       	 	<td><c:out value="${dto.mem_name }"/></td>
+       	 	<td><c:out value="${dto.stf_name }"/></td>
 			<td><c:out value="${dto.ptr_initdate }"/></td>
 			<td><c:out value="${dto.ptr_time }"/></td>
 			<td><c:out value="${dto.ptr_count }"/></td>

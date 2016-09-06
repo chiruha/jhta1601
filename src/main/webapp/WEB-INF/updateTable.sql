@@ -19,6 +19,21 @@ create sequence prosign_seq;
 create sequence properiod_seq;
 create sequence ptperiod_seq;
 
+<<<<<<< HEAD
+
+drop sequence proprice_seq;
+drop table programprice;
+drop sequence ptsign_seq;
+drop table ptsign;
+drop sequence prosign_seq;
+drop table prosign;
+drop sequence properiod_seq;
+drop table properiod;
+drop sequence ptperiod_seq;
+drop table ptperiod;
+
+=======
+>>>>>>> 8443473854847edc029a8f47a07635546b77b17a
 create table ptprice --pt가격테이블
 (
 	pt_num number(20) primary key, --pt유형번호

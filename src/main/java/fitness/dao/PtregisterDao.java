@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import fitness.dto.PtregisterDto;
 import fitness.dto.StaffDto;
+import fitness.dto.ptrMemDto;
 
 @Repository
 public class PtregisterDao {
@@ -29,7 +30,7 @@ public class PtregisterDao {
 		return sqlSession.selectList(NAMESPACE+".ptrlistAll",map);
 	}
 	
-	public List<PtregisterDto> memlist(HashMap<String, Object> map){
+	public List<ptrMemDto> memlist(HashMap<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+".ptrmemlistAll",map);
 	}
 	

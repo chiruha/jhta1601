@@ -40,6 +40,7 @@
 		<li><a href="<c:url value='/noclist'/>">공지사항목록</a></li>
 		
 		<li><a href="<c:url value='/?test=goboot'/>">bootstrap test</a></li>
+		<li><a href="<c:url value='/?test=test1'/>">bootstrap test1</a></li>
 	</ul>
 
 

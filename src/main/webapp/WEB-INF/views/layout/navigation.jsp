@@ -65,11 +65,13 @@
           <!-- Login Dialog 메뉴 -->
       <c:choose>
 			<c:when test="${empty sessionScope.memnum}">
-	        	  <li><a href="#login" data-toggle="modal" data-target="#LoginModal">Login</a></li>
+	        	  <li><a href="#login" data-toggle="modal" data-target="#LoginModal">
+	        	  <span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 			</c:when>
 			<c:otherwise>
 				<li> <a href="" >[ ${sessionScope.memnum }님 환영합니다 ]</a></li>	
-			 <li><a href="<c:url value='/logout'/>" >Logout</a></li>
+			 <li> <a href="<c:url value='/logout'/>" >
+				 <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 			</c:otherwise>
 		</c:choose>
       
@@ -82,7 +84,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyPage
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-              <li><a href="<c:url value='/MemPtscOkView'/>">Pt 예약확인</a></li>
+              <li><a href="<c:url value='/MemPTscOkView'/>">Pt 예약확인</a></li>
               <c:if test="${not empty sessionScope.mnum}">
              <li><a href="<c:url value='/listOne?mem_num=${sessionScope.mnum}'/>">개인정보</a></li>
           </c:if>
@@ -96,12 +98,14 @@
           <ul class="dropdown-menu">
             <li><a href="<c:url value='/stflist'/>">직원목록</a></li>
            <li><a href="<c:url value='/memselectAll'/>">회원목록</a></li>
-            <li><a href="<c:url value='/PtscOkView'/>">Pt강사승인</a></li>
+            <li><a href="<c:url value='/PTscOkView'/>">Pt강사승인</a></li>
             <li><a href="<c:url value='/ptment'/>">Pt 관리</a></li>
             <li><a href="<c:url value='/stfinsert'/>">직원등록</a></li>
                <li><a href="<c:url value='/trlist'/>">강사목록</a></li>
              <li><a href="<c:url value='/ctinsert'/>">지점등록</a></li>
                 <li><a href="<c:url value='/deptinsert'/>">부서등록</a></li>
+                 <li><a href="<c:url value='/testpage/?test=1'/>">test</a></li>
+                 <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
           </ul>
           
            <!-- sitemap  메뉴 -->
@@ -125,7 +129,7 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body">
-          <form role="form" method="post" action="login">
+          <form role="form" method="post" action="/fitness/login">
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-user"></span> Login</label>
               <input type="text" class="form-control"  name="mem_name"  placeholder="Write your name">

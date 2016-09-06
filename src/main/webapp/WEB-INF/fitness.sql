@@ -109,7 +109,6 @@ create table position			--직급정보
 	dept_code number(20) REFERENCES DEPARTMENT(DEPT_CODE) --부서코드 FK
 );
 INSERT INTO position VALUES('A','대표이사',1);
-INSERT INTO position VALUES('A','본부장',1);
 INSERT INTO position VALUES('B','PT부장',2);
 INSERT INTO position VALUES('C','GX부장',3);
 INSERT INTO position VALUES('D','PT직원',2);

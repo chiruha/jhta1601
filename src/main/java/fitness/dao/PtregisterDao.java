@@ -38,6 +38,10 @@ public class PtregisterDao {
 		return sqlSession.update(NAMESPACE+".ptrResult",dto);
 	}
 	
+	public int ptmaxNum(){
+		return sqlSession.selectOne(NAMESPACE+".ptmaxNum");
+	}
+	
 }
 
 

@@ -1,5 +1,6 @@
 package fitness.controller;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,7 @@ public class LoginController {
 	}
 	*/
 	@RequestMapping(value="/login")
-	public String login(HttpServletRequest req){
+	public String login(HttpServletRequest req ){
 		String mem_name=req.getParameter("mem_name");
 		String mem_phone=req.getParameter("mem_phone");
 		String adminCheck=req.getParameter("adminCheck");
@@ -41,7 +42,9 @@ public class LoginController {
 			}else{
 				HttpSession session=req.getSession();//세션얻어오기
 				System.out.println("session나오나?"+session);
+				session.setAttribute("mnum", (BigDecimal)user.get("MEM_NUM"));
 				session.setAttribute("memnum", mem_name);
+				
 				System.out.println("담아졌나?"+ mem_name);
 				return ".bootmain";//메인가기
 			}
@@ -57,6 +60,7 @@ public class LoginController {
 			}else{
 				HttpSession session=req.getSession();//세션얻어오기
 				System.out.println("Admin session나오나?"+session);
+				session.setAttribute("mnum", user.get("STF_NUM"));
 				session.setAttribute("memnum", mem_name);
 				System.out.println("Admin 담아졌나?"+ mem_phone);
 				return ".bootmain";//메인가기

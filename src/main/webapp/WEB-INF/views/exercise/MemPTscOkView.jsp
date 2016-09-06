@@ -39,15 +39,15 @@
         </tr>
     </thead>
     <tbody>     	
-       	 <tr>
        	 <c:forEach var="dto" items="${list }" varStatus="status">
+       	 <tr>       	 
        	 	<td><c:out value="${dto.mem_name }"/></td>
 			<td><c:out value="${dto.ptr_initdate }"/></td>
 			<td><c:out value="${dto.ptr_time }"/></td>
 			<td><c:out value="${dto.ptr_count }"/></td>
 			<td><c:out value="${dto.ptr_ok }"/></td>
-		  </c:forEach>
        	</tr>			 	
+		  </c:forEach>
     </tbody>
 </table>	
  

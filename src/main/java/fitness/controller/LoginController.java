@@ -59,6 +59,7 @@ public class LoginController {
 				System.out.println("Admin session나오나?"+session);
 				session.setAttribute("memnum", mem_name);
 				System.out.println("Admin 담아졌나?"+ mem_phone);
+				System.out.println("값 뽑아보기!!"+user.get("STF_NUM"));
 				return ".bootmain";//메인가기
 			}
 		}

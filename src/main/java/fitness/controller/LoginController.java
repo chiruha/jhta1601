@@ -40,9 +40,9 @@ public class LoginController {
 				return ".bootmain";//로그인페이지로 이동
 			}else{
 				HttpSession session=req.getSession();//세션얻어오기
-				//System.out.println("session나오나?"+session);
+				System.out.println("session나오나?"+session);
 				session.setAttribute("memnum", mem_name);
-				//System.out.println("담아졌나?"+ mem_num);
+				System.out.println("담아졌나?"+ mem_name);
 				return ".bootmain";//메인가기
 			}
 		}else{

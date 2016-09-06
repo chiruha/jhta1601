@@ -6,7 +6,7 @@
   body #errMsg{
 	margin: auto;
 	text-align: center;
-	font-size: 11px;
+	font-size: 13px;
 	color: #0080ff;
 }
   h3, h4 {
@@ -30,7 +30,7 @@
   	background-color: #ffffee;
   }
   #contentDiv table{
-  border: 3px solid #a2a2ff;
+  border: 3px solid #004080;
   border-radius: 2px;
   	text-align: center;
   	margin: auto;

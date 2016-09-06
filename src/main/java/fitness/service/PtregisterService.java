@@ -23,6 +23,9 @@ public class PtregisterService {
 	public List<PtregisterDto>  ptOkService(HashMap<String, Object> map){
 		return ptregisterDao.list(map);
 	}
+	public List<PtregisterDto>  ptmemOkService(HashMap<String, Object> map){
+		return ptregisterDao.memlist(map);
+	}
 	
 	public int ptrOkupdate(PtregisterDto dto){
 		return ptregisterDao.ptrOkupdate(dto);

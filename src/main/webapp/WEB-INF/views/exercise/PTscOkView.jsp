@@ -115,6 +115,7 @@ $(document).ready(function() {
 <br>
 <br>
 
+
 <h1>PT승인취소</h1>
 <table border="1" style="width:600px">
     <caption><a href="<c:url value='/'/>">게시판</a></caption>
@@ -137,7 +138,7 @@ $(document).ready(function() {
     <tbody>        
         <c:forEach var="dto" items="${list }" varStatus="status">
         <c:choose>         	 
-			<c:when test="${dto.ptr_ok=='승인' }">         	 
+			<c:when test="${dto.ptr_ok=='승인취소' }">         	 
          	 <tr>
          	 	<td><c:out value="${dto.mem_name }"/></td>
 				<td><c:out value="${dto.ptr_initdate }"/></td>

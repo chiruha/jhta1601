@@ -31,8 +31,7 @@ import fitness.service.TrainerService;
 @Controller
 public class PtregisterController {
 	@Autowired private PtregisterService service;
-	@Autowired private CenterService cts;
-	@Autowired private RegistrationService reservice;
+	@Autowired private CenterService cts;	
 	@Autowired private TrainerService trservice;
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.GET)
@@ -48,11 +47,19 @@ public class PtregisterController {
 		return ".exercise.PtMent";
 	}
 	
+	@RequestMapping(value="/MemPTscOkView",method=RequestMethod.GET)
+	public String memptscOkviewmove(){
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		return ".exercise.MemPTscOkView";
+	}
+	
 	@RequestMapping(value="/PTscOkView",method=RequestMethod.GET)
 	public String ptscOkviewmove(HttpSession session){
 		//int n=trservice.detailService(3).getTr_num();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("tr_num", 1);
+		map.put("tr_num", 6);
 		List<PtregisterDto> list = service.ptOkService(map);
 		System.out.println(map);
 		
@@ -81,10 +88,10 @@ public class PtregisterController {
 	public Object insert(PtregisterDto dto){		
 		System.out.println("ptrinsert µµÂø");
 		System.out.println("trservice"+trservice);
-		int n=trservice.detailService(1).getTr_num();
+		int n=trservice.detailService(7).getTr_num();
 		System.out.println("n"+n);		
 		dto.setTr_num(n);
-		dto.setRg_num(1);		
+		dto.setRg_num(2);		
 		System.out.println("dto"+dto);
 		service.insert(dto);
 		System.out.println("dto°á°ú"+dto);	

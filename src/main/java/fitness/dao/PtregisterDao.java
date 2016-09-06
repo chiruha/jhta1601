@@ -29,6 +29,10 @@ public class PtregisterDao {
 		return sqlSession.selectList(NAMESPACE+".ptrlistAll",map);
 	}
 	
+	public List<PtregisterDto> memlist(HashMap<String, Object> map){
+		return sqlSession.selectList(NAMESPACE+".ptrmemlistAll",map);
+	}
+	
 	public int ptrOkupdate(PtregisterDto dto){
 		return sqlSession.update(NAMESPACE+".ptrResult",dto);
 	}

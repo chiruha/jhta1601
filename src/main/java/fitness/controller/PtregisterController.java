@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fitness.dto.CenterDto;
-import fitness.dto.PtperiodDto;
+
 import fitness.dto.PtregisterDto;
+import fitness.dto.ptrMemDto;
 import fitness.service.CenterService;
 import fitness.service.PtregisterService;
-import fitness.service.RegistrationService;
+
 
 import fitness.service.TrainerService;
 
@@ -44,13 +43,20 @@ public class PtregisterController {
 	@RequestMapping(value="/ptment",method=RequestMethod.GET)
 	public String ptmentmove(){
 		
+		
 		return ".exercise.PtMent";
 	}
 	
 	@RequestMapping(value="/MemPTscOkView",method=RequestMethod.GET)
-	public String memptscOkviewmove(){
-		
+	public String memptscOkviewmove(HttpSession session){
+		System.out.println("MemPTscOkViewµµÂø");
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_num", 1);
+		List<ptrMemDto> list = service.ptmemOkService(map);
+		System.out.println("map"+map);
+		
+		session.setAttribute("list", list);
+		System.out.println("list"+list);		
 		
 		return ".exercise.MemPTscOkView";
 	}

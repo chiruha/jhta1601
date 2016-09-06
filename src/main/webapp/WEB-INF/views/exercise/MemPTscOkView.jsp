@@ -38,8 +38,16 @@
 			<th>승인</th>	       
         </tr>
     </thead>
-    <tbody>  	       	
-         	
+    <tbody>     	
+       	 <tr>
+       	 <c:forEach var="dto" items="${list }" varStatus="status">
+       	 	<td><c:out value="${dto.mem_name }"/></td>
+			<td><c:out value="${dto.ptr_initdate }"/></td>
+			<td><c:out value="${dto.ptr_time }"/></td>
+			<td><c:out value="${dto.ptr_count }"/></td>
+			<td><c:out value="${dto.ptr_ok }"/></td>
+		  </c:forEach>
+       	</tr>			 	
     </tbody>
 </table>	
  

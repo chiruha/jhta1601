@@ -159,11 +159,7 @@ $(document).ready(function(){
 // Login errMsg 유무 판단
 	//alert("errMsg: ${requestScope.errMsg }");
 	//alert("session: ${sessionScope.memnum }");
-<<<<<<< HEAD
-	
-=======
-	   alert("${sessionScope.mnum}");
->>>>>>> 23d22d07cf0e37c3af9214926d64ccf30c0bc897
+	 //  alert("${sessionScope.mnum}");
 	var msg="${requestScope.errMsg}";
 	if(msg!=""&&msg!=null){
 		$("#LoginModal").modal();

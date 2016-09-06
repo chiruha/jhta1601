@@ -282,41 +282,9 @@
 	<select id="regiGetInfo" parameterType="hashmap" resultType="fitness.dto.RegistrationDto">
 		select * from registration where mem_num=#{mem_num} and rg_num=#{rg_num}
 	</select>
-<<<<<<< HEAD
+
 
 	<!-- 4. delete 수강정보 -->	
-=======
-	<!-- 3.update 수강정보 -registration(기본정보등록) table 
-	<update id="regiUpdate" parameterType="fitness.dto.RegistrationDto">
-		update registration
-		set rg_type=#{rg_type}, rg_price=#{rg_price}, locker_price=#{locker_price}, wear_price=#{wear_price}
-		where rg_num=#{rg_num} and mem_num=#{mem_num}
-	</update>
-	-->
-	<!-- 3.update 수강정보 :prosign(단과과목등록) table 
-	<update id="prosignUpdate" parameterType="fitness.dto.ProsignDto">
-		update prosign
-		set pro_name=#{pro_name}, pro_code=#{pro_code}
-		where rg_num=#{rg_num} and mem_num=#{mem_num}
-	</update>
-	-->
-	<!-- 3.update 수강정보 :ptsign(pt등록) table 
-	<update id="ptsignUpdate" parameterType="fitness.dto.PtsignDto">
-		update ptsign
-		set pt_code=#{pt_code}, pt_name=#{pt_name}, ptr_count=#{ptr_count}
-		where rg_num=#{rg_num} and mem_num=#{mem_num}
-	</update>
-	-->
-
-	<!-- 3.update 수강정보 :ptperiod(pt-운동기간등록) table 
-	<update id="ptperiodUpdate" parameterType="fitness.dto.PtperiodDto">
-		update ptperiod
-		set pt_signmonth=#{pt_signmonth}
-		where rg_num=#{rg_num} and mem_num=#{mem_num}
-	</update>
-	-->
-
->>>>>>> 305c4e19212a7fe76c5cd9ba4a23d348802c8477
 	<!-- 4.delete 수강정보 -registration(기본정보등록) table -->
 	<delete id="regiDel" parameterType="int">
 		delete from registration where rg_num=#{rg_num}
@@ -444,5 +412,74 @@
 			UPDATE notice set nt_hit = NVL(nt_hit, 0) + 1 where nt_num = #{nt_num}	
 		]]>                    
 	</update>
-
+<!--////////// 로그인 - 작성자:이성진 //////////-->
+	<!-- 회원인경우 -->
+	<select id="loginMem" parameterType="hashmap" resultType="hashmap">
+		select * from member where mem_name=#{mem_name} and mem_phone=#{mem_phone}
+	</select>
+	<!-- 직원인경우 -->
+	<select id="loginAdmin" parameterType="hashmap" resultType="hashmap">
+		select * from staff where stf_name=#{stf_name} and stf_phone=#{stf_phone}
+	</select>
+	
+<!--////////// QnA board(글등록) - 작성자:이성진 //////////-->
+	<!-- insert -->
+	<insert id="qnaInsert" parameterType="fitness.dto.QnaboardDto">
+		insert into qnaboard values(#{qna_num},#{mem_num},#{qna_title},#{qna_content},sysdate,0,#{qna_ref},#{qna_lev},#{qna_step})
+	</insert>
+	<!-- 가장 큰 글번호 얻어오기 -->
+	<select id="qnaMaxNum" resultType="int">
+		select NVL(max(qna_num),0) from qnaboard
+	</select>
+	<!-- 답글인경우 -->
+	<update id="qnaRe" parameterType="fitness.dto.QnaboardDto">
+		update qnaboard set qna_step=#{qna_step}+1 where qna_ref=#{qna_ref} and qna_step>#{qna_step}
+	</update>
+	
+	<!-- 조회수증가 -->
+	<update id="qnaAddHit" parameterType="int">
+		update qnaboard
+		set qna_hit=qna_hit+1
+		where qna_num=#{value}
+	</update>
+	<!-- 전체글의 갯수 -->
+	<select id="qnaCount" resultType="int">
+		select count(qna_num) cnt from qnaboard
+	</select>
+	<!-- 전체목록보기(selectAll) -->
+	<select id="qnaListAll" parameterType="hashmap" resultType="fitness.dto.QnaboardDto">
+		select * from(
+			select aa.*,rownum rnum from(
+				select * from qnaboard
+				order by qna_ref desc, qna_step asc
+			)aa
+		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+	<!-- 글읽기(selectOne) -->
+	<select id="qnaListOne" parameterType="int" resultType="fitness.dto.QnaboardDto">
+		select * from qnaboard where qna_num=#{value}
+	</select>
+	<!-- 수정하기 -->
+	<update id="qnaUpdate" parameterType="fitness.dto.QnaboardDto">
+		update qnaboard
+		set qna_title=#{qna_title}, qna_content=#{qna_content}
+		where qna_num=#{qna_num}
+	</update>
+	<!-- 삭제하기 -->
+	<delete id="qnaDelete" parameterType="int">
+		delete from qnaboard where qna_num=${value}
+	</delete>
+	<!-- qna글 검색하기 -->
+	<select id="qnaSearch" parameterType="hashmap" resultType="fitness.dto.QnaboardDto">
+		select * from (
+			select bb.*, rownum rnum from(
+				select * from qnaboard 
+					<if test="field!=null">
+					where ${field} like '%' || #{keyword} || '%'
+					</if>
+					order by qna_num desc
+			)bb
+		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		
+	</select>
 </mapper>

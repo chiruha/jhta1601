@@ -6,7 +6,6 @@ drop sequence properiod_seq;
 drop sequence ptperiod_seq;
 
 drop table ptprice;
-<<<<<<< HEAD
 drop table programprice;
 drop table ptsign;
 drop table prosign;
@@ -20,7 +19,7 @@ create sequence prosign_seq;
 create sequence properiod_seq;
 create sequence ptperiod_seq;
 
-=======
+
 drop sequence proprice_seq;
 drop table programprice;
 drop sequence ptsign_seq;
@@ -31,7 +30,7 @@ drop sequence properiod_seq;
 drop table properiod;
 drop sequence ptperiod_seq;
 drop table ptperiod;
->>>>>>> 2128da51618a5d959c57f3faca676559629edebe
+
 create table ptprice --pt가격테이블
 (
 	pt_num number(20) primary key, --pt유형번호
@@ -49,10 +48,6 @@ insert into ptprice values(ptprice_seq.nextval, 'pt04', '3개월 주1회', 12, 3, 60
 insert into ptprice values(ptprice_seq.nextval, 'pt05', '3개월 주2회', 24, 3, 1200000);
 insert into ptprice values(ptprice_seq.nextval, 'pt06', '3개월 주3회', 36, 3, 1800000);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 2128da51618a5d959c57f3faca676559629edebe
 create table programprice --프로그램가격테이블
 (
 	pro_num number(20) primary key,       --등록번호

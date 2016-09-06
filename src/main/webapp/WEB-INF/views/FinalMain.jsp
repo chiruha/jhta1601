@@ -16,6 +16,7 @@
 		<li><a href="<c:url value='/PTscOkView'/>">PT강사승인페이지</a></li>
 		<li><a href="<c:url value='/MemPTscOkView'/>">회원승인페이지</a></li>
 		
+		<li><a href="<c:url value='/qnaselectAll'/>">QnA 게시판 (이성진)</a></li>
 		<li><a href="<c:url value='/meminsert'/>">회원등록(이성진)</a></li>
 		<li><a href="<c:url value='/memselectAll'/>">회원전체목록보기(이성진)</a></li>
 		 <li><a href="<c:url value='/regiInsert'/>">수강등록(insert)-프로그램등록(이성진)</a></li>

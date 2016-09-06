@@ -14,7 +14,14 @@ public class QnaboardDto {
 	private int qna_step;
 	
 	public QnaboardDto() {}
-
+	
+	public QnaboardDto(int qna_num, int qna_ref, int qna_lev, int qna_step){
+		this.qna_num = qna_num;
+		this.qna_ref = qna_ref;
+		this.qna_lev = qna_lev;
+		this.qna_step = qna_step;
+	}
+	
 	public QnaboardDto(int qna_num, int mem_num, String qna_title, String qna_content, Timestamp qna_date, int qna_hit,
 			int qna_ref, int qna_lev, int qna_step) {
 		super();

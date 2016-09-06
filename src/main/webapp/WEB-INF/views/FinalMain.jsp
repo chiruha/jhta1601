@@ -14,6 +14,7 @@
 		<li><a href="<c:url value='/gxinsert'/>">GX 예약</a></li>
 		<li><a href="<c:url value='/ptment'/>">PT 관리</a></li>
 		<li><a href="<c:url value='/PTscOkView'/>">PT강사승인페이지</a></li>
+		<li><a href="<c:url value='/MemPTscOkView'/>">회원승인페이지</a></li>
 		
 		<li><a href="<c:url value='/qnaselectAll'/>">QnA 게시판 (이성진)</a></li>
 		<li><a href="<c:url value='/meminsert'/>">회원등록(이성진)</a></li>

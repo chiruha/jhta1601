@@ -26,8 +26,20 @@
 			where pt.rg_num=rg.rg_num and pt.tr_num=#{tr_num}
 		)aa,member m
 		where aa.mem_num=m.mem_num
-
 	</select>
+	
+	<select id="ptrmemlistAll" parameterType="hashmap" resultType="fitness.dto.ptrMemDto">
+		select ptr_initdate, ptr_time, ptr_count, ptr_ok, mem_name, stf_name from 
+			(select aa.*,pt.ptr_initdate, pt.ptr_time, pt.ptr_count, pt.ptr_ok,  pt.tr_num  from pt_register pt,
+			    (select mem_name, rg_num from member m, registration r where m.mem_num=r.mem_num and m.mem_num=#{mem_num})aa
+			    where pt.rg_num=aa.rg_num)bb, 
+			(select tr_num, stf_name from trainer tr, staff st where tr.stf_num=st.stf_num)tt
+		where tt.tr_num=bb.tr_num
+	</select>
+	
+	<update id="ptrResult" parameterType="fitness.dto.PtregisterDto">
+		update pt_register set ptr_ok=#{ptr_ok} where ptr_num=#{ptr_num}
+	</update>
 
 <!--////////// mem_att 관련 - 작성자 : 유예진 //////////-->
 	<insert id="mattinsert" parameterType="fitness.dto.Mem_attDto">
@@ -191,7 +203,8 @@
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
 	<!-- 1.(table명: member)회원번호검색 -->
-
+	
+	
 	<select id="searchMemNum" parameterType="hashmap" resultType="fitness.dto.MemberDto">
 		select * from member
 		<if test="keyword!=null">
@@ -283,8 +296,41 @@
 		select * from registration where mem_num=#{mem_num} and rg_num=#{rg_num}
 	</select>
 
+<<<<<<< HEAD
 
 	<!-- 4. delete 수강정보 -->	
+=======
+	<!-- 3.update 수강정보 -registration(기본정보등록) table 
+	<update id="regiUpdate" parameterType="fitness.dto.RegistrationDto">
+		update registration
+		set rg_type=#{rg_type}, rg_price=#{rg_price}, locker_price=#{locker_price}, wear_price=#{wear_price}
+		where rg_num=#{rg_num} and mem_num=#{mem_num}
+	</update>
+	-->
+	<!-- 3.update 수강정보 :prosign(단과과목등록) table 
+	<update id="prosignUpdate" parameterType="fitness.dto.ProsignDto">
+		update prosign
+		set pro_name=#{pro_name}, pro_code=#{pro_code}
+		where rg_num=#{rg_num} and mem_num=#{mem_num}
+	</update>
+	-->
+	<!-- 3.update 수강정보 :ptsign(pt등록) table 
+	<update id="ptsignUpdate" parameterType="fitness.dto.PtsignDto">
+		update ptsign
+		set pt_code=#{pt_code}, pt_name=#{pt_name}, ptr_count=#{ptr_count}
+		where rg_num=#{rg_num} and mem_num=#{mem_num}
+	</update>
+	-->
+
+	<!-- 3.update 수강정보 :ptperiod(pt-운동기간등록) table 
+	<update id="ptperiodUpdate" parameterType="fitness.dto.PtperiodDto">
+		update ptperiod
+		set pt_signmonth=#{pt_signmonth}
+		where rg_num=#{rg_num} and mem_num=#{mem_num}
+	</update>
+	-->
+
+>>>>>>> 8443473854847edc029a8f47a07635546b77b17a
 	<!-- 4.delete 수강정보 -registration(기본정보등록) table -->
 	<delete id="regiDel" parameterType="int">
 		delete from registration where rg_num=#{rg_num}
@@ -350,6 +396,16 @@
 			where ${memSearch} like '%' || #{keyword} || '%'
 		</if>
 	</select>
+	
+  <!--////////// 로그인 - 작성자:이성진 //////////-->
+   <!-- 회원인경우 -->
+   <select id="loginMem" parameterType="hashmap" resultType="hashmap">
+      select * from member where mem_name=#{mem_name} and mem_phone=#{mem_phone}
+   </select>
+   <!-- 직원인경우 -->
+   <select id="loginAdmin" parameterType="hashmap" resultType="hashmap">
+      select * from staff where stf_name=#{stf_name} and stf_phone=#{stf_phone}
+   </select>
 	
 	<!--////////// notice 공지사항  - 작성자 : 김재원 //////////-->
 	

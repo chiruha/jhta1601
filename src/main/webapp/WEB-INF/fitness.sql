@@ -1,5 +1,15 @@
+--- 삭제 명령어 만들기 -- TOAD 에서 F9 로 실행 후 명령어 복사해서 F5 로 실행 
+SELECT  'DROP TABLE ' || object_name || ' CASCADE CONSTRAINTS;'
+  FROM    user_objects
+WHERE   object_type = 'TABLE';
+
+SELECT  'DROP SEQUENCE ' || object_name ||';'
+  FROM    user_objects
+WHERE   object_type = 'SEQUENCE';
+
 --테이블초기화----------------------------
 drop table pt_register;
+drop table gx_register;
 drop table survey;
 drop table event;
 drop table gx_schedule;
@@ -20,11 +30,10 @@ drop table freeboard;
 drop table staff;
 drop table position; 
 drop table department;
+drop table period;
+drop table registration;
+drop table member;
 drop table center; 
-drop table gx_register
-drop table period
-drop table registration
-drop table member
 
 --제약조건은 대문자로 표시해둠 최종수정함!!
 

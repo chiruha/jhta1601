@@ -3,14 +3,24 @@
       font: 400 15px/1.8 Lato, sans-serif;
       color: #777;
   }
+  body #errMsg{
+	margin: auto;
+	text-align: center;
+	font-size: 13px;
+	color: #0080ff;
+}
   h3, h4 {
       margin: 10px 0 30px 0;
       letter-spacing: 10px;
       font-size: 20px;
       color: #111;
   }
+  
+  
   #contentDiv{ 
-    padding-top: 50px;
+  	position: inherit;
+  	background-color: white;
+    padding-top: 100px;
  	margin: auto;
   }
   
@@ -20,7 +30,7 @@
   	background-color: #ffffee;
   }
   #contentDiv table{
-  border: 3px solid #a2a2ff;
+  border: 3px solid #004080;
   border-radius: 2px;
   	text-align: center;
   	margin: auto;
@@ -30,7 +40,7 @@
   }
   
   
-  
+/* boot strap */
   
   .container {
       padding: 80px 120px;
@@ -105,15 +115,11 @@
   .modal-header, .modal-body {
       padding: 40px 50px;
   }
+  
   .nav-tabs li a {
       color: #777;
   }
-  #googleMap {
-      width: 100%;
-      height: 400px;
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-  }
+
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
@@ -144,7 +150,7 @@
       color: #000 !important;
   }
   .dropdown-menu li a:hover {
-      background-color: red !important;
+      background-color: #004080!important;
   }
   footer {
       background-color: #2d2d30;
@@ -164,3 +170,4 @@
   textarea {
       resize: none;
   }
+

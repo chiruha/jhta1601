@@ -14,12 +14,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-      
       <!-- Home 메뉴 -->
+      <%--
         <li><a href="<c:url value='/?test=goboot'/>">HOME</a></li>
+       --%>
         
       <!-- Introduce  dropdown 메뉴 -->
-        <li>   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Introduce
+        <li>   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Intro
         	 <span class="caret"></span></a>
          	 <ul class="dropdown-menu">
           		  <li> <a href="#">Center</a></li>
@@ -42,7 +43,7 @@
 
         
           <!-- Information  메뉴 -->
-        <li><a href="#tour">Information</a></li>
+        <li><a href="#tour">Infor</a></li>
         
         <!-- 수강  dropdown 메뉴 -->
         <li class="dropdown">
@@ -58,21 +59,27 @@
         <li><a href="#contact">미정</a></li>
         
           <!-- Login Dialog 메뉴 -->
-          <li><a href="#login" data-toggle="modal" data-target="#LoginModal">Login</a></li>
+      <c:choose>
+			<c:when test="${empty sessionScope.memnum}">
+	        	  <li><a href="#login" data-toggle="modal" data-target="#LoginModal">Login</a></li>
+			</c:when>
+			<c:otherwise>
+				<li> <a href="" >[ ${sessionScope.memnum }님 환영합니다 ]</a></li>	
+			 <li><a href="<c:url value='/logout'/>" >Logout</a></li>
+			</c:otherwise>
+		</c:choose>
+      
+      
+      
+      
       
         <!-- Member Mypage dropdown 메뉴 -->
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyPage
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Merchandise</a></li>
-            <li><a href="#">Extras</a></li>
-            <li><a href="#">Media</a></li>
-          </ul>
+
+
           
           <!-- Staff Mypage dropdown 메뉴 -->
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyPage
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">AdPage
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<c:url value='/stflist'/>">StaffList</a></li>
@@ -83,18 +90,12 @@
            <!-- sitemap  메뉴 -->
         <li><a href="">SiteMap</a></li>
         
-          
-          <!-- 검색? -->
-        </li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
-   
    
    
     </div>
   </div>
 </nav>
-
 
 <!-- Modal -->
   <div class="modal fade" id="LoginModal" role="dialog">
@@ -134,7 +135,29 @@
   </div>
 
 
+
 <script type="text/javascript">
+$(document).ready(function(){
+	
+// Login errMsg 유무 판단
+	//alert("errMsg: ${requestScope.errMsg }");
+	alert("session: ${sessionScope.memnum }");
+	
+	var msg="${requestScope.errMsg}";
+	if(msg!=""&&msg!=null){
+		$("#LoginModal").modal();
+	//<a href="#login" data-toggle="modal" data-target="#LoginModal">Login</a>
+	
+  /* 	<!-- Links -->
+		<a data-toggle="modal" href="#myModal">Open Modal</a>
+
+		<!-- Other elements -->
+		<p data-toggle="modal" data-target="#myModal">Open Modal</p>
+  */
+	}
+});
+
+
 	var check;
 	function adminMode(){
 		check=$("input[name$='adminCheck']").is(":checked");

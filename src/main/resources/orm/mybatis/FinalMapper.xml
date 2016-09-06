@@ -489,4 +489,84 @@
 			</if>
 				order by qna_num desc
 	</select>
+<!--////////// Event board(이벤트 등록하기)(table: event) - 작성자:이성진 //////////-->
+	<!-- insert -->
+	<insert id="eventInsert" parameterType="fitness.dto.EventDto">
+		insert into event values(event_seq.nextval,#{ev_title},#{ev_picture},#{ev_content},#{stf_num},sysdate)
+	</insert>
+	<!-- selectAll(selectNew 최신글 페이지)(전체보기) -->
+	<select id="eventSelectAll" resultType="fitness.dto.EventDto">
+		select * from(
+			select aa.*,rownum rnum from(
+				select * from event
+				order by ev_num desc
+			)aa
+		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+	<!-- 페이징처리 (selectNew 최신글 페이지)-->
+	<select id="getEventCount" resultType="int">
+		select count(ev_num) cnt from event
+	</select>
+	<!-- selectAll(선택한 글 : selectListOne 페이지)(전체보기) -->
+	<select id="eventSelectAll2" resultType="fitness.dto.EventDto">
+		select * from(
+			select aa.*,rownum rnum from(
+				select * from event
+				order by ev_num desc
+			)aa
+		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+	<!-- 페이징처리(선택한 글 : selectListOne 페이지) -->
+	<select id="getEventCount2" resultType="int">
+		select count(ev_num) cnt from event
+	</select>
+	<!-- selectNew(최신글 상세보기) -->
+	<select id="eventSelectNew" resultType="fitness.dto.EventDto">
+		select * from event where ev_num=(
+		select NVL(max(ev_num),0) ev_num from event
+		)
+	</select>
+	<!-- selectListOne(선택한 글 상세보기) -->
+	<select id="eventListOne" parameterType="int" resultType="fitness.dto.EventDto">
+		select * from event where ev_num=#{value}
+	</select>
+	<!-- 삭제하기 -->
+	<delete id="eventDel" parameterType="int">
+		delete from event where ev_num=#{value}
+	</delete>
+	<!-- 수정하기 -->
+	<update id="eventUpdate" parameterType="fitness.dto.EventDto">
+		update event 
+		set ev_title=#{ev_title}, ev_content=#{ev_content}, ev_picture=#{ev_picture} 
+		where ev_num=#{ev_num}
+	</update>
+<!--////////// Event board(댓글달기)(table: EventComments) - 작성자:이성진 //////////-->
+	
+	
+	
+<!--////////// Event board(댓글 출력하기) - 작성자:이성진 //////////-->
+	<!-- select한 댓글의 내용이 CommentsListDto의 commlist에 자동으로 들어가는 것이 아니기 때문에  들어가게 해준다.
+	resultMap : 컬럼하고 해당 DTO하고 이름이 다를경우,,
+		resultMap을 이용해서
+		private List<EventCommentsDto> commlist;에 넣어준다.
+	-->
+	<resultMap type="fitness.dto.CommentsListDto" id="commlist">
+		<result property="ev_num" column="ev_num"/>
+		<result property="ev_title" column="ev_title"/>
+		<result property="ev_picture" column="ev_picture"/>
+		<result property="ev_content" column="ev_content"/>
+		<result property="stf_num" column="stf_num"/>
+		
+		<collection property="comments" ofType="fitness.dto.EventCommentsDto">
+			<result property="comm_num" column="comm_num"/>
+			<result property="ev_num" column="ev_num"/>
+			<result property="mem_num" column="mem_num"/>
+			<result property="comments" column="comments"/>
+			
+		</collection>
+	</resultMap>
+	<select id="commList" resultMap="commlist">
+		select * from event e, eventcomments c
+		where e.ev_num=c.ev_num
+	</select>
 </mapper>

@@ -298,6 +298,7 @@ create table event				--이벤트
 	re_writer varchar2(50),		--댓글작성자
 	re_content varchar2(1000),		--댓글내용
 	re_ref number(10),			--그룹번호
+	re_lev number(10),
 	re_step number(10)			--댓글출력순서
 );
 CREATE SEQUENCE EVENT_SEQ; 

@@ -90,18 +90,12 @@
            <!-- sitemap  메뉴 -->
         <li><a href="">SiteMap</a></li>
         
-          
-          <!-- 검색? -->
-        </li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
-   
    
    
     </div>
   </div>
 </nav>
-
 
 <!-- Modal -->
   <div class="modal fade" id="LoginModal" role="dialog">
@@ -123,15 +117,9 @@
               <label for="usrname"><span class="glyphicon glyphicon-phone"></span> Phone</label>
               <input type="text" class="form-control" id="usrname" name="mem_phone"  placeholder="Write your phone number">
             </div>
-            
-            
-            
-
-              
-              
-              
-              
-              
+              <button type="submit" class="btn btn-block">Login
+                <span class="glyphicon glyphicon-ok"></span>
+              </button>
               <input type="checkbox" value="관리자로그인" name="adminCheck" onclick="adminMode()">Admin
                 <div id="errMsg">${requestScope.errMsg }</div>
           </form>
@@ -145,6 +133,7 @@
       </div>
     </div>
   </div>
+
 
 
 <script type="text/javascript">

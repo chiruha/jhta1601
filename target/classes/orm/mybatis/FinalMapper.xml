@@ -21,6 +21,10 @@
 		select max(nvl(ptr_num,0)) ptr_num from pt_register
 	</select>
 	
+	<select id="ptstafflist" resultType="fitness.dto.StaffDto">
+		select * from staff
+	</select>
+	
 	<insert id="ptrinsert" parameterType="fitness.dto.PtregisterDto">
 		insert into pt_register values(ptr_seq.nextval,#{tr_num},#{rg_num},#{ptr_initdate},#{ptr_time},#{ptr_count},#{ct_code},'승인대기')
 	</insert>

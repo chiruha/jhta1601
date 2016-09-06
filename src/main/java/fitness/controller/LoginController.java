@@ -42,7 +42,7 @@ public class LoginController {
 			}else{
 				HttpSession session=req.getSession();//세션얻어오기
 				System.out.println("session나오나?"+session);
-				session.setAttribute("mnum", (BigDecimal)user.get("MEM_NUM"));
+				session.setAttribute("mnum", ((BigDecimal)user.get("MEM_NUM")).intValue());
 				session.setAttribute("memnum", mem_name);
 				
 				System.out.println("담아졌나?"+ mem_name);

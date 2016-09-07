@@ -156,11 +156,6 @@ public class StaffController {
 		}
 		dto.setStf_picture(stf_picture);
 		System.out.println(dto.toString());
-
-		
-		
-		
-		System.out.println(dto.toString());
 		service.updateService(dto);
 		session.setAttribute("result", "직원 수정 성공!");
 	}catch(Exception e){
@@ -169,4 +164,18 @@ public class StaffController {
 	}
 		return ".staff.ResultView";
 	}
+	
+	@RequestMapping(value="/testpage",method= RequestMethod.GET)
+	public String test(String test){  // insert 페이지로 이동
+		if(test.equals("1")){
+			return ".staff.test2";
+		}else if(test.equals("2")){
+			return ".staff.testicon";
+		}
+		return ".staff.test2";
+	}
+	
+	
+	
+	
 }

@@ -14,6 +14,8 @@ public class MainController {
 	public String home(@RequestParam(value="test", defaultValue="none") String test) {
 		if(test.equals("goboot")){
 			return ".bootmain";
+		}else if(test.equals("test1")){
+			return ".staff.test";
 		}
 		return ".main";
 	}

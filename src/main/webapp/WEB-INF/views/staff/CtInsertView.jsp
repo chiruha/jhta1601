@@ -1,14 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="CtInsert">
-<h1>지점등록 페이지</h1>
-<form action="ctinsert" method="post" >
- 지점이름 <input type="text" name="ct_name"><br>
- 지점전화 <input type="text" name="ct_tel"><br>
- 지점주소 <input type="text" name="ct_addr"><br>
- 지점소개 <input type="text" name="ct_intro"><br>
 
-<input type="submit" value="등록">
-<input type="reset" value="취소">
-</form>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">Center Insert</h3>
+<form action="ctinsert" method="post" >
+<div class="row">
+<div class="col-md-3"></div>
+	<div class="col-md-6">
+
+	<input type="text" name="ct_name"size="10" class="form-control"  placeholder="Center Name" ><br>
+	<input type="text" name="ct_tel"size="10" class="form-control"  placeholder="Center Telephone" ><br>
+	<input type="text" name="ct_addr"size="10" class="form-control"  placeholder="Center Address" ><br>
+	<input type="text" name="ct_intro"size="10" class="form-control"  placeholder="Center Introduction" ><br>
 </div>
+</div>
+<div class="row">
+<div class="col-md-3"></div>
+	<div class="col-md-3">
+	<button class="btn pull-right" id="btn" type="submit">
+	<span class="glyphicon glyphicon-ok"></span> Ok </button>
+	</div>
+		<div class="col-md-3">
+	<button class="btn pull-left" id="btn" type="reset">
+	<span class="glyphicon glyphicon-remove"></span>  Cancle </button>
+	
+	
+	</div>
+	</div>
+</form>
+
+
+</div>
+

@@ -103,7 +103,7 @@
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-	<h3 class="text-center"><a href="<c:url value='/stflist'/>">Staff List</a></h3>
+	<h3 class="text-center">Staff List</h3>
 	<h5 class="text-right"><a href="<c:url value='/stflist'/>">전체보기</a></h5>
 <div class="row">
 	<div class="col-md-12">

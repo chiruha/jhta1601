@@ -63,7 +63,7 @@ public class PtregisterController {
 		
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("mem_num", 1);
+		map.put("mem_num", mnum);
 		List<ptrMemDto> list = service.ptmemOkService(map);
 		System.out.println("map"+map);
 		
@@ -74,11 +74,18 @@ public class PtregisterController {
 	}
 	
 	@RequestMapping(value="/PTscOkView",method=RequestMethod.GET)
-	public String ptscOkviewmove(HttpSession session){		
+	public String ptscOkviewmove(HttpSession session){
+		System.out.println("ptscOkviewmoveµµÂø");
+		int mnum = (Integer) session.getAttribute("mnum");
+		System.out.println("mnum:"+mnum);	
 		
+		int ttr_num=trservice.detail2Service(mnum).getTr_num();
+		System.out.println("ttr_num:"+ttr_num);
+		int tr_num = service.ptr_numinfo(ttr_num).getTr_num();
+		System.out.println("tr_num:"+tr_num);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("tr_num", 6);
+		map.put("tr_num", tr_num);
 		List<PtregisterDto> list = service.ptOkService(map);
 		System.out.println(map);
 		

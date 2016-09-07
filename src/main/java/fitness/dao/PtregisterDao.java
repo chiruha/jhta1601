@@ -42,6 +42,13 @@ public class PtregisterDao {
 		return sqlSession.selectOne(NAMESPACE+".ptmaxNum");
 	}
 	
+	public PtregisterDto ptrgDetail(int rg_num){
+		return sqlSession.selectOne(NAMESPACE+".ptrgDetail",rg_num);
+	}
+	public PtregisterDto ptr_numinfo(int tr_num){
+		return sqlSession.selectOne(NAMESPACE+".ptr_numinfo",tr_num);
+	}
+	
 }
 
 

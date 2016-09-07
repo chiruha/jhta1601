@@ -35,5 +35,11 @@ public class PtregisterService {
 	public int ptmaxNum(){
 		return ptregisterDao.ptmaxNum();
 	}
+	public PtregisterDto ptrgDetail(int rg_num){
+		return ptregisterDao.ptrgDetail(rg_num);
+	}
+	public PtregisterDto ptr_numinfo(int tr_num){		
+		return ptregisterDao.ptr_numinfo(tr_num);
+	}
 	
 }

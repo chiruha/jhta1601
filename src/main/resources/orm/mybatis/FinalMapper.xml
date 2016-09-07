@@ -17,6 +17,10 @@
 		select * from registration where mem_num=#{value}
 	</select>
 	
+	<select id="ptrgDetail" parameterType="int" resultType="fitness.dto.PtregisterDto">
+		select * from pt_register where rg_num=#{value}
+	</select>
+	
 	<select id="ptmaxNum" resultType="int">
 		select max(nvl(ptr_num,0)) ptr_num from pt_register
 	</select>
@@ -30,6 +34,9 @@
 	</insert>
 	<select id="ptrinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
 		select * from pt_register where ptr_num=#{value}
+	</select>
+	<select id="ptr_numinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
+		select * from pt_register where tr_num=#{value}
 	</select>
 	
 	<select id="ptrlistAll" parameterType="hashmap" resultType="fitness.dto.PtregisterDto">

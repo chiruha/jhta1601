@@ -38,13 +38,14 @@
 					$(data).find("center").each(function() {
 						var option1=document.createElement("option");
 						option1.value=$(this).find("ctcode").text();
-						option1.text=$(this).find("ctcode").text()+":"+$(this).find("ctname").text();
+						option1.text=$(this).find("ctcode").text()+" : "+$(this).find("ctname").text();
 						select1.appendChild(option1);
 						if(option1.value==$("#cbox").val().trim()){
 						$(option1).attr("selected","selected");
 						}
 					});
 					$("#cspan").empty();
+					$(select1).addClass('select input-sm');
 					$(select1).appendTo("#cspan");
 				}
 			});
@@ -61,13 +62,14 @@
 					$(data).find("position").each(function() {
 						var option=document.createElement("option");
 						option.value=$(this).find("poscode").text();
-						option.text=$(this).find("poscode").text()+":"+$(this).find("posname").text();
+						option.text=$(this).find("poscode").text()+" : "+$(this).find("posname").text();
 						select.appendChild(option);
 						if(option.value==$("#pbox").val().trim()){
 							$(option).attr("selected","selected");
 							}
 					});
 					$("#pspan").empty();
+					$(select).addClass('select input-sm');
 					$(select).appendTo("#pspan");
 				}
 			});
@@ -77,9 +79,15 @@
 		$("#btn").click(function(event) {
 			event.preventDefault();
 				$("#sp").empty();
-				//alert($("#chk1").prop("checked")+", "+ $("#chk2").prop("checked"));
+				//alert($("#chk1").prop("checked")+", "+ $("#chk2").prop("checked"));   // 지점, 직급 선택 여부 판단
+				//alert( $("input:checkbox:checked").length);  // 체크된 개수 구하기
 			if($("#keyword").val()=='' && $("#chk1").prop("checked")==false  && $("#chk2").prop("checked")==false ){
 				$("#sp").append("검색어를 입력하세요!!").css({
+					"color":"#0080ff",
+					"font-size":"13px"
+				});
+			}else if($("#keyword").val()!='' && $("input:checkbox:checked").length<1 ){
+				$("#sp").append("검색 조건을 선택하세요!!").css({
 					"color":"#0080ff",
 					"font-size":"13px"
 				});

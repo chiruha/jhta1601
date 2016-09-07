@@ -12,6 +12,13 @@
 	<select id="getInfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
 		select * from gx_register where gx_num=#{value}
 	</select>
+	<select id="gxlist" resultType="fitness.dto.GxregisterDto" >
+		select * from gx_register 
+	</select>
+	<select id="gxsubject" resultType="fitness.dto.GxsubjectDto">
+		select * from gxsubject
+	</select>
+	
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
 	<select id="regtDetail" parameterType="int" resultType="fitness.dto.RegistrationDto">
 		select * from registration where mem_num=#{value}

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fitness.dto.CenterDto;
-
+import fitness.dto.GxregisterDto;
 import fitness.dto.PtregisterDto;
 import fitness.dto.StaffDto;
 import fitness.dto.ptrMemDto;
@@ -27,6 +27,7 @@ import fitness.service.PtregisterService;
 import fitness.service.RegistrationService;
 import fitness.service.StaffService;
 import fitness.service.TrainerService;
+import fitness.service.gxregisterService;
 
 
 @Controller
@@ -36,6 +37,7 @@ public class PtregisterController {
 	@Autowired private TrainerService trservice;
 	@Autowired private RegistrationService regiservice;
 	@Autowired private StaffService staffservice;
+	@Autowired private gxregisterService gxservice;
 	
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.GET)
 	public String insert(HttpSession session){
@@ -48,27 +50,21 @@ public class PtregisterController {
 		return ".exercise.PtRegisterView";
 	}
 	
-	@RequestMapping(value="/ptment",method=RequestMethod.GET)
-	public String ptmentmove(){
 		
-		
-		return ".exercise.PtMent";
-	}
-	
 	@RequestMapping(value="/MemPTscOkView",method=RequestMethod.GET)
 	public String memptscOkviewmove(HttpSession session){
 		System.out.println("MemPTscOkViewµµÂø");
-		int mnum = (Integer) session.getAttribute("mnum");
-		
-		
+		int mnum = (Integer) session.getAttribute("mnum");		
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", mnum);
 		List<ptrMemDto> list = service.ptmemOkService(map);
-		System.out.println("map"+map);
+		System.out.println("map"+map);		
 		
 		session.setAttribute("list", list);
-		System.out.println("list"+list);		
+		
+		System.out.println("list:"+list);
+		
 		
 		return ".exercise.MemPTscOkView";
 	}

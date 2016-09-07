@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<c:url value='/?test=goboot'/>">
+      <a class="navbar-brand" href="<c:url value='/?test=goboot'/>">Fitness
 		
 	</a>
     </div>
@@ -96,15 +96,15 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">AdPage
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<c:url value='/stflist'/>">직원목록</a></li>
-           <li><a href="<c:url value='/memselectAll'/>">회원목록</a></li>
+            <li><a href="<c:url value='/stflist'/>">Staff 목록</a></li>
+                 <li><a href="<c:url value='/testpage/?test=1'/>">Staff 등록</a></li>
+           <li><a href="<c:url value='/memselectAll'/>">Member 목록</a></li>
             <li><a href="<c:url value='/PTscOkView'/>">Pt강사승인</a></li>
             <li><a href="<c:url value='/ptment'/>">Pt 관리</a></li>
             <li><a href="<c:url value='/stfinsert'/>">직원등록</a></li>
-               <li><a href="<c:url value='/trlist'/>">강사목록</a></li>
-             <li><a href="<c:url value='/ctinsert'/>">지점등록</a></li>
-                <li><a href="<c:url value='/deptinsert'/>">부서등록</a></li>
-                 <li><a href="<c:url value='/testpage/?test=1'/>">test</a></li>
+               <li><a href="<c:url value='/trlist'/>">Trainer 목록</a></li>
+             <li><a href="<c:url value='/ctinsert'/>">Center 등록</a></li>
+                <li><a href="<c:url value='/deptinsert'/>">Dept 등록</a></li>
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
           </ul>
           

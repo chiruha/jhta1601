@@ -349,6 +349,18 @@ commit;
 
 CREATE SEQUENCE GX_SEQ;
 
+create table gxsubject			--과목정보
+(
+	gx_code varchar2(20) primary key,	--과목코드 PK
+	gx_name varchar2(50)				--과목이름	
+);
+INSERT INTO gxsubject VALUES('A','에어로빅');
+INSERT INTO gxsubject VALUES('B','스텝');
+INSERT INTO gxsubject VALUES('C','요가');
+INSERT INTO gxsubject VALUES('D','필라테스');
+INSERT INTO gxsubject VALUES('E','ABT');
+INSERT INTO gxsubject VALUES('F','바디펌프');
+
 --------------------------------------------------------
 --제약조건 추가줄때 옵션 예)
 --ALTER TABLE GROUPS

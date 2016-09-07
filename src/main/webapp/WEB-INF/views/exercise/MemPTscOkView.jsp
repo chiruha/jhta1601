@@ -19,7 +19,7 @@
  
 <br>
 <br>
-<h1>PT신청</h1>
+<h1>PT확인</h1>
 <table border="1" style="width:700px">
     <caption><a href="<c:url value='/'/>">게시판</a></caption>
     <colgroup>
@@ -53,6 +53,7 @@
  
 <br>
 <br>
+
 
 
 <br>

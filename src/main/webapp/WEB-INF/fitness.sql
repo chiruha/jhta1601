@@ -338,14 +338,52 @@ COMMIT;
 
 create table gx_register
 (
-	gx_num number(5) primary key, --회원등록넘버		
-	ct_code number(5), --지점코드
-	gx_exercise varchar2(20), -- gx운동
-	gx_day varchar2(50), -- 월수금/화목
-	gx_time varchar2(50), -- 시간
-	rg_num number(5) REFERENCES REGISTRATION(RG_NUM) --회원 정보
+	gx_num number(5) primary key, --회원등록넘버
+	tr_num number(5) REFERENCES TRAINER(TR_NUM), --트레이너 정보
+	ct_code number(5)	REFERENCES CENTER(CT_CODE), --지점코드 FK
+	mom09 varchar2(20), -- 월요일 09시
+	tue09 varchar2(20), -- 화요일 09시
+	wed09 varchar2(20), -- 수요일 09시
+	thu09 varchar2(20), -- 목요일 09시
+	fri09 varchar2(20), -- 금요일 09시
+	sat09 varchar2(20), -- 토요일 09시
+	sun09 varchar2(20), -- 일요일 09시
+	mon10 varchar2(20), -- 월요일 10시
+	tue10 varchar2(20), -- 화요일 10시	
+	wed10 varchar2(20), -- 수요일 10시
+	thu10 varchar2(20), -- 목요일 10시
+	fri10 varchar2(20), -- 금요일 10시
+	sat10 varchar2(20), -- 토요일 10시
+	sun10 varchar2(20), -- 일요일 10시
+	mon11 varchar2(20), -- 월요일 10시
+	tue11 varchar2(20), -- 화요일 10시
+	wed11 varchar2(20), -- 수요일 11시
+	thu11 varchar2(20), -- 목요일 11시
+	fri11 varchar2(20), -- 금요일 11시
+	sat11 varchar2(20), -- 토요일 11시
+	sun11 varchar2(20), -- 일요일 11시
+	mon18 varchar2(20), -- 월요일 18시
+	tue18 varchar2(20), -- 화요일 18시
+	wed18 varchar2(20), -- 수요일 18시
+	thu18 varchar2(20), -- 목요일 18시
+	fri18 varchar2(20), -- 금요일 18시
+	sat18 varchar2(20), -- 토요일 18시
+	sun18 varchar2(20), -- 일요일 18시
+	mon19 varchar2(20), -- 월요일 19시
+	tue19 varchar2(20), -- 화요일 19시
+	wed19 varchar2(20), -- 수요일 19시
+	thu19 varchar2(20), -- 목요일 19시
+	fri19 varchar2(20), -- 금요일 19시
+	sat19 varchar2(20), -- 토요일 19시
+	sun19 varchar2(20), -- 일요일 19시
+	mon20 varchar2(20), -- 월요일 20시
+	tue20 varchar2(20), -- 화요일 20시
+	wed20 varchar2(20), -- 수요일 20시
+	thu20 varchar2(20), -- 목요일 20시
+	fri20 varchar2(20), -- 금요일 20시
+	sat20 varchar2(20), -- 토요일 20시
+	sun20 varchar2(20) -- 일요일 20시
 );
-commit;
 
 CREATE SEQUENCE GX_SEQ;
 
@@ -360,6 +398,7 @@ INSERT INTO gxsubject VALUES('C','요가');
 INSERT INTO gxsubject VALUES('D','필라테스');
 INSERT INTO gxsubject VALUES('E','ABT');
 INSERT INTO gxsubject VALUES('F','바디펌프');
+INSERT INTO gxsubject VALUES('Z','기타');
 
 --------------------------------------------------------
 --제약조건 추가줄때 옵션 예)

@@ -2,7 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h1>QnA 게시판 전체글보기</h1>
-<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+<c:choose>
+	<c:when test="${not empty sessionScope.mnum }">
+		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+	</c:when>
+	<c:when test="${not empty sessionScope.snum }">
+		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+	</c:when>
+</c:choose>
 <table border="1" width="700">
 	<tr>
 		<th>qna글번호</th>
@@ -53,4 +60,11 @@
 	<input type="submit" name="검색">
 </form>
 </div>
-<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+<c:choose>
+	<c:when test="${not empty sessionScope.mnum }">
+		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+	</c:when>
+	<c:when test="${not empty sessionScope.snum }">
+		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+	</c:when>
+</c:choose>

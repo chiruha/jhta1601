@@ -5,7 +5,8 @@ import java.sql.Date;
 public class EventCommentsDto {
 	private int comm_num;//코멘트번호
 	private int ev_num;//이벤트번호 REFERENCES event(ev_num) --FK
-	private int mem_num;//회원이름 REFERENCES member(mem_num) --FK
+	private int mem_num;//회원번호(댓글작성자)
+	private int stf_num;//직원번호(댓글작성자)
 	private String comments;//코멘트내용
 	private Date comm_date;//작성일
 	private int comm_ref;
@@ -14,12 +15,13 @@ public class EventCommentsDto {
 	
 	public EventCommentsDto(){}
 
-	public EventCommentsDto(int comm_num, int ev_num, int mem_num, String comments, Date comm_date, int comm_ref,
-			int comm_lev, int comm_step) {
+	public EventCommentsDto(int comm_num, int ev_num, int mem_num, int stf_num, String comments, Date comm_date,
+			int comm_ref, int comm_lev, int comm_step) {
 		super();
 		this.comm_num = comm_num;
 		this.ev_num = ev_num;
 		this.mem_num = mem_num;
+		this.stf_num = stf_num;
 		this.comments = comments;
 		this.comm_date = comm_date;
 		this.comm_ref = comm_ref;
@@ -49,6 +51,14 @@ public class EventCommentsDto {
 
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+
+	public int getStf_num() {
+		return stf_num;
+	}
+
+	public void setStf_num(int stf_num) {
+		this.stf_num = stf_num;
 	}
 
 	public String getComments() {
@@ -93,9 +103,9 @@ public class EventCommentsDto {
 
 	@Override
 	public String toString() {
-		return "EventCommentsDto [comm_num=" + comm_num + ", ev_num=" + ev_num + ", mem_num=" + mem_num + ", comments="
-				+ comments + ", comm_date=" + comm_date + ", comm_ref=" + comm_ref + ", comm_lev=" + comm_lev
-				+ ", comm_step=" + comm_step + "]";
+		return "EventCommentsDto [comm_num=" + comm_num + ", ev_num=" + ev_num + ", mem_num=" + mem_num + ", stf_num="
+				+ stf_num + ", comments=" + comments + ", comm_date=" + comm_date + ", comm_ref=" + comm_ref
+				+ ", comm_lev=" + comm_lev + ", comm_step=" + comm_step + "]";
 	}
 	
 }

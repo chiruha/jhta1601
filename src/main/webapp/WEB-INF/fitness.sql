@@ -147,7 +147,8 @@ CREATE SEQUENCE FREE_SEQ;
 create table qnaboard			--QnA게시판
 (
 	qna_num number(5) primary key,	--글번호 PK
-	mem_num number(5) REFERENCES MEMBER(MEM_NUM),--작성자(회원번호) FK
+	mem_num number(5),--작성자(회원번호) FK
+	stf_num number(5),--스태프번호 FK
 	qna_title varchar2(100),		--글제목
 	qna_content varchar2(4000),		--글내용
 	qna_date	date,			--작성일
@@ -156,7 +157,6 @@ create table qnaboard			--QnA게시판
 	qna_lev number(5),		--글레벨
 	qna_step number(5)		--출력순서
 );
-CREATE SEQUENCE QNA_SEQ;
 
 create table mem_att			--회원출석
 (	

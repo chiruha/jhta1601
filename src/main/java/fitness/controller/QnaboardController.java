@@ -6,6 +6,7 @@ import java.util.concurrent.SynchronousQueue;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +30,9 @@ public class QnaboardController {
 	}
 	
 	@RequestMapping(value="/qnainsert",method=RequestMethod.POST)
-	public String qnaInsert(HttpServletRequest req){
+	public String qnaInsert(HttpServletRequest req, @RequestParam(value="mem_num",defaultValue="0")int mem_num,@RequestParam(value="stf_num",defaultValue="0")int stf_num){
 		System.out.println("insertForm POST방식");
-
+		//String mem_num="";
 		int qnum=service.qnaMaxNum();//큰글번호얻어오기
 		System.out.println("큰 글번호: "+qnum);
 		int qnanum=0;
@@ -69,11 +70,12 @@ public class QnaboardController {
 				System.out.println("답글인 경우,, qna_lev: "+qnalev+", qna_step:"+qnastep);
 			}
 			
-			int mem_num=Integer.parseInt(req.getParameter("mem_num"));
+			//int mem_num=Integer.parseInt(req.getParameter("mem_num"));
+			//int stf_num=Integer.parseInt(req.getParameter("stf_num"));
 			String qna_title=req.getParameter("qna_title");
 			String qna_content=req.getParameter("qna_content");
 			
-			QnaboardDto dto1=new QnaboardDto(snum, mem_num, qna_title, qna_content, null, 0, qnaref, qnalev, qnastep);
+			QnaboardDto dto1=new QnaboardDto(snum, mem_num, stf_num, qna_title, qna_content, null, 0, qnaref, qnalev, qnastep);
 			System.out.println("insert 시 dto에 뭐가 담겼나?"+dto1);
 			service.qnaInsert(dto1);
 			return ".member.memSuccess";

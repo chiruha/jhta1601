@@ -5,6 +5,7 @@ import java.sql.Date;
 public class QnaboardDto {
 	private int qna_num;
 	private int mem_num;
+	private int stf_num;
 	private String qna_title;
 	private String qna_content;
 	private Date qna_date;
@@ -21,12 +22,13 @@ public class QnaboardDto {
 		this.qna_lev = qna_lev;
 		this.qna_step = qna_step;
 	}
-	
-	public QnaboardDto(int qna_num, int mem_num, String qna_title, String qna_content, Date qna_date, int qna_hit,
-			int qna_ref, int qna_lev, int qna_step) {
+
+	public QnaboardDto(int qna_num, int mem_num, int stf_num, String qna_title, String qna_content, Date qna_date,
+			int qna_hit, int qna_ref, int qna_lev, int qna_step) {
 		super();
 		this.qna_num = qna_num;
 		this.mem_num = mem_num;
+		this.stf_num = stf_num;
 		this.qna_title = qna_title;
 		this.qna_content = qna_content;
 		this.qna_date = qna_date;
@@ -50,6 +52,14 @@ public class QnaboardDto {
 
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+
+	public int getStf_num() {
+		return stf_num;
+	}
+
+	public void setStf_num(int stf_num) {
+		this.stf_num = stf_num;
 	}
 
 	public String getQna_title() {
@@ -110,10 +120,11 @@ public class QnaboardDto {
 
 	@Override
 	public String toString() {
-		return "\n QnaboardDto [qna_num=" + qna_num + ", mem_num=" + mem_num + ", qna_title=" + qna_title
-				+ ", qna_content=" + qna_content + ", qna_date=" + qna_date + ", qna_hit=" + qna_hit + ", qna_ref="
-				+ qna_ref + ", qna_lev=" + qna_lev + ", qna_step=" + qna_step + "]";
+		return "QnaboardDto [qna_num=" + qna_num + ", mem_num=" + mem_num + ", stf_num=" + stf_num + ", qna_title="
+				+ qna_title + ", qna_content=" + qna_content + ", qna_date=" + qna_date + ", qna_hit=" + qna_hit
+				+ ", qna_ref=" + qna_ref + ", qna_lev=" + qna_lev + ", qna_step=" + qna_step + "]";
 	}
+	
 	
 	
 }

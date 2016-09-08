@@ -383,9 +383,7 @@
 	
 	<!-- 회원수정 memUpdate -->
 	<update id="memUpdate" parameterType="fitness.dto.MemberDto">
-		update member set mem_name= #{mem_name}, mem_phone= #{mem_phone}, mem_addr= #{mem_addr}, mem_email= #{mem_email},  
-											     mem_age=#{mem_age}, mem_gen=#{mem_gen}, mem_birth=#{mem_birth}, 
-												 mem_picture= #{mem_picture},  ct_code= #{ct_code} where mem_num=#{mem_num}
+		update member set mem_name= #{mem_name}, mem_phone= #{mem_phone}, mem_addr= #{mem_addr}, mem_email= #{mem_email},mem_age=#{mem_age}, mem_gen=#{mem_gen}, mem_birth=#{mem_birth}, mem_picture= #{mem_picture},  ct_code= #{ct_code} where mem_num=#{mem_num}
 	</update>
 	<!-- 회원검색 memSearchList -->
 	<select id="memSearchList" resultType="fitness.dto.MemberDto">
@@ -471,7 +469,7 @@
 <!--////////// QnA board(답변형게시판) - 작성자:이성진 //////////-->
 	<!-- insert -->
 	<insert id="qnaInsert" parameterType="fitness.dto.QnaboardDto">
-		insert into qnaboard values(#{qna_num},#{mem_num},#{qna_title},#{qna_content},sysdate,0,#{qna_ref},#{qna_lev},#{qna_step})
+		insert into qnaboard values(#{qna_num},#{mem_num},#{stf_num},#{qna_title},#{qna_content},sysdate,0,#{qna_ref},#{qna_lev},#{qna_step})
 	</insert>
 	<!-- 가장 큰 글번호 얻어오기 -->
 	<select id="qnaMaxNum" resultType="int">
@@ -578,7 +576,7 @@
 <!--////////// Event board(댓글달기)(table: EventComments) - 작성자:이성진 //////////-->
 	<!-- insert -->
 	<insert id="eventCommentsInsert" parameterType="fitness.dto.EventCommentsDto">
-		insert into eventcomments values(#{comm_num},#{ev_num},#{mem_num},#{comments},sysdate,#{comm_ref},#{comm_lev},#{comm_step})
+		insert into eventcomments values(#{comm_num},#{ev_num},#{mem_num},#{stf_num},#{comments},sysdate,#{comm_ref},#{comm_lev},#{comm_step})
 	</insert>
 	<!-- 가장 큰 글번호 얻어오기(insert) -->
 	<select id="commMaxNum" resultType="int">

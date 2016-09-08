@@ -21,7 +21,7 @@ public class EventCommentsController {
 	@Autowired EventCommentsService service;
 	
 	@RequestMapping("/EventCommentsInsert")
-	public String eventCommentsInsert(HttpServletRequest req){
+	public String eventCommentsInsert(HttpServletRequest req,@RequestParam(value="mem_num",defaultValue="0")int mem_num,@RequestParam(value="stf_num",defaultValue="0")int stf_num){
 		System.out.println("eventCommentsInsert 컨트롤러 왔나??");
 		int commMax=service.commMaxNum();//큰 글번호 얻어오기
 		System.out.println("댓글 큰 글번호 : "+commMax);
@@ -54,9 +54,9 @@ public class EventCommentsController {
 				System.out.println("답글인경우,,cnum:"+cnum+", cref:"+cref+", clev:"+clev+"cstep:"+cstep);
 			}
 			int ev_num=Integer.parseInt(req.getParameter("ev_num"));
-			int mem_num=Integer.parseInt(req.getParameter("mem_num"));
+			//int mem_num=Integer.parseInt(req.getParameter("mem_num"));
 			String comments=req.getParameter("comments");
-			EventCommentsDto dto1=new EventCommentsDto(snum, ev_num, mem_num, comments, null, cref, clev, cstep);
+			EventCommentsDto dto1=new EventCommentsDto(snum, ev_num, mem_num, stf_num, comments, null, cref, clev, cstep);
 			System.out.println("insert시 dto에 뭐가 담겼나?"+dto1.toString());
 			service.eventCommentsInsert(dto1);
 			return ".member.memSuccess";
@@ -96,6 +96,7 @@ public class EventCommentsController {
 			sb.append("<comm_num>"+dto1.getComm_num()+"</comm_num>");
 			sb.append("<ev_num>"+dto1.getEv_num()+"</ev_num>");
 			sb.append("<mem_num>"+dto1.getMem_num()+"</mem_num>");
+			sb.append("<stf_num>"+dto1.getStf_num()+"</stf_num>");
 			sb.append("<comments>"+dto1.getComments()+"</comments>");
 			sb.append("<comm_date>"+dto1.getComm_date()+"</comm_date>");
 			sb.append("<comm_ref>"+dto1.getComm_ref()+"</comm_ref>");
@@ -140,6 +141,7 @@ public class EventCommentsController {
 			sb.append("<comm_num>"+dto1.getComm_num()+"</comm_num>");
 			sb.append("<ev_num>"+dto1.getEv_num()+"</ev_num>");
 			sb.append("<mem_num>"+dto1.getMem_num()+"</mem_num>");
+			sb.append("<stf_num>"+dto1.getStf_num()+"</stf_num>");
 			sb.append("<comments>"+dto1.getComments()+"</comments>");
 			sb.append("<comm_date>"+dto1.getComm_date()+"</comm_date>");
 			sb.append("<comm_ref>"+dto1.getComm_ref()+"</comm_ref>");

@@ -2,23 +2,41 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h1>이벤트 내용 보기</h1>
-<a href="<c:url value='/eventInsert'/>">글쓰기</a>
+<h1>이벤트 게시판</h1>
+<c:choose>
+	<c:when test="${not empty sessionScope.snum }"><!-- 직원인경우 -->
+			<a href="<c:url value='/eventInsert'/>">글쓰기</a>
+	</c:when>
+</c:choose>
+<input type="hidden" value="${listone.ev_num }">
 <table border="1" width="1000">
 	<tr>
-		<td>글번호: ${listone.ev_num }</td>
-		<td>작성일: ${listone.ev_date }</td>
-		<td><a href="eventUpdateList?ev_num=${listone.ev_num}">글수정</a></td>
-		<td><a href="eventDelete?ev_num=${listone.ev_num}">글삭제</a></td>
+		<td>| 작성일: ${listone.ev_date } |
+			<c:choose>
+				<c:when test="${not empty sessionScope.snum }"><!-- 직원인경우 -->
+					<a href="eventUpdateList?ev_num=${listone.ev_num}">글수정</a> |
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${not empty sessionScope.snum }"><!-- 직원인경우 -->
+					<a href="eventDelete?ev_num=${listone.ev_num}">글삭제</a> |
+				</c:when>
+			</c:choose>
+		</td>
 	</tr>
 	<tr>
-		<td colspan="4">${listone.ev_title }</td>
+		<td>
+			${listone.ev_title }
+		</td>
 	</tr>
 	<tr>
-		<td colspan="4"><img src="/fitness/resources/img/Event/${listone.ev_picture }" width="500" height="500"></td>
-	</tr>
-	<tr>
-		<td colspan="4">${listone.ev_content }</td>
+		<td>
+			<br>
+			<img src="/fitness/resources/img/Event/${listone.ev_picture }" width="500" height="500">
+			<br><br>
+			${listone.ev_content }
+			<br>
+		</td>
 	</tr>
 </table>
 <br>
@@ -32,26 +50,25 @@
 	<input type="hidden" name="comm_ref" value="${commList.comm_ref }">
 	<input type="hidden" name="comm_lev" value="${commList.comm_lev }">
 	<input type="hidden" name="comm_step" value="${commList.comm_step }">
-	
-<table border="1" width="1000">	
-<tr>
-	<td>
-		작성자<input type="text" name="mem_num">
-		<input type="submit" value="댓글등록">
-		<input type="reset" value="취소">
-	</td>
-</tr>
-<tr>
-	<td>
-		글내용<textarea rows="2" cols="80" name="comments"></textarea>
-	</td>
-</tr>
-</table>
+	<c:choose>
+		<c:when test="${not empty sessionScope.mnum }"><!-- 회원 -->
+			<input type="hidden" name="mem_num" value="${sessionScope.mnum }"> 
+		</c:when>
+		<c:when test="${not empty sessionScope.snum }"><!-- 직원 -->
+			<input type="hidden" name="stf_num" value="${sessionScope.snum }">
+		</c:when>
+	</c:choose>
+	<textarea rows="2" cols="80" name="comments"></textarea>
+	<input type="submit" value="댓글등록">
+	<input type="reset" value="취소">
 </form>
 <br>
 <!-- /////////////// 댓글 전체목록보기 /////////////// -->
 
 <script type="text/javascript">
+function noneMem(){//비회원이 댓글을 달려고 하는 경우
+	alert("로그인 하세요!");
+}
 function resetUpdate(comm_numa){//수정하기 취소
 	alert("수정하기기 취소 : "+comm_numa);
 	var comm_numa=document.getElementById(comm_numa);
@@ -123,6 +140,7 @@ function ajaxComm(pageNum){
 					var comm_num=$(this).find("comm_num").text();
 					var ev_num=$(this).find("ev_num").text();
 					var mem_num=$(this).find("mem_num").text();
+					var stf_num=$(this).find("stf_num").text();
 					var comments=$(this).find("comments").text();
 					var comm_date=$(this).find("comm_date").text();
 					var comm_ref=$(this).find("comm_ref").text();
@@ -141,13 +159,28 @@ function ajaxComm(pageNum){
 									//html=html+"[re]";
 									html=html+"<img src='/fitness/resources/img/hs6.png' height='15px'>";
 								}
-								html+=
-									"글쓴이 : "+mem_num+" | "+
-									"작성일 : "+comm_date+" | "+
-									"<a href='javascript:reAnswer(\""+comm_num+"\")'> 댓글달기 </a>"+" | "+
-									"<a href='EventCommentsDelete?comm_num="+comm_num+"'> 삭제하기 </a>"+" | "+
-									"<a href='javascript:reUpdate(\""+comm_num+"a\")'> 수정하기 </a>"+" | "+
-									"<br>"+
+								if(stf_num<1){
+									html+="글쓴이(회원) : "+mem_num+" | "+"작성일 : "+comm_date+" | ";	
+								}else if(mem_num<1){
+									html+="글쓴이(직원) : "+stf_num+" | "+"작성일 : "+comm_date+" | ";
+								}
+								var a="${sessionScope.mnum}";
+								//alert(a.length+"...");
+								//alert("${sessionScope.mnum}");	
+								if(a.length>0){
+										html+="<a href='javascript:reAnswer(\""+comm_num+"\")'> 댓글달기 </a>"+" | ";
+									}else if("${sessionScope.snum}".length>0){
+										html+="<a href='javascript:reAnswer(\""+comm_num+"\")'> 댓글달기 </a>"+" | ";
+									}else if("${sessionScope.mnum}".length==0 && "${sessionScope.snum}".length==0){
+										html+="<a href='javascript:noneMem()'>댓글달기</a>"+" | ";
+										//alert("로그인하세요!");
+									}
+									if("${sessionScope.mnum}" == mem_num || "${sessionScope.snum}" == stf_num){
+										html+=
+											"<a href='EventCommentsDelete?comm_num="+comm_num+"'> 삭제하기 </a>"+" | "+
+											"<a href='javascript:reUpdate(\""+comm_num+"a\")'> 수정하기 </a>"+" | ";
+									}
+								html+="<br>"+
 									comments+
 									"</th>"+
 								"</tr>"+
@@ -160,9 +193,13 @@ function ajaxComm(pageNum){
 											"<input type='hidden' name='ev_num' value='"+ev_num+"'>"+
 											"<input type='hidden' name='comm_ref' value='"+comm_ref+"'>"+
 											"<input type='hidden' name='comm_lev' value='"+comm_lev+"'>"+
-											"<input type='hidden' name='comm_step' value='"+comm_step+"'>"+"<br>"+
-											"작성자<input type='text' disabled='disabled' name='mem_num' value='"+mem_num+"'>"+"<br>"+
-											"<textarea rows='2' cols='80' name='comments'>"+comments+"</textarea>"+
+											"<input type='hidden' name='comm_step' value='"+comm_step+"'>";
+											if("${sessionScope.mnum }".length>0){
+												html+="<input type='hidden' name='mem_num' value='${sessionScope.mnum }'>";
+											}else if("${sessionScope.snum }".length>0){
+												html+="<input type='hidden' name='stf_num' value='${sessionScope.snum }'>";
+											}
+											html+="<textarea rows='2' cols='80' name='comments'>"+comments+"</textarea>"+
 											"<input type='submit' value='수정'>"+"<br>"+
 										"</form>"+
 									"</div>"+
@@ -177,8 +214,13 @@ function ajaxComm(pageNum){
 											"<input type='hidden' name='ev_num' value='"+ev_num+"'>"+
 											"<input type='hidden' name='comm_ref' value='"+comm_ref+"'>"+
 											"<input type='hidden' name='comm_lev' value='"+comm_lev+"'>"+
-											"<input type='hidden' name='comm_step' value='"+comm_step+"'>"+"<br>"+
-											"작성자<input type='text' name='mem_num'>"+"<br>"+
+											"<input type='hidden' name='comm_step' value='"+comm_step+"'>";
+											if("${sessionScope.mnum }"!=null){
+												html+="<input type='hidden' name='mem_num' value='${sessionScope.mnum }'>";
+											}else if("${sessionScope.snum }"!=null){
+												html+="<input type='hidden' name='stf_num' value='${sessionScope.snum }'>";
+											}
+												html+=
 											"<textarea rows='2' cols='80' name='comments'></textarea>"+
 											"<input type='submit' value='댓글등록'>"+"<br>"+
 										"</form>"+

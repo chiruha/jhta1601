@@ -1,8 +1,10 @@
 package fitness.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -16,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import fitness.dto.CenterDto;
 
 import fitness.dto.GxregisterDto;
-import fitness.dto.GxregisterDto;
+import fitness.dto.GxsubjectDto;
 import fitness.service.CenterService;
-
+import fitness.service.RegistrationService;
 import fitness.service.gxregisterService;
 
 
@@ -26,6 +28,7 @@ import fitness.service.gxregisterService;
 public class GxController {
 	@Autowired private gxregisterService service;
 	@Autowired private CenterService cts;
+	@Autowired private RegistrationService regiservice;
 	
 	@RequestMapping(value="/gxinsert",method=RequestMethod.GET)
 	public String insert(HttpSession session){
@@ -33,57 +36,30 @@ public class GxController {
 		session.setAttribute("ctlist",ctlist);
 		return ".exercise.GxRegisterView";
 	}
+
+	@RequestMapping(value="/gxMent",method=RequestMethod.GET)
+	public String ptmentmove(HttpServletRequest request){
+		System.out.println("gxMent µµÂø");
+		List<GxsubjectDto> gxlist= service.gxsubject();
+		System.out.println("gxlist:"+gxlist);
+		request.setAttribute("gxlist", gxlist);
+	
+		return ".exercise.gxMent";
+	}
 	
 	@RequestMapping(value="/gxinsert",method=RequestMethod.POST,produces="application/json;charset=utf-8")
 	@ResponseBody
-	public Object insert(int[] ct_code,String[] gx_exercise,String[] gx_day,String[] gx_time,GxregisterDto dto){
+	public Object insert(int[] ct_code,String[] gx_exercise,String[] gx_day,String[] gx_time,GxregisterDto dto,HttpSession session){
 		System.out.println("gxinsert µµÂø");		
-/*		
-		System.out.println("dto"+dto);
-		service.insert(dto);
-		GxregisterDto gxdto=null;
-		try{
-			gxdto=service.detail(1);
-			System.out.println("gxdto"+gxdto);
 		
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-		}
-		return gxdto;		
+		int mnum = (Integer) session.getAttribute("mnum");
 		
-		*/
 		
-		ArrayList<GxregisterDto> list = new ArrayList<GxregisterDto>();
-		for(int i=0; i<gx_exercise.length; i++){
-			int ct_code1=ct_code[i];
-			String gx_exercise1=gx_exercise[i];
-			String gx_day1=gx_day[i];
-			String gx_time1=gx_time[i];
-			GxregisterDto gxdto=new GxregisterDto(0, ct_code1, gx_exercise1, gx_day1, gx_time1, 1);
-			list.add(gxdto);
-			System.out.println("gxdto"+gxdto);
-			service.insert(gxdto);
-		}
-		
-	/*	
-		JSONArray arr = new JSONArray();
-		for(GxregisterDto dto2:list){
-			JSONObject jo=new JSONObject();
-			jo.put("gx_num", dto2.getGx_num());
-			jo.put("ct_code", dto2.getCt_code());
-			jo.put("gx_exercise", dto2.getGx_exercise());
-			jo.put("gx_day", dto2.getGx_day());
-			jo.put("gx_time", dto2.getGx_time());
-			jo.put("rg_num", dto2.getRg_num());
-			arr.add(jo);
-		}
-		System.out.println("arr"+arr.toString());
-		return arr.toString();*/
-		return list;
-		
-
-		
+	
+		return null;		
 	}
+	
+	
 }
 
 

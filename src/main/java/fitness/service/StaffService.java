@@ -30,4 +30,7 @@ public class StaffService {
 	public int getStfCount(HashMap<String, Object> map){
 		return dao.getStfCount(map);
 	}
+	public List<StaffDto> ptstafflist(){
+		return dao.ptstafflist();
+	}
 }

@@ -24,20 +24,16 @@
  	margin: auto;
   }
   
-  #contentDiv .innerpage{
-  	width: 1000px;
-  	margin: auto;
-  	background-color: #ffffee;
-  }
+
   #contentDiv table{
-  border: 3px solid #004080;
-  border-radius: 2px;
-  	text-align: center;
-  	margin: auto;
+	  border: 1px solid #c2c2c2;
+ 	 border-radius: 2px;
+ 	 text-align: center;
   }
-  #conteneDiv .innerpage form[name="listform"]{
-  	margin: auto;
+  #contentDiv table th{
+  	 text-align: center;
   }
+
   
 
   

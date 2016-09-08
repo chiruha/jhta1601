@@ -11,8 +11,8 @@
 <img src="resources/img/f1.jpg"><br>
 	<ul>
 		<li><a href="<c:url value='/ptrinsert'/>">PT 예약</a></li>
-		<li><a href="<c:url value='/gxinsert'/>">GX 예약</a></li>
-		<li><a href="<c:url value='/ptment'/>">PT 관리</a></li>
+		<%-- <li><a href="<c:url value='/gxinsert'/>">GX 예약</a></li>--%>
+		<li><a href="<c:url value='/gxMent'/>">GX일정</a></li>
 		<li><a href="<c:url value='/PTscOkView'/>">PT강사승인페이지</a></li>
 		<li><a href="<c:url value='/MemPTscOkView'/>">회원승인페이지</a></li>
 		
@@ -41,6 +41,7 @@
 		<li><a href="<c:url value='/noclist'/>">공지사항목록</a></li>
 		
 		<li><a href="<c:url value='/?test=goboot'/>">bootstrap test</a></li>
+		<li><a href="<c:url value='/?test=test1'/>">bootstrap test1</a></li>
 	</ul>
 
 

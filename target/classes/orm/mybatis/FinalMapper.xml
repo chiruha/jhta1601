@@ -467,6 +467,7 @@
    <select id="loginAdmin" parameterType="hashmap" resultType="hashmap">
       select * from staff where stf_name=#{stf_name} and stf_phone=#{stf_phone}
    </select>
+   
 <!--////////// QnA board(답변형게시판) - 작성자:이성진 //////////-->
 	<!-- insert -->
 	<insert id="qnaInsert" parameterType="fitness.dto.QnaboardDto">
@@ -522,6 +523,7 @@
 			</if>
 				order by qna_num desc
 	</select>
+	
 <!--////////// Event board(이벤트 등록하기)(table: event) - 작성자:이성진 //////////-->
 	<!-- insert -->
 	<insert id="eventInsert" parameterType="fitness.dto.EventDto">
@@ -574,32 +576,61 @@
 		where ev_num=#{ev_num}
 	</update>
 <!--////////// Event board(댓글달기)(table: EventComments) - 작성자:이성진 //////////-->
-	
-	
-	
-<!--////////// Event board(댓글 출력하기) - 작성자:이성진 //////////-->
-	<!-- select한 댓글의 내용이 CommentsListDto의 commlist에 자동으로 들어가는 것이 아니기 때문에  들어가게 해준다.
-	resultMap : 컬럼하고 해당 DTO하고 이름이 다를경우,,
-		resultMap을 이용해서
-		private List<EventCommentsDto> commlist;에 넣어준다.
-	-->
-	<resultMap type="fitness.dto.CommentsListDto" id="commlist">
-		<result property="ev_num" column="ev_num"/>
-		<result property="ev_title" column="ev_title"/>
-		<result property="ev_picture" column="ev_picture"/>
-		<result property="ev_content" column="ev_content"/>
-		<result property="stf_num" column="stf_num"/>
-		
-		<collection property="comments" ofType="fitness.dto.EventCommentsDto">
-			<result property="comm_num" column="comm_num"/>
-			<result property="ev_num" column="ev_num"/>
-			<result property="mem_num" column="mem_num"/>
-			<result property="comments" column="comments"/>
-			
-		</collection>
-	</resultMap>
-	<select id="commList" resultMap="commlist">
-		select * from event e, eventcomments c
-		where e.ev_num=c.ev_num
+	<!-- insert -->
+	<insert id="eventCommentsInsert" parameterType="fitness.dto.EventCommentsDto">
+		insert into eventcomments values(#{comm_num},#{ev_num},#{mem_num},#{comments},sysdate,#{comm_ref},#{comm_lev},#{comm_step})
+	</insert>
+	<!-- 가장 큰 글번호 얻어오기(insert) -->
+	<select id="commMaxNum" resultType="int">
+		select NVL(max(comm_num),0) from eventcomments
 	</select>
+	<!-- 답글인 경우(insert) -->
+	<update id="commRe" parameterType="fitness.dto.EventCommentsDto">
+		update eventcomments
+		set comm_step=#{comm_step}+1
+		where comm_ref=#{comm_ref} and comm_step>#{comm_step}
+	</update>
+	
+	<!-- (이벤트최신글페이지:eventSelectNew.jsp)댓글 전체목록 보기 -->
+	<select id="commList" parameterType="hashmap" resultType="fitness.dto.EventCommentsDto">
+		select * from(
+			select aa.*,rownum rnum from(
+				select * from eventcomments where ev_num=#{ev_num}
+				order by comm_ref desc, comm_step asc
+			)aa
+		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+	
+	<!-- (이벤트최신글페이지:eventSelectNew.jsp)전체 댓글의 갯수(select-페이징) -->
+	<select id="commCnt" parameterType="int" resultType="int">
+		select count(comm_num) cnt from eventcomments where ev_num=#{ev_num}
+	</select>
+	
+	<!-- (이벤트선택한글페이지:eventSelectOne.jsp)댓글 전체목록 보기 -->
+	<select id="commListOne" parameterType="hashmap" resultType="fitness.dto.EventCommentsDto">
+		select * from(
+			select aa.*,rownum rnum from(
+				select * from eventcomments where ev_num=#{ev_num}
+				order by comm_ref desc, comm_step asc
+			)aa
+		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+	
+	<!-- (이벤트선택한글페이지:eventSelectOne.jsp)전체 댓글의 갯수(select-페이징) -->
+	<select id="commCntOne" parameterType="int" resultType="int">
+		select count(comm_num) cnt from eventcomments where ev_num=#{ev_num}
+	</select>
+	
+	<!-- 삭제하기 -->
+	<delete id="commDelete" parameterType="int">
+		delete from eventcomments where comm_num=#{value}
+	</delete> 
+	
+	<!-- 수정하기 -->
+	<update id="commUpdate" parameterType="fitness.dto.EventCommentsDto">
+		update eventcomments
+		set comments=#{comments}
+		where comm_num=#{comm_num}
+	</update>
+	
 </mapper>

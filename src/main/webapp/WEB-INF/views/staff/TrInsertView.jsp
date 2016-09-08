@@ -3,20 +3,41 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-
-<div id="TrInsert">
-<h1>강사등록 페이지</h1>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">Department Insert</h3>
 <form action="trinsert" method="post" >
-<img src="/fitness/resources/img/Staff/${sdto.stf_picture }"><br>
-직원번호 <input type="hidden" name="stf_num" value="${sdto.stf_num}">${sdto.stf_num}<br>
-강사이름 <input type="hidden" name="stf_name" value="${sdto.stf_name}">${sdto.stf_name}<br>
-강사경력 <br><textarea rows="5" cols="20" name="tr_career"></textarea><br>
-강사소개 <br><textarea rows="5" cols="20" name="tr_intro"></textarea><br>
+<div class="row">
+<div class="col-md-3">
+	<img src="/fitness/resources/img/Staff/${sdto.stf_picture }"><br>
+</div>
+	<div class="col-md-6">
+		<input type="hidden"   name="stf_num" value="${sdto.stf_num}">
+		<label>직원번호 ${sdto.stf_num}</label><br>
+		<input type="hidden"  name="stf_name" value="${sdto.stf_name}">
+		<label>직원이름 ${sdto.stf_name}</label><br>
 
-<input type="submit" value="등록">
-<input type="reset" value="취소">
+<br><textarea rows="5" cols="20" placeholder="강사 경력" name="tr_career" class="form-control"></textarea><br>
+<br><textarea rows="5" cols="20" placeholder="강사 소개"  name="tr_intro" class="form-control"></textarea><br>
+
+</div>
+</div>
+<div class="row">
+<div class="col-md-3"></div>
+	<div class="col-md-3">
+	<button class="btn pull-right" id="btn" type="submit">
+	<span class="glyphicon glyphicon-ok"></span> Ok </button>
+	</div>
+		<div class="col-md-3">
+	<button class="btn pull-left" id="btn" type="reset">
+	<span class="glyphicon glyphicon-remove"></span>  Cancle </button>
+	
+	
+	</div>
+	</div>
 </form>
 
 
-
 </div>
+
+

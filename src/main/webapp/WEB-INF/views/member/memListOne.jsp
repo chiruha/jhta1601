@@ -1,14 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<h1>회원상세정보보기</h1>
-<br>
-<br>
-<table border="1" width="700">
+<script type="text/javascript">
+$(document).ready(function () {
+		$("button").click(function(event) {
+			event.preventDefault();
+			var id=event.target.getAttribute('id');
+			alert($(this).attr('id')); // id 찍어보기 
+			//alert("id : "+id);
+			var form=document.detailform;
+			form.action=id;
+			form.submit();
+		});
+});
+</script>
+
+
+
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+<h3 class="text-center">Member Detail</h3>
+<form method="post" name="detailform" enctype="multipart/form-data">
+<div class="row">
+<div class="col-md-12">
+<table border="1" class="table th" >
+	
 	<tr>
 		<td width="100">회원번호</td>
 		<td colspan="2">${dto.mem_num}</td>
-		<td rowspan="5" width="150"><img src="/fitness/resources/img/Member/${dto.mem_picture }" width="150" height="100"></td>
+		<td rowspan="5" width="150"><img src="/fitness/resources/img/Member/${dto.mem_picture }" height="150"></td>
 	</tr>
 	<tr>
 		<td width="100">이름</td>
@@ -31,7 +52,7 @@
 		<td colspan="3">${dto.mem_email}</td>
 	</tr>
 	<tr>
-		<td width="100">전화1</td>
+		<td width="100">전화</td>
 		<td colspan="3">${dto.mem_phone}</td>
 	</tr>
 	<tr>
@@ -46,7 +67,19 @@
 		<td width="100">등록지점</td>
 		<td colspan="3">${dto.ct_code}</td>
 	</tr>
-</table>
-<a href="memUpdateList?mem_num=${dto.mem_num }">회원정보수정</a>
-<a href="memDelete?mem_num=${dto.mem_num }">회원정보삭제</a>
 
+
+
+
+</table>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<button id="memUpdateList?mem_num=${dto.mem_num }" class="btn">수정</button>
+<button id="memDelete?mem_num=${dto.mem_num }" class="btn">삭제</button>
+
+</div>
+	</div>
+	</form>
+</div>

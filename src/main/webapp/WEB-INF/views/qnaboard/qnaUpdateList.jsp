@@ -27,7 +27,7 @@
 		<th colspan="2">글내용</th>
 	</tr>
 	<tr>
-		<td colspan="2"><input type="text" value="${dto.qna_content }" name="qna_content"></td>
+		<td colspan="2"><textarea rows="5" cols="50" name="qna_content">${dto.qna_content }</textarea></td>
 	</tr>
 </table>
 <input type="submit" value="저장">

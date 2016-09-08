@@ -125,9 +125,9 @@ create table staff				--스태프
 	ct_code number(5) DEFAULT 0 REFERENCES CENTER(CT_CODE) --지점코드 FK
 );
 CREATE SEQUENCE STAFF_SEQ;
-insert into staff values(staff_seq.nextval,'STF_KIM','011',sysdate,'kim.jpg','A',2);
-insert into staff values(staff_seq.nextval,'STF_LEE','017',sysdate,'lee.jpg','B',2);
-insert into staff values(staff_seq.nextval,'STF_MOON','019',sysdate,'moon.jpg','C',);
+insert into staff values(staff_seq.nextval,'NOTICE_TEST1','011',sysdate,'TEST1.jpg','A',2);
+insert into staff values(staff_seq.nextval,'NOTICE_TEST2','017',sysdate,'TEST2.jpg','B',2);
+insert into staff values(staff_seq.nextval,'NOTICE_TEST3','019',sysdate,'TEST3.jpg','B',2);
 
 
 create table freeboard			--자유게시판
@@ -139,7 +139,7 @@ create table freeboard			--자유게시판
 	fb_date date,			--작성일
 	fb_hit number(5),			--조회수
 	fb_ref number(5),			--그룹번호
-	fb_lef number(5),			--글레벨
+	fb_lev number(5),			--글레벨
 	fb_step number(5)			--출력순서
 );
 CREATE SEQUENCE FREE_SEQ;

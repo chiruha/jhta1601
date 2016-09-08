@@ -1,13 +1,13 @@
 package fitness.dto;
 
-import java.security.Timestamp;
+import java.sql.Date;
 
 public class QnaboardDto {
 	private int qna_num;
 	private int mem_num;
 	private String qna_title;
 	private String qna_content;
-	private Timestamp qna_date;
+	private Date qna_date;
 	private int qna_hit;
 	private int qna_ref;
 	private int qna_lev;
@@ -22,7 +22,7 @@ public class QnaboardDto {
 		this.qna_step = qna_step;
 	}
 	
-	public QnaboardDto(int qna_num, int mem_num, String qna_title, String qna_content, Timestamp qna_date, int qna_hit,
+	public QnaboardDto(int qna_num, int mem_num, String qna_title, String qna_content, Date qna_date, int qna_hit,
 			int qna_ref, int qna_lev, int qna_step) {
 		super();
 		this.qna_num = qna_num;
@@ -68,11 +68,11 @@ public class QnaboardDto {
 		this.qna_content = qna_content;
 	}
 
-	public Timestamp getQna_date() {
+	public Date getQna_date() {
 		return qna_date;
 	}
 
-	public void setQna_date(Timestamp qna_date) {
+	public void setQna_date(Date qna_date) {
 		this.qna_date = qna_date;
 	}
 

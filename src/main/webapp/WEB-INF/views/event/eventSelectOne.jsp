@@ -28,7 +28,7 @@
 <form method="post" action="EventCommentsInsert">
 	<%--  부모글에 대한 정보를 hidden으로 서버에 전송--%>
 	<input type="hidden" name="comm_num" value="${commList.comm_num }">
-	<input type="text" name="ev_num" value="${listone.ev_num }">
+	<input type="hidden" name="ev_num" value="${listone.ev_num }">
 	<input type="hidden" name="comm_ref" value="${commList.comm_ref }">
 	<input type="hidden" name="comm_lev" value="${commList.comm_lev }">
 	<input type="hidden" name="comm_step" value="${commList.comm_step }">
@@ -142,11 +142,11 @@ function ajaxComm(pageNum){
 									html=html+"<img src='/fitness/resources/img/hs6.png' height='15px'>";
 								}
 								html+=
-									"글쓴이 :"+mem_num+
-									"작성일 :"+comm_date+
-									"<a href='javascript:reAnswer(\""+comm_num+"\")'>댓글달기</a>"+
-									"<a href='EventCommentsDelete?comm_num="+comm_num+"'>삭제하기</a>"+
-									"<a href='javascript:reUpdate(\""+comm_num+"a\")'>수정하기</a>"+
+									"글쓴이 : "+mem_num+" | "+
+									"작성일 : "+comm_date+" | "+
+									"<a href='javascript:reAnswer(\""+comm_num+"\")'> 댓글달기 </a>"+" | "+
+									"<a href='EventCommentsDelete?comm_num="+comm_num+"'> 삭제하기 </a>"+" | "+
+									"<a href='javascript:reUpdate(\""+comm_num+"a\")'> 수정하기 </a>"+" | "+
 									"<br>"+
 									comments+
 									"</th>"+
@@ -162,7 +162,7 @@ function ajaxComm(pageNum){
 											"<input type='hidden' name='comm_lev' value='"+comm_lev+"'>"+
 											"<input type='hidden' name='comm_step' value='"+comm_step+"'>"+"<br>"+
 											"작성자<input type='text' disabled='disabled' name='mem_num' value='"+mem_num+"'>"+"<br>"+
-											"<textarea rows='2' cols='80' name='comments' value='"+comments+"'></textarea>"+
+											"<textarea rows='2' cols='80' name='comments'>"+comments+"</textarea>"+
 											"<input type='submit' value='수정'>"+"<br>"+
 										"</form>"+
 									"</div>"+

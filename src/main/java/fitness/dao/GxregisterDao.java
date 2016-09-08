@@ -21,8 +21,8 @@ public class GxregisterDao {
 	public GxregisterDto detail(int gx_num){
 		return sqlSession.selectOne(NAMESPACE+".getInfo",gx_num);
 	}
-	public List<GxregisterDto> gxlist(){
-		return sqlSession.selectList(NAMESPACE+".gxlist");
+	public GxregisterDto gxlist(){
+		return sqlSession.selectOne(NAMESPACE+".gxlist");
 	}
 	public List<GxsubjectDto> gxsubject(){
 		return sqlSession.selectList(NAMESPACE+".gxsubject");

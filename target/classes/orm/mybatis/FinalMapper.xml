@@ -6,10 +6,17 @@
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
 
 	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
-	<insert id="gxinsert" parameterType="fitness.dto.PtregisterDto">
-		insert into gx_register values(gx_seq.nextval,#{ct_code},#{gx_exercise},#{gx_day},#{gx_time},#{rg_num})
+	<insert id="gxinsert" parameterType="fitness.dto.GxregisterDto">
+		insert into gx_register values(
+			gx_seq.nextval,#{stf_num},#{ct_name},#{mon09},#{tue09},#{wed09},#{thu09},#{fri09},#{sat09},#{sun09}
+			,#{mon10},#{tue10},#{wed10},#{thu10},#{fri10},#{sat10},#{sun10}
+			,#{mon11},#{tue11},#{wed11},#{thu11},#{fri11},#{sat11},#{sun11}
+			,#{mon18},#{tue18},#{wed18},#{thu18},#{fri18},#{sat18},#{sun18}
+			,#{mon19},#{tue19},#{wed19},#{thu19},#{fri19},#{sat19},#{sun19}
+			,#{mon20},#{tue20},#{wed20},#{thu20},#{fri20},#{sat20},#{sun20}
+		)
 	</insert>
-	<select id="getInfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
+	<select id="getInfo" resultType="fitness.dto.GxregisterDto" parameterType="int">
 		select * from gx_register where gx_num=#{value}
 	</select>
 	<select id="gxlist" resultType="fitness.dto.GxregisterDto" >

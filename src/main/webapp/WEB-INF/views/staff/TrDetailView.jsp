@@ -10,7 +10,7 @@
 			event.preventDefault();
 			var id=event.target.getAttribute('id');
 			//alert($(this).attr('id')); // id 찍어보기 
-			//alert("id : "+id);
+			alert("id : "+id);
 			if(id=='/fitness/trdelete/?tr_num=${dto.tr_num }'){
 				$(location).attr('href',id);
 				//alert("loc : "+$(location).attr('href'));
@@ -77,22 +77,23 @@
 <div class="col-md-3"></div>
 <div class="col-md-6">
 <label>강사소개</label><br>
-<textarea class="form-control" rows="5" name="tr_intro" >${dto.tr_intro}</textarea><br> 
+<textarea class="form-control" rows="5" readonly="readonly">${dto.tr_intro}</textarea><br> 
 <br>
 </div>
 </div>
 <div class="row">
 <div class="col-md-3"></div>
 	<div class="col-md-3">
-	<button class="btn pull-right" id="btn" type="submit">
+	<button class="btn pull-right" id="/fitness/trpage/?num=${dto.stf_num }" type="submit">
 	<span class="glyphicon glyphicon-ok"></span> Update </button>
 	</div>
 		<div class="col-md-3">
-	<button class="btn pull-left" id="btn" type="reset">
+	<button class="btn pull-left" id="/fitness/trdelete/?tr_num=${dto.tr_num }" type="reset">
 	<span class="glyphicon glyphicon-remove"></span>  Delete </button>
 	
 	
 	</div>
 	</div>
 
-
+</form>
+</div>

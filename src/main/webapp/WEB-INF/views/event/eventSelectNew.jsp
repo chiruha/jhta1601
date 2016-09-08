@@ -52,29 +52,26 @@
 <!-- /////////////// 댓글 전체목록보기 /////////////// -->
 
 <script type="text/javascript">
-function resetUpdate(comm_num){//댓글의 댓글쓰기 취소
-	alert("수정하기기 취소 : "+comm_num);
-	var comm_num=document.getElementById(comm_numa);
-	//comm_num.style.display="block";	
+function resetUpdate(comm_numa){//수정하기 취소
+	alert("수정하기기 취소 : "+comm_numa);
+	var comm_numa=document.getElementById(comm_numa);
 	comm_numa.style.display="none";
 }
-function reUpdate(comm_num){//댓글 수정하기
-	alert(comm_num);
-	var comm_num=document.getElementById(comm_num);
-		comm_num.style.display="block";	
+function reUpdate(comm_numa){//댓글 수정하기
+	alert(comm_numa);
+	var comm_numa=document.getElementById(comm_numa);
+		comm_numa.style.display="block";	
 }
 
 function reset(comm_num){//댓글의 댓글쓰기 취소
 	alert("댓글쓰기 취소 : "+comm_num);
 	var comm_num=document.getElementById(comm_num);
-	//comm_num.style.display="block";	
 	comm_num.style.display="none";
 }
 function reAnswer(comm_num){//댓글의 댓글달기
 	alert(comm_num);
 	var comm_num=document.getElementById(comm_num);
 		comm_num.style.display="block";	
-		//comm_num.style.display="none";	
 }
 
 function ajaxComm(pageNum){
@@ -148,15 +145,15 @@ function ajaxComm(pageNum){
 									"작성일 :"+comm_date+
 									"<a href='javascript:reAnswer(\""+comm_num+"\")'>댓글달기</a>"+
 									"<a href='EventCommentsDelete?comm_num="+comm_num+"'>삭제하기</a>"+
-									"<a href='javascript:reUpdate(\""+comm_num+"\")'>수정하기</a>"+
+									"<a href='javascript:reUpdate(\""+comm_num+"a\")'>수정하기</a>"+
 									"<br>"+
 									comments+
 									"</th>"+
 								"</tr>"+
 								"<tr>"+
 									"<th>"+
-									"<div id='" +comm_num+"' style='display: none'>"+
-									"<a href='javascript:reset(\""+comm_num+"\")'>수정취소</a>"+
+									"<div id='" +comm_num+"a' style='display: none'>"+
+									"<a href='javascript:reset(\""+comm_num+"a\")'>수정취소</a>"+
 										"<form method='post' action='EventCommentsUpdate'>"+
 											"<input type='hidden' name='comm_num' value='"+comm_num+"'>"+
 											"<input type='hidden' name='ev_num' value='"+ev_num+"'>"+

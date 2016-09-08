@@ -23,8 +23,8 @@
 	<tr>
 		<th>직원번호</th>
 		<th>강사번호</th>
-		<th>강사소개</th>
 		<th>강사경력</th>
+		<th>강사소개</th>
 	</tr>
 	<c:forEach var="dto" items="${trlist }">
 	<tr>
@@ -47,17 +47,15 @@
 	<input type="hidden" id="pageNum" name="pageNum">
 
 	<div class="row">
-		<div class="col-sm-2">
-		
+		<div class="col-sm-8">
 			<select class="select input-sm">
-				<option>이름</option>
-				<option>경력</option>
-				<option>지점</option>
-				
+				<option value="tr_name">이름</option>
+				<option value="tr_career">경력</option>
+				<option value="ct_num">지점</option>	
 			</select>
-		</div>
-		<div class="col-sm-6">
-				<input type="text" placeholder="검색 조건을 선택하세요" class="form-control" size="10" name="keyword" id="keyword" value="${keyword }">
+
+				<input type="text" placeholder=" 검색어를 입력하세요" class="input-sm"  name="keyword" id="keyword" value="${keyword }">
+				
 				<span id="sp"></span>
 							
 		</div>

@@ -5,19 +5,24 @@
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-	<h3 class="text-center">Department Insert</h3>
+	<h3 class="text-center">Trainer Insert</h3>
 <form action="trinsert" method="post" >
 <div class="row">
-<div class="col-md-3">
-	<img src="/fitness/resources/img/Staff/${sdto.stf_picture }"><br>
-</div>
-	<div class="col-md-6">
+<div class="col-md-3"></div>
+	<div class="col-md-4">
 		<input type="hidden"   name="stf_num" value="${sdto.stf_num}">
-		<label>직원번호 ${sdto.stf_num}</label><br>
+		<br><label>직원번호 ${sdto.stf_num}</label><br>
 		<input type="hidden"  name="stf_name" value="${sdto.stf_name}">
 		<label>직원이름 ${sdto.stf_name}</label><br>
-
-<br><textarea rows="5" cols="20" placeholder="강사 경력" name="tr_career" class="form-control"></textarea><br>
+	</div>
+		<div class="col-md-2">
+	<img src="/fitness/resources/img/Staff/${sdto.stf_picture }"  width="100px;" height="100px;"><br>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3"></div>
+	<div class="col-md-6">
+<textarea rows="5" cols="20" placeholder="강사 경력" name="tr_career" class="form-control"></textarea><br>
 <br><textarea rows="5" cols="20" placeholder="강사 소개"  name="tr_intro" class="form-control"></textarea><br>
 
 </div>

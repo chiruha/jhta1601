@@ -81,27 +81,27 @@
 <form method="post" name="detailform" enctype="multipart/form-data">
 <div class="row">
 <div class="col-md-12">
-<table border="1" class="table th" >
+<table  class="table th" >
 	<tr>
-	<td><label >번호</label> <input type="text"  class="input-sm"  value=" ${dto.stf_num }">
+	<td><label >직원번호</label> <input type="text"  class="input-sm"  value=" ${dto.stf_num }">
 	<input type="hidden" name="stf_num" value="${dto.stf_num }">
 	</td>
 	<td rowspan="2">
 		<img src="/fitness/resources/img/Staff/${dto.stf_picture }" name="stf_picture" height="150px;">
-		<input type="hidden" name="picture" id="pic">
+		<input type="hidden" name="picture" id="pic" class="text-center">
 	</td>
 </tr>
 <tr>
-	<td id="pos"><label class="control-label">직급</label> <input type="text"  id="pcode" class="input-sm"	value="${pdto.pos_name }">	 </td>
+	<td><label >직원이름 </label> <input type="text" name="stf_name" class="input-sm"  value="${dto.stf_name }">  </td>
 	
 </tr>
 <tr>
-	<td><label >이름 </label> <input type="text" name="stf_name" class="input-sm"  value="${dto.stf_name }">  </td>
-	<td><label >전화 </label> <input type="text"  name="stf_phone" class="input-sm" value="${dto.stf_phone }"></td>
+	<td><label >전화번호 </label> <input type="text"  name="stf_phone" class="input-sm" value="${dto.stf_phone }"></td>
+	<td><label >등록일자</label> <input type="text"	name="stf_date" class="input-sm" value="${dto.stf_date }">	</td>
 </tr>
 <tr>
-	<td><label >등록일</label> <input type="text"	name="stf_date" class="input-sm" value="${dto.stf_date }">	</td>
-	<td id="ct"><label >지점 </label> <input type="text"  id="ccode" class="input-sm"  value="${cdto.ct_name }"></td>
+	<td id="pos"><label class="control-label">직원직급</label> <input type="text"  id="pcode" class="input-sm"	value="${pdto.pos_name }">	 </td>
+	<td id="ct"><label >소속지점 </label> <input type="text"  id="ccode" class="input-sm"  value="${cdto.ct_name }"></td>
 </tr>
 </table>
 </div>

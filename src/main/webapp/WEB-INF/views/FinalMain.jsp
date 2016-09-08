@@ -12,7 +12,8 @@
 	<ul>
 		<li><a href="<c:url value='/ptrinsert'/>">PT 예약</a></li>
 		<%-- <li><a href="<c:url value='/gxinsert'/>">GX 예약</a></li>--%>
-		<li><a href="<c:url value='/gxMent'/>">GX일정</a></li>
+		<li><a href="<c:url value='/gxinsert'/>">GX일정입력</a></li>		
+		<li><a href="<c:url value='/gxRegisterView'/>">GX일정보기</a></li>
 		<li><a href="<c:url value='/PTscOkView'/>">PT강사승인페이지</a></li>
 		<li><a href="<c:url value='/MemPTscOkView'/>">회원승인페이지</a></li>
 		

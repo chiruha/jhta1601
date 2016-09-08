@@ -72,10 +72,10 @@ public class PtregisterController {
 	@RequestMapping(value="/PTscOkView",method=RequestMethod.GET)
 	public String ptscOkviewmove(HttpSession session){
 		System.out.println("ptscOkviewmoveµµÂø");
-		int mnum = (Integer) session.getAttribute("mnum");
-		System.out.println("mnum:"+mnum);	
+		int snum = (Integer) session.getAttribute("snum");
+		System.out.println("snum:"+snum);	
 		
-		int ttr_num=trservice.detail2Service(mnum).getTr_num();
+		int ttr_num=trservice.detail2Service(snum).getTr_num();
 		System.out.println("ttr_num:"+ttr_num);
 		int tr_num = service.ptr_numinfo(ttr_num).getTr_num();
 		System.out.println("tr_num:"+tr_num);

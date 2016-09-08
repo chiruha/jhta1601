@@ -23,7 +23,7 @@ public class gxregisterService {
 	public GxregisterDto detail(int gx_num){
 		return gxregisterDao.detail(gx_num);
 	}
-	public List<GxregisterDto> gxlist(){
+	public GxregisterDto gxlist(){
 		return gxregisterDao.gxlist();
 	}
 	public List<GxsubjectDto> gxsubject(){

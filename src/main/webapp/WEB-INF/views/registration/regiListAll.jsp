@@ -3,13 +3,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- registration 전체목록보기(완료) -->
 <!-- 검색은 과목별로 볼 수 있도록!!(할 일) -->
-<h1>회원 수강등록정보보기</h1>
-<table border="1" width="800">
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">수강등록 정보</h3>
+<h5 class="text-right"><a href="<c:url value='/regiSelect'/>">전체보기</a></h5>
+<div class="row">
+	<div class="col-md-12">
+	<table  class="table th" >
 	<tr>
 		<th>등록번호</th>
 		<th>회원번호</th>
 		<th>등록유형</th>
-		<th>프로그램등록비</th>
+		<th>프로그램 등록비</th>
 		<th>락카비</th>
 		<th>운동복비</th>
 		<th>수정하기</th>
@@ -45,16 +50,23 @@
 	</c:forEach>
 </table>
 <br>
+</div>
+</div>
+</div>
+
+
 <!-- 페이징처리 -->
 <div>
 	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 		<c:choose>
 			<c:when test="${i==pu.pageNum }">
-				<a href="regiSelect?pageNum=${i }"><span style="color:blue">[${i }]</span></a>
+				<a href="regiSelect?pageNum=${i }"><span style="color:blue"> ${i } </span></a>
 			</c:when>
 			<c:otherwise>
-				<a href="regiSelect?pageNum=${i }"><span style="color:red">[${i }]</span></a>
+				<a href="regiSelect?pageNum=${i }"><span style="color:red"> ${i } </span></a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 </div>
+
+

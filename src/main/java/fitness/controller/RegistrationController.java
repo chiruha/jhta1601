@@ -20,7 +20,7 @@ import fitness.dto.ProsignDto;
 import fitness.dto.PtperiodDto;
 import fitness.dto.PtsignDto;
 import fitness.dto.RegistrationDto;
-
+import fitness.service.MemberService;
 import fitness.service.RegistrationService;
 import page.util.PageUtil;
 
@@ -31,6 +31,7 @@ import page.util.PageUtil;
 @Controller
 public class RegistrationController {
 	@Autowired private RegistrationService service;
+	@Autowired private MemberService mems;
 	
 	@RequestMapping(value="/regiInsert",method= RequestMethod.GET)
 	public String insertForm(){

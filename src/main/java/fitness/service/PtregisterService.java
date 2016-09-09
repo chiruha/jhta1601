@@ -15,7 +15,7 @@ import fitness.dto.ptrMemDto;
 
 @Service
 public class PtregisterService {
-	@Autowired PtregisterDao ptregisterDao;
+	@Autowired PtregisterDao ptregisterDao;	
 	
 	public int insert(PtregisterDto dto){
 		return ptregisterDao.insert(dto);
@@ -43,6 +43,14 @@ public class PtregisterService {
 	public PtregisterDto ptr_numinfo(int tr_num){		
 		return ptregisterDao.ptr_numinfo(tr_num);
 	}
-	
+	public int ptrcount(int rg_num){
+		return ptregisterDao.ptrcount(rg_num);
+	}
+	public int ptDelete(int ptr_num){
+		return ptregisterDao.ptDelete(ptr_num);
+	}
+	public PtregisterDto ptr_rg_numinfo(String rg_num){
+		return ptregisterDao.ptr_rg_numinfo(rg_num);
+	}
 	
 }

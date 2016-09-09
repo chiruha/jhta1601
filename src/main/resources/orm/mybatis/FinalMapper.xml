@@ -16,6 +16,7 @@
 			,#{mon20},#{tue20},#{wed20},#{thu20},#{fri20},#{sat20},#{sun20}
 		)
 	</insert>
+	
 	<select id="getInfo" resultType="fitness.dto.GxregisterDto" parameterType="int">
 		select * from gx_register where gx_num=#{value}
 	</select>
@@ -26,10 +27,19 @@
 		select * from gxsubject
 	</select>
 	
-	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->
-	<select id="regtDetail" parameterType="int" resultType="fitness.dto.RegistrationDto">
-		select * from registration where mem_num=#{value}
+	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->	
+	<delete id="ptDelete" parameterType="int">
+		delete from pt_register where ptr_num=#{value}
+	</delete>
+	
+	<select id="ptrcount" parameterType="int" resultType="int">
+		select ptr_count from ptsign where rg_num=#{value}
 	</select>
+	
+	
+	<select id="regtDetail"  resultType="fitness.dto.RegistrationDto" parameterType="int">
+		select max(nvl(rg_num,0)) rg_num from registration where rg_type='PT' and mem_num=#{value}
+	</select>	
 	
 	<select id="ptrgDetail" parameterType="int" resultType="fitness.dto.PtregisterDto">
 		select * from pt_register where rg_num=#{value}
@@ -51,6 +61,9 @@
 	</select>
 	<select id="ptr_numinfo" resultType="fitness.dto.PtregisterDto" parameterType="int">
 		select * from pt_register where tr_num=#{value}
+	</select>
+	<select id="ptr_rg_numinfo" resultType="fitness.dto.PtregisterDto" parameterType="String">
+		select * from pt_register where rg_num=#{value}
 	</select>
 	
 	<select id="ptrlistAll" parameterType="hashmap" resultType="fitness.dto.PtregisterDto">

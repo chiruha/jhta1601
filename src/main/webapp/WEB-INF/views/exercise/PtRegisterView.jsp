@@ -33,8 +33,7 @@
 					var ptr_initdate=$("#pdate").val();
 					var ptr_time=$("#time").val();
 					var ct_code=$("#ct_code").val();
-					var tr_num=$("#st_code").val();
-					alert(tr_num)
+					var tr_num=$("#st_code").val();				
 					$("#dlg").dialog("close");
 					$.ajax({
 							url:"/fitness/ptrinsert",
@@ -42,7 +41,8 @@
 							type:"post",
 							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code+"&tr_num="+tr_num,							
 							success:function function_name(data) {
-								alert(data.ptr_num);
+								alert(data);
+								if(data.ptr_num!=0){
 								var str = "회원등록:" + data.ptr_num +"<br>" +
 										  "트레이너:"+ data.tr_num +"<br>" +
 										  "회원:" + data.rg_num + "<br>" +
@@ -54,6 +54,10 @@
 								          "수정은 개인정보 회원란에서 해주쉬면됩니다.";
 								alert(str); 
 								 $("#result").html(str);	
+								}else{
+									$("#result").html("이미 PT 신청하셨습니다.");
+								}
+								 
 							}			  				
 							
 					});

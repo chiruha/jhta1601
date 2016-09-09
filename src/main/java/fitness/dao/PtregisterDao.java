@@ -48,6 +48,20 @@ public class PtregisterDao {
 	public PtregisterDto ptr_numinfo(int tr_num){
 		return sqlSession.selectOne(NAMESPACE+".ptr_numinfo",tr_num);
 	}
+	public List<StaffDto> ptstafflist(){
+		return   sqlSession.selectList(NAMESPACE+".ptstafflist");
+	}
+	
+	public int ptrcount(int rg_num){
+		return   sqlSession.selectOne(NAMESPACE+".ptrcount",rg_num);
+	}
+	
+	public int ptDelete(int ptr_num){
+		return sqlSession.delete(NAMESPACE+".ptDelete",ptr_num);
+	}
+	public PtregisterDto ptr_rg_numinfo(String rg_num){
+		return sqlSession.selectOne(NAMESPACE+".ptr_rg_numinfo",rg_num);
+	}
 	
 }
 

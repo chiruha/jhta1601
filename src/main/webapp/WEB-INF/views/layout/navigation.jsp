@@ -106,6 +106,8 @@
              <li><a href="<c:url value='/ctinsert'/>">Center 등록</a></li>
                 <li><a href="<c:url value='/deptinsert'/>">Dept 등록</a></li>
                  <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
+                   <li><a href="<c:url value='/nocinsert'/>">공지등록</a></li>
+                 
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
           </ul>
           

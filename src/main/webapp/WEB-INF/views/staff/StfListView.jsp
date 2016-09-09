@@ -135,15 +135,8 @@
 	</tr>
 	</c:forEach>
 </table>
-	
-	
 	</div>
-
-
 </div>
-
-
-
 
 				<input type="hidden" id="cbox" value="${ct_code} ">
 				<input type="hidden" id="pbox" value="${pos_code} ">
@@ -190,10 +183,6 @@
 	</c:otherwise>
 </c:choose>
 
-
-
-
-
 <c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 	<c:choose>
 		<c:when test="${i==pu.pageNum }">
@@ -205,7 +194,6 @@
 			<span style="color:#555">${i }</span></a>
 		</c:otherwise>
 	</c:choose>
-	
 </c:forEach>
 	
 	<c:choose>
@@ -216,10 +204,7 @@
 		&nbsp;next
 	</c:otherwise>
 </c:choose>
-	
-					
-					
-			
+
 			</div>
 		</div>
 

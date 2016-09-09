@@ -53,7 +53,7 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<c:url value='/regiInsert'/>">수강등록</a></li>
-            <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
+           
              <li><a href="<c:url value='/ptrinsert'/>">Pt 예약</a></li>
              <li><a href="<c:url value='/gxRegisterView'/>">Gx 일정조회</a></li>
              
@@ -105,6 +105,7 @@
                <li><a href="<c:url value='/trlist'/>">Trainer 목록</a></li>
              <li><a href="<c:url value='/ctinsert'/>">Center 등록</a></li>
                 <li><a href="<c:url value='/deptinsert'/>">Dept 등록</a></li>
+                 <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
           </ul>
           

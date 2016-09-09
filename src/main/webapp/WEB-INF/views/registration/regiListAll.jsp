@@ -52,11 +52,11 @@
 <br>
 </div>
 </div>
-</div>
 
 
 <!-- 페이징처리 -->
-<div>
+	<div class="row">
+		<div class="text-center">
 	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 		<c:choose>
 			<c:when test="${i==pu.pageNum }">
@@ -67,6 +67,9 @@
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
+	</div>
 </div>
 
 
+
+</div>

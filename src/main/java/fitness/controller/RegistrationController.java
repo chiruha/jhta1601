@@ -20,7 +20,7 @@ import fitness.dto.ProsignDto;
 import fitness.dto.PtperiodDto;
 import fitness.dto.PtsignDto;
 import fitness.dto.RegistrationDto;
-
+import fitness.service.MemberService;
 import fitness.service.RegistrationService;
 import page.util.PageUtil;
 
@@ -31,6 +31,7 @@ import page.util.PageUtil;
 @Controller
 public class RegistrationController {
 	@Autowired private RegistrationService service;
+	@Autowired private MemberService mems;
 	
 	@RequestMapping(value="/regiInsert",method= RequestMethod.GET)
 	public String insertForm(){
@@ -111,7 +112,7 @@ public class RegistrationController {
 	@RequestMapping("/regiSelect")
 	public ModelAndView regiSelect(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session){
 		int totalRowCount=service.getCountRegi();
-		PageUtil pu=new PageUtil(pageNum, totalRowCount,5,5);//한페이지5줄, 페이재갯수5개
+		PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);//한페이지10줄, 페이재갯수5개
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());

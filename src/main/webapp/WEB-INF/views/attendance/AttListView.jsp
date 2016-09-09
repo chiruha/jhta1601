@@ -5,6 +5,11 @@
 
 
 <form action="attcheck" method="post">
+
+
+
+
+
 	<button class="btn pull-right" id="btn" type="submit">
 				<span class="glyphicon glyphicon-search"></span>  check </button><br>
 </form>

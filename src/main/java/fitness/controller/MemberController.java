@@ -90,7 +90,7 @@ public class MemberController {
 	@RequestMapping("/memselectAll")
 	public ModelAndView selectAll(@RequestParam(value="pageNum",defaultValue="1") int pageNum){
 		int totalRowCount=service.getMemCount();
-		PageUtil pu=new PageUtil(pageNum, 15, 10, totalRowCount);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 5);
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
@@ -181,16 +181,30 @@ public class MemberController {
 	}
 	//--------------------| 회원검색하기 |--------------------//
 	@RequestMapping("/memSearchList")
-	public ModelAndView memSearchList(HttpServletRequest request,Model model){
+	public ModelAndView memSearchList(HttpServletRequest request,Model model,@RequestParam(value="pageNum",defaultValue="1") int pageNum){
 		String memSearch=request.getParameter("memSearch");
 		String keyword=request.getParameter("keyword");
-		HashMap<String, String> map=new HashMap<String, String>();
+		System.out.println("memSearch: "+memSearch);
+		System.out.println("keyword: "+keyword);
+		
+		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("memSearch", memSearch);
 		map.put("keyword", keyword);
+		int totalRowCount=service.getMemSearchCount(map);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 10);
+		System.out.println("전체 글의 갯수: "+totalRowCount);
+		
+		//HashMap<String, Object> map=new HashMap<String, Object>();
+		System.out.println("map은 뭐라 나오나??"+map);
+		map.put("startRow", pu.getStartRow());
+		map.put("endRow", pu.getEndRow());
+	//	map.put("memSearch", memSearch);
+	//	map.put("keyword", keyword);
 		List<MemberDto> searchList=service.memSearchList(map);
 		System.out.println("검색조건보기: "+searchList);
 		ModelAndView mv=new ModelAndView();
 		mv.addObject("list",searchList);
+		mv.addObject("pu",pu);
 		mv.setViewName(".member.memListAll");
 		return mv;
 		

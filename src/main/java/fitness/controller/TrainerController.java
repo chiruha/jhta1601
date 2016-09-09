@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fitness.dto.CenterDto;
+import fitness.dto.PositionDto;
 import fitness.dto.StaffDto;
 import fitness.dto.TrainerDto;
+import fitness.service.CenterService;
+import fitness.service.PositionService;
 import fitness.service.StaffService;
 import fitness.service.TrainerService;
 import page.util.PageUtil;
@@ -21,6 +25,8 @@ import page.util.PageUtil;
 public class TrainerController {
 	@Autowired private TrainerService service;
 	@Autowired private StaffService sts;
+	@Autowired private PositionService pos;
+	@Autowired private CenterService cts;
 	
 	@RequestMapping("/trpage")
 	public String page(int num,HttpSession session){
@@ -47,7 +53,6 @@ public class TrainerController {
 	@RequestMapping("/trlist")
 	public String list(HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum){
 		try{
-			System.out.println("tr Å×½ºÆ®");
 			HashMap<String, Object> map =new HashMap<String, Object>();
 			int totalRowCount=service.getTrCount(map);
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
@@ -68,6 +73,12 @@ public class TrainerController {
 	public String detail(int tr_num, HttpSession session){
 		try{
 			TrainerDto dto=service.detailService(tr_num);
+			StaffDto sdto=sts.detailService(dto.getStf_num());
+			CenterDto cdto=cts.detailService(sdto.getCt_code());
+			PositionDto pdto=pos.detailService(sdto.getPos_code());
+			session.setAttribute("pdto", pdto);
+			session.setAttribute("cdto", cdto);
+			session.setAttribute("sdto", sdto);
 			session.setAttribute("dto", dto);
 			System.out.println(dto.toString());
 		}catch(Exception e){

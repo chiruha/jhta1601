@@ -248,16 +248,27 @@
 		1. 수강등록하고자 하는 회원번호를 검색한다.
 		2. 뽑아온 번호와 기타정보들을 insert 한다.
 	-->
-	<!-- 1.(table명: member)회원번호검색 -->
-	
-	
+	<!-- 1.(table명: member)회원검색(selectBox:mem_num,mem_name,mem_phone) -->
 	<select id="searchMemNum" parameterType="hashmap" resultType="fitness.dto.MemberDto">
-		select * from member
-		<if test="keyword!=null">
-			where mem_num= #{keyword}
+		<if test="memSearch!=null">
+			select * from(
+				select bb.*, rownum rnum from(
+					select * from member
+					where ${memSearch} like '%' || #{keyword} || '%'
+					order by mem_num desc
+				)bb
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		</if>
+		<if test="memSearch==null">
+			select * from(
+				select aa. *, rownum rnum from(
+					select * from member
+					order by mem_num desc
+				)aa
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 		</if>
 	</select>
-
+	
 	<!-- 2.(table명: programprice) insert 할 때 selectBox에 넣을 (단과과목)프로그램 이름 뽑아오기 -->
 	<!-- 2.insert 할 때 selectBox에 넣을 (헬스&GX등록)프로그램 이름 뽑아오기 -->
 	<select id="programName" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
@@ -396,18 +407,32 @@
 	
 	<!-- 회원수정 memUpdate -->
 	<update id="memUpdate" parameterType="fitness.dto.MemberDto">
-		update member set mem_name= #{mem_name}, mem_phone= #{mem_phone}, mem_addr= #{mem_addr}, mem_email= #{mem_email},  
-											     mem_age=#{mem_age}, mem_gen=#{mem_gen}, mem_birth=#{mem_birth}, 
-												 mem_picture= #{mem_picture},  ct_code= #{ct_code} where mem_num=#{mem_num}
+		update member set mem_name= #{mem_name}, mem_phone= #{mem_phone}, mem_addr= #{mem_addr}, mem_email= #{mem_email},mem_age=#{mem_age}, mem_gen=#{mem_gen}, mem_birth=#{mem_birth}, mem_picture= #{mem_picture},  ct_code= #{ct_code} where mem_num=#{mem_num}
 	</update>
 	<!-- 회원검색 memSearchList -->
-	<select id="memSearchList" resultType="fitness.dto.MemberDto">
-		select * from member
+	<select id="memSearchList" parameterType="hashmap" resultType="fitness.dto.MemberDto">
 		<if test="memSearch!=null">
-			where ${memSearch} like '%' || #{keyword} || '%'
+			select * from(
+				select bb.*, rownum rnum from(
+					select * from member
+					where ${memSearch} like '%' || #{keyword} || '%'
+					order by mem_num desc
+				)bb
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		</if>
+		<if test="memSearch==null">
+			select * from(
+				select aa. *, rownum rnum from(
+					select * from member
+					order by mem_num desc
+				)aa
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 		</if>
 	</select>
-	
+	<!-- member검색페이징처리(검색글의 갯수) -->
+	<select id="getMemSearchCount" parameterType="hashmap" resultType="int">
+		select count(mem_num) cnt from member where ${memSearch} like '%' || #{keyword} || '%'
+	</select>
  
 	
 	<!--////////// notice 공지사항  - 작성자 : 김재원 //////////-->
@@ -484,7 +509,7 @@
 <!--////////// QnA board(답변형게시판) - 작성자:이성진 //////////-->
 	<!-- insert -->
 	<insert id="qnaInsert" parameterType="fitness.dto.QnaboardDto">
-		insert into qnaboard values(#{qna_num},#{mem_num},#{qna_title},#{qna_content},sysdate,0,#{qna_ref},#{qna_lev},#{qna_step})
+		insert into qnaboard values(#{qna_num},#{mem_num},#{stf_num},#{qna_title},#{qna_content},sysdate,0,#{qna_ref},#{qna_lev},#{qna_step})
 	</insert>
 	<!-- 가장 큰 글번호 얻어오기 -->
 	<select id="qnaMaxNum" resultType="int">
@@ -530,11 +555,27 @@
 	</delete>
 	<!-- qna글 검색하기 -->
 	<select id="qnaSearch" parameterType="hashmap" resultType="fitness.dto.QnaboardDto">
-		select * from qnaboard
-			<if test="field!=null">
-				where ${field} like '%' || #{keyword} || '%'
-			</if>
-				order by qna_num desc
+		<if test="field!=null">
+			select * from(
+				select bb.*, rownum rnum from(
+					select * from qnaboard
+					where ${field} like '%' || #{keyword} || '%'
+					order by qna_num desc
+				)bb
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		</if>
+		<if test="field==null">
+			select * from(
+				select aa. *, rownum rnum from(
+					select * from qnaboard
+					order by qna_num desc
+				)aa
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		</if>
+	</select>
+	<!-- qna검색페이징처리(검색글의 갯수) -->
+	<select id="getQnaSearchCount" parameterType="hashmap" resultType="int">
+		select count(mem_num) cnt from qnaboard where ${field} like '%' || #{keyword} || '%'
 	</select>
 	
 <!--////////// Event board(이벤트 등록하기)(table: event) - 작성자:이성진 //////////-->
@@ -591,7 +632,7 @@
 <!--////////// Event board(댓글달기)(table: EventComments) - 작성자:이성진 //////////-->
 	<!-- insert -->
 	<insert id="eventCommentsInsert" parameterType="fitness.dto.EventCommentsDto">
-		insert into eventcomments values(#{comm_num},#{ev_num},#{mem_num},#{comments},sysdate,#{comm_ref},#{comm_lev},#{comm_step})
+		insert into eventcomments values(#{comm_num},#{ev_num},#{mem_num},#{stf_num},#{comments},sysdate,#{comm_ref},#{comm_lev},#{comm_step})
 	</insert>
 	<!-- 가장 큰 글번호 얻어오기(insert) -->
 	<select id="commMaxNum" resultType="int">

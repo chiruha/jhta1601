@@ -37,9 +37,9 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<c:url value='/noclist'/>">Notice</a></li>
-            <li><a href="#">QnA</a></li>
-            <li><a href="#">Event</a></li>
-            <li><a href="#">FreeBoard</a></li>
+            <li><a href="<c:url value='/qnaselectAll'/>">QnA</a></li>
+            <li><a href="<c:url value='/eventSelectAll'/>">Event</a></li>
+            <li><a href="<c:url value='#'/>">FreeBoard</a></li>
           </ul>
         </li>
 
@@ -53,8 +53,10 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<c:url value='/regiInsert'/>">수강등록</a></li>
-            <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
+           
              <li><a href="<c:url value='/ptrinsert'/>">Pt 예약</a></li>
+             <li><a href="<c:url value='/gxRegisterView'/>">Gx 일정조회</a></li>
+             
           </ul>
           
           
@@ -99,10 +101,13 @@
                  <li><a href="<c:url value='/stfinsert'/>">Staff 등록</a></li>
            <li><a href="<c:url value='/memselectAll'/>">Member 목록</a></li>
             <li><a href="<c:url value='/PTscOkView'/>">Pt강사승인</a></li>
-            <li><a href="<c:url value='/ptment'/>">Pt 관리</a></li>
+                 <li><a href="<c:url value='/MemPtscOkView'/>">회원승인페이지</a></li>
                <li><a href="<c:url value='/trlist'/>">Trainer 목록</a></li>
              <li><a href="<c:url value='/ctinsert'/>">Center 등록</a></li>
                 <li><a href="<c:url value='/deptinsert'/>">Dept 등록</a></li>
+                 <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
+                   <li><a href="<c:url value='/nocinsert'/>">공지등록</a></li>
+                 
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
           </ul>
           

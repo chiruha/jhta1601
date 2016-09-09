@@ -103,7 +103,7 @@
     <ul class="list-group">
       <li class="list-group-item">September <span class="label label-danger">Sold Out!</span></li>
       <li class="list-group-item">October <span class="label label-danger">Sold Out!</span></li>
-      <li class="list-group-item">November <span class="badge">3</span></li>
+      <li class="list-group-item">November <span class="badge">년</span></li>
     </ul>
     
     <div class="row text-center">

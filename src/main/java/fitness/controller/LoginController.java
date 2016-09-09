@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import fitness.service.LoginService;
 
@@ -42,7 +41,7 @@ public class LoginController {
 			}else{
 				HttpSession session=req.getSession();//세션얻어오기
 				System.out.println("session나오나?"+session);
-				session.setAttribute("mnum", ((BigDecimal)user.get("MEM_NUM")).intValue());
+				session.setAttribute("mnum", ((BigDecimal)user.get("MEM_NUM")).intValue());//번호뽑아오기
 				session.setAttribute("memnum", mem_name);
 				
 				System.out.println("담아졌나?"+ mem_name);
@@ -60,7 +59,9 @@ public class LoginController {
 			}else{
 				HttpSession session=req.getSession();//세션얻어오기
 				System.out.println("Admin session나오나?"+session);
-				session.setAttribute("snum", ((BigDecimal)user.get("STF_NUM")).intValue());
+
+				session.setAttribute("snum", ((BigDecimal)user.get("STF_NUM")).intValue());//번호뽑아오기
+
 				session.setAttribute("memnum", mem_name);
 				System.out.println("Admin 담아졌나?"+ mem_phone);
 				System.out.println("값 뽑아보기!!"+user.get("STF_NUM"));

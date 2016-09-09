@@ -70,7 +70,6 @@
 <br>
 </form>
 	<div class="row">
-
 		<div class="text-center">
 		
 <form action="trlist" method="post" name="listform">

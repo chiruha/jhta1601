@@ -39,7 +39,11 @@ public class MemberDao {
 		return sqlSession.update(NAMESPACE+".memUpdate",dto);
 	}
 	//----------| 회원검색하기 |----------//	
-	public List<MemberDto> memSearchList(HashMap<String, String> map){
+	public List<MemberDto> memSearchList(HashMap<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+".memSearchList",map);
+	}
+	//getMemSearchCount 검색한 글의 갯수구하기
+	public int getMemSearchCount(HashMap<String, Object> map){//페이징처리(count구하기)
+		return sqlSession.selectOne(NAMESPACE+".getMemSearchCount",map);
 	}
 }

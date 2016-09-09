@@ -179,7 +179,6 @@
 <br>
 </form>
 	<div class="row">
-
 		<div class="text-center">
 <!-- 페이징처리 -->
 <c:choose>

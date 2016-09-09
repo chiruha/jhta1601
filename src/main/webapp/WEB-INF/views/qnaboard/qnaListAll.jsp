@@ -10,7 +10,7 @@
 		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
 	</c:when>
 </c:choose>
-<table border="1" width="700">
+<table border="1" width="1000">
 	<tr>
 		<th>qna글번호</th>
 		<th>글제목</th>
@@ -35,8 +35,17 @@
 	</tr>
 	</c:forEach>
 </table>
+<!-- 페이징: |이전| -->
+<c:choose>
+	<c:when test="${startPage>10 }">
+		<a href="qnaListAll?pageNum=${startPage -1 }">|이전|</a>
+	</c:when>
+	<c:otherwise>
+		이전
+	</c:otherwise>
+</c:choose>
 <!-- 페이징처리 -->
-<div>
+
 <c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 	<c:choose>
 		<%--현재페이지인 경우 다른색 표시 --%>
@@ -48,7 +57,17 @@
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
-</div>
+
+<!-- 페이징: |다음| -->
+<c:choose>
+	<c:when test="${endPage>pageCount }">
+		<a href="qnaListAll?pageNum=${endPage +1 }">|다음|</a>
+	</c:when>
+	<c:otherwise>
+		다음
+	</c:otherwise>
+</c:choose>
+
 <div>
 <form method="post" action="qnaSearch">
 	<select name="field">

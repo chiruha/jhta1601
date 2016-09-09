@@ -2,29 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h1>QnA 글 읽기</h1>
-<table border="1" width="700">
+<input type="hidden" value="${dto.qna_num }">
+<table border="1" width="1000">
 	<tr>
-		<th>글번호</th>
-		<td>${dto.qna_num }</td>
-	</tr>
-	<tr>
-		<th>작성자</th>
-		<td>${dto.mem_num }</td>
-	</tr>
-	<tr>
-		<th>작성일</th>
-		<td>${dto.qna_date }</td>
-	</tr>
-	<tr>
-		<th>조회수</th>
-		<td>${dto.qna_hit }</td>
-	</tr>
-	<tr>
-		<th>글제목</th>
 		<td>${dto.qna_title }</td>
+		<td>${dto.qna_date }</td>
+
 	</tr>
 	<tr>
-		<th colspan="2">글내용</th>
+		<td colspan="2">작성자 : ${dto.mem_num }</td>
 	</tr>
 	<tr>
 		<td colspan="2">${dto.qna_content }</td>

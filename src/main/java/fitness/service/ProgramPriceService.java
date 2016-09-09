@@ -16,7 +16,7 @@ public class ProgramPriceService {
 	@Autowired ProgramPriceDao dao;
 	//------------------|회원번호 검색하기(테이블명: member)|------------------//
 	
-	public List<MemberDto> memNum(HashMap<String, String> map){
+	public List<MemberDto> memNum(HashMap<String, Object> map){
 		return dao.memNum(map);
 	}
 	/*

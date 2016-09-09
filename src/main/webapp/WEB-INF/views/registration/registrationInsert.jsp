@@ -1,28 +1,96 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%-- 
 <script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
+ --%>
 <script type="text/javascript">
+function memList(mem_num){
+	//attachMemNum
+	$("#attachMemNum").val(mem_num);
+}
+var keyword="";
+var memSearch="";
+function ajaxSearchMem(pageNum,memSearch,keyword){
+	alert("검색버튼 클릭!!!!");
+	$.ajax({
+		url:"/fitness/memlist/xml",
+		data:"pageNum="+pageNum+"&keyword=" + keyword+"&memSearch=" + memSearch,
+		success:function(data){
+			var div=document.getElementById("memInformation");
+			var div2=document.getElementById("answerPaging");
+			div.innerHTML="";
+			div2.innerHTML="";
+			//alert("어디까지왔나?"+data);
+			$(data).find("paging").each(function(){//페이징처리
+			//	var keyword=$("this").find("keyword").text();
+			//	var memSearch=$("this").find("memSearch").text();
+				var getPageNum=$(this).find("getPageNum").text();
+				var getTotalRowCount=$(this).find("getTotalRowCount").text();
+				var getRowBlockCount=$(this).find("getRowBlockCount").text();
+				var getPageBlockCount=$(this).find("getPageBlockCount").text();
+				var getStartPageNum=$(this).find("getStartPageNum").text();
+				var getEndPageNum=$(this).find("getEndPageNum").text();
+				var getTotalPageCount=$(this).find("getTotalPageCount").text();
+				alert("keyword: "+keyword);
+				alert("memSearch: "+memSearch);
+				//alert("getTotalPageCount : "+getTotalPageCount);
+				//alert("getStartPageNum : "+getStartPageNum);
+				//alert("getEndPageNum : "+getEndPageNum);
+				/////////////////////
+				var html2="";
+				for(var i=getStartPageNum;i<=getEndPageNum;i++){
+					if(i==getPageNum){
+						html2="<a href='javascript:ajaxSearchMem("+i+",\""+memSearch+"\",\""+keyword+"\")'><span style='color:blue'>["+i+"]</span></a>";
+					}else{
+						html2="<a href='javascript:ajaxSearchMem("+i+",\""+memSearch+"\",\""+keyword+"\")'><span style='#555'>["+i+"]</span></a>";
+					}
+					var page=document.createElement("div2");
+					page.innerHTML=html2;
+					div2.appendChild(page);
+				}				
+			});
+			
+			$(data).find("mem").each(function(){//회원정보 받아오기
+				var html="";
+				var len=$(this).find("mem_num").length;
+				//alert("len : "+len);
+				var html="<table border='1' width='300'>"+
+				"<tr>"+
+					"<th>회원번호</th>"+
+		 			"<th>회원이름</th>"+
+					"<th>전화번호</th>"+
+					"<th>선택</th>"+
+				"</tr>";
+				for(var i=0;i<len;i++){
+					var mem_num=$(this).find("mem_num").text();
+					var mem_name=$(this).find("mem_name").text();
+					var mem_phone=$(this).find("mem_phone").text();	
+				html += "<tr>"+
+							"<td><input type='text' name='mem_num' value='"+mem_num+"' id='mem_num'></td>"+
+							"<td><input type='text' name='mem_name' value='"+mem_name+"' id='mem_name'></td>"+
+							"<td><input type='text' name='mem_phone' value='"+mem_phone+"' id='mem_phone'></td>"+
+							"<td><input type='button' value='선택' id='btnSelectMemNum' onclick='memList("+mem_num+")'></td>"+
+						"</tr>";
+				}
+				html += "</table>";
+				var infoMem=document.createElement("div");
+				infoMem.innerHTML=html;
+				div.appendChild(infoMem);
+				
+			});
+		}
+	});
+	
+}
 	$(document).ready(function(){
 		//alert("Ajax실행");
-		$("#memSearch").click(function(){
-			var keyword=$("#keyword").val();
-			//alert("keyword: "+keyword);
-			$.ajax({
-				url:"/fitness/memlist/xml",
-				data:"keyword=" + keyword,
-				success:function(data){
-					$(data).find("mem").each(function(){
-						var mem_num=$(this).find("mem_num").text();
-						var mem_name=$(this).find("mem_name").text();
-						var mem_phone=$(this).find("mem_phone").text();
-						$("#mem_num").val(mem_num);
-						$("#mem_name").val(mem_name);
-						$("#mem_phone").val(mem_phone);
-					});
-				}
-			});
+		$("#searchMem").click(function(){
+			 memSearch=$("#memSearch").val();
+			keyword=$("#keyword").val();
+			alert("keyword: "+keyword);
+			alert("memSearch: "+memSearch);
+			ajaxSearchMem(1,memSearch,keyword);//회원검색 ajax호출하기
 		});
 		$("#btnSelectMemNum").click(function(){
 			var searchNum=$("#mem_num").val();
@@ -299,28 +367,20 @@
 	
  -->
 <h1>회원 수강등록(프로그램등록)하기!!</h1>
-<div>
-<!-- 회원번호 검색 -->
-
-회원번호: <input type="text" name="keyword" id="keyword">
-		<input type="button" value="회원검색" id="memSearch">
+<!-- 회원 검색하기!!! -->
+<h3>회원검색</h3>
+<select id="memSearch">
+	<option value="mem_num">회원번호</option>
+	<option value="mem_name">이름</option>
+	<option value="mem_phone">전화</option>
+</select>
+<input type="text" name="keyword" id="keyword">
+<input type="button" value="회원검색" id="searchMem">
 <br><br>
-		<table border="1" width="300">
-			<tr>
-				<th>회원번호</th>
-				 <th>회원이름</th>
-				<th>전화번호</th>
-				<th>선택</th>
-			</tr>
-  			<tr>
-				<td><input type="text" name="mem_num" id="mem_num"></td>
-				<td><input type="text" name="mem_name" id="mem_name"></td>
-				<td><input type="text" name="mem_phone" id="mem_phone"></td>
-				<td><input type="button" value="선택" id="btnSelectMemNum"></td>
-			</tr>
-		</table>
-<!-- 회원번호 list로 뿌려주기 -> 회원번호 선택하면 아래의 input type="text"에 회원번호 자동입력 -->
-</div>
+<!-- 검색된 정보 뿌려주기는 여기에다가 안된다고 함...위에다가 써서 div에 뿌려줘야함... -->
+<div id="memInformation"></div>		
+<!-- 페이징도 마찬가지로 위에다가 써서 div에 뿌려주기 -> 회원번호 선택하면 아래의 input type="text"에 회원번호 자동입력 -->
+<div id="answerPaging"></div>
 <br><br>
 
 <form method="post" action="regiInsert1">

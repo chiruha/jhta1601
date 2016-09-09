@@ -9,32 +9,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fitness.dto.MemberDto;
 import fitness.dto.ProgramPriceDto;
 import fitness.dto.PtPriceDto;
+import fitness.service.MemberService;
 import fitness.service.ProgramPriceService;
+import page.util.PageUtil;
 
 @Controller
 public class ProgramPriceController {
 	@Autowired private ProgramPriceService service;
+	@Autowired private MemberService memservice;
 	//------------------|회원번호 검색하기(테이블명: member)|------------------//
 	@RequestMapping(value="/memlist/xml",produces="application/xml;charset=utf-8")
 	@ResponseBody
-	public String getMemnum(HttpServletRequest request,Model model){
+	public String getMemnum(HttpServletRequest request,Model model,@RequestParam(value="pageNum",defaultValue="1") int pageNum){
+		String memSearch=request.getParameter("memSearch");
 		String keyword=request.getParameter("keyword");
-		System.out.println("검색한 키워드 : "+keyword);
-		HashMap<String, String> map=new HashMap<String, String>();
+		System.out.println("검색한 search : "+memSearch);
+		System.out.println("검색한 keyword : "+keyword);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("memSearch", memSearch);
 		map.put("keyword", keyword);
-		System.out.println("getMemnum");
+		int totalRowCount=memservice.getMemSearchCount(map);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 5, 5);
+		map.put("startRow", pu.getStartRow());
+		map.put("endRow", pu.getEndRow());
+		System.out.println("전체글의 갯수"+totalRowCount);
 		List<MemberDto> list=service.memNum(map);
 
 		System.out.println("검색어 보기 : "+list);
+	
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		sb.append("<getmem>");
-		
+		sb.append("<paging>");
+		sb.append("<memSearch>"+memSearch+"</memSearch>");
+		sb.append("<keyword>"+keyword+"</keyword>");
+		sb.append("<getPageNum>"+pu.getPageNum()+"</getPageNum>");
+		sb.append("<getTotalRowCount>"+pu.getTotalRowCount()+"</getTotalRowCount>");
+		sb.append("<getRowBlockCount>"+pu.getRowBlockCount()+"</getRowBlockCount>");
+		sb.append("<getPageBlockCount>"+pu.getPageBlockCount()+"</getPageBlockCount>");
+		sb.append("<getStartPageNum>"+pu.getStartPageNum()+"</getStartPageNum>");
+		sb.append("<getEndPageNum>"+pu.getEndPageNum()+"</getEndPageNum>");
+		sb.append("<getTotalPageCount>"+pu.getTotalPageCount()+"</getTotalPageCount>");
+		sb.append("</paging>");
 		for(MemberDto dto:list){
 			sb.append("<mem>");
 			sb.append("<mem_num>"+dto.getMem_num()+"</mem_num>");

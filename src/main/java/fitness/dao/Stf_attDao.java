@@ -1,5 +1,6 @@
 package fitness.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,10 +13,10 @@ import fitness.dto.Stf_attDto;
 public class Stf_attDao {
 	@Autowired private SqlSession sqlsession;
 	private final String NameSpace="orm.mybatis.FinalMapper";
-	public int insertDao(){
-		return sqlsession.insert(NameSpace+".sattInsert");
+	public int insertDao(Stf_attDto dto){
+		return sqlsession.insert(NameSpace+".sattinsert",dto);
 	}
-	public List<Stf_attDto> listDao(){
-		return sqlsession.selectList(NameSpace+".sattList");
+	public List<Stf_attDto> listDao(HashMap<String, Object> map){
+		return sqlsession.selectList(NameSpace+".sattlist",map);
 	}
 }

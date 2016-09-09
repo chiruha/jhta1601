@@ -386,13 +386,29 @@
 		update member set mem_name= #{mem_name}, mem_phone= #{mem_phone}, mem_addr= #{mem_addr}, mem_email= #{mem_email},mem_age=#{mem_age}, mem_gen=#{mem_gen}, mem_birth=#{mem_birth}, mem_picture= #{mem_picture},  ct_code= #{ct_code} where mem_num=#{mem_num}
 	</update>
 	<!-- 회원검색 memSearchList -->
-	<select id="memSearchList" resultType="fitness.dto.MemberDto">
-		select * from member
+	<select id="memSearchList" parameterType="hashmap" resultType="fitness.dto.MemberDto">
 		<if test="memSearch!=null">
-			where ${memSearch} like '%' || #{keyword} || '%'
+			select * from(
+				select bb.*, rownum rnum from(
+					select * from member
+					where ${memSearch} like '%' || #{keyword} || '%'
+					order by mem_num desc
+				)bb
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		</if>
+		<if test="memSearch==null">
+			select * from(
+				select aa. *, rownum rnum from(
+					select * from member
+					order by mem_num desc
+				)aa
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 		</if>
 	</select>
-	
+	<!-- member검색페이징처리(검색글의 갯수) -->
+	<select id="getMemSearchCount" parameterType="hashmap" resultType="int">
+		select count(mem_num) cnt from member where ${memSearch} like '%' || #{keyword} || '%'
+	</select>
  
 	
 	<!--////////// notice 공지사항  - 작성자 : 김재원 //////////-->

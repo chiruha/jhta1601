@@ -62,7 +62,10 @@ public class LoginController {
 				System.out.println("Admin session나오나?"+session);
 
 				session.setAttribute("snum", ((BigDecimal)user.get("STF_NUM")).intValue());//번호뽑아오기
+<<<<<<< HEAD
 
+=======
+>>>>>>> f996c601375900430d64e3c50b4d4c25c19aba64
 				session.setAttribute("memnum", mem_name);
 				System.out.println("Admin 담아졌나?"+ mem_phone);
 				System.out.println("값 뽑아보기!!"+user.get("STF_NUM"));

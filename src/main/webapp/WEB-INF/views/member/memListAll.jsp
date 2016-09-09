@@ -35,6 +35,15 @@
 	</c:forEach>
 </table>
 <br>
+<!-- 페이징 |이전| -->
+<c:choose>
+	<c:when test="${startPage>10 }">
+		<a href="memselectAll?pageNum=${startPage -1 }">|이전|</a>
+	</c:when>
+	<c:otherwise>
+		이전
+	</c:otherwise>
+</c:choose>
 <!-- 페이징처리 -->
 <c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 	<c:choose>
@@ -46,3 +55,12 @@
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
+<!-- 페이징 |다음| -->
+<c:choose>
+	<c:when test="${endPage>pageCount }">
+		<a href="memselectAll?pageNum=${endPage +1 }">|다음|</a>
+	</c:when>
+	<c:otherwise>
+		다음
+	</c:otherwise>
+</c:choose>

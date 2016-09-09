@@ -1,0 +1,12 @@
+diff a/src/main/java/fitness/controller/LoginController.java b/src/main/java/fitness/controller/LoginController.java	(rejected hunks)
+@@ -62,7 +62,10 @@
+ 				System.out.println("Admin session������?"+session);
+ 
+ 				session.setAttribute("snum", ((BigDecimal)user.get("STF_NUM")).intValue());//��ȣ�̾ƿ���
++<<<<<<< HEAD
+ 
++=======
++>>>>>>> f996c601375900430d64e3c50b4d4c25c19aba64
+ 				session.setAttribute("memnum", mem_name);
+ 				System.out.println("Admin �������?"+ mem_phone);
+ 				System.out.println("�� �̾ƺ���!!"+user.get("STF_NUM"));

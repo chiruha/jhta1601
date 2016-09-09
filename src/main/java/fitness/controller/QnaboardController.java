@@ -89,7 +89,7 @@ public class QnaboardController {
 	@RequestMapping("/qnaselectAll")
 	public ModelAndView qnaListAll(@RequestParam(value="pageNum",defaultValue="1")int pageNum){
 		int totalRowCount=service.qnaCount();
-		PageUtil pu=new PageUtil(pageNum, totalRowCount, 5, 5);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 10);
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
@@ -144,16 +144,21 @@ public class QnaboardController {
 	}
 	//----------------------------| 글검색하기 |----------------------------//
 	@RequestMapping("/qnaSearch")
-	public ModelAndView qnaSearch(HttpServletRequest req, Model model){
+	public ModelAndView qnaSearch(HttpServletRequest req, Model model,@RequestParam(value="pageNum",defaultValue="1") int pageNum){
 		String field=req.getParameter("field");
 		String keyword=req.getParameter("keyword");
-		HashMap<String, String> map=new HashMap<String, String>();
+		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("field", field);
 		map.put("keyword", keyword);
+		int totalRowCount=service.getQnaSearchCount(map);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 10);
+		map.put("startRow", pu.getStartRow());
+		map.put("endRow", pu.getEndRow());
 		List<QnaboardDto> qnalist=service.qnaSearch(map);
 		System.out.println("검색조건보기 : "+qnalist);
 		ModelAndView mv=new ModelAndView();
 		mv.addObject("qnalist",qnalist);
+		mv.addObject("pu",pu);
 		mv.setViewName(".qnaboard.qnaListAll");
 		return mv;
 	}

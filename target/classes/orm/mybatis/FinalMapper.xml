@@ -531,11 +531,27 @@
 	</delete>
 	<!-- qna글 검색하기 -->
 	<select id="qnaSearch" parameterType="hashmap" resultType="fitness.dto.QnaboardDto">
-		select * from qnaboard
-			<if test="field!=null">
-				where ${field} like '%' || #{keyword} || '%'
-			</if>
-				order by qna_num desc
+		<if test="field!=null">
+			select * from(
+				select bb.*, rownum rnum from(
+					select * from qnaboard
+					where ${field} like '%' || #{keyword} || '%'
+					order by qna_num desc
+				)bb
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		</if>
+		<if test="field==null">
+			select * from(
+				select aa. *, rownum rnum from(
+					select * from qnaboard
+					order by qna_num desc
+				)aa
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		</if>
+	</select>
+	<!-- qna검색페이징처리(검색글의 갯수) -->
+	<select id="getQnaSearchCount" parameterType="hashmap" resultType="int">
+		select count(mem_num) cnt from qnaboard where ${field} like '%' || #{keyword} || '%'
 	</select>
 	
 <!--////////// Event board(이벤트 등록하기)(table: event) - 작성자:이성진 //////////-->

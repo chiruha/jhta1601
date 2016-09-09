@@ -48,8 +48,12 @@ public class QnaboardService {
 		return dao.qnaDelete(qna_num);
 	}
 	//----------------------------| 글검색하기 |----------------------------//
-	public List<QnaboardDto> qnaSearch(HashMap<String, String> map){
+	public List<QnaboardDto> qnaSearch(HashMap<String, Object> map){
 		return dao.qnaSearch(map);
+	}
+	//검색한 글의 갯수 구하기
+	public int getQnaSearchCount(HashMap<String, Object> map){
+		return dao.getQnaSearchCount(map);
 	}
 	//----------------------------| 글검색하기 |----------------------------//
 	public int qnaAnswer(QnaboardDto dto){

@@ -50,8 +50,12 @@ public class QnaboardDao {
 		return sqlSession.delete(NAMESPACE+".qnaDelete",qna_num);
 	}
 //----------------------------| 글검색하기 |----------------------------//
-	public List<QnaboardDto> qnaSearch(HashMap<String, String> map){
+	public List<QnaboardDto> qnaSearch(HashMap<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+".qnaSearch",map);
+	}
+	//검색한 글의 갯수 구하기
+	public int getQnaSearchCount(HashMap<String, Object> map){
+		return sqlSession.selectOne(NAMESPACE+".getQnaSearchCount",map);
 	}
 //----------------------------| 답변하기 : step+1 |----------------------------//
 	public int qnaAnswer(QnaboardDto dto){

@@ -17,7 +17,7 @@ public class ProgramPriceDao {
 	private final String NAMESPACE="orm.mybatis.FinalMapper";
 	//------------------|회원번호 검색하기(테이블명: member)|------------------//
 	
-	public List<MemberDto> memNum(HashMap<String, String> map){
+	public List<MemberDto> memNum(HashMap<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+".searchMemNum", map);
 	}
 	/*

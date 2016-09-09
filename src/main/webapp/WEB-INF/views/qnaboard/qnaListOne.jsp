@@ -10,7 +10,14 @@
 
 	</tr>
 	<tr>
-		<td colspan="2">작성자 : ${dto.mem_num }</td>
+		<c:choose>
+			<c:when test="${dto.mem_num<1 }">
+				<td colspan="2">admin</td>
+			</c:when>
+			<c:otherwise>
+				<td colspan="2">${dto.mem_num }</td>
+			</c:otherwise>
+		</c:choose>
 	</tr>
 	<tr>
 		<td colspan="2">${dto.qna_content }</td>

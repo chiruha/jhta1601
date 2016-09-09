@@ -12,9 +12,9 @@
 </c:choose>
 <table border="1" width="1000">
 	<tr>
-		<th>qna글번호</th>
+		<th>글번호</th>
 		<th>글제목</th>
-		<th>회원번호</th>
+		<th>글쓴이</th>
 		<th>조회수</th>
 		<th>작성일</th>
 	</tr>
@@ -22,14 +22,22 @@
 	<tr>
 		<td>${dto.qna_num }</td>
 		<td>
-		<c:if test="${dto.qna_lev>0 }">
-			<c:forEach var="i" begin="1" end="${dto.qna_lev }">
-				&nbsp;&nbsp;
-			</c:forEach>
-			[re]
-		</c:if>
-		<a href="qnaListOne?qna_num=${dto.qna_num}">${dto.qna_title }</a></td>
-		<td>${dto.mem_num }</td>
+			<c:if test="${dto.qna_lev>0 }">
+				<c:forEach var="i" begin="1" end="${dto.qna_lev }">
+					&nbsp;&nbsp;
+				</c:forEach>
+				[re]
+			</c:if>
+			<a href="qnaListOne?qna_num=${dto.qna_num}">${dto.qna_title }</a>
+		</td>
+		<c:choose>
+			<c:when test="${dto.mem_num<1 }">
+				<td>admin</td>
+			</c:when>
+			<c:otherwise>
+				<td>${dto.mem_num }</td>
+			</c:otherwise>
+		</c:choose>
 		<td>${dto.qna_hit }</td>
 		<td>${dto.qna_date }</td>
 	</tr>

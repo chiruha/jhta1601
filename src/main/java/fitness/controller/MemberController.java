@@ -90,7 +90,7 @@ public class MemberController {
 	@RequestMapping("/memselectAll")
 	public ModelAndView selectAll(@RequestParam(value="pageNum",defaultValue="1") int pageNum){
 		int totalRowCount=service.getMemCount();
-		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 10);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 5);
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());

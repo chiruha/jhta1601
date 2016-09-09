@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class AttendenceController {
-	@Autowired private Service
-	
 	
 	
 }

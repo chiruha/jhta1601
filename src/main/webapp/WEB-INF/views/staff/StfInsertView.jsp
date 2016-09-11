@@ -30,7 +30,7 @@
 				<p >
 					<span class="glyphicon glyphicon-edit"></span> Please write your profile
 				</p>
-							<div class="row">
+			<div class="row">
 				<div class="col-sm-3 form-group">
 				<span class="glyphicon glyphicon-user"> Position</span>
 				</div>

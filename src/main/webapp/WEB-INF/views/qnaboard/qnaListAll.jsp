@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<h1>QnA 게시판 전체글보기</h1>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">QnA List</h3>
+	<h5 class="text-right"><a href="<c:url value='/qnaselectAll'/>">전체보기</a></h5>
+	<div class="row">
+	<div class="col-md-12">
 <c:choose>
 	<c:when test="${not empty sessionScope.mnum }">
 		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
@@ -10,7 +15,9 @@
 		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
 	</c:when>
 </c:choose>
-<table border="1" width="1000">
+	
+
+<table border="1" class="table th" >
 	<tr>
 		<th>글번호</th>
 		<th>글제목</th>
@@ -43,50 +50,26 @@
 	</tr>
 	</c:forEach>
 </table>
-<!-- 페이징: |이전| -->
-<c:choose>
-	<c:when test="${startPage>10 }">
-		<a href="qnaListAll?pageNum=${startPage -1 }">|이전|</a>
-	</c:when>
-	<c:otherwise>
-		이전
-	</c:otherwise>
-</c:choose>
-<!-- 페이징처리 -->
+</div>
 
-<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
-	<c:choose>
-		<%--현재페이지인 경우 다른색 표시 --%>
-		<c:when test="${i==pu.pageNum }">
-			<a href="qnaselectAll?pageNum=${i }"><span style="color:blue">[${i }]</span></a>
-		</c:when>
-		<c:otherwise>
-			<a href="qnaselectAll?pageNum=${i }"><span style="color:#555">[${i }]</span></a>		
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
 
-<!-- 페이징: |다음| -->
-<c:choose>
-	<c:when test="${endPage>pageCount }">
-		<a href="qnaListAll?pageNum=${endPage +1 }">|다음|</a>
-	</c:when>
-	<c:otherwise>
-		다음
-	</c:otherwise>
-</c:choose>
-
-<div>
 <form method="post" action="qnaSearch">
-	<select name="field">
+<div class="row">
+		<div class="col-sm-8">
+	<select name="field" class="select input-sm" >
 		<option value="mem_num">글쓴이</option>
 		<option value="qna_title">글제목</option>
 		<option value="qna_content">글내용</option>
 	</select>
-	<input type="text" name="keyword">
-	<input type="submit" name="검색">
-</form>
+		<input type="text" placeholder=" 검색어를 입력하세요" class="input-sm"  name="keyword" id="keyword" value="${keyword }">
 </div>
+		<div class="col-sm-4">
+				<button class="btn pull-right " id="btn" type="submit">
+				<span class="glyphicon glyphicon-search"></span>  search </button><br>
+		</div>
+</div><br>
+	</form>
+
 <c:choose>
 	<c:when test="${not empty sessionScope.mnum }">
 		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
@@ -95,3 +78,40 @@
 		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
 	</c:when>
 </c:choose>
+
+
+<div class="row">
+		<div class="text-center">
+<!-- 페이징 |이전| -->
+<c:choose>
+	<c:when test="${pu.startPageNum>5 }">
+		<a href="memselectAll?pageNum=${pu.startPageNum -1 }">|이전|</a>
+	</c:when>
+	<c:otherwise>
+		이전
+	</c:otherwise>
+</c:choose>
+<!-- 페이징처리 -->
+<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+	<c:choose>
+		<c:when test="${i==pu.pageNum }">
+			<a href="memselectAll?pageNum=${i }"><span style="color:blue">${i }</span></a>
+		</c:when>
+		<c:otherwise>
+			<a href="memselectAll?pageNum=${i }"><span style="color:#555">${i }</span></a>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+<!-- 페이징 |다음| -->
+<c:choose>
+	<c:when test="${pu.endPageNum<pu.totalPageCount }">
+		<a href="memselectAll?pageNum=${pu.endPageNum +1 }">|다음|</a>
+	</c:when>
+	<c:otherwise>
+		다음
+	</c:otherwise>
+</c:choose>
+	</div>
+		</div>
+	</div>
+</div>

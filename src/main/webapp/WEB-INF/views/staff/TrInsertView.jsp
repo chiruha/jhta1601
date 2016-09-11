@@ -22,7 +22,11 @@
 <div class="row">
 <div class="col-md-3"></div>
 	<div class="col-md-6">
-<textarea rows="5" cols="20" placeholder="강사 경력" name="tr_career" class="form-control"></textarea><br>
+
+<div id="inputSpan"><label>강사경력 </label> &nbsp; 
+		<input type="text"  name="tr_career"   class="input-sm" size=3/>
+		<span class="badge">년</span>
+	</div>
 <br><textarea rows="5" cols="20" placeholder="강사 소개"  name="tr_intro" class="form-control"></textarea><br>
 
 </div>

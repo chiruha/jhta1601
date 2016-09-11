@@ -9,9 +9,9 @@
 		<em>Welcome to our family !!</em>
 	</p>
 	<div class="row">
-<form method="post" action="meminsert" enctype="multipart/form-data">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
+<form method="post" action="meminsert" enctype="multipart/form-data">
 	<p >
 		<span class="glyphicon glyphicon-edit"></span> Please write your profile
 	</p>
@@ -25,6 +25,7 @@
 							</c:forEach>
 						</select><br>
 					</div><br>
+							</div>
 							
 					<div class="row">
 					<div class="col-sm-12 form-group">
@@ -87,8 +88,8 @@
 					</button>
 				</div>
 			</div>
-		</div>
 </form>
 	</div>
 	</div>
-
+	<br>
+</div>

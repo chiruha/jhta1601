@@ -16,10 +16,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-      <!-- Home 메뉴 -->
-      <%--
-        <li><a href="<c:url value='/?test=goboot'/>">HOME</a></li>
-       --%>
+
         
       <!-- Introduce  dropdown 메뉴 -->
         <li>   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Intro
@@ -44,8 +41,7 @@
         </li>
 
         
-          <!-- Information  메뉴 -->
-        <li><a href="#tour">Infor</a></li>
+       
         
         <!-- 수강  dropdown 메뉴 -->
         <li class="dropdown">
@@ -55,13 +51,10 @@
             <li><a href="<c:url value='/regiInsert'/>">수강등록</a></li>
            
              <li><a href="<c:url value='/ptrinsert'/>">Pt 예약</a></li>
-             <li><a href="<c:url value='/gxRegisterView'/>">Gx 일정조회</a></li>
-             
+             <li><a href="<c:url value='/gxRegisterView'/>">Gx 일정조회</a></li>             
           </ul>
-          
-          
-          <!-- ~ 메뉴 -->
-        <li><a href="#contact">미정</a></li>
+
+       
         
           <!-- Login Dialog 메뉴 -->
       <c:choose>
@@ -71,45 +64,58 @@
 			</c:when>
 			<c:otherwise>
 				<li> <a href="" >[ ${sessionScope.memnum }님 환영합니다 ]</a></li>	
-			 <li> <a href="<c:url value='/logout'/>" >
+				 <li><a href="<c:url value='/logout'/>" >
 				 <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+				 
 			</c:otherwise>
 		</c:choose>
       
-      
-      
-      
-      
-        <!-- Member Mypage dropdown 메뉴 -->
- 		<li class="dropdown">
+       <c:choose>
+			<c:when test="${not empty sessionScope.mnum}">
+			
+	        	  <!-- Member Mypage dropdown 메뉴 -->
+ 			<li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyPage
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
+           <li><a href="<c:url value='/attcheck?type=mem&num=${sessionScope.mnum }'/>">출석체크</a></li>
               <li><a href="<c:url value='/MemPTscOkView'/>">Pt 예약확인</a></li>
               <c:if test="${not empty sessionScope.mnum}">
              <li><a href="<c:url value='/listOne?mem_num=${sessionScope.mnum}'/>">개인정보</a></li>
           </c:if>
           </ul>
-
-          
-          <!-- Staff Mypage dropdown 메뉴 -->
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">AdPage
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="<c:url value='/stflist'/>">Staff 목록</a></li>
-                 <li><a href="<c:url value='/stfinsert'/>">Staff 등록</a></li>
-           <li><a href="<c:url value='/memselectAll'/>">Member 목록</a></li>
-            <li><a href="<c:url value='/PTscOkView'/>">Pt강사승인</a></li>
-                 <li><a href="<c:url value='/MemPtscOkView'/>">회원승인페이지</a></li>
-               <li><a href="<c:url value='/trlist'/>">Trainer 목록</a></li>
-             <li><a href="<c:url value='/ctinsert'/>">Center 등록</a></li>
+			</c:when>
+			
+			<c:when test="${not empty sessionScope.snum}">
+			<!-- Staff Mypage dropdown 메뉴 -->
+        	<li class="dropdown">
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">AdPage
+         	 <span class="caret"></span></a>
+        	  <ul class="dropdown-menu">
+        	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">출석체크</a></li>
+            	<li><a href="<c:url value='/stflist'/>">Staff 목록</a></li>
+                <li><a href="<c:url value='/stfinsert'/>">Staff 등록</a></li>
+        		<li><a href="<c:url value='/memselectAll'/>">Member 목록</a></li>
+            	<li><a href="<c:url value='/PTscOkView'/>">Pt강사승인</a></li>
+                <li><a href="<c:url value='/MemPtscOkView'/>">회원승인페이지</a></li>
+                <li><a href="<c:url value='/trlist'/>">Trainer 목록</a></li>
+             	<li><a href="<c:url value='/ctinsert'/>">Center 등록</a></li>
                 <li><a href="<c:url value='/deptinsert'/>">Dept 등록</a></li>
-                 <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
-                   <li><a href="<c:url value='/nocinsert'/>">공지등록</a></li>
+                <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
+                <li><a href="<c:url value='/nocinsert'/>">공지등록</a></li>
                  
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
-          </ul>
+          </ul>		
+			</c:when>
+		</c:choose>
+      
+       
+      
+      
+       
+
+          
+    
           
            <!-- sitemap  메뉴 -->
         <li><a href="<c:url value='/'/>">SiteMap</a></li>
@@ -186,10 +192,10 @@ $(document).ready(function(){
 	function adminMode(){
 		check=$("input[name$='adminCheck']").is(":checked");
 		if(check==true){
-			alert("I am Staff");
+			//alert("I am Staff");
 			
 		}else{
-			alert("I am Member");
+			//alert("I am Member");
 			$("#adminCheck").val(null);
 		}
 		

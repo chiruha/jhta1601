@@ -39,7 +39,7 @@
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-	<h3 class="text-center">Staff Attendance List</h3>
+	<h3 class="text-center">Staff Attendance List 수정중</h3>
 	<h5 class="text-right"><a href="<c:url value='slistAll'/>">전체보기</a></h5>
 <div class="row">
 	<div class="col-md-12">

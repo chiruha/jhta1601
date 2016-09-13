@@ -25,11 +25,9 @@ public class AttendanceController {
 	@Autowired private Stf_attService ss;
 	@Autowired private Mem_attService ms;
 	@Autowired private CenterService cs;
-	HttpSession session;
-	HttpServletRequest request;
 	
 	@RequestMapping("/attcheck")
-	public String check(int num, String type){
+	public String check(int num, String type,	HttpSession session){
 		System.out.println("attCtr num : "+ num +", type : "+type);
 		List<CenterDto> ctlist=cs.listService();
 		session.setAttribute("ctlist", ctlist);
@@ -38,7 +36,7 @@ public class AttendanceController {
 	@RequestMapping("/attinsert")
 	public String attinsert(@RequestParam(value="snum", defaultValue="0") int snum,
 											@RequestParam(value="mnum", defaultValue="0") int mnum, 
-											int ct_code){
+											int ct_code,	HttpSession session){
 		try{
 			System.out.println("snum : "+snum+", mnum : "+mnum+", ct_code : "+ct_code);
 			if(mnum>0){
@@ -58,7 +56,7 @@ public class AttendanceController {
 	
 	
 	@RequestMapping("/mlistAll")
-	public String MlistAll(@RequestParam(value="pageNum", defaultValue="1") int pageNum){
+	public String MlistAll(	HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
 		try{
 			String ct_code=request.getParameter("ct_code");
 			String mem_name=request.getParameter("mem_name");
@@ -84,18 +82,20 @@ public class AttendanceController {
 	}
 	
 	@RequestMapping("/slistAll")
-	public String SlistAll(@RequestParam(value="pageNum", defaultValue="1") int pageNum){
+	public String SlistAll(	HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
+		String ct_code=request.getParameter("ct_code");
+		String stf_name=request.getParameter("stf_name");
+		String stf_phone=request.getParameter("stf_phone");
+		String keyword=request.getParameter("keyword");
+		System.out.println("(att) 지점: "+ct_code+", 이름: "+stf_name+", 전화: "+stf_phone+", 검색어: "+keyword);
 		try{
-			String ct_code=request.getParameter("ct_code");
-			String stf_name=request.getParameter("stf_name");
-			String stf_phone=request.getParameter("stf_phone");
-			String keyword=request.getParameter("keyword");
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			map.put("ct_code", ct_code);
 			map.put("stf_name", stf_name);
 			map.put("stf_phone", stf_phone);
 			map.put("keyword", keyword);
 			int totalRowCount=ss.sattCnt(map);
+			System.out.println("saaCnt : "+totalRowCount);
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());
@@ -105,7 +105,7 @@ public class AttendanceController {
 			session.setAttribute("pu", pu);
 			
 		}catch(Exception e){
-			System.out.println(e.getMessage());
+			System.out.println("오류 : "+e.getMessage());
 		}
 		return ".attendance.SAttListView";
 	}

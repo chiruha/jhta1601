@@ -5,17 +5,25 @@ import java.sql.Date;
 public class AttListDto {
 	private int num;
 	private String name;
+	private String phone;
 	private int reg_code;
 	private int ct_code;
 	private Date att_date;
 	public AttListDto(){}
-	public AttListDto(int num, String name, int reg_code, int ct_code, Date att_date) {
+	public AttListDto(int num, String name, String phone,int reg_code, int ct_code, Date att_date) {
 		super();
 		this.num = num;
 		this.name = name;
+		this.phone=phone;
 		this.reg_code = reg_code;
 		this.ct_code = ct_code;
 		this.att_date = att_date;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public int getNum() {
 		return num;

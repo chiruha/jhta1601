@@ -91,18 +91,72 @@
 	<insert id="mattinsert" parameterType="fitness.dto.Mem_attDto">
 		insert into mem_att values(matt_seq.nextval, sysdate, #{mem_num}, #{ct_code} )	
 	</insert>
-	<select id="mattlist" parameterType="hashmap" resultType="fitness.dto.Mem_attDto">
-		select * from mem_att order by matt_date desc
+	<select id="mattlist" parameterType="hashmap" resultType="fitness.dto.AttListDto">
+		select matt.* from 
+				(select m.mem_num, m.mem_name, m.mem_phone,m.ct_code reg_code, ma.ct_code, ma.matt_date att_date 
+				from member m, mem_att ma where m.mem_num=ma.mem_num 
+				order by ma.matt_date desc)matt 
+			<where>
+				<if test="ct_code!=null">
+					ct_code like '%'||#{ct_code}||'%'
+				</if>
+				<if test="mem_name!=null">
+					and mem_name like '%' || #{keyword}|| '%'
+				</if>
+				<if test="mem_phone!=null">
+					and mem_phone like '%' || #{keyword}|| '%'
+				</if>
+		</where>
 	</select>
-	
+	<select id="mattCnt" resultType="int" parameterType="hashmap">
+		select count(stf_num) cnt from stf_att
+			<where>
+				<if test="ct_code!=null">
+					ct_code like '%'||#{ct_code}||'%'
+				</if>
+				<if test="mem_name!=null">
+					and mem_name like '%' || #{keyword}|| '%'
+				</if>
+				<if test="mem_phone!=null">
+					and mem_phone like '%' || #{keyword}|| '%'
+				</if>
+		</where>
+	</select>
 <!--////////// stf_att 관련 - 작성자 : 유예진 //////////-->
 	<insert id="sattinsert" parameterType="fitness.dto.Stf_attDto">
 		insert into stf_att values(satt_seq.nextval, sysdate, #{stf_num}, #{ct_code} )	
 	</insert>
-	<select id="sattlist" parameterType="hashmap" resultType="fitness.dto.Stf_attDto">
-		select * from stf_att order by satt_date desc
+	<select id="sattlist" parameterType="hashmap" resultType="fitness.dto.AttListDto">
+		select matt.* from 
+				(select s.stf_num, s.stf_name, s.stf_phone, s.ct_code reg_code, sa.ct_code, sa.satt_date att_date
+				from staff s, stf_att sa where s.stf_num=sa.stf_num 
+				order by sa.satt_date desc)matt 
+			<where>
+				<if test="ct_code!=null">
+					ct_code like '%'||#{ct_code}||'%'
+				</if>
+				<if test="stf_name!=null">
+					and stf_name like '%' || #{keyword}|| '%'
+				</if>
+				<if test="stf_phone!=null">
+					and stf_phone like '%' || #{keyword}|| '%'
+				</if>
+		</where>
 	</select>
-
+	<select id="sattCnt" resultType="int" parameterType="hashmap">
+		select count(stf_num) cnt from stf_att
+			<where>
+				<if test="ct_code!=null">
+					ct_code like '%'||#{ct_code}||'%'
+				</if>
+				<if test="stf_name!=null">
+					and stf_name like '%' || #{keyword}|| '%'
+				</if>
+				<if test="stf_phone!=null">
+					and stf_phone like '%' || #{keyword}|| '%'
+				</if>
+		</where>
+	</select>
 
 	
 	
@@ -212,7 +266,7 @@
 		)
 		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
-	<select id="getStfCount" resultType="int">
+	<select id="getStfCount" resultType="int" parameterType="hashmap">
 		select count(stf_num) cnt from staff
 		<where>
 			<if test="ct_code!=null">

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fitness.dao.Mem_attDao;
+import fitness.dto.AttListDto;
 import fitness.dto.Mem_attDto;
 
 @Service
@@ -16,8 +17,10 @@ public class Mem_attService {
 		return dao.insertDao(dto);
 	}
 
-	public List<Mem_attDto> listService(HashMap<String, Object> map){
+	public List<AttListDto> listService(HashMap<String, Object> map){
 		return dao.listDao(map);
 	}
-
+	public int mattCnt(HashMap<String, Object> map){
+		return dao.mattCnt(map);
+	}
 }

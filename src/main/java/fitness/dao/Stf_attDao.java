@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fitness.dto.AttListDto;
 import fitness.dto.Stf_attDto;
 
 @Repository
@@ -16,7 +17,11 @@ public class Stf_attDao {
 	public int insertDao(Stf_attDto dto){
 		return sqlsession.insert(NameSpace+".sattinsert",dto);
 	}
-	public List<Stf_attDto> listDao(HashMap<String, Object> map){
+	public List<AttListDto> listDao(HashMap<String, Object> map){
 		return sqlsession.selectList(NameSpace+".sattlist",map);
 	}
+	public int sattCnt(HashMap<String, Object> map){
+		return   sqlsession.selectOne(NameSpace+".sattCnt", map);
+	}
+	
 }

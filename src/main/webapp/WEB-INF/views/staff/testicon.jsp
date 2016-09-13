@@ -5,14 +5,13 @@
   <p class="text-center"><em>Welcome to our family !!</em></p>
 
   <div class="row">
-    <div class="col-md-4">
-<p> Please write your profile.</p>
-<p><span class="glyphicon glyphicon-road"></span></p>
+    <div class="col-md-3">
+<p><span class="glyphicon glyphicon-hdd"></span></p>
 <p><span class="glyphicon glyphicon-share-alt"></span></p>
 <p><span class="glyphicon glyphicon-th-list"></span></p>
 <p><span class="glyphicon glyphicon-film"></span></p>
-<p><span class="glyphicon glyphicon-asterisk"></span></p>
-<p><span class="glyphicon glyphicon-upload"></span></p>
+<p><span class="glyphicon glyphicon-eject"></span></p>
+<p><span class="glyphicon glyphicon-screenshot"></span></p>
 <p><span class="glyphicon glyphicon-repeat"></span></p>
 <p><span class="glyphicon glyphicon-lock"></span></p>
 <p><span class="glyphicon glyphicon-tags"></span></p>
@@ -24,6 +23,8 @@
   <p><span class="glyphicon glyphicon-volume-down"></span></p>
   <p><span class="glyphicon glyphicon-volume-tag"></span></p>
   <p><span class="glyphicon glyphicon-pushpin"></span></p>
+  </div>
+     <div class="col-md-3">
   <p><span class="glyphicon glyphicon-sort-by-alphabet"></span></p>
   <p><span class="glyphicon glyphicon-remove"></span></p>
   <p><span class="glyphicon glyphicon-signal"></span></p>
@@ -37,8 +38,49 @@
   <p><span class="glyphicon glyphicon-time"></span></p>
   <p><span class="glyphicon glyphicon-cog"></span></p>
   <p><span class="glyphicon glyphicon-info-sign"></span></p>
+    <p><span class="glyphicon glyphicon-briefcase"></span></p>
+      <p><span class="glyphicon glyphicon-resize-horizontal"></span></p>
+        <p><span class="glyphicon glyphicon-folder-open"></span></p>
     </div>
    
+   
+      <div class="col-md-3">
+        <p><span class="glyphicon glyphicon-sort-by-order"></span></p>
+  <p><span class="glyphicon glyphicon-transfer"></span></p>
+  <p><span class="glyphicon glyphicon-earphone"></span></p>
+  <p><span class="glyphicon glyphicon-cutlery"></span></p>
+  <p><span class="glyphicon glyphicon-registraion-mark"></span></p>
+  <p><span class="glyphicon glyphicon-cloud-download"></span></p>
+  <p><span class="glyphicon glyphicon-tree-deciduous"></span></p>
+  <p><span class="glyphicon glyphicon-paste"></span></p>
+  <p><span class="glyphicon glyphicon-king"></span></p>
+  <p><span class="glyphicon glyphicon-baby-formula"></span></p>
+  <p><span class="glyphicon glyphicon-pawn"></span></p>
+  <p><span class="glyphicon glyphicon-apple"></span></p>
+  <p><span class="glyphicon glyphicon-dupicate"></span></p>
+    <p><span class="glyphicon glyphicon-piggy-bank"></span></p>
+      <p><span class="glyphicon glyphicon-btc"></span></p>
+        <p><span class="glyphicon glyphicon-console"></span></p>
+      </div>
+   
+   <div class="col-md-3">
+        <p><span class="glyphicon glyphicon-jpyr"></span></p>
+  <p><span class="glyphicon glyphicon-knight"></span></p>
+  <p><span class="glyphicon glyphicon-hourglass"></span></p>
+  <p><span class="glyphicon glyphicon-menu-down"></span></p>
+  <p><span class="glyphicon glyphicon-comment"></span></p>
+  <p><span class="glyphicon glyphicon-warning-sign"></span></p>
+  <p><span class="glyphicon glyphicon-home"></span></p>
+  <p><span class="glyphicon glyphicon-paste"></span></p>
+  <p><span class="glyphicon glyphicon-king"></span></p>
+  <p><span class="glyphicon glyphicon-baby-formula"></span></p>
+  <p><span class="glyphicon glyphicon-pawn"></span></p>
+  <p><span class="glyphicon glyphicon-apple"></span></p>
+  <p><span class="glyphicon glyphicon-dupicate"></span></p>
+    <p><span class="glyphicon glyphicon-piggy-bank"></span></p>
+      <p><span class="glyphicon glyphicon-btc"></span></p>
+        <p><span class="glyphicon glyphicon-console"></span></p>
+      </div>
 </div>
   <br>
   </div>

@@ -32,9 +32,10 @@ public class StaffController {
 	@Autowired private StaffService service;
 	@Autowired private CenterService cts;
 	@Autowired private PositionService pos;	
+	HttpSession session;
 	
 	@RequestMapping(value="/stfinsert",method= RequestMethod.GET)
-	public String insert(HttpSession session){  // insert 페이지로 이동
+	public String insert(){  // insert 페이지로 이동
 		List<CenterDto> ctlist=cts.listService();
 		List<PositionDto>poslist=pos.listService();
 		session.setAttribute("poslist", poslist);
@@ -42,7 +43,7 @@ public class StaffController {
 		return ".staff.StfInsertView";
 	}
 	@RequestMapping(value="/stfinsert",method= RequestMethod.POST)
-	public String insert(StaffDto dto, MultipartFile picture,HttpSession session){  // DB에 insert
+	public String insert(StaffDto dto, MultipartFile picture){  // DB에 insert
 		try{
 			String path=session.getServletContext().getRealPath("/resources/img/Staff");
 			String stf_picture=picture.getOriginalFilename();
@@ -67,8 +68,7 @@ public class StaffController {
 		return ".staff.ResultView";
 	}
 	@RequestMapping("/stflist") // 검색 기능 포함한 목록보기 
-	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session,
-			HttpServletRequest request){
+	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpServletRequest request){
 		String ct_code=request.getParameter("ct_code");
 		String pos_code=request.getParameter("pos_code");
 		String stf_name=request.getParameter("stf_name");
@@ -102,7 +102,7 @@ public class StaffController {
 		return ".staff.StfListView";
 	}
 	@RequestMapping("/stfdetail")
-	public String detail(String stf_num ,HttpSession session){
+	public String detail(String stf_num){
 		try{
 			int num=Integer.parseInt(stf_num);
 			StaffDto dto=service.detailService(num);
@@ -119,7 +119,7 @@ public class StaffController {
 		}
 	}
 	@RequestMapping("/stfdelete")
-	public String delete(StaffDto dto, HttpSession session){
+	public String delete(StaffDto dto){
 		System.out.println("stfdelete : "+dto.toString());
 		try{
 			service.deleteService(dto.getStf_num());
@@ -131,7 +131,7 @@ public class StaffController {
 		return ".staff.ResultView";
 	}
 	@RequestMapping("/stfupdate")
-	public String update(StaffDto dto,MultipartFile picture ,HttpSession session){
+	public String update(StaffDto dto,MultipartFile picture){
 		System.out.println("stf업데이트 : "+dto.toString()+"pic : "+picture);
 	try{
 		String path=session.getServletContext().getRealPath("/resources/img/Staff");

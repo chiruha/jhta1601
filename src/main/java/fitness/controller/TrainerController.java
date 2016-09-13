@@ -27,9 +27,9 @@ public class TrainerController {
 	@Autowired private StaffService sts;
 	@Autowired private PositionService pos;
 	@Autowired private CenterService cts;
-	
+	HttpSession session;
 	@RequestMapping("/trpage")
-	public String page(int num,HttpSession session){
+	public String page(int num){
 		session.setAttribute("num", num);
 		StaffDto sdto=sts.detailService(num);
 		session.setAttribute("sdto", sdto);
@@ -51,7 +51,7 @@ public class TrainerController {
 	}
 	
 	@RequestMapping("/trlist")
-	public String list(HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum){
+	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum){
 		try{
 			HashMap<String, Object> map =new HashMap<String, Object>();
 			int totalRowCount=service.getTrCount(map);
@@ -70,7 +70,7 @@ public class TrainerController {
 	}
 	
 	@RequestMapping("/trdetail")
-	public String detail(int tr_num, HttpSession session){
+	public String detail(int tr_num){
 		try{
 			TrainerDto dto=service.detailService(tr_num);
 			StaffDto sdto=sts.detailService(dto.getStf_num());
@@ -88,7 +88,7 @@ public class TrainerController {
 	}
 	
 	@RequestMapping("/trdelete")
-	public String delete(int tr_num, HttpSession session){
+	public String delete(int tr_num){
 		try{
 			service.deleteService(tr_num);
 			session.setAttribute("result", "강사 삭제 완료");
@@ -101,7 +101,7 @@ public class TrainerController {
 	
 	
 	@RequestMapping(value="/trpage/trinsert", method= RequestMethod.POST)
-	public String insert(TrainerDto dto, HttpSession session){
+	public String insert(TrainerDto dto){
 		System.out.println("trinsert"+dto.toString());
 		try{
 			service.insertService(dto);
@@ -114,7 +114,7 @@ public class TrainerController {
 	}
 	
 	@RequestMapping(value="/trpage/trupdate", method = RequestMethod.POST)
-	public String update(TrainerDto dto, HttpSession session){
+	public String update(TrainerDto dto){
 	try{
 		System.out.println("trupdate"+dto.toString());
 		service.updateService(dto);

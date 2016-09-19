@@ -749,4 +749,79 @@
 		where comm_num=#{comm_num}
 	</update>
 	
+<!--////////// freeboard 자유게시판 - 작성자 : 김재원 //////////-->
+	<insert id="fbinsert" parameterType="fitness.dto.FreeboardDto">
+		insert into freeboard values(free_seq.nextval,#{mem_num},#{fb_title},#{fb_content},sysdate,#{fb_hit},#{fb_ref},#{fb_lev},#{fb_step})
+	</insert>
+
+	<update id="fbupdate" parameterType="fitness.dto.FreeboardDto">
+		update freeboard set mem_num=#{mem_num},#{fb_title},#{fb_content},sysdate,#{fb_hit},#{fb_ref},#{fb_lev},#{fb_step}
+	</update>
+
+	<select id="getfbCount" parameterType="hashmap"  resultType="int">
+		select nvl(count(fb_num),0) from 
+		(select aa.*,rownum rnum from
+	    (select f.*,m.mem_name 
+	    from freeboard f,member m
+	    where f.mem_num=m.mem_num
+	    <if test="mem_num!=null">
+	    	or mem_num like '%'||#{mem_num}||'%'
+	    </if>
+		<if test="titel!=null">
+		    or fb_title like '%'||#{keyword}||'%'
+		</if>
+		<if test="content!=null">
+			or fb_content like '%'||#{keyword}||'%'
+		</if>
+		    order by f.fb_num desc)aa
+	  	)
+	</select>	
+	
+	<select id="fblist" parameterType="hashmap" resultType="fitness.dto.FreeboardDto">
+		select * from ( 
+		select aa.*,rownum rnum from (
+		select f.*,m.mem_name 
+		from freeboard f inner join member m
+	    on m.mem_num = f.mem_num
+	    <where >
+	    <if test="name!=null" >
+			 mem_name like '%'||#{keyword}||'%'
+		</if>
+		<if test="title!=null">
+			or fb_title like '%'||#{keyword}||'%'
+		</if>
+		<if test="content!=null">
+			or fb_content like '%'||#{keyword}||'%'
+		</if>
+	    
+	    </where>
+		order by fb_ref desc,fb_step asc)aa)
+		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>	
+	</select>
+
+	<select id="fbdetail" parameterType="int" resultType="fitness.dto.FreeboardDto">
+		select f.*,m.mem_name
+		from freeboard f,member m
+	    where f.mem_num=m.mem_num and fb_num=#{value}
+	</select>
+
+	<delete id="fbdelete" parameterType="int">
+		delete from freeboard where fb_num=#{fb_num}
+	</delete>
+	
+ 	<update id="fbaddHit" parameterType="int">
+		<![CDATA[
+			UPDATE freeboard set fb_hit = NVL(fb_hit, 0) + 1 where fb_num = #{fb_num}	
+		]]>                    
+	</update> 
+	
+	<select id="fbmaxnum" resultType="int">
+		select NVL(max(fb_num),0) from freeboard
+	</select>
+	
+	<update id="fbrep" parameterType="fitness.dto.FreeboardDto">
+		update freeboard set fb_step=#{fb_step}+1 where fb_ref=#{fb_ref} and fb_step>#{fb_step}
+	</update>	
+	
+	
 </mapper>

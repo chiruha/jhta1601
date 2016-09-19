@@ -60,12 +60,12 @@ public class AttendanceController {
 			String ct_code=request.getParameter("ct_code");
 			String mem_name=request.getParameter("mem_name");
 			String mem_phone=request.getParameter("mem_phone");
-			String keyword=request.getParameter("keyword");
+			String matt_keyword=request.getParameter("matt_keyword");
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			map.put("ct_code", ct_code);
 			map.put("mem_name", mem_name);
 			map.put("mem_phone", mem_phone);
-			map.put("keyword", keyword);
+			map.put("matt_keyword", matt_keyword);
 			int totalRowCount=ms.mattCnt(map);
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
@@ -82,19 +82,15 @@ public class AttendanceController {
 	
 	@RequestMapping("/slistAll")
 	public String SlistAll(	HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
-		String ct_code=request.getParameter("ct_code");
-		String stf_name=request.getParameter("stf_name");
-		String stf_phone=request.getParameter("stf_phone");
-		String keyword=request.getParameter("keyword");
-		System.out.println("(att) 지점: "+ct_code+", 이름: "+stf_name+", 전화: "+stf_phone+", 검색어: "+keyword);
+		String type=request.getParameter("type");
+		String satt_keyword=request.getParameter("satt_keyword");
+		System.out.println("(att) type: "+type+", 검색어: "+satt_keyword);
 		try{
 			HashMap<String, Object> map=new HashMap<String, Object>();
-			map.put("ct_code", ct_code);
-			map.put("stf_name", stf_name);
-			map.put("stf_phone", stf_phone);
-			map.put("keyword", keyword);
+			map.put("type", type);
+			map.put("satt_keyword", satt_keyword);
 			int totalRowCount=ss.sattCnt(map);
-			System.out.println("saaCnt : "+totalRowCount);
+			System.out.println("sattCnt : "+totalRowCount);
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());
@@ -102,6 +98,8 @@ public class AttendanceController {
 			session.setAttribute("sattlist", sattlist);
 			System.out.println("sattlist컨트롤 :"+sattlist);
 			System.out.println(pu.toString());
+			session.setAttribute("type", type); 
+			session.setAttribute("satt_keyword", satt_keyword);
 			session.setAttribute("pu", pu);
 		}catch(Exception e){
 			System.out.println("오류 : "+e.getMessage());

@@ -151,33 +151,24 @@
                         			 from staff st, center c where st.ct_code=c.ct_code) s,
                              		(select a.*,c.ct_name  from stf_att a, center c where a.ct_code=c.ct_code)sa 
                          where s.stf_num=sa.stf_num
-			<where>
-				<if test="ct_name!='지점선택' and ct_name!=null">
-					ct_code like '%'||#{ct_code}||'%'
+				<if test="type!=null">
+					and ${type} like '%' || #{satt_keyword}|| '%'
 				</if>
-				<if test="stf_name!=null">
-					and stf_name like '%' || #{keyword}|| '%'
-				</if>
-				<if test="stf_phone!=null">
-					and stf_phone like '%' || #{keyword}|| '%'
-				</if>
-		</where>
 		 order by sa.in_date desc)satt
 		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	<select id="sattCnt" resultType="int" parameterType="hashmap">
-		select count(satt_num) cnt from stf_att
-			<where>
-				<if test="ct_name!='지점선택' and ct_name!=null">
-					ct_name like '%'||#{ct_name}||'%'
-				</if>
-				<if test="stf_name!=null">
-					and stf_name like '%' || #{keyword}|| '%'
-				</if>
-				<if test="stf_phone!=null">
-					and stf_phone like '%' || #{keyword}|| '%'
-				</if>
-		</where>
+		select count(satt_num) cnt  from 
+		(select sa.satt_num,  sa.in_date, sa.out_date,sa.work_time ,s.stf_num, s.stf_name ,
+		s.stf_phone , 	s.reg_code, s.reg_name, sa.ct_code, sa.ct_name	from 
+		(select st.stf_num,st.stf_name,st.stf_phone,c.ct_code reg_code,c.ct_name reg_name
+		from staff st, center c where st.ct_code=c.ct_code) s,
+		(select a.*,c.ct_name  from stf_att a, center c where a.ct_code=c.ct_code)sa 
+		where s.stf_num=sa.stf_num
+		<if test="type!=null">
+		and  ${type} like '%' || #{satt_keyword}|| '%'
+		</if>
+		 order by sa.in_date desc)satt
 	</select>
 
 	

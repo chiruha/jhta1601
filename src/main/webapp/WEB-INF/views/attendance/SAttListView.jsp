@@ -3,19 +3,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <script type="text/javascript">
 	$(document).ready(function() {
-		
+		var type="${sessionScope.type}";
+		if(type!=""&&type!=null){
+		//alert("type: ${sessionScope.type}")
+			$("#selbox").val("${sessionScope.type}").attr("selected","selected")		
+		}
 		$("#btn").click(function(event) {
+			//alert($("#selbox option:selected").val())
 			event.preventDefault();
 				$("#sp").empty();
-				//alert($("#chk1").prop("checked")+", "+ $("#chk2").prop("checked"));   // 지점, 직급 선택 여부 판단
-				//alert( $("input:checkbox:checked").length);  // 체크된 개수 구하기
-			if($("#keyword").val()=='' && $("#chk1").prop("checked")==false  && $("#chk2").prop("checked")==false ){
+			if($("#satt_keyword").val()=='' ){
 				$("#sp").append("검색어를 입력하세요!!").css({
-					"color":"#0080ff",
-					"font-size":"13px"
-				});
-			}else if($("#keyword").val()!='' && $("input:checkbox:checked").length<1 ){
-				$("#sp").append("검색 조건을 선택하세요!!").css({
 					"color":"#0080ff",
 					"font-size":"13px"
 				});
@@ -39,7 +37,7 @@
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-	<h3 class="text-center">Staff Attendance List 수정중</h3>
+	<h3 class="text-center">Staff Attendance List </h3>
 	<h5 class="text-right"><a href="<c:url value='slistAll'/>">전체보기</a></h5>
 <div class="row">
 	<div class="col-md-12">
@@ -75,35 +73,27 @@
 							
 	<form action="slistAll" method="post" name="listform">
 		<input type="hidden" id="pageNum" name="pageNum">
-
 	<div class="row">
-		<div class="col-sm-12">
-				<input type="checkbox" name="stf_name"   value="name" <c:if test="${stf_name ne null }">checked="checked"</c:if>>이름
-				<input type="checkbox" name="stf_phone"   value="tel" <c:if test="${stf_phone ne null }">checked="checked"</c:if>>전화
-
-			<select name="ct_code">
-				<option selected="selected" class="select input-sm">지점선택</option>
-				<c:forEach var="ctdto" items="${ctlist }">
-					<option value="${ctdto.ct_code }">${ctdto.ct_name }</option>
-				</c:forEach>
+		<div class="col-sm-2">
+			<select name="type" class="select input-sm" id="selbox">
+					<option value="ct_name">출근지점</option>
+					<option value="stf_name">직원이름</option>
+					<option value="stf_phone">직원전화</option>
+					<option value="in_date">출근일시</option>
+					<option value="out_date">퇴근일시</option>
 			</select>
-				
-		</div>		
-	</div>
-	<div class="row">
-			<div class="col-sm-8">
-				<input type="text" placeholder="검색 조건을 선택하세요" class="form-control" size="15" name="keyword" id="keyword" value="${keyword }">
+		</div>
+
+			<div class="col-sm-6">
+				<input type="text" placeholder="검색 조건을 선택하세요" class="form-control" size="15"
+				 name="satt_keyword" id="satt_keyword" <c:if test="${satt_keyword ne null}">value="${satt_keyword }"</c:if>>
 				<span id="sp"></span>
-							
 			</div>
 			<div class="col-sm-4">
 				<button class="btn pull-right" id="btn" type="submit">
 				<span class="glyphicon glyphicon-search"></span>  search </button><br>
 			</div>
-
 			</div>
-					
-
 <br>
 </form>
 	<div class="row">

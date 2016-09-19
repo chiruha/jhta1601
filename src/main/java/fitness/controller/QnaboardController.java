@@ -89,7 +89,7 @@ public class QnaboardController {
 	@RequestMapping("/qnaselectAll")
 	public ModelAndView qnaListAll(@RequestParam(value="pageNum",defaultValue="1")int pageNum){
 		int totalRowCount=service.qnaCount();
-		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 5);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 10);
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
@@ -151,9 +151,11 @@ public class QnaboardController {
 		map.put("field", field);
 		map.put("keyword", keyword);
 		int totalRowCount=service.getQnaSearchCount(map);
-		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 5);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 10);
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
+		map.put("field", field);
+		map.put("keyword", keyword);
 		List<QnaboardDto> qnalist=service.qnaSearch(map);
 		System.out.println("검색조건보기 : "+qnalist);
 		ModelAndView mv=new ModelAndView();

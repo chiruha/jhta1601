@@ -159,7 +159,7 @@
           <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
             <span class="glyphicon glyphicon-remove"></span> Cancel
           </button>
-          <p>Didn't Member ?<a href="<c:url value='/meminsert'/>"> Join us!!</a></p>
+          <p>Didn't Member ?<a href="<c:url value='/meminsert'/>" id="logcheck"> Join us!!</a></p>
         </div>
       </div>
     </div>
@@ -174,6 +174,7 @@ $(document).ready(function(){
 	//alert("errMsg: ${requestScope.errMsg }");
 	//alert("session: ${sessionScope.memnum }");
 	 //  alert("${sessionScope.mnum}");
+	
 	var msg="${requestScope.errMsg}";
 	if(msg!=""&&msg!=null){
 		$("#LoginModal").modal();
@@ -193,10 +194,8 @@ $(document).ready(function(){
 	function adminMode(){
 		check=$("input[name$='adminCheck']").is(":checked");
 		if(check==true){
-			//alert("I am Staff");
-			
+			$("#logcheck").attr("href","/fitness/stfinsert");
 		}else{
-			//alert("I am Member");
 			$("#adminCheck").val(null);
 		}
 		

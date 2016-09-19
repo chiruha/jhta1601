@@ -339,7 +339,7 @@ $(document).ready(function(){
 </script>
 <h1>회원 수강등록(프로그램등록)하기!!</h1>
 <!-- 회원 검색하기!!! -->
-<h3>회원검색</h3>
+회원검색 : 
 <select id="memSearch">
 	<option value="mem_num">회원번호</option>
 	<option value="mem_name">이름</option>
@@ -395,10 +395,10 @@ $(document).ready(function(){
 		<td colspan="2">
 			<div id="proSum" style="display: none">
 				단과 가격 : <input type="text" disabled="disabled" id="simplePrice"><input type="hidden" id="simplePrice">
-				<br>
+				
 				+ PT 가격 : <input type="text" disabled="disabled" id="ptSelectPrice"><input type="hidden" id="ptSelectPrice">
 				<br>
-				= (단과과목 10% 할인) : <input type="button" value="가격계산" id="btn">
+				= <input type="button" value="가격계산" id="btn">(단과과목 10% 할인)
 			</div>
 			<!-- 총 프로그램가격rg_price -->
 			<input type="text" name="rg_price" id="rg_price">

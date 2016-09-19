@@ -115,6 +115,7 @@ public class EventController {
 	@RequestMapping("/eventDelete")
 	public String eventDel(int ev_num){
 		try{
+			service.delAnswer(ev_num);
 			service.eventDel(ev_num);
 			return ".member.memSuccess";
 		}catch(Exception e){

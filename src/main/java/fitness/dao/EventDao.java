@@ -47,6 +47,10 @@ public class EventDao {
 	public int eventDel(int ev_num){
 		return sqlSession.delete(NAMESPACE+".eventDel",ev_num);
 	}
+	//이벤트글 삭제하면 해당 댓글도 같이 삭제
+	public int delAnswer(int ev_num){
+		return sqlSession.delete(NAMESPACE+".delAnswer",ev_num);
+	}
 	//--------------------| 이벤트 수정하기(update) |--------------------//
 	public int eventUpdate(EventDto dto){
 		return sqlSession.update(NAMESPACE+".eventUpdate",dto);

@@ -681,6 +681,10 @@
 	<delete id="eventDel" parameterType="int">
 		delete from event where ev_num=#{value}
 	</delete>
+	<!-- 이벤트글이 삭제되면 해당글의 댓글들도 모두 삭제 -->
+	<delete id="delAnswer" parameterType="int">
+		delete from eventcomments where ev_num=#{value}
+	</delete>
 	<!-- 수정하기 -->
 	<update id="eventUpdate" parameterType="fitness.dto.EventDto">
 		update event 

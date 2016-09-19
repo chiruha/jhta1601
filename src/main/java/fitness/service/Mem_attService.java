@@ -15,11 +15,14 @@ public class Mem_attService {
 	public int insertService(Mem_attDto dto){
 		return dao.insertDao(dto);
 	}
-
 	public List<Mem_attDto> listService(HashMap<String, Object> map){
 		return dao.listDao(map);
 	}
 	public int mattCnt(HashMap<String, Object> map){
 		return dao.mattCnt(map);
 	}
+	public int updateService(int num) {
+		return dao.updateDao(num);
+	}
+
 }

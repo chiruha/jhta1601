@@ -15,7 +15,6 @@ public class Stf_attService {
 	public int insertService(Stf_attDto dto){
 		return dao.insertDao(dto);
 	}
-
 	public List<Stf_attDto> listService(HashMap<String, Object> map){
 		return dao.listDao(map);
 	}

@@ -22,4 +22,7 @@ public class Mem_attDao {
 	public int mattCnt(HashMap<String, Object> map) {
 		return sqlsession.selectOne(NameSpace+".mattCnt", map);
 	}
+	public int updateDao(int num) {
+		return sqlsession.update(NameSpace+".mattupdate", num);
+	}
 }

@@ -376,15 +376,7 @@ create table event				--이벤트
 	stf_num number(5) REFERENCES STAFF(STF_NUM), --이벤트작성자 FK
 	ev_content varchar2(4000),		--이벤트내용
 	re_writer varchar2(50),		--댓글작성자
-	re_content varchar2(1000),		--댓글내용
-<<<<<<< HEAD
-	re_ref number(5),			--그룹번호
-	re_step number(5)			--댓글출력순서
-=======
-	re_ref number(10),			--그룹번호
-	re_lev number(10),
-	re_step number(10)			--댓글출력순서
->>>>>>> 58e214a375f9c51b80d48109d33070fa60abbf7e
+	re_content varchar2(1000)		--댓글내용
 );
 CREATE SEQUENCE EVENT_SEQ; 
 

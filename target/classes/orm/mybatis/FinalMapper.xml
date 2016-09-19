@@ -91,49 +91,40 @@
 	<insert id="mattinsert" parameterType="fitness.dto.Mem_attDto">
 		insert into mem_att values(matt_seq.nextval, sysdate, null, 0,#{mem_num}, #{ct_code} )	
 	</insert>
-	<update id="mattupdate">
-		update mem_att set out_date=TO_DATE(#{out_date}, 'yyyy/mm/dd hh24:mi:ss'),
- 		x_time=round((TO_DATE(#{out_date}, 'yyyy/mm/dd hh24:mi:ss')-in_date)*24)
-		where mem_num=#{mem_num};
+		<update id="mattupdate" parameterType="int">
+		update mem_att set out_date=sysdate,	x_time=round((sysdate-in_date)*24)
+		where matt_num=#{value}
 	</update>
-	<select id="mattlist" parameterType="hashmap" resultType="fitness.dto.Mem_attDto">
+<select id="mattlist" parameterType="hashmap" resultType="fitness.dto.Mem_attDto">
 		select * from 
 			(select rownum rnum, matt.* from 
-				(select sa.matt_num,  sa.in_date, sa.out_date,sa.x_time ,s.mem_num, s.mem_name , s.mem_phone , 
-				s.reg_code, s.reg_name, sa.ct_code, sa.ct_name
-				from (select st.mem_num,st.mem_name,st.mem_phone,c.ct_code reg_code,c.ct_name reg_name
-                            from member st, center c where st.ct_code=c.ct_code) s,
-                             (select a.*,c.ct_name  from mem_att a, center c where a.ct_code=c.ct_code)sa 
-                             where s.mem_num=sa.mem_num 
-				order by sa.in_date desc)matt 
-			<where>
-				<if test="ct_code!=null">
-					ct_code like '%'||#{ct_code}||'%'
+				(select sa.matt_num,  sa.in_date, sa.out_date,sa.x_time ,s.mem_num, s.mem_name ,
+					 s.mem_phone , s.reg_code, s.reg_name, sa.ct_code, sa.ct_name
+						from (select st.mem_num,st.mem_name,st.mem_phone,c.ct_code reg_code,c.ct_name reg_name
+                        			 from member st, center c where st.ct_code=c.ct_code) s,
+                             		(select a.*,c.ct_name  from mem_att a, center c where a.ct_code=c.ct_code)sa 
+                         where s.mem_num=sa.mem_num
+				<if test="mtype!=null">
+					and ${mtype} like '%' || #{matt_keyword}|| '%'
 				</if>
-				<if test="mem_name!=null">
-					and mem_name like '%' || #{keyword}|| '%'
-				</if>
-				<if test="mem_phone!=null">
-					and mem_phone like '%' || #{keyword}|| '%'
-				</if>
-		</where>
-			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-	</select>
-	<select id="mattCnt" resultType="int" parameterType="hashmap">
-		select count(stf_num) cnt from stf_att
-			<where>
-				<if test="ct_code!=null">
-					ct_code like '%'||#{ct_code}||'%'
-				</if>
-				<if test="mem_name!=null">
-					and mem_name like '%' || #{keyword}|| '%'
-				</if>
-				<if test="mem_phone!=null">
-					and mem_phone like '%' || #{keyword}|| '%'
-				</if>
-		</where>
+		 order by sa.in_date desc)matt
 		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
+	<select id="mattCnt" resultType="int" parameterType="hashmap">
+		select count(matt_num) cnt  from 
+		(select sa.matt_num,  sa.in_date, sa.out_date,sa.x_time ,s.mem_num, s.mem_name ,
+		s.mem_phone , 	s.reg_code, s.reg_name, sa.ct_code, sa.ct_name	from 
+		(select st.mem_num,st.mem_name,st.mem_phone,c.ct_code reg_code,c.ct_name reg_name
+		from member st, center c where st.ct_code=c.ct_code) s,
+		(select a.*,c.ct_name  from mem_att a, center c where a.ct_code=c.ct_code)sa 
+		where s.mem_num=sa.mem_num
+		<if test="mtype!=null">
+		and  ${mtype} like '%' || #{matt_keyword}|| '%'
+		</if>
+		 order by sa.in_date desc)
+	</select>
+
+	
 <!--////////// stf_att 관련 - 작성자 : 유예진 //////////-->
 	<insert id="sattinsert" parameterType="fitness.dto.Stf_attDto">
 		insert into stf_att values(satt_seq.nextval, sysdate, null, 0,#{stf_num}, #{ct_code} )	
@@ -151,8 +142,8 @@
                         			 from staff st, center c where st.ct_code=c.ct_code) s,
                              		(select a.*,c.ct_name  from stf_att a, center c where a.ct_code=c.ct_code)sa 
                          where s.stf_num=sa.stf_num
-				<if test="type!=null">
-					and ${type} like '%' || #{satt_keyword}|| '%'
+				<if test="stype!=null">
+					and ${stype} like '%' || #{satt_keyword}|| '%'
 				</if>
 		 order by sa.in_date desc)satt
 		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
@@ -165,12 +156,36 @@
 		from staff st, center c where st.ct_code=c.ct_code) s,
 		(select a.*,c.ct_name  from stf_att a, center c where a.ct_code=c.ct_code)sa 
 		where s.stf_num=sa.stf_num
-		<if test="type!=null">
-		and  ${type} like '%' || #{satt_keyword}|| '%'
+		<if test="stype!=null">
+		and  ${stype} like '%' || #{satt_keyword}|| '%'
 		</if>
 		 order by sa.in_date desc)satt
 	</select>
+<!--////////// payment관련 - 작성자 : 유예진 //////////-->
+	<select id="spayCnt" resultType="int" parameterType="hashmap">
+		select sum(work_time) from stf_att where stf_num=#{stf_num}  and in_date
+		 between #{start_date} and to_char(last_day(#{start_date})) 
 
+	</select>
+	<insert id="payinsert" parameterType="fitness.dto.PaymentDto">
+		insert into payment values(pay_seq.nextval, #{pay_tot}, #{pay_date}, #{attCnt},#{stf_num})
+	</insert>
+	<select id="paylist">
+		select * from( select stf.*,rownum rnum from
+			(select * from staff	
+			<where>
+			<if test="stf_name!=null">
+				and stf_name like '%' || #{keyword}|| '%'
+			</if>
+			<if test="stf_phone!=null">
+				and stf_phone like '%' || #{keyword}|| '%'
+			</if>
+			
+		</where>
+			)stf
+		)
+		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
 	
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
@@ -308,32 +323,7 @@
 		delete from staff where stf_num=#{value}
 	</delete>
 	
-<!--////////// payment관련 - 작성자 : 유예진 //////////-->
-	<select id="spayCnt" resultType="int" parameterType="hashmap">
-		select count(distinct to_date(satt_date,('yy/mm/dd'))) cnt from stf_att 
-		where to_date(satt_date,('yy/mm/dd')) 
-		between #{startDate} and to_char(last_day(#{startDate})) 
-		and stf_num=#{stf_num} 
-	</select>
-	<insert id="payinsert" parameterType="fitness.dto.PaymentDto">
-		insert into payment values(pay_seq.nextval, #{pay_tot}, #{pay_date}, #{attCnt},#{stf_num})
-	</insert>
-	<select id="paylist">
-		select * from( select stf.*,rownum rnum from
-			(select * from staff	
-			<where>
-			<if test="stf_name!=null">
-				and stf_name like '%' || #{keyword}|| '%'
-			</if>
-			<if test="stf_phone!=null">
-				and stf_phone like '%' || #{keyword}|| '%'
-			</if>
-			
-		</where>
-			)stf
-		)
-		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-	</select>
+
 
 <!--////////// registraion 관련(수강등록-프로그램등록) - 작성자:이성진 //////////-->
 	<!-- 회원 수강등록(프로그램) insert 

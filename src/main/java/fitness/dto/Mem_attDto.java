@@ -10,11 +10,13 @@ public class Mem_attDto {
 	private int mem_num;
 	private String mem_name;
 	private String mem_phone;
+	private int reg_code;
+	private String reg_name;
 	private int ct_code;
 	private String ct_name;
 	public Mem_attDto() {}
 	public Mem_attDto(int matt_num, Timestamp in_date, Timestamp out_date, int x_time, int mem_num, String mem_name,
-			String mem_phone, int ct_code, String ct_name) {
+			String mem_phone, int reg_code, String reg_name, int ct_code, String ct_name) {
 		super();
 		this.matt_num = matt_num;
 		this.in_date = in_date;
@@ -23,6 +25,8 @@ public class Mem_attDto {
 		this.mem_num = mem_num;
 		this.mem_name = mem_name;
 		this.mem_phone = mem_phone;
+		this.reg_code = reg_code;
+		this.reg_name = reg_name;
 		this.ct_code = ct_code;
 		this.ct_name = ct_name;
 	}
@@ -68,6 +72,18 @@ public class Mem_attDto {
 	public void setMem_phone(String mem_phone) {
 		this.mem_phone = mem_phone;
 	}
+	public int getReg_code() {
+		return reg_code;
+	}
+	public void setReg_code(int reg_code) {
+		this.reg_code = reg_code;
+	}
+	public String getReg_name() {
+		return reg_name;
+	}
+	public void setReg_name(String reg_name) {
+		this.reg_name = reg_name;
+	}
 	public int getCt_code() {
 		return ct_code;
 	}
@@ -83,8 +99,10 @@ public class Mem_attDto {
 	@Override
 	public String toString() {
 		return "Mem_attDto [matt_num=" + matt_num + ", in_date=" + in_date + ", out_date=" + out_date + ", x_time="
-				+ x_time + ", mem_num=" + mem_num + ", mem_name=" + mem_name + ", mem_phone=" + mem_phone + ", ct_code="
-				+ ct_code + ", ct_name=" + ct_name + "]";
+				+ x_time + ", mem_num=" + mem_num + ", mem_name=" + mem_name + ", mem_phone=" + mem_phone
+				+ ", reg_code=" + reg_code + ", reg_name=" + reg_name + ", ct_code=" + ct_code + ", ct_name=" + ct_name
+				+ "]";
 	}
+	
 	
 }

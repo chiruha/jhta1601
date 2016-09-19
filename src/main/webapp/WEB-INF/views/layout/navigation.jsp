@@ -104,7 +104,7 @@
                 <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
                 <li><a href="<c:url value='/nocinsert'/>">공지등록</a></li>
                 <li><a href="<c:url value='/slistAll'/>">직원출석부</a></li>
-            
+            	<li><a href="<c:url value='/mlistAll'/>">회원출석부</a></li>
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
           </ul>		
 			</c:when>

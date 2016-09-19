@@ -148,7 +148,7 @@ function ajaxComm(pageNum){
 					var comm=document.createElement("div");
 					//alert("comm_ref : "+comm_ref);
 					//alert("comm_date"+comm_date);
-					var html="<table border='1'  width='1000'>"+	
+					var html="<table border='1' class='table-bordered' width='1000'>"+	
 								"<tr>"+
 								"<th>";
 								if(comm_lev>0){

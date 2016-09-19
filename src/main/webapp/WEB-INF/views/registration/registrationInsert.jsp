@@ -11,7 +11,7 @@ function memList(mem_num){
 var keyword="";
 var memSearch="";
 function ajaxSearchMem(pageNum,memSearch,keyword){
-	alert("검색버튼 클릭!!!!");
+	//alert("검색버튼 클릭!!!!");
 	$.ajax({
 		url:"/fitness/memlist/xml",
 		data:"pageNum="+pageNum+"&keyword=" + keyword+"&memSearch=" + memSearch,
@@ -44,7 +44,7 @@ function ajaxSearchMem(pageNum,memSearch,keyword){
 			$(data).find("mem").each(function(){//회원정보 받아오기
 				var html="";
 				var len=$(this).find("mem_num").length;
-				var html="<table border='1' width='300'>"+
+				var html="<table class='table-bordered' width='300'>"+
 				"<tr>"+
 					"<th>회원번호</th>"+
 		 			"<th>회원이름</th>"+
@@ -75,8 +75,8 @@ $(document).ready(function(){
 	$("#searchMem").click(function(){
 		memSearch=$("#memSearch").val();
 		keyword=$("#keyword").val();
-		alert("keyword: "+keyword);
-		alert("memSearch: "+memSearch);
+		//alert("keyword: "+keyword);
+		//alert("memSearch: "+memSearch);
 		ajaxSearchMem(1,memSearch,keyword);//회원검색 ajax호출하기
 	});
 	$("#btnSelectMemNum").click(function(){
@@ -85,7 +85,8 @@ $(document).ready(function(){
 		$("#attachMemNum").val(searchNum);
 	});
 	$("#simple_subject").click(function(){//단과과목 클릭!!
-		alert("단과과목 클릭!!");
+		//alert("단과과목 클릭!!");
+		$("#rg_price").val(0);
 		$("#programPrice").empty();
 		$("#programName").empty();//안에 있는 내용(모든자식요소들)지우기
 		$("#PTProgramName").empty();//안에 있는 내용(모든자식요소들)지우기
@@ -113,10 +114,15 @@ $(document).ready(function(){
 		simpleClick();//라디오버튼 단과과목 선택 시 함수 호출
 	});
 	function simpleClick(){
+		proSum.style.display="none";//여러과목 총합계산 숨기기
+		PTProgramName.style.display="none";//pt selectBox 숨기기
+		proName.style.display="none";//여러과목 선택시 단과과목 selectBox 숨기기
+		ptName.style.display="none";//여러과목 선택시 pt과목 selectBox 숨기
 		programName.style.display="block";//단과과목 selectBox 보이기
 	}
 	$("#pt_subject").click(function(){//PT과목 클릭!!
-		alert("PT과목 클릭!!");
+		//alert("PT과목 클릭!!");
+		$("#rg_price").val(0);
 		$("#programPrice").empty();
 		$("#programName").empty();//안에 있는 내용(모든자식요소들)지우기
 		$("#PTProgramName").empty();//안에 있는 내용(모든자식요소들)지우기
@@ -145,10 +151,15 @@ $(document).ready(function(){
 		ptClick();//라디오버튼 pt과목 선택 시 함수 호출
 	});
 	function ptClick(){
+		proSum.style.display="none";//여러과목 총합계산 숨기기
+		programName.style.display="none";//단과과목 selectBox 숨기기
+		proName.style.display="none";//여러과목 선택시 단과과목 selectBox 숨기기
+		ptName.style.display="none";//여러과목 선택시 pt과목 selectBox 숨기기
 		PTProgramName.style.display="block";//PT선택 시 selectBox 보이기
 	}
 	$("#multiple_subject").click(function(){//여러과목 클릭!!
-		alert("여러과목 클릭!!");
+		//alert("여러과목 클릭!!");
+		$("#rg_price").val(0);
 		$("#programPrice").empty();
 		$("#programName").empty();//안에 있는 내용(모든자식요소들)지우기
 		$("#PTProgramName").empty();//안에 있는 내용(모든자식요소들)지우기
@@ -190,6 +201,8 @@ $(document).ready(function(){
 		multiClick();//라디오버튼 여러과목 선택 시 관련없는 input box사라지는 함수 호출
 	});
 	function multiClick(){
+		programName.style.display="none";//단과과목 selectBox 숨기기
+		PTProgramName.style.display="none";//pt selectBox 숨기기
 		proName.style.display="block";//여러과목 selectBox 보이기
 		ptName.style.display="block";//여러과목 selectBox 보이기
 		proSum.style.display="block";//여러과목 총합계산 보이기
@@ -307,7 +320,7 @@ $(document).ready(function(){
 			url:"/fitness/ptprice/xml?pt_name="+pt_name,
 			success:function(data){
 				$(data).find("ptprice").each(function(){
-					alert("pt는 어디까지 되나??"+pt_name);
+					//alert("pt는 어디까지 되나??"+pt_name);
 					var pt_num=$(this).find("pt_num").text();
 					var pt_code=$(this).find("pt_code").text();
 					var pt_name=$(this).find("pt_name").text();
@@ -326,7 +339,7 @@ $(document).ready(function(){
 </script>
 <h1>회원 수강등록(프로그램등록)하기!!</h1>
 <!-- 회원 검색하기!!! -->
-<h3>회원검색</h3>
+회원검색 : 
 <select id="memSearch">
 	<option value="mem_num">회원번호</option>
 	<option value="mem_name">이름</option>
@@ -334,31 +347,32 @@ $(document).ready(function(){
 </select>
 <input type="text" name="keyword" id="keyword">
 <input type="button" value="회원검색" id="searchMem">
-<br><br>
+
 <!-- 검색된 정보 뿌려주기는 여기에다가 안된다고 함...위에다가 써서 div에 뿌려줘야함... -->
 <div id="memInformation"></div>		
 <!-- 페이징도 마찬가지로 위에다가 써서 div에 뿌려주기 -> 회원번호 선택하면 아래의 input type="text"에 회원번호 자동입력 -->
 <div id="answerPaging"></div>
-<br><br>
+
 
 <form method="post" action="regiInsert1">
-<br><br>
+
 <!-- 회원번호를 select해서 input="text"에 집어넣기!! -->
-<table border="1" width="1000">
+<table class="table-bordered" width="1000">
 	<tr>
 		<th>회원번호</th>
-		<td><input type="text" name="mem_num" id="attachMemNum"></td>
+		<td colspan="2"><input type="text" name="mem_num" id="attachMemNum"></td>
 	</tr>
 	<tr>
 		<th>등록유형</th>
-		<td><input type="radio" value="단과과목" name="rg_type" id="simple_subject">단과과목
+		<td colspan="2">
+			<input type="radio" value="단과과목" name="rg_type" id="simple_subject">단과과목
 			<input type="radio" value="PT" name="rg_type" id="pt_subject">PT
 			<input type="radio" value="여러과목" name="rg_type" id="multiple_subject">복합과목
 		</td>
 	</tr>
 	<tr>
 		<th>프로그램선택</th>
-		<td>
+		<td colspan="2">
 			<!-- 단과과목 프로그램 선택 -->
 			<select id="programName" onchange="priceChange(this.value)" style="display: none">
 				<option value="default">---프로그램선택---</option>
@@ -378,11 +392,13 @@ $(document).ready(function(){
 	</tr>
 	<tr>
 		<th>프로그램가격</th>
-		<td>
+		<td colspan="2">
 			<div id="proSum" style="display: none">
-				단과선택 가격 : <input type="text" disabled="disabled" id="simplePrice"><input type="hidden" id="simplePrice">
-				+ PT선택 가격 : <input type="text" disabled="disabled" id="ptSelectPrice"><input type="hidden" id="ptSelectPrice">
-				(단과과목 10% 할인) : <input type="button" value="가격계산" id="btn">
+				단과 가격 : <input type="text" disabled="disabled" id="simplePrice"><input type="hidden" id="simplePrice">
+				
+				+ PT 가격 : <input type="text" disabled="disabled" id="ptSelectPrice"><input type="hidden" id="ptSelectPrice">
+				<br>
+				= <input type="button" value="가격계산" id="btn">(단과과목 10% 할인)
 			</div>
 			<!-- 총 프로그램가격rg_price -->
 			<input type="text" name="rg_price" id="rg_price">
@@ -410,21 +426,21 @@ $(document).ready(function(){
 	</tr>
 	<tr>
 		<th>총 등록금액</th>
-		<td>
+		<td colspan="2">
 			<input type="button" value="총 등록가격 계산" id="signTotPrice">
 			<input type="text" disabled="disabled" id="totSignPrice"><input type="hidden" id="totSignPrice">
 		</td>
 	</tr>
 </table>
-<!-- //////////프로그램을 선택하면 아래에 등록개월수가 input됨/////////// -->
-<input type="hidden" name="pro_signmonth" id="pro_signmonth" style="display: none">
-<input type="hidden" name="pt_signmonth" id="pt_signmonth" style="display: none">
+<!-- //////////프로그램을 선택하면 아래에 등록개월수가 input됨///////////style="display: none" -->
+<input type="hidden" name="pro_signmonth" id="pro_signmonth">
+<input type="hidden" name="pt_signmonth" id="pt_signmonth">
 <!-- //////////등록한 프로그램코드 및 pt횟수 받아와서 보내주기/////////// -->
-<input type="hidden" name="pro_name" id="pro_name" style="display: none">
-<input type="hidden" name="pt_name" id="pt_name" style="display: none">
-<input type="hidden" name="pro_code" id="pro_code" style="display: none">
-<input type="hidden" name="pt_code" id="pt_code" style="display: none">
-<input type="hidden" name="ptr_count" id="ptr_count" style="display: none">
+<input type="hidden" name="pro_name" id="pro_name">
+<input type="hidden" name="pt_name" id="pt_name">
+<input type="hidden" name="pro_code" id="pro_code">
+<input type="hidden" name="pt_code" id="pt_code">
+<input type="hidden" name="ptr_count" id="ptr_count">
 
 <input type="submit" value="프로그램신청">
 <input type="reset" value="취소">

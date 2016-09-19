@@ -42,6 +42,10 @@ public class EventService {
 	public int eventDel(int ev_num){
 		return dao.eventDel(ev_num);
 	}
+	//이벤트글 삭제하면 해당 댓글도 같이 삭제
+	public int delAnswer(int ev_num){
+		return dao.delAnswer(ev_num);
+	}
 	//--------------------| 이벤트 수정하기(update) |--------------------//
 	public int eventUpdate(EventDto dto){
 		return dao.eventUpdate(dto);

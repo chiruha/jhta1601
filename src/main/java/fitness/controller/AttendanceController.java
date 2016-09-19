@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fitness.dto.AttListDto;
 import fitness.dto.CenterDto;
 import fitness.dto.Mem_attDto;
 import fitness.dto.Stf_attDto;
@@ -40,10 +39,10 @@ public class AttendanceController {
 		try{
 			System.out.println("snum : "+snum+", mnum : "+mnum+", ct_code : "+ct_code);
 			if(mnum>0){
-				Mem_attDto mdto=new Mem_attDto(0, null, mnum, ct_code);
+				Mem_attDto mdto=new Mem_attDto(0, null, null, 0, mnum, null, null, ct_code, null);
 				ms.insertService(mdto);
 			}else if(snum>0){
-				Stf_attDto sdto=new Stf_attDto(0, null, snum, ct_code);
+				Stf_attDto sdto=new Stf_attDto(0, null, null, 0, snum, null, null, 0, null, ct_code, null);
 				ss.insertService(sdto);
 			}
 			session.setAttribute("result", "출석 체크되셨습니다.");
@@ -71,7 +70,7 @@ public class AttendanceController {
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());
-			List<AttListDto> mattlist=ms.listService(map);
+			List<Mem_attDto> mattlist=ms.listService(map);
 			session.setAttribute("mattlist", mattlist);
 			System.out.println("mattlist컨트롤 :"+mattlist);
 			session.setAttribute("pu", pu);
@@ -99,15 +98,26 @@ public class AttendanceController {
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());
-			List<AttListDto> sattlist=ss.listService(map);
+			List<Stf_attDto> sattlist=ss.listService(map);
 			session.setAttribute("sattlist", sattlist);
 			System.out.println("sattlist컨트롤 :"+sattlist);
+			System.out.println(pu.toString());
 			session.setAttribute("pu", pu);
-			
 		}catch(Exception e){
 			System.out.println("오류 : "+e.getMessage());
 		}
 		return ".attendance.SAttListView";
 	}
 
+	@RequestMapping("/sattupdate")
+	public String outdate(@RequestParam(value="satt_num", defaultValue="0") int satt_num){
+		System.out.println("sattup : "+satt_num);
+		try{
+			ss.updateService(satt_num);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return "forward: slistAll";
+	}
+	
 }

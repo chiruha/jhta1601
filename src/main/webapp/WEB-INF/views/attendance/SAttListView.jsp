@@ -49,17 +49,24 @@
 		<th>직원이름</th>
 		<th>전화번호</th>
 		<th>등록지점</th>
-		<th>출석지점</th>
-		<th>출석일시</th>
+		<th>출근지점</th>
+		<th>출근일시</th>
+		<th>퇴근일시</th>
 	</tr>
 	<c:forEach var="dto" items="${sattlist }">
 	<tr>
-		<td>${dto.num }</td>
-		<td><a href="stfdetail?stf_num=${dto.num}">${dto.name }</a></td>
-		<td>${dto.phone }</td>
-		<td>${dto.reg_code }</td>
-		<td>${dto.ct_code }</td>
-		<td>${dto.att_date }</td>
+		<td>${dto.stf_num }</td>
+		<td><a href="stfdetail?stf_num=${dto.stf_num}">${dto.stf_name }</a></td>
+		<td>${dto.stf_phone }</td>
+		<td>${dto.reg_name }</td>
+		<td>${dto.ct_name }</td>
+		<td>${dto.in_date }</td>
+		<td>
+			<c:choose>
+				<c:when test="${dto.out_date ne null }">${dto.out_date}</c:when>
+				<c:otherwise><a href="sattupdate?satt_num=${dto.satt_num}">퇴근하기</a></c:otherwise>
+			</c:choose>
+		</td>
 	</tr>
 	</c:forEach>
 </table>

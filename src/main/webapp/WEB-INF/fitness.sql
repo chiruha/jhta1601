@@ -263,68 +263,70 @@ create table stf_att				--직원출퇴근
 	ct_code number(5)			--지점코드
 );
 CREATE SEQUENCE SATT_SEQ;
+insert into stf_att values(satt_seq.nextval, 
+TO_DATE('2016/07/01 09:00:40', 'yyyy/mm/dd hh24:mi:ss'), 	
+	TO_DATE('2016/07/01 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/01 09:00:40', 'yyyy/mm/dd hh24:mi:ss'), 	null, 0, 1,1);
+	TO_DATE('2016/07/02 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/02 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/02 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/03 07:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/03 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/03 07:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/04 09:00:00', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/04 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/04 09:00:00', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/05 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/05 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/05 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/06 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/06 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/06 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/07 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/07 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/07 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 		insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/08 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/08 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/08 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/09 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/09 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/09 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/10 07:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/10 07:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/10 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/11 09:00:00', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/11 09:00:00', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/11 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/12 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/12 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/12 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/13 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/13 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/13 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/14 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/14 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/14 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/15 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/15 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/15 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/16 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/16 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/16 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/17 07:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/17 07:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/17 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/18 09:00:00', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/18 09:00:00', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/18 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/19 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/19 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/19 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/20 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/20 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/20 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/21 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/21 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/21 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 		insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/22 09:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
+	TO_DATE('2016/07/22 09:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/07/22 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/23 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/23 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/23 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/24 07:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/24 07:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/24 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/25 09:00:00', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/25 09:00:00', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/25 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/26 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/26 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/26 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/27 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/27 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/27 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/28 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/28 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/28 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 		insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/29 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/29 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/29 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/30 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/30 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/30 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
 	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/31 07:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+	TO_DATE('2016/07/31 07:00:40', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2016/07/31 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,2);
+	update stf_att set work_time=round((out_date-in_date)*24) 
 	
 create table payment			--월급
 (

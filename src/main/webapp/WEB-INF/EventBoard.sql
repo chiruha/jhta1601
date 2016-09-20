@@ -17,8 +17,11 @@ create table EventComments
 (
  comm_num number(20) primary key, --ÄÚ¸àÆ®¹øÈ£
  ev_num number(20) references event(ev_num), --ÀÌº¥Æ®¹øÈ£FK
- mem_num number(20) references member(mem_num), --´ñ±ÛÀÛ¼ºÀÚFK
+ mem_num number(20), --´ñ±ÛÀÛ¼ºÀÚÈ¸¿ø
+ stf_num number(20), --´ñ±ÛÀÛ¼ºÀÚÁ÷¿ø
  comments varchar2(100), --´ñ±Û³»¿ë
- comm_date date --´ñ±ÛÀÛ¼ºÀÏ
+ comm_date date, --´ñ±ÛÀÛ¼ºÀÏ
+ comm_ref number(10),
+ comm_lev number(10),
+ comm_step number(10)
 );
-CREATE SEQUENCE eventcomm_SEQ;

@@ -26,7 +26,6 @@ public class AttendanceController {
 	@Autowired private Mem_attService ms;
 	@Autowired private CenterService cs;
 	@Autowired private PaymentService ps;
-	
 	@RequestMapping("/attcheck")
 	public String check(int num, String type,	HttpSession session){
 		System.out.println("attCtr num : "+ num +", type : "+type);
@@ -138,17 +137,15 @@ public class AttendanceController {
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());
-			if(start_date!=null){
-				int spay=ps.spayService(map);
-				session.setAttribute("worksum", spay);
-				System.out.println("worksum : "+spay);
-			}
 			List<Stf_attDto> dattlist=ss.detailService(map);
+			int wsum=ps.spayService(map);
 			session.setAttribute("dattlist", dattlist);
 			System.out.println("dattlistÄÁÆ®·Ñ :"+dattlist);
 			System.out.println("pu : "+pu.toString());
 			session.setAttribute("dstf_num", stf_num);
-			session.setAttribute("dtype",dtype); 
+			session.setAttribute("ddate", start_date);
+			session.setAttribute("dtype",dtype);
+			session.setAttribute("wsum", wsum);
 			session.setAttribute("datt_keyword", datt_keyword);
 			session.setAttribute("pu", pu);
 			ss.detailService(map);

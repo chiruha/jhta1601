@@ -46,7 +46,19 @@
 		 $( "#datepicker1" ).datepicker({
 			    dateFormat: 'yy/mm/dd'
 			  });
-
+		 $("#start_date").on("onchange", function() {
+			 alert("ws")
+			 $.ajax({
+				 url:"/fitness/wsum?stf_num="+$('#stf_num').val()+"&start_date="+$('#start_date').val(),
+				 dataType:"xml",
+				 success: function(data) {
+					 alert(date)
+					var sp=$(data).find("spay");
+					alert(sp)
+				}
+			 });
+			 
+		 });
 	});
 
 </script>
@@ -59,11 +71,12 @@
 	<h3 class="text-center">Staff Attendance Detail </h3>
 <div class="row">
 	<div class="col-md-4">
-	<h5 class="text-left"><c:if test="${worksum ne null}">총근무시간 ${worksum }</c:if> </h5>
+	<h5 id="ws" class="text-primary">총근무시간 ${wsum }</h5>
 	</div>
 	<div class="col-md-4">
 	<h5 class="text-center"> 
-	<input type="text" id="datepicker1" name="start_date" placeholder="날짜를 선택하세요" class="input-sm">	
+	<input type="text" id="datepicker1" name="start_date" placeholder="날짜를 선택하세요(한달)" class="input-sm"
+		<c:if test="${ddate ne null}">value="${ddate }"</c:if>>	
 	<a href="#" id="search">검색</a> </h5>
 	</div>
 	<div class="col-md-4">

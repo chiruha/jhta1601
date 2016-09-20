@@ -16,8 +16,7 @@
 		<li><a href="<c:url value='/gxRegisterView'/>">GX일정보기</a></li>
 		<li><a href="<c:url value='/PTscOkView'/>">PT강사승인페이지</a></li>
 		<li><a href="<c:url value='/MemPTscOkView'/>">회원승인페이지</a></li>
-
-		<li><a href="<c:url value='eventInsert'/>">Event 게시판 등록하기(이성진)</a></li>
+		
 		<li><a href="<c:url value='eventSelectAll'/>">Event 게시판 전체목록보기(이성진)</a></li>
 		<li><a href="<c:url value='/qnaselectAll'/>">QnA 게시판 (이성진)</a></li>
 		<li><a href="<c:url value='/meminsert'/>">회원등록(이성진)</a></li>
@@ -41,8 +40,6 @@
 		<li><a href="<c:url value='/trlist'/>">강사목록</a></li>
 		<li><a href="<c:url value='/nocinsert'/>">공지사항 등록</a></li>
 		<li><a href="<c:url value='/noclist'/>">공지사항목록</a></li>
-		<li><a href="<c:url value='/fbinsert'/>">자유게시판 등록</a></li>
-		<li><a href="<c:url value='/fblist'/>">자유게시판목록</a></li>
 		
 		<li><a href="<c:url value='/?test=goboot'/>">bootstrap test</a></li>
 		<li><a href="<c:url value='/?test=test1'/>">bootstrap test1</a></li>

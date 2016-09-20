@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fitness.dto.AttListDto;
 import fitness.dto.CenterDto;
 import fitness.dto.Mem_attDto;
 import fitness.dto.Stf_attDto;
@@ -40,10 +39,10 @@ public class AttendanceController {
 		try{
 			System.out.println("snum : "+snum+", mnum : "+mnum+", ct_code : "+ct_code);
 			if(mnum>0){
-				Mem_attDto mdto=new Mem_attDto(0, null, mnum, ct_code);
+				Mem_attDto mdto=new Mem_attDto(0, null, null, 0, mnum, null, null, 0, null, ct_code, null);
 				ms.insertService(mdto);
 			}else if(snum>0){
-				Stf_attDto sdto=new Stf_attDto(0, null, snum, ct_code);
+				Stf_attDto sdto=new Stf_attDto(0, null, null, 0, snum, null, null, 0, null, ct_code, null);
 				ss.insertService(sdto);
 			}
 			session.setAttribute("result", "출석 체크되셨습니다.");
@@ -57,57 +56,110 @@ public class AttendanceController {
 	
 	@RequestMapping("/mlistAll")
 	public String MlistAll(	HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
+		String mtype=request.getParameter("mtype");
+		String matt_keyword=request.getParameter("matt_keyword");
+		System.out.println("(att) mtype: "+mtype+", 검색어: "+matt_keyword);
 		try{
-			String ct_code=request.getParameter("ct_code");
-			String mem_name=request.getParameter("mem_name");
-			String mem_phone=request.getParameter("mem_phone");
-			String keyword=request.getParameter("keyword");
 			HashMap<String, Object> map=new HashMap<String, Object>();
-			map.put("ct_code", ct_code);
-			map.put("mem_name", mem_name);
-			map.put("mem_phone", mem_phone);
-			map.put("keyword", keyword);
+			map.put("mtype", mtype);
+			map.put("matt_keyword", matt_keyword);
 			int totalRowCount=ms.mattCnt(map);
+			System.out.println("mattCnt : "+totalRowCount);
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());
-			List<AttListDto> mattlist=ms.listService(map);
+			List<Mem_attDto> mattlist=ms.listService(map);
 			session.setAttribute("mattlist", mattlist);
 			System.out.println("mattlist컨트롤 :"+mattlist);
+			System.out.println(pu.toString());
+			session.setAttribute("mtype",mtype); 
+			session.setAttribute("matt_keyword", matt_keyword);
 			session.setAttribute("pu", pu);
+		}catch(Exception e){
+			System.out.println("오류 : "+e.getMessage());
+		}
+		return ".attendance.MAttListView";
+	}
+	@RequestMapping("/mattupdate")
+	public String mupdate(@RequestParam(value="matt_num", defaultValue="0") int matt_num){
+		System.out.println("mattup : "+matt_num);
+		try{
+			ms.updateService(matt_num);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
-		return ".attendance.MAttListView";
+		return "forward: mlistAll";
 	}
 	
 	@RequestMapping("/slistAll")
 	public String SlistAll(	HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
-		String ct_code=request.getParameter("ct_code");
-		String stf_name=request.getParameter("stf_name");
-		String stf_phone=request.getParameter("stf_phone");
-		String keyword=request.getParameter("keyword");
-		System.out.println("(att) 지점: "+ct_code+", 이름: "+stf_name+", 전화: "+stf_phone+", 검색어: "+keyword);
+		String stype=request.getParameter("stype");
+		String satt_keyword=request.getParameter("satt_keyword");
+		System.out.println("(att) stype: "+stype+", 검색어: "+satt_keyword);
 		try{
 			HashMap<String, Object> map=new HashMap<String, Object>();
-			map.put("ct_code", ct_code);
-			map.put("stf_name", stf_name);
-			map.put("stf_phone", stf_phone);
-			map.put("keyword", keyword);
+			map.put("stype", stype);
+			map.put("satt_keyword", satt_keyword);
 			int totalRowCount=ss.sattCnt(map);
-			System.out.println("saaCnt : "+totalRowCount);
+			System.out.println("sattCnt : "+totalRowCount);
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());
-			List<AttListDto> sattlist=ss.listService(map);
+			List<Stf_attDto> sattlist=ss.listService(map);
 			session.setAttribute("sattlist", sattlist);
 			System.out.println("sattlist컨트롤 :"+sattlist);
+			System.out.println(pu.toString());
+			session.setAttribute("stype",stype); 
+			session.setAttribute("satt_keyword", satt_keyword);
 			session.setAttribute("pu", pu);
-			
 		}catch(Exception e){
 			System.out.println("오류 : "+e.getMessage());
 		}
-		return ".attendance.SAttListView";
+	
+			return ".attendance.SAttListView";			
 	}
-
+	@RequestMapping("/sdetail")
+	public String sdetail(@RequestParam(value="stf_num", defaultValue="0") int stf_num,HttpSession session,
+			@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
+		String dtype=request.getParameter("dtype");
+		String datt_keyword=request.getParameter("datt_keyword");
+		try{
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("stf_num", stf_num);
+			map.put("dtype", dtype);
+			map.put("datt_keyword", datt_keyword);
+			int totalRowCount=ss.sattCnt(map);
+			System.out.println("(att) dtype: "+dtype+", 검색어: "+datt_keyword);
+			System.out.println("stf_num : "+stf_num+" sattCnt : "+totalRowCount);
+			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
+			map.put("startRow", pu.getStartRow());
+			map.put("endRow", pu.getEndRow());
+			List<Stf_attDto> dattlist=ss.detailService(map);
+			session.setAttribute("dattlist", dattlist);
+			System.out.println("dattlist컨트롤 :"+dattlist);
+			System.out.println(pu.toString());
+			session.setAttribute("dstf_num", stf_num);
+			session.setAttribute("dtype",dtype); 
+			session.setAttribute("datt_keyword", datt_keyword);
+			session.setAttribute("pu", pu);
+			ss.detailService(map);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return ".attendance.SDetailView";
+	
+		
+	}
+	@RequestMapping("/sattupdate")
+	public String supdate(@RequestParam(value="satt_num", defaultValue="0") int satt_num){
+		System.out.println("sattup : "+satt_num);
+		try{
+			ss.updateService(satt_num);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return "forward: slistAll";
+	}
+	
+	
 }

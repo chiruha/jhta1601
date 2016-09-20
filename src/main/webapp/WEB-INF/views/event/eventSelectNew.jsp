@@ -229,9 +229,7 @@ function ajaxComm(pageNum){
 							"</table>";
 					comm.innerHTML=html;
 					div.appendChild(comm);
-					
 				}
-				
 			}); 
 		}
 	});

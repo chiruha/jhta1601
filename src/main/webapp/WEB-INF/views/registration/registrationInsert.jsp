@@ -7,6 +7,7 @@
 <script type="text/javascript">
 function memList(mem_num){
 	$("#attachMemNum").val(mem_num);
+	$("#attachMemNum1").val(mem_num);
 }
 var keyword="";
 var memSearch="";
@@ -87,6 +88,7 @@ $(document).ready(function(){
 	$("#simple_subject").click(function(){//단과과목 클릭!!
 		//alert("단과과목 클릭!!");
 		$("#rg_price").val(0);
+		$("#rg_price1").val(0);
 		$("#programPrice").empty();
 		$("#programName").empty();//안에 있는 내용(모든자식요소들)지우기
 		$("#PTProgramName").empty();//안에 있는 내용(모든자식요소들)지우기
@@ -123,6 +125,7 @@ $(document).ready(function(){
 	$("#pt_subject").click(function(){//PT과목 클릭!!
 		//alert("PT과목 클릭!!");
 		$("#rg_price").val(0);
+		$("#rg_price1").val(0);
 		$("#programPrice").empty();
 		$("#programName").empty();//안에 있는 내용(모든자식요소들)지우기
 		$("#PTProgramName").empty();//안에 있는 내용(모든자식요소들)지우기
@@ -160,6 +163,7 @@ $(document).ready(function(){
 	$("#multiple_subject").click(function(){//여러과목 클릭!!
 		//alert("여러과목 클릭!!");
 		$("#rg_price").val(0);
+		$("#rg_price1").val(0);
 		$("#programPrice").empty();
 		$("#programName").empty();//안에 있는 내용(모든자식요소들)지우기
 		$("#PTProgramName").empty();//안에 있는 내용(모든자식요소들)지우기
@@ -213,6 +217,7 @@ $(document).ready(function(){
 		var saleNum1=Number(num1)*0.9;//단과과목 10%할인 값 구하기
 		var resultSum=Number(saleNum1)+Number(num2);
 		$("#rg_price").val(resultSum);
+		$("#rg_price1").val(resultSum);
 	});
 	$("#locYes").click(function(){
 		var price=10000;
@@ -232,10 +237,12 @@ $(document).ready(function(){
 	});
 	$("#signTotPrice").click(function(){
 		var programPrice=$("#rg_price").val();
+		var programPrice=$("#rg_price1").val();
 		var locPrice=$("#locker_price").val();
 		var wearPrice=$("#wear_price").val();
 		var totPrice=Number(programPrice)+Number(locPrice)+Number(wearPrice);
 		$("#totSignPrice").val(totPrice);
+		$("#totSignPrice1").val(totPrice);
 	});
 });
 	// 단과과목 가격을  id="programPrice"에 집어넣기 
@@ -253,7 +260,8 @@ $(document).ready(function(){
 					var pro_signmonth=$(this).find("pro_signmonth").text();
 					var pro_price=$(this).find("pro_price").text();
 					//alert("num: "+pro_num+" code: "+pro_code+" name: "+pro_name+" price: "+pro_price);
-					$("#rg_price").val(pro_price);			
+					$("#rg_price").val(pro_price);	
+					$("#rg_price1").val(pro_price);	
 					$("#pro_code").val(pro_code);
 					$("#pt_code").val(null);
 					$("#ptr_count").val(0);
@@ -280,6 +288,7 @@ $(document).ready(function(){
 					var pt_signmonth=$(this).find("pt_signmonth").text();
 					var ptr_count=$(this).find("ptr_count").text();
 					$("#rg_price").val(pt_price);
+					$("#rg_price1").val(pt_price);
 					$("#pt_code").val(pt_code);
 					$("#ptr_count").val(ptr_count);
 					$("#pro_code").val(null);
@@ -336,6 +345,49 @@ $(document).ready(function(){
 			}
 		});
 	}
+////////////--유효성검사--////////////
+	function validator(){
+		alert("유효성검사!!");
+		var mem_num=document.frm.mem_num;
+		alert("mem_num"+mem_num);
+		if(mem_num.value.length<=0){
+			alert("등록할 회원번호를 입력하세요.");
+			return false;
+		}
+		var rg_type=document.frm.rg_type;
+		var cnt=0;
+		for(var t=0;t<rg_type.length;t++){
+			if(rg_type[t].checked==true){
+				cnt++;
+			}
+		}
+		if(cnt==0){
+			alert("등록유형을 선택해주세요.");
+			return false;
+		}
+		var rg_price=document.frm.rg_price;
+		alert("rg_price"+rg_price);
+		if(rg_price.value.length<2){
+			alert("프로그램을 선택하세요.");
+			return false;
+		}
+		var locker_price=document.frm.locker_price;
+		if(locker_price.value.length<=0){
+			alert("락카 신청여부를 확인해주세요.");
+			return false;
+		}
+		var wear_price=document.frm.wear_price;
+		if(wear_price.value.length<=0){
+			alert("운동복 신청여부를 확인해주세요.");
+			return false;
+		}
+		var totPrice=document.frm.totPrice;
+		if(totPrice.value.length<1){
+			alert("총 등록금액을 확인해주세요.");
+			return false;
+		}
+		return true;//submit하기
+	}
 </script>
 <h1>회원 수강등록(프로그램등록)하기!!</h1>
 <!-- 회원 검색하기!!! -->
@@ -353,14 +405,12 @@ $(document).ready(function(){
 <!-- 페이징도 마찬가지로 위에다가 써서 div에 뿌려주기 -> 회원번호 선택하면 아래의 input type="text"에 회원번호 자동입력 -->
 <div id="answerPaging"></div>
 
-
-<form method="post" action="regiInsert1">
-
+<form name="frm" method="post" action="regiInsert1" onsubmit="return validator();">
 <!-- 회원번호를 select해서 input="text"에 집어넣기!! -->
 <table class="table-bordered" width="1000">
 	<tr>
 		<th>회원번호</th>
-		<td colspan="2"><input type="text" name="mem_num" id="attachMemNum"></td>
+		<td colspan="2"><input type="text" disabled="disabled" id="attachMemNum"><input type="hidden" name="mem_num" id="attachMemNum1"></td>
 	</tr>
 	<tr>
 		<th>등록유형</th>
@@ -401,7 +451,7 @@ $(document).ready(function(){
 				= <input type="button" value="가격계산" id="btn">(단과과목 10% 할인)
 			</div>
 			<!-- 총 프로그램가격rg_price -->
-			<input type="text" name="rg_price" id="rg_price">
+			<input type="text" disabled="disabled" id="rg_price"><input type="text" name="rg_price" id="rg_price1">
 		</td>
 	</tr>
 	<tr>
@@ -428,7 +478,7 @@ $(document).ready(function(){
 		<th>총 등록금액</th>
 		<td colspan="2">
 			<input type="button" value="총 등록가격 계산" id="signTotPrice">
-			<input type="text" disabled="disabled" id="totSignPrice"><input type="hidden" id="totSignPrice">
+			<input type="text" disabled="disabled" id="totSignPrice"><input type="text"  name="totPrice" id="totSignPrice1">
 		</td>
 	</tr>
 </table>

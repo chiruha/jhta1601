@@ -331,10 +331,10 @@ TO_DATE('2016/07/01 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),
 create table payment			--월급
 (
 	pay_num number(5) primary key,	--월급번호 PK
+	stf_num number(5) REFERENCES STAFF(STF_NUM),  --스태프 번호 FK
+	time_sum number(5),   -- 총근무시간
 	pay_tot number,		--월급합계
-	pay_date date,			--지급날짜
-	attCnt number(5),   -- 출석일수
-	stf_num number(5) REFERENCES STAFF(STF_NUM)  --스태프 번호 FK
+	pay_date date			--지급날짜
 );
 CREATE SEQUENCE PAY_SEQ;
 

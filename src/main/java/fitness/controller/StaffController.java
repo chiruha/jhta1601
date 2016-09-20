@@ -74,14 +74,15 @@ public class StaffController {
 		String stf_name=request.getParameter("stf_name");
 		String stf_phone=request.getParameter("stf_phone");
 		String keyword=request.getParameter("keyword");
-
+		String stype=request.getParameter("stype");
 		// 아무것도 선택되지 않았을 때
-		System.out.println("(직원검색) 지점: "+ct_code+", 직급: "+pos_code+", 이름: "+stf_name+", 전화: "+stf_phone+", 검색어: "+keyword);
+		System.out.println("(직원검색) 지점: "+ct_code+", 직급: "+pos_code+", 이름: "+stf_name+", 전화: "+stf_phone+", 검색어: "+keyword+"stype : "+stype);
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("ct_code", ct_code);
 		map.put("pos_code", pos_code);
 		map.put("stf_name", stf_name);
 		map.put("stf_phone", stf_phone);
+		map.put("stype", stype);
 		map.put("keyword", keyword);
 		
 		int totalRowCount=service.getStfCount(map);

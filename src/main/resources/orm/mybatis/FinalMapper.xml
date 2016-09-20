@@ -192,7 +192,7 @@
 
 	</select>
 	<insert id="payinsert" parameterType="fitness.dto.PaymentDto">
-		insert into payment values(pay_seq.nextval, #{pay_tot}, #{pay_date}, #{attCnt},#{stf_num})
+		insert into payment values(pay_seq.nextval, #{stf_num}, #{time_sum}, #{pay_tot}, #{pay_date})
 	</insert>
 	<select id="paylist">
 		select * from( select stf.*,rownum rnum from
@@ -312,7 +312,9 @@
 			<if test="stf_phone!=null">
 				and stf_phone like '%' || #{keyword}|| '%'
 			</if>
-			
+			<if test="stype!=null">
+				and  ${stype} like '%' || #{keyword}|| '%'
+			</if>
 		</where>
 			)stf
 		)

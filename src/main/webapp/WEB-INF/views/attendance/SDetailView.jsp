@@ -121,7 +121,7 @@
 		<input type="hidden" id="pageNum" name="pageNum">
 	<div class="row">
 		<div class="col-sm-2">
-			<select name="type" class="select input-sm" id="dselbox">
+			<select name="dtype" class="select input-sm" id="dselbox">
 					<option value="stf_num">직원번호</option>
 					<option value="stf_name">직원이름</option>
 					<option value="stf_phone">직원전화</option>

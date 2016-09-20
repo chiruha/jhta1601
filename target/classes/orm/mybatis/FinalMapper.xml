@@ -157,9 +157,12 @@
                         			 from staff st, center c where st.ct_code=c.ct_code) s,
                              		(select a.*,c.ct_name  from stf_att a, center c where a.ct_code=c.ct_code)sa 
                          where s.stf_num=sa.stf_num and s.stf_num=${stf_num}
-				<if test="stype!=null">
+             <if test="start_date!=null">
+					and in_date	 between #{start_date} and to_char(last_day(#{start_date}))
+			</if>
+			<if test="stype!=null">
 					and ${stype} like '%' || #{satt_keyword}|| '%'
-				</if>
+			</if>
 		 order by sa.in_date desc)satt
 		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
@@ -173,6 +176,9 @@
 		where s.stf_num=sa.stf_num
 		<if test="stf_num>0">
 			and s.stf_num= #{stf_num}
+		</if>
+		<if test="start_date!=null">
+			and in_date	 between #{start_date} and to_char(last_day(#{start_date}))
 		</if>
 		<if test="stype!=null">
 		and  ${stype} like '%' || #{satt_keyword}|| '%'

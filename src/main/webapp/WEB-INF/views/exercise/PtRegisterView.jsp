@@ -14,8 +14,6 @@
 <%--
 <link rel="stylesheet" href="/fitness/resources/css/jquery.timepicker.css">
  --%>
-<script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
-<script type="text/javascript" src="/fitness/resources/js/jquery-ui.min.js"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <%--

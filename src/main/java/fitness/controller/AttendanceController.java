@@ -16,6 +16,7 @@ import fitness.dto.Mem_attDto;
 import fitness.dto.Stf_attDto;
 import fitness.service.CenterService;
 import fitness.service.Mem_attService;
+import fitness.service.PaymentService;
 import fitness.service.Stf_attService;
 import page.util.PageUtil;
 
@@ -24,6 +25,7 @@ public class AttendanceController {
 	@Autowired private Stf_attService ss;
 	@Autowired private Mem_attService ms;
 	@Autowired private CenterService cs;
+	@Autowired private PaymentService ps;
 	
 	@RequestMapping("/attcheck")
 	public String check(int num, String type,	HttpSession session){
@@ -58,7 +60,7 @@ public class AttendanceController {
 	public String MlistAll(	HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
 		String mtype=request.getParameter("mtype");
 		String matt_keyword=request.getParameter("matt_keyword");
-		System.out.println("(att) mtype: "+mtype+", 검색어: "+matt_keyword);
+		System.out.println("(matt) mtype: "+mtype+", 검색어: "+matt_keyword);
 		try{
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			map.put("mtype", mtype);
@@ -95,7 +97,7 @@ public class AttendanceController {
 	public String SlistAll(	HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
 		String stype=request.getParameter("stype");
 		String satt_keyword=request.getParameter("satt_keyword");
-		System.out.println("(att) stype: "+stype+", 검색어: "+satt_keyword);
+		System.out.println("(satt) stype: "+stype+", 검색어: "+satt_keyword);
 		try{
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			map.put("stype", stype);
@@ -121,23 +123,30 @@ public class AttendanceController {
 	@RequestMapping("/sdetail")
 	public String sdetail(@RequestParam(value="stf_num", defaultValue="0") int stf_num,HttpSession session,
 			@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
+		String start_date=request.getParameter("start_date");
 		String dtype=request.getParameter("dtype");
 		String datt_keyword=request.getParameter("datt_keyword");
 		try{
 			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("start_date", start_date);
 			map.put("stf_num", stf_num);
 			map.put("dtype", dtype);
 			map.put("datt_keyword", datt_keyword);
 			int totalRowCount=ss.sattCnt(map);
-			System.out.println("(att) dtype: "+dtype+", 검색어: "+datt_keyword);
+			System.out.println("(datt) dtype : "+dtype+", 검색어 : "+datt_keyword +", 날짜 : "+start_date);
 			System.out.println("stf_num : "+stf_num+" sattCnt : "+totalRowCount);
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());
+			if(start_date!=null){
+				int spay=ps.spayService(map);
+				session.setAttribute("worksum", spay);
+				System.out.println("worksum : "+spay);
+			}
 			List<Stf_attDto> dattlist=ss.detailService(map);
 			session.setAttribute("dattlist", dattlist);
 			System.out.println("dattlist컨트롤 :"+dattlist);
-			System.out.println(pu.toString());
+			System.out.println("pu : "+pu.toString());
 			session.setAttribute("dstf_num", stf_num);
 			session.setAttribute("dtype",dtype); 
 			session.setAttribute("datt_keyword", datt_keyword);

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0-rc.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.11.3.js"></script>
+  <script src="//code.jquery.com/ui/1.12.0-rc.1/jquery-ui.js"></script>
+
+
  <script type="text/javascript">
 	$(document).ready(function() {
 		var type="${sessionScope.dtype}";
@@ -32,18 +38,38 @@
 			$("#pageNum").val($(this).attr("href"));
 			document.listform.submit();
 		});
-	
+		$("#search").click(function(event) {
+			document.listform.submit();
+		});
 		
-	});
 	
+		 $( "#datepicker1" ).datepicker({
+			    dateFormat: 'yy/mm/dd'
+			  });
+
+	});
+
 </script>
 
 
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
+	<form action="sdetail" method="post" name="listform">
 	<h3 class="text-center">Staff Attendance Detail </h3>
+<div class="row">
+	<div class="col-md-4">
+	<h5 class="text-left"><c:if test="${worksum ne null}">총근무시간 ${worksum }</c:if> </h5>
+	</div>
+	<div class="col-md-4">
+	<h5 class="text-center"> 
+	<input type="text" id="datepicker1" name="start_date" placeholder="날짜를 선택하세요" class="input-sm">	
+	<a href="#" id="search">검색</a> </h5>
+	</div>
+	<div class="col-md-4">
 	<h5 class="text-right"><a href="sdetail?stf_num=${dstf_num}">전체보기</a></h5>
+	</div>
+</div>
 <div class="row">
 	<div class="col-md-12">
 	<table  class="table th" >
@@ -78,7 +104,6 @@
 	</div>
 </div>
 							
-	<form action="sdetail" method="post" name="listform">
 	<input type="hidden" id="stf_num" name="stf_num" value="${dstf_num}">
 		<input type="hidden" id="pageNum" name="pageNum">
 	<div class="row">

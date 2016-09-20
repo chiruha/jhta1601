@@ -25,4 +25,7 @@ public class Stf_attDao {
 	public int updateDao(int num){
 		return sqlsession.update(NameSpace+".sattupdate", num);
 	}
+	public List<Stf_attDto> detailDao(HashMap<String, Object> map) {
+		return sqlsession.selectList(NameSpace+".sdetail",map);
+	}
 }

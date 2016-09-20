@@ -24,4 +24,7 @@ public class Stf_attService {
 	public int updateService(int num){
 		return dao.updateDao(num);
 	}
+	public List<Stf_attDto> detailService(HashMap<String, Object> map){
+		return dao.detailDao(map);
+	}
 }

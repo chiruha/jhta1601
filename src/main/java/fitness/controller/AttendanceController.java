@@ -115,9 +115,41 @@ public class AttendanceController {
 		}catch(Exception e){
 			System.out.println("오류 : "+e.getMessage());
 		}
-		return ".attendance.SAttListView";
+	
+			return ".attendance.SAttListView";			
 	}
-
+	@RequestMapping("/sdetail")
+	public String sdetail(@RequestParam(value="stf_num", defaultValue="0") int stf_num,HttpSession session,
+			@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
+		String dtype=request.getParameter("dtype");
+		String datt_keyword=request.getParameter("datt_keyword");
+		try{
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("stf_num", stf_num);
+			map.put("dtype", dtype);
+			map.put("datt_keyword", datt_keyword);
+			int totalRowCount=ss.sattCnt(map);
+			System.out.println("(att) dtype: "+dtype+", 검색어: "+datt_keyword);
+			System.out.println("stf_num : "+stf_num+" sattCnt : "+totalRowCount);
+			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
+			map.put("startRow", pu.getStartRow());
+			map.put("endRow", pu.getEndRow());
+			List<Stf_attDto> dattlist=ss.detailService(map);
+			session.setAttribute("dattlist", dattlist);
+			System.out.println("dattlist컨트롤 :"+dattlist);
+			System.out.println(pu.toString());
+			session.setAttribute("dstf_num", stf_num);
+			session.setAttribute("dtype",dtype); 
+			session.setAttribute("datt_keyword", datt_keyword);
+			session.setAttribute("pu", pu);
+			ss.detailService(map);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return ".attendance.SDetailView";
+	
+		
+	}
 	@RequestMapping("/sattupdate")
 	public String supdate(@RequestParam(value="satt_num", defaultValue="0") int satt_num){
 		System.out.println("sattup : "+satt_num);
@@ -128,5 +160,6 @@ public class AttendanceController {
 		}
 		return "forward: slistAll";
 	}
+	
 	
 }

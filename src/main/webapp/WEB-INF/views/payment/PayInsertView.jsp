@@ -50,9 +50,9 @@
 	});
 	</script>
 <!-- Container (Contact Section) -->
+<form action="payinsert" method="post"  name="payform">
 <div id="contact" class="container">
 	<h3 class="text-center">Insert Pay</h3>
-<form action="payinsert" method="post"  name="payform">
 	<input type="hidden" id="pageNum" name="pageNum">
 	
 <div class="row">
@@ -83,9 +83,34 @@
 
 
 
-
-
-
+    </div>
+<div class="container">
+<div class="row">
+<div class="col-md-12"><br>
+<table class="table" id="mytab">
+	<tr>
+		<th>직원번호</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>직원이름</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>근무시간</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>직급</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th></th>
+		<td></td>
+	</tr>
+</table>
+</div>
+</div>
 <div class="row">
 <div class="col-md-3"></div>
 	<div class="col-md-3">
@@ -95,9 +120,8 @@
 		<div class="col-md-3">
 	<button class="btn pull-left" id="cancle" type="reset">
 	<span class="glyphicon glyphicon-remove"></span>  Cancle </button>
-	
+	</div>
 	
 	</div>
 	</div>
 </form>
-    </div>

@@ -56,7 +56,7 @@ public class PaymentController {
 		map.put("stype", stype);
 		map.put("keyword", pkeyword);
 		int totalRowCount=sts.getStfCount(map);
-		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 5);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 5, 5);
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<StaffDto> slist=sts.listService(map);

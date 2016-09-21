@@ -48,11 +48,17 @@ public class MemberController {
 			String mem_email,
 			String mem_age,
 			String mem_gen,
-			String mem_birth,
+			String year,
+			String month,
+			String day,
 			Date regdate,
 			MultipartFile mem_picture,
 			String ct_code, HttpSession session){
 		System.out.println("meminsert 컨트롤러 도착");
+		System.out.println("년도: "+year);
+		System.out.println("월: "+month);
+		System.out.println("일: "+day);
+		String mem_birth=year+month+day;
 		//파일에 대한 정보를 MultipartFile이 가지고 있음
 		//upload경로는 webabb -> resources -> img -> member : 여기에 회원사진을 저장하겠음
 		//upload폴더의 절대경로 얻어오기

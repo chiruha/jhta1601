@@ -9,7 +9,7 @@
 	</c:when>
 </c:choose>
 <input type="hidden" value="${listone.ev_num }">
-<table border="1" width="1000">
+<table border="1" class='table-bordered' width="1000">
 	<tr>
 		<td>| 작성일: ${listone.ev_date } |
 			<c:choose>
@@ -149,7 +149,7 @@ function ajaxComm(pageNum){
 					var comm=document.createElement("div");
 					//alert("comm_ref : "+comm_ref);
 					//alert("comm_date"+comm_date);
-					var html="<table border='1'  width='1000'>"+	
+					var html="<table border='1' class='table-bordered' width='1000'>"+	
 								"<tr>"+
 								"<th>";
 								if(comm_lev>0){
@@ -248,13 +248,14 @@ $(document).ready(function(){
 </script>
 <br>
 <!-- 댓글 전체목록뿌리기 -->
-<input type="button" id="answer" value="댓글보기">
+<button class="btn-link" id="answer" type="button">
+<span class="glyphicon glyphicon-align-justify"></span>  댓글보기 </button>
 <div id="answerList"></div>
 <div id="answerPaging"></div>
 <br>
 
 <h1>이벤트글 목록</h1>
-<table border="1" width="1000">
+<table border="1" class='table-bordered' width="1000">
 	<tr>
 		<th>이벤트번호</th>
 		<th>제목</th>

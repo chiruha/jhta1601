@@ -5,10 +5,11 @@
 <script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
  --%>
 <script type="text/javascript">
-function memList(mem_num){
+function memList(mem_num){//체크박스를 라디오버튼처럼 동작하기
 	$("#attachMemNum").val(mem_num);
 	$("#attachMemNum1").val(mem_num);
 }
+
 var keyword="";
 var memSearch="";
 function ajaxSearchMem(pageNum,memSearch,keyword){
@@ -31,43 +32,74 @@ function ajaxSearchMem(pageNum,memSearch,keyword){
 				var getEndPageNum=$(this).find("getEndPageNum").text();
 				var getTotalPageCount=$(this).find("getTotalPageCount").text();
 				var html2="";
-				for(var i=getStartPageNum;i<=getEndPageNum;i++){
+				html2+="<div id='contact' class='container'>";
+				html2+="<div class='col-md-12'>";
+				html2+="<div class='row'>";
+				html2+="<div class='col-sm-4'>";
+				if(getStartPageNum>5){//이전
+					alert("1getStartPageNum: "+getStartPageNum);
+					alert("1getEndPageNum: "+getEndPageNum);
+					alert("1getTotalPageCount: "+getTotalPageCount);
+					html2+="<a href='javascript:ajaxSearchMem("+(getStartPageNum-1)+",\""+memSearch+"\",\""+keyword+"\")' class='pasing'>prev&nbsp;</a>";
+				}else{
+					html2+="prev&nbsp;";
+				}
+				html2+="</div>";
+				html2+="<div class='col-sm-4'>";
+				for(var i=getStartPageNum;i<=getEndPageNum;i++){//페이징
 					if(i==getPageNum){
-						html2="<a href='javascript:ajaxSearchMem("+i+",\""+memSearch+"\",\""+keyword+"\")'><span style='color:blue'>["+i+"]</span></a>";
+						html2+="<a href='javascript:ajaxSearchMem("+i+",\""+memSearch+"\",\""+keyword+"\")' class='pasing'><span style='color:blue'>&nbsp;"+i+"&nbsp;</span></a>";
 					}else{
-						html2="<a href='javascript:ajaxSearchMem("+i+",\""+memSearch+"\",\""+keyword+"\")'><span style='#555'>["+i+"]</span></a>";
+						html2+="<a href='javascript:ajaxSearchMem("+i+",\""+memSearch+"\",\""+keyword+"\")' class='pasing'><span style='#555'>&nbsp;"+i+"&nbsp;</span></a>";
 					}
-					var page=document.createElement("div2");
-					page.innerHTML=html2;
-					div2.appendChild(page);
-				}				
+				}
+				html2+="</div>";
+				html2+="<div class='col-sm-4'>";
+				if(getEndPageNum<getTotalPageCount){//다음
+					html2+="<a href='javascript:ajaxSearchMem("+i+",\""+memSearch+"\",\""+keyword+"\")' class='pasing'>next&nbsp;</a>";
+				}else{
+					html2+="next&nbsp;";
+				}
+				html2+="</div>";
+				html2+="</div>";
+				html2+="</div>";
+				html2+="<br>";
+				var page=document.createElement("div2");
+				page.innerHTML=html2;
+				div2.appendChild(page);
+				
 			});
+			var html="";
+			//html+="<div id='contact' class='container'>";
+			html+="<div class='col-md-12'>"+
+			"<table name='inFrm' class='table th' width='700'>"+
+			"<tr>"+
+				"<th>회원번호</th>"+
+	 			"<th>회원이름</th>"+
+				"<th>전화번호</th>"+
+				"<th>선택</th>"+
+			"</tr>";
 			$(data).find("mem").each(function(){//회원정보 받아오기
-				var html="";
+				//var html="";
 				var len=$(this).find("mem_num").length;
-				var html="<table class='table-bordered' width='300'>"+
-				"<tr>"+
-					"<th>회원번호</th>"+
-		 			"<th>회원이름</th>"+
-					"<th>전화번호</th>"+
-					"<th>선택</th>"+
-				"</tr>";
 				for(var i=0;i<len;i++){
 					var mem_num=$(this).find("mem_num").text();
 					var mem_name=$(this).find("mem_name").text();
 					var mem_phone=$(this).find("mem_phone").text();	
 				html += "<tr>"+
-							"<td><input type='text' name='mem_num' value='"+mem_num+"' id='mem_num'></td>"+
-							"<td><input type='text' name='mem_name' value='"+mem_name+"' id='mem_name'></td>"+
-							"<td><input type='text' name='mem_phone' value='"+mem_phone+"' id='mem_phone'></td>"+
-							"<td><input type='button' value='선택' id='btnSelectMemNum' onclick='memList("+mem_num+")'></td>"+
+							"<td>"+mem_num+"</td>"+
+							"<td>"+mem_name+"</td>"+
+							"<td>"+mem_phone+"</td>"+
+							"<td><input type='radio' name='aaa' id='btnSelectMemNum' onclick='memList("+mem_num+")'></td>"+
 						"</tr>";
 				}
-				html += "</table>";
-				var infoMem=document.createElement("div");
-				infoMem.innerHTML=html;
-				div.appendChild(infoMem);
 			});
+			html += "</table>";
+			html += "</div>";
+			//html += "</div>";
+			var infoMem=document.createElement("div");
+			infoMem.innerHTML=html;
+			div.appendChild(infoMem);
 		}
 	});
 }
@@ -221,19 +253,23 @@ $(document).ready(function(){
 	});
 	$("#locYes").click(function(){
 		var price=10000;
-		$("#locker_price").val(price);	
+		$("#locker_price").val(price);
+		$("#locker_price1").val(price);
 	});
 	$("#locNo").click(function(){
 		var price=0;
 		$("#locker_price").val(price);
+		$("#locker_price1").val(price);
 	});
 	$("#wearYes").click(function(){
 		var price=10000;
 		$("#wear_price").val(price);
+		$("#wear_price1").val(price);
 	});
 	$("#wearNo").click(function(){
 		var price=0;
 		$("#wear_price").val(price);
+		$("#wear_price1").val(price);
 	});
 	$("#signTotPrice").click(function(){
 		var programPrice=$("#rg_price").val();
@@ -347,9 +383,9 @@ $(document).ready(function(){
 	}
 ////////////--유효성검사--////////////
 	function validator(){
-		alert("유효성검사!!");
+		//alert("유효성검사!!");
 		var mem_num=document.frm.mem_num;
-		alert("mem_num"+mem_num);
+		//alert("mem_num : "+mem_num);
 		if(mem_num.value.length<=0){
 			alert("등록할 회원번호를 입력하세요.");
 			return false;
@@ -365,18 +401,18 @@ $(document).ready(function(){
 			alert("등록유형을 선택해주세요.");
 			return false;
 		}
-		var rg_price=document.frm.rg_price;
-		alert("rg_price"+rg_price);
+		var rg_price=document.frm.rg_price[0];
+		//alert("rg_price: "+rg_price);
 		if(rg_price.value.length<2){
 			alert("프로그램을 선택하세요.");
 			return false;
 		}
-		var locker_price=document.frm.locker_price;
+		var locker_price=document.frm.locker_price[0];
 		if(locker_price.value.length<=0){
 			alert("락카 신청여부를 확인해주세요.");
 			return false;
 		}
-		var wear_price=document.frm.wear_price;
+		var wear_price=document.frm.wear_price[0];
 		if(wear_price.value.length<=0){
 			alert("운동복 신청여부를 확인해주세요.");
 			return false;
@@ -389,99 +425,192 @@ $(document).ready(function(){
 		return true;//submit하기
 	}
 </script>
-<h1>회원 수강등록(프로그램등록)하기!!</h1>
-<!-- 회원 검색하기!!! -->
-회원검색 : 
-<select id="memSearch">
-	<option value="mem_num">회원번호</option>
-	<option value="mem_name">이름</option>
-	<option value="mem_phone">전화</option>
-</select>
-<input type="text" name="keyword" id="keyword">
-<input type="button" value="회원검색" id="searchMem">
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">Member Insert</h3>
+	<p class="text-center">
+		<em>Welcome to our family !!</em>
+	</p>
+	<div class="row">
 
+		<div class="col-md-2"></div>
+		
+
+
+<div class="col-md-12">
+	<!-- 회원 검색하기!!! -->
+	<div class="row">
+		<div class="col-sm-3"> 
+			<p >
+			<span class="glyphicon glyphicon-search"></span> Search for member
+			</p>
+		</div>
+		<div class="col-sm-3"> 
+			<select class="select input-sm" id="memSearch">
+				<option value="default">--검색조건--</option>
+				<option value="mem_num">회원번호</option>
+				<option value="mem_name">이름</option>
+				<option value="mem_phone">전화</option>
+			</select>
+		</div>
+		<div class="col-sm-3">
+			<input type="text" class="input-sm" size="10" name="keyword" id="keyword">
+		</div>
+		<div class="col-sm-3">
+			<button class="btn pull-right " id="searchMem" type="submit">
+			<span class="glyphicon glyphicon-search"></span>  search </button><br>
+		</div>
+	</div>
+</div>
 <!-- 검색된 정보 뿌려주기는 여기에다가 안된다고 함...위에다가 써서 div에 뿌려줘야함... -->
 <div id="memInformation"></div>		
 <!-- 페이징도 마찬가지로 위에다가 써서 div에 뿌려주기 -> 회원번호 선택하면 아래의 input type="text"에 회원번호 자동입력 -->
 <div id="answerPaging"></div>
-
+<br>
 <form name="frm" method="post" action="regiInsert1" onsubmit="return validator();">
 <!-- 회원번호를 select해서 input="text"에 집어넣기!! -->
-<table class="table-bordered" width="1000">
+<div class="col-md-12">
+	<p >
+		<span class="glyphicon glyphicon-pencil"></span> New member sign-up page
+	</p>
+<table class="table th" width="1000">
 	<tr>
 		<th>회원번호</th>
-		<td colspan="2"><input type="text" disabled="disabled" id="attachMemNum"><input type="hidden" name="mem_num" id="attachMemNum1"></td>
+		<td colspan="2">
+			<div class="col-sm-5 form-group"> 
+				<input type="text" class="form-control" disabled="disabled" id="attachMemNum"><input type="hidden" name="mem_num" id="attachMemNum1">
+			</div>
+		</td>
 	</tr>
 	<tr>
 		<th>등록유형</th>
 		<td colspan="2">
+		<label class="radio-inline">
 			<input type="radio" value="단과과목" name="rg_type" id="simple_subject">단과과목
+		</label>
+		<label class="radio-inline">
 			<input type="radio" value="PT" name="rg_type" id="pt_subject">PT
+		</label>
+		<label class="radio-inline">
 			<input type="radio" value="여러과목" name="rg_type" id="multiple_subject">복합과목
+		</label>
 		</td>
 	</tr>
 	<tr>
 		<th>프로그램선택</th>
 		<td colspan="2">
 			<!-- 단과과목 프로그램 선택 -->
-			<select id="programName" onchange="priceChange(this.value)" style="display: none">
+			<div class="col-sm"> 
+			<select class="select input-sm" id="programName" onchange="priceChange(this.value)" style="display: none">
 				<option value="default">---프로그램선택---</option>
 			</select>
+			</div>
 			<!-- pt프로그램 선택 -->
-			<select id="PTProgramName" onchange="ptPriceChange(this.value)" style="display: none">
+			<div class="col-sm"> 
+			<select class="select input-sm" id="PTProgramName" onchange="ptPriceChange(this.value)" style="display: none">
 				<option value="default">---프로그램선택---</option>
 			</select>
+			</div>
 			<!-- 여러과목 프로그램 선택 -->
-			<select id="proName" onchange="simpleSelect(this.value)" style="display: none">
+			<div class="col-sm-3 form-group"> 
+			<select class="select input-sm" id="proName" onchange="simpleSelect(this.value)" style="display: none">
 				<option value="default">---단과선택---</option>
 			</select>
-			<select id="ptName" onchange="ptSelect(this.value)" style="display: none">
+			</div>
+			<div class="col-sm-3 form-group"> 
+			<select class="select input-sm" id="ptName" onchange="ptSelect(this.value)" style="display: none">
 				<option value="default">---PT선택---</option>
 			</select>
+			</div>
 		</td>
 	</tr>
 	<tr>
 		<th>프로그램가격</th>
 		<td colspan="2">
 			<div id="proSum" style="display: none">
-				단과 가격 : <input type="text" disabled="disabled" id="simplePrice"><input type="hidden" id="simplePrice">
-				
-				+ PT 가격 : <input type="text" disabled="disabled" id="ptSelectPrice"><input type="hidden" id="ptSelectPrice">
-				<br>
-				= <input type="button" value="가격계산" id="btn">(단과과목 10% 할인)
+				<div class="row">
+					<div class="col-sm-3 form-group">
+						<input type="text" class="form-control" placeholder="단과가격" disabled="disabled" id="simplePrice"><input type="hidden" id="simplePrice" class="required">
+					</div>
+					<div class="col-sm-1 form-group">
+						<span class="glyphicon glyphicon-plus">  </span>
+					</div>
+					<div class="col-sm-3 form-group">
+						<input type="text" class="form-control" placeholder="PT 가격" disabled="disabled" id="ptSelectPrice"><input type="hidden" id="ptSelectPrice" class="required">
+ 					</div>
+					<div class="col-sm-5">
+						<button class="btn-default btn-xs" id="btn" type="button">
+						<span class="glyphicon glyphicon-usd"></span>  Calculate(단과 10%할인) </button>
+					</div>
+				</div>
 			</div>
 			<!-- 총 프로그램가격rg_price -->
-			<input type="text" disabled="disabled" id="rg_price"><input type="text" name="rg_price" id="rg_price1">
+			<div class="row">
+			<div class="col-sm-12 form-group">
+					<input type="text" placeholder="Total Program Price" class="form-control" disabled="disabled" id="rg_price"><input type="hidden" name="rg_price" id="rg_price1">
+			</div>
+			</div>
 		</td>
 	</tr>
 	<tr>
 		<th>락카</th>
 		<td>
-			<input type="radio" value="신청" id="locYes">신청
-			<input type="radio" value="신청안함" id="locNo">신청안함
+		<div class="col-sm-6 form-group">
+		<label class="radio-inline">
+			<input type="radio" value="신청" name="locker" id="locYes">신청
+		</label>
+		</div>
+		<div class="col-sm-6 form-group">
+		<label class="radio-inline">
+			<input type="radio" value="신청안함" name="locker" id="locNo">신청안함
+		</label>
+		</div>
 		</td>
 		<td>
-			가격 : <input type="text" name="locker_price" id="locker_price">
+			<input type="text" class="form-control" placeholder="Locker Price" disabled="disabled" id="locker_price"><input type="hidden" name="locker_price" id="locker_price1">
 		</td>
 	</tr>
 	<tr>
 		<th>운동복</th>
 		<td>
-			<input type="radio" value="신청" id="wearYes">신청
-			<input type="radio" value="신청안함" id="wearNo">신청안함
+		<div class="col-sm-6 form-group">
+		<label class="radio-inline">
+			<input type="radio" value="신청" name="wear" id="wearYes">신청
+		</label>
+		</div>
+		<div class="col-sm-6 form-group">
+		<label class="radio-inline">
+			<input type="radio" value="신청안함" name="wear" id="wearNo">신청안함
+		</label>
+		</div>
 		</td>
 		<td>
-			가격 : <input type="text" name="wear_price" id="wear_price">
+			<input type="text" class="form-control" placeholder="SportsWear Price" disabled="disabled" id="wear_price"><input type="hidden" name="wear_price" id="wear_price1">
 		</td>
 	</tr>
 	<tr>
 		<th>총 등록금액</th>
-		<td colspan="2">
-			<input type="button" value="총 등록가격 계산" id="signTotPrice">
-			<input type="text" disabled="disabled" id="totSignPrice"><input type="text"  name="totPrice" id="totSignPrice1">
+		<td>
+				<button class="btn-default btn-xs" id="signTotPrice" type="button">
+				<span class="glyphicon glyphicon-usd"></span> Calculate </button>
+		</td>
+		<td>
+				<input type="text" class="form-control" placeholder="Sign Price" disabled="disabled" id="totSignPrice"><input type="hidden"  name="totPrice" id="totSignPrice1">
 		</td>
 	</tr>
 </table>
+
+	<div class="row">
+		<div class="col-md-6">
+			<button class="btn pull-right" type="submit">
+			<span class="glyphicon glyphicon-ok"></span>  수강등록 </button>
+		</div>
+		<div class="col-md-6">
+			<button class="btn pull-left"type="reset">
+			<span class="glyphicon glyphicon-remove"></span>  취소 </button>
+		</div>
+	</div>
+</div>
 <!-- //////////프로그램을 선택하면 아래에 등록개월수가 input됨///////////style="display: none" -->
 <input type="hidden" name="pro_signmonth" id="pro_signmonth">
 <input type="hidden" name="pt_signmonth" id="pt_signmonth">
@@ -491,10 +620,6 @@ $(document).ready(function(){
 <input type="hidden" name="pro_code" id="pro_code">
 <input type="hidden" name="pt_code" id="pt_code">
 <input type="hidden" name="ptr_count" id="ptr_count">
-
-<input type="submit" value="프로그램신청">
-<input type="reset" value="취소">
 </form>
-<style>
-	table th td {boder=1px solid black;}
-</style>
+</div>
+</div>

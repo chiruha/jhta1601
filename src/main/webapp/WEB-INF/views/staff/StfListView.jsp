@@ -196,7 +196,7 @@
 	</c:choose>
 </c:forEach>
 	
-	<c:choose>
+<c:choose>
 	<c:when test="${pu.endPageNum<pu.totalPageCount}">
 		<a href="${pu.endPageNum+1 }" class="pasing"> &nbsp;next</a>
 	</c:when>

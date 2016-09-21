@@ -77,10 +77,11 @@
 		<input type="hidden" id="pageNum" name="pageNum">
 	<div class="row">
 		<div class="col-sm-2">
-			<select name="type" class="select input-sm" id="selbox">
-					<option value="ct_name">출근지점</option>
+			<select name="stype" class="select input-sm" id="selbox">
+					<option value="stf_num">직원번호</option>
 					<option value="stf_name">직원이름</option>
 					<option value="stf_phone">직원전화</option>
+					<option value="ct_name">출근지점</option>
 					<option value="in_date">출근일시</option>
 					<option value="out_date">퇴근일시</option>
 			</select>

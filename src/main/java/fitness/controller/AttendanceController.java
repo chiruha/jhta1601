@@ -1,5 +1,7 @@
 package fitness.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,6 +28,9 @@ public class AttendanceController {
 	@Autowired private Mem_attService ms;
 	@Autowired private CenterService cs;
 	@Autowired private PaymentService ps;
+	Date today=new Date();
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd");
+	
 	@RequestMapping("/attcheck")
 	public String check(int num, String type,	HttpSession session){
 		System.out.println("attCtr num : "+ num +", type : "+type);
@@ -96,13 +101,12 @@ public class AttendanceController {
 	public String SlistAll(	HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
 		String stype=request.getParameter("stype");
 		String satt_keyword=request.getParameter("satt_keyword");
-		System.out.println("(satt) stype: "+stype+", 검색어: "+satt_keyword);
 		try{
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			map.put("stype", stype);
 			map.put("satt_keyword", satt_keyword);
 			int totalRowCount=ss.sattCnt(map);
-			System.out.println("sattCnt : "+totalRowCount);
+			System.out.println("(satt) stype: "+stype+", 검색어: "+satt_keyword+", sattCnt : "+totalRowCount);
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());
@@ -122,15 +126,17 @@ public class AttendanceController {
 	@RequestMapping("/sdetail")
 	public String sdetail(@RequestParam(value="stf_num", defaultValue="0") int stf_num,HttpSession session,
 			@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
-		String start_date=request.getParameter("start_date");
-		String dtype=request.getParameter("dtype");
-		String datt_keyword=request.getParameter("datt_keyword");
 		try{
+			String start_date=sdf.format(today);
+			String date=request.getParameter("start_date");
+			if(date!=null&&date!="") start_date=date;
+			String dtype=request.getParameter("dtype");
+			String datt_keyword=request.getParameter("datt_keyword");
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			map.put("start_date", start_date);
 			map.put("stf_num", stf_num);
-			map.put("dtype", dtype);
-			map.put("datt_keyword", datt_keyword);
+			map.put("stype", dtype);
+			map.put("satt_keyword", datt_keyword);
 			int totalRowCount=ss.sattCnt(map);
 			System.out.println("(datt) dtype : "+dtype+", 검색어 : "+datt_keyword +", 날짜 : "+start_date);
 			System.out.println("stf_num : "+stf_num+" sattCnt : "+totalRowCount);

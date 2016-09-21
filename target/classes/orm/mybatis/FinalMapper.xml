@@ -142,10 +142,12 @@
                         			 from staff st, center c where st.ct_code=c.ct_code) s,
                              		(select a.*,c.ct_name  from stf_att a, center c where a.ct_code=c.ct_code)sa 
                          where s.stf_num=sa.stf_num
-				<if test="stype!=null">
-					and ${stype} like '%' || #{satt_keyword}|| '%'
-				</if>
 		 order by sa.in_date desc)satt
+					 <where>
+				<if test="stype!=null">
+				and  ${stype} like '%' || #{satt_keyword}|| '%'
+				</if>
+		 </where>
 		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	<select id="sdetail" parameterType="hashmap" resultType="fitness.dto.Stf_attDto">
@@ -160,10 +162,12 @@
              <if test="start_date!=null">
 					and in_date	 between #{start_date} and to_char(last_day(#{start_date}))
 			</if>
-			<if test="stype!=null">
-					and ${stype} like '%' || #{satt_keyword}|| '%'
-			</if>
 		 order by sa.in_date desc)satt
+				 <where>
+				<if test="stype!=null">
+				and  ${stype} like '%' || #{satt_keyword}|| '%'
+				</if>
+		 </where>
 		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	<select id="sattCnt" resultType="int" parameterType="hashmap">
@@ -180,10 +184,12 @@
 		<if test="start_date!=null">
 			and in_date	 between #{start_date} and to_char(last_day(#{start_date}))
 		</if>
-		<if test="stype!=null">
-		and  ${stype} like '%' || #{satt_keyword}|| '%'
-		</if>
 		 order by sa.in_date desc)satt
+		 <where>
+				<if test="stype!=null">
+				and  ${stype} like '%' || #{satt_keyword}|| '%'
+				</if>
+		 </where>
 	</select>
 <!--////////// payment관련 - 작성자 : 유예진 //////////-->
 	<select id="spayCnt" resultType="int" parameterType="hashmap">
@@ -198,12 +204,11 @@
 		select * from( select stf.*,rownum rnum from
 			(select * from staff	
 			<where>
-			<if test="stf_name!=null">
-				and stf_name like '%' || #{keyword}|| '%'
-			</if>
-			<if test="stf_phone!=null">
-				and stf_phone like '%' || #{keyword}|| '%'
-			</if>
+				 <where>
+				<if test="stype!=null">
+				and  ${stype} like '%' || #{satt_keyword}|| '%'
+				</if>
+		 </where>
 			
 		</where>
 			)stf

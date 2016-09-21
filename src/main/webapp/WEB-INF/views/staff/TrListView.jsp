@@ -118,8 +118,8 @@ $(document).ready(function() {
 		&nbsp;next
 	</c:otherwise>
 </c:choose>
-</form>
 			</div>
 		</div>
 
+</form>
 </div>

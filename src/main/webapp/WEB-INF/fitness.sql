@@ -137,9 +137,9 @@ create table staff				--스태프
 	ct_code number(5) DEFAULT 0 REFERENCES CENTER(CT_CODE) --지점코드 FK
 );
 CREATE SEQUENCE STAFF_SEQ;
-insert into staff values(staff_seq.nextval,'NOTICE_TEST1','011',sysdate,'TEST1.jpg','A',2);
+insert into staff values(staff_seq.nextval,'NOTICE_TEST1','011',sysdate,'TEST1.jpg','A',1);
 insert into staff values(staff_seq.nextval,'NOTICE_TEST2','017',sysdate,'TEST2.jpg','B',2);
-insert into staff values(staff_seq.nextval,'NOTICE_TEST3','019',sysdate,'TEST3.jpg','B',2);
+insert into staff values(staff_seq.nextval,'NOTICE_TEST3','019',sysdate,'TEST3.jpg','C',3);
 
 
 create table freeboard			--자유게시판

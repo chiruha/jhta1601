@@ -124,8 +124,8 @@ public class AttendanceController {
 			return ".attendance.SAttListView";			
 	}
 	@RequestMapping("/sdetail")
-	public String sdetail(@RequestParam(value="stf_num", defaultValue="0") int stf_num,HttpSession session,
-			@RequestParam(value="pageNum", defaultValue="1") int pageNum,HttpServletRequest request){
+	public String sdetail(@RequestParam(value="stf_num", defaultValue="0") int stf_num,HttpServletRequest request,
+			@RequestParam(value="pageNum", defaultValue="1") int pageNum){
 		try{
 			String start_date=sdf.format(today);
 			String date=request.getParameter("start_date");
@@ -145,15 +145,15 @@ public class AttendanceController {
 			map.put("endRow", pu.getEndRow());
 			List<Stf_attDto> dattlist=ss.detailService(map);
 			int wsum=ps.spayService(map);
-			session.setAttribute("dattlist", dattlist);
+			request.setAttribute("dattlist", dattlist);
 			System.out.println("dattlistÄÁÆ®·Ñ :"+dattlist);
 			System.out.println("pu : "+pu.toString());
-			session.setAttribute("dstf_num", stf_num);
-			session.setAttribute("ddate", start_date);
-			session.setAttribute("dtype",dtype);
-			session.setAttribute("wsum", wsum);
-			session.setAttribute("datt_keyword", datt_keyword);
-			session.setAttribute("pu", pu);
+			request.setAttribute("dstf_num", stf_num);
+			request.setAttribute("ddate", start_date);
+			request.setAttribute("dtype",dtype);
+			request.setAttribute("wsum", wsum);
+			request.setAttribute("datt_keyword", datt_keyword);
+			request.setAttribute("pu", pu);
 			ss.detailService(map);
 		}catch(Exception e){
 			System.out.println(e.getMessage());

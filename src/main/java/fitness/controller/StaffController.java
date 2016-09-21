@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import fitness.dto.CenterDto;
 import fitness.dto.PositionDto;
 import fitness.dto.StaffDto;
-import fitness.dto.TrainerDto;
 import fitness.service.CenterService;
 import fitness.service.PositionService;
 import fitness.service.StaffService;
@@ -35,11 +34,11 @@ public class StaffController {
 
 	
 	@RequestMapping(value="/stfinsert",method= RequestMethod.GET)
-	public String insert(	HttpSession session){  // insert 페이지로 이동
+	public String insert(	HttpServletRequest requset){  // insert 페이지로 이동
 		List<CenterDto> ctlist=cts.listService();
 		List<PositionDto>poslist=pos.listService();
-		session.setAttribute("poslist", poslist);
-		session.setAttribute("ctlist", ctlist);
+		requset.setAttribute("poslist", poslist);
+		requset.setAttribute("ctlist", ctlist);
 		return ".staff.StfInsertView";
 	}
 	@RequestMapping(value="/stfinsert",method= RequestMethod.POST)
@@ -68,7 +67,7 @@ public class StaffController {
 		return ".staff.ResultView";
 	}
 	@RequestMapping("/stflist") // 검색 기능 포함한 목록보기 
-	public String list(	HttpSession session,@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpServletRequest request){
+	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpServletRequest request){
 		String ct_code=request.getParameter("ct_code");
 		String pos_code=request.getParameter("pos_code");
 		String stf_name=request.getParameter("stf_name");
@@ -91,15 +90,15 @@ public class StaffController {
 		map.put("endRow", pu.getEndRow());
 		List<StaffDto> stflist=service.listService(map);
 		// 체크박스 선택 유지를 위한 값 보내주기
-		session.setAttribute("ct_code", ct_code);
-		session.setAttribute("pos_code", pos_code);
-		session.setAttribute("stf_name", stf_name);
-		session.setAttribute("stf_phone", stf_phone); 
-		session.setAttribute("keyword", keyword);
+		request.setAttribute("ct_code", ct_code);
+		request.setAttribute("pos_code", pos_code);
+		request.setAttribute("stf_name", stf_name);
+		request.setAttribute("stf_phone", stf_phone); 
+		request.setAttribute("keyword", keyword);
 		
-		session.setAttribute("stflist", stflist);
+		request.setAttribute("stflist", stflist);
 		System.out.println("stflist컨트롤 :"+stflist);
-		session.setAttribute("pu", pu);
+		request.setAttribute("pu", pu);
 		return ".staff.StfListView";
 	}
 	@RequestMapping("/stfdetail")
@@ -132,7 +131,7 @@ public class StaffController {
 		return ".staff.ResultView";
 	}
 	@RequestMapping("/stfupdate")
-	public String update(StaffDto dto,MultipartFile picture,	HttpSession session){
+	public String update(StaffDto dto,MultipartFile picture, HttpSession session){
 		System.out.println("stf업데이트 : "+dto.toString()+"pic : "+picture);
 	try{
 		String path=session.getServletContext().getRealPath("/resources/img/Staff");

@@ -9,10 +9,11 @@
 
  <script type="text/javascript">
 	$(document).ready(function() {
-		var type="${sessionScope.dtype}";
+		var type="${dtype}";
+		alert("${dtype}")
 		if(type!=""&&type!=null){
 		//alert("type: ${sessionScope.stype}")
-			$("#dselbox").val("${sessionScope.dtype}").attr("selected","selected")		
+			$("#dselbox").val("${dtype}").attr("selected","selected")		
 		}
 		$("#btn").click(function(event) {
 			//alert($("#selbox option:selected").val())
@@ -126,14 +127,12 @@
 					<option value="stf_name">직원이름</option>
 					<option value="stf_phone">직원전화</option>
 					<option value="ct_name">출근지점</option>
-					<option value="in_date">출근일시</option>
-					<option value="out_date">퇴근일시</option>
 			</select>
 		</div>
 
 			<div class="col-sm-6">
 				<input type="text" placeholder="검색 조건을 선택하세요" class="form-control" size="15"
-				 name="datt_keyword" id="datt_keyword" <c:if test="${satt_keyword ne null}">value="${satt_keyword }"</c:if>>
+				 name="datt_keyword" id="datt_keyword" <c:if test="${datt_keyword ne null}">value="${datt_keyword }"</c:if>>
 				<span id="sp"></span>
 			</div>
 			<div class="col-sm-4">

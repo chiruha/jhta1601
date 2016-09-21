@@ -204,11 +204,10 @@
 		select * from( select stf.*,rownum rnum from
 			(select * from staff	
 			<where>
-				 <where>
+			
 				<if test="stype!=null">
 				and  ${stype} like '%' || #{satt_keyword}|| '%'
 				</if>
-		 </where>
 			
 		</where>
 			)stf
@@ -226,13 +225,17 @@
 	</update>
 	<select id="trlist" resultType="fitness.dto.TrainerDto" parameterType="hashmap">
 		select * from( select  tr.*,rownum rnum from
-			(select * from trainer	)tr
+			(select t.*,stf_name,c.ct_code,c.ct_name,p.* from trainer t, staff s,center c, position p 
+			where t.stf_num=s.stf_num and s.ct_code=c.ct_code and s.pos_code=p.pos_code	)tr
 		)
 		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-		
+		<if test="ttype!=null">
+				and  ${ttype} like '%' || #{tkeyword}|| '%'
+		</if>
 	</select>
 	<select id="trdetail" parameterType="int" resultType="fitness.dto.TrainerDto">
-		select * from trainer where tr_num=#{value}
+		select * from trainer 
+		where tr_num=#{value}
 	</select>
 		<select id="trdetail2" parameterType="int" resultType="fitness.dto.TrainerDto">
 		select * from trainer where stf_num=#{value}
@@ -242,8 +245,14 @@
 	</delete>
 	
 	<select id="getTrCount" resultType="int"  parameterType="hashmap">
-		select count(tr_num) cnt from trainer
-	
+		select count(tr_num) cnt from
+		( select  tr.*,rownum rnum from
+			(select t.*,stf_name,c.ct_code,c.ct_name,p.* from trainer t, staff s,center c, position p 
+			where t.stf_num=s.stf_num and s.ct_code=c.ct_code and s.pos_code=p.pos_code	)tr
+		<if test="ttype!=null">
+				where  ${ttype} like '%' || #{tkeyword}|| '%'
+		</if>
+		)
 	</select>
 	
 

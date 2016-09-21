@@ -2,11 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
+$(document).ready(function() {
+		var type="${ttype}";
+		if(type!=""&&type!=null){
+			$("#tselbox").val("${ttype}").attr("selected","selected")		
+		}	
 		$(".pasing").click(function(event) {
+			alert($(this).attr("href"));
 			event.preventDefault();
 			$("#pageNum").val($(this).attr("href"));
 			document.listform.submit();
 		});
+});
 </script>
 
 
@@ -23,15 +30,21 @@
 	<tr>
 		<th>직원번호</th>
 		<th>강사번호</th>
+		<th>강사이름</th>
 		<th>강사경력</th>
 		<th>강사소개</th>
+		<th>강사직급</th>
+		<th>소속지점</th>
 	</tr>
 	<c:forEach var="dto" items="${trlist }">
 	<tr>
 		<td>${dto.stf_num }</td>
 		<td><a href="trdetail?tr_num=${dto.tr_num}">${dto.tr_num }</a></td>
+		<td>${dto.stf_name }</td>
 		<td>${dto.tr_career }</td>
 		<td>${dto.tr_intro }</td>
+		<td>${dto.pos_name }</td>
+		<td>${dto.ct_name }</td>
 	</tr>
 	</c:forEach>
 </table>
@@ -48,13 +61,16 @@
 
 	<div class="row">
 		<div class="col-sm-8">
-			<select class="select input-sm">
-				<option value="tr_name">이름</option>
-				<option value="tr_career">경력</option>
-				<option value="ct_num">지점</option>	
+			<select name="ttype" class="select input-sm">
+				<option value="stf_num">직원번호</option>
+				<option value="tr_num">강사번호</option>
+				<option value="tr_name">강사이름</option>
+				<option value="tr_career">강사경력</option>
+				<option value="ct_name">소속지점</option>	
+				<option value="pos_name">강사직급</option>
 			</select>
 
-				<input type="text" placeholder=" 검색어를 입력하세요" class="input-sm"  name="keyword" id="keyword" value="${keyword }">
+				<input type="text" placeholder=" 검색어를 입력하세요" class="input-sm"  name="tkeyword" id="keyword" value="${tkeyword }">
 				
 				<span id="sp"></span>
 							
@@ -68,11 +84,9 @@
 					
 
 <br>
-</form>
 	<div class="row">
 		<div class="text-center">
 		
-<form action="trlist" method="post" name="listform">
 <!-- 페이징처리 -->
 <c:choose>
 	<c:when test="${pu.startPageNum>5 }">

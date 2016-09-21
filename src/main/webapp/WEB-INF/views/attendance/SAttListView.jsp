@@ -3,10 +3,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <script type="text/javascript">
 	$(document).ready(function() {
-		var type="${sessionScope.stype}";
+		var type="${stype}";
 		if(type!=""&&type!=null){
 		//alert("type: ${sessionScope.stype}")
-			$("#selbox").val("${sessionScope.stype}").attr("selected","selected")		
+			$("#selbox").val("${stype}").attr("selected","selected")		
 		}
 		$("#btn").click(function(event) {
 			//alert($("#selbox option:selected").val())

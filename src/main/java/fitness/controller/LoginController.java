@@ -44,7 +44,7 @@ public class LoginController {
 				session.setAttribute("mnum", ((BigDecimal)user.get("MEM_NUM")).intValue());//번호뽑아오기
 				session.setAttribute("memnum", mem_name);
 				
-				System.out.println("담아졌나?"+ mem_name);
+				System.out.println("mem_name : "+ mem_name);
 				return ".bootmain";//메인가기
 			}
 		}else{
@@ -58,13 +58,13 @@ public class LoginController {
 				return ".bootmain";
 			}else{
 				HttpSession session=req.getSession();//세션얻어오기
-				System.out.println("Admin session나오나?"+session);
+				System.out.println("Admin session :"+session);
 
 				session.setAttribute("snum", ((BigDecimal)user.get("STF_NUM")).intValue());//번호뽑아오기
 
 				session.setAttribute("memnum", mem_name);
-				System.out.println("Admin 담아졌나?"+ mem_phone);
-				System.out.println("값 뽑아보기!!"+user.get("STF_NUM"));
+				System.out.println("Admin phone :"+ mem_phone);
+				System.out.println("stf_num : "+user.get("STF_NUM"));
 				return ".bootmain";//메인가기
 			}
 		}

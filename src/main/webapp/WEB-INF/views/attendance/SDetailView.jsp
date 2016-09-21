@@ -10,7 +10,7 @@
  <script type="text/javascript">
 	$(document).ready(function() {
 		var type="${dtype}";
-		alert("${dtype}")
+		//alert("${dtype}")
 		if(type!=""&&type!=null){
 		//alert("type: ${sessionScope.stype}")
 			$("#dselbox").val("${dtype}").attr("selected","selected")		
@@ -69,7 +69,7 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<form action="sdetail" method="post" name="listform">
-	<h3 class="text-center">Staff Attendance Detail </h3>
+	<h3 class="text-center"><a href="<c:url value='/slistAll'/>" class="none">Staff Attendance Detail</a> </h3>
 <div class="row">
 	<div class="col-md-4">
 	<h5 id="ws" class="text-primary">총근무시간 ${wsum }</h5>

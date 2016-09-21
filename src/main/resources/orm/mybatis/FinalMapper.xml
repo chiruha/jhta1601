@@ -192,7 +192,7 @@
 
 	</select>
 	<insert id="payinsert" parameterType="fitness.dto.PaymentDto">
-		insert into payment values(pay_seq.nextval, #{stf_num}, #{time_sum}, #{pay_tot}, #{pay_date})
+		insert into payment values(pay_seq.nextval, #{stf_num}, #{time_sum}, #{pay_tot}, sysdate)
 	</insert>
 	<select id="paylist">
 		select * from( select stf.*,rownum rnum from

@@ -3,6 +3,7 @@ package fitness.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,41 +28,47 @@ public class TrainerController {
 	@Autowired private StaffService sts;
 	@Autowired private PositionService pos;
 	@Autowired private CenterService cts;
-	HttpSession session;
 	@RequestMapping("/trpage")
-	public String page(int num){
-		session.setAttribute("num", num);
+	public String page(int num, HttpServletRequest request){
+		request.setAttribute("num", num);
 		StaffDto sdto=sts.detailService(num);
-		session.setAttribute("sdto", sdto);
+		request.setAttribute("sdto", sdto);
 		System.out.println("trpage stf_num: "+num);
 		System.out.println("sdto : "+sdto.toString());
 		try{
 			if(service.detail2Service(num)!=null){
 				System.out.println("trpage if : "+service.detail2Service(num));
-				session.setAttribute("dto", service.detail2Service(num));
+				request.setAttribute("dto", service.detail2Service(num));
 				return ".staff.TrUpdateView";
 			}else{
 				return ".staff.TrInsertView";
 			}			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			session.setAttribute("result", "강사 등록/수정 페이지 이동 실패!");
+			request.setAttribute("result", "강사 등록/수정 페이지 이동 실패!");
 			return ".staff.ResultView";
 		}
 	}
 	
 	@RequestMapping("/trlist")
-	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum){
+	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpServletRequest request){
 		try{
+			String ttype=request.getParameter("ttype");
+			String tkeyword=request.getParameter("tkeyword");
+			System.out.println("ttype : "+ttype+", tkey : "+tkeyword);
 			HashMap<String, Object> map =new HashMap<String, Object>();
+			map.put("ttype", ttype);
+			map.put("tkeyword", tkeyword);
 			int totalRowCount=service.getTrCount(map);
 			PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);
 			map.put("startRow", pu.getStartRow());
 			map.put("endRow", pu.getEndRow());		
-			session.setAttribute("pu", pu);
-			
+			request.setAttribute("pu", pu);
 			List<TrainerDto> trlist=service.listService(map);
-			session.setAttribute("trlist", trlist);
+			request.setAttribute("trlist", trlist);
+			request.setAttribute("ttype", ttype);
+			request.setAttribute("tkeyword", tkeyword);
+			System.out.println("trlist : "+trlist);
 			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
@@ -70,16 +77,16 @@ public class TrainerController {
 	}
 	
 	@RequestMapping("/trdetail")
-	public String detail(int tr_num){
+	public String detail(int tr_num, HttpServletRequest request){
 		try{
 			TrainerDto dto=service.detailService(tr_num);
 			StaffDto sdto=sts.detailService(dto.getStf_num());
 			CenterDto cdto=cts.detailService(sdto.getCt_code());
 			PositionDto pdto=pos.detailService(sdto.getPos_code());
-			session.setAttribute("pdto", pdto);
-			session.setAttribute("cdto", cdto);
-			session.setAttribute("sdto", sdto);
-			session.setAttribute("dto", dto);
+			request.setAttribute("pdto", pdto);
+			request.setAttribute("cdto", cdto);
+			request.setAttribute("sdto", sdto);
+			request.setAttribute("dto", dto);
 			System.out.println(dto.toString());
 		}catch(Exception e){
 			System.out.println(e.getMessage());
@@ -88,40 +95,40 @@ public class TrainerController {
 	}
 	
 	@RequestMapping("/trdelete")
-	public String delete(int tr_num){
+	public String delete(int tr_num, HttpServletRequest request){
 		try{
 			service.deleteService(tr_num);
-			session.setAttribute("result", "강사 삭제 완료");
+			request.setAttribute("result", "강사 삭제 완료");
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			session.setAttribute("result", "강사 삭제 실패");
+			request.setAttribute("result", "강사 삭제 실패");
 		}
 		return ".staff.ResultView";
 	}
 	
 	
 	@RequestMapping(value="/trpage/trinsert", method= RequestMethod.POST)
-	public String insert(TrainerDto dto){
+	public String insert(TrainerDto dto, HttpServletRequest request){
 		System.out.println("trinsert"+dto.toString());
 		try{
 			service.insertService(dto);
-			session.setAttribute("result", "강사 등록 성공!");
+			request.setAttribute("result", "강사 등록 성공!");
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			session.setAttribute("result", "강사 등록 실패!");
+			request.setAttribute("result", "강사 등록 실패!");
 		}
 			return ".staff.ResultView";
 	}
 	
 	@RequestMapping(value="/trpage/trupdate", method = RequestMethod.POST)
-	public String update(TrainerDto dto){
+	public String update(TrainerDto dto, HttpServletRequest request){
 	try{
 		System.out.println("trupdate"+dto.toString());
 		service.updateService(dto);
-		session.setAttribute("result", "강사 수정 성공!");
+		request.setAttribute("result", "강사 수정 성공!");
 	}catch(Exception e){
 		System.out.println(e.getMessage());
-		session.setAttribute("result", "강사 수정 실패!");
+		request.setAttribute("result", "강사 수정 실패!");
 	}
 		return ".staff.ResultView";
 	}

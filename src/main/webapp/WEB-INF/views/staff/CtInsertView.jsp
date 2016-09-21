@@ -18,11 +18,11 @@
 <div class="row">
 <div class="col-md-3"></div>
 	<div class="col-md-3">
-	<button class="btn pull-right" id="btn" type="submit">
+	<button class="btn pull-right"  type="submit">
 	<span class="glyphicon glyphicon-ok"></span> Ok </button>
 	</div>
 		<div class="col-md-3">
-	<button class="btn pull-left" id="btn" type="reset">
+	<button class="btn pull-left"  type="reset">
 	<span class="glyphicon glyphicon-remove"></span>  Cancle </button>
 	
 	

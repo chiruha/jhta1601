@@ -137,9 +137,9 @@ create table staff				--스태프
 	ct_code number(5) DEFAULT 0 REFERENCES CENTER(CT_CODE) --지점코드 FK
 );
 CREATE SEQUENCE STAFF_SEQ;
-insert into staff values(staff_seq.nextval,'NOTICE_TEST1','011',sysdate,'TEST1.jpg','A',2);
+insert into staff values(staff_seq.nextval,'NOTICE_TEST1','011',sysdate,'TEST1.jpg','A',1);
 insert into staff values(staff_seq.nextval,'NOTICE_TEST2','017',sysdate,'TEST2.jpg','B',2);
-insert into staff values(staff_seq.nextval,'NOTICE_TEST3','019',sysdate,'TEST3.jpg','B',2);
+insert into staff values(staff_seq.nextval,'NOTICE_TEST3','019',sysdate,'TEST3.jpg','C',3);
 
 
 create table freeboard			--자유게시판
@@ -263,76 +263,15 @@ create table stf_att				--직원출퇴근
 	ct_code number(5)			--지점코드
 );
 CREATE SEQUENCE SATT_SEQ;
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/01 09:00:40', 'yyyy/mm/dd hh24:mi:ss'), 	null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/02 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/03 07:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/04 09:00:00', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/05 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/06 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/07 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-		insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/08 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/09 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/10 07:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/11 09:00:00', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/12 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/13 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/14 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/15 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/16 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/17 07:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/18 09:00:00', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/19 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/20 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/21 08:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-		insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/22 09:00:40', 'yyyy/mm/dd hh24:mi:ss'), null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/23 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/24 07:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/25 09:00:00', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/26 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/27 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/28 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-		insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/29 09:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/30 08:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
-	insert into stf_att values(satt_seq.nextval, 
-	TO_DATE('2016/06/31 07:00:40', 'yyyy/mm/dd hh24:mi:ss'),null, 0, 1,1);
+
 	
 create table payment			--월급
 (
 	pay_num number(5) primary key,	--월급번호 PK
+	stf_num number(5) REFERENCES STAFF(STF_NUM),  --스태프 번호 FK
+	time_sum number(5),   -- 총근무시간
 	pay_tot number,		--월급합계
-	pay_date date,			--지급날짜
-	attCnt number(5),   -- 출석일수
-	stf_num number(5) REFERENCES STAFF(STF_NUM)  --스태프 번호 FK
+	pay_date date			--지급날짜
 );
 CREATE SEQUENCE PAY_SEQ;
 

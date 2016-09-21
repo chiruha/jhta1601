@@ -3,12 +3,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 $(document).ready(function() {
+	
 		var type="${ttype}";
 		if(type!=""&&type!=null){
 			$("#tselbox").val("${ttype}").attr("selected","selected")		
 		}	
 		$(".pasing").click(function(event) {
-			alert($(this).attr("href"));
+			//alert($(this).attr("href"));
 			event.preventDefault();
 			$("#pageNum").val($(this).attr("href"));
 			document.listform.submit();
@@ -61,10 +62,10 @@ $(document).ready(function() {
 
 	<div class="row">
 		<div class="col-sm-8">
-			<select name="ttype" class="select input-sm">
+			<select name="ttype" class="select input-sm" id="tselbox">
 				<option value="stf_num">직원번호</option>
 				<option value="tr_num">강사번호</option>
-				<option value="tr_name">강사이름</option>
+				<option value="stf_name">강사이름</option>
 				<option value="tr_career">강사경력</option>
 				<option value="ct_name">소속지점</option>	
 				<option value="pos_name">강사직급</option>
@@ -118,8 +119,8 @@ $(document).ready(function() {
 		&nbsp;next
 	</c:otherwise>
 </c:choose>
-</form>
 			</div>
 		</div>
 
+</form>
 </div>

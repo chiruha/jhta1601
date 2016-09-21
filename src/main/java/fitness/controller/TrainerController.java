@@ -29,23 +29,23 @@ public class TrainerController {
 	@Autowired private PositionService pos;
 	@Autowired private CenterService cts;
 	@RequestMapping("/trpage")
-	public String page(int num, HttpServletRequest request){
-		request.setAttribute("num", num);
+	public String page(int num, HttpSession session){
+		session.setAttribute("num", num);
 		StaffDto sdto=sts.detailService(num);
-		request.setAttribute("sdto", sdto);
+		session.setAttribute("sdto", sdto);
 		System.out.println("trpage stf_num: "+num);
 		System.out.println("sdto : "+sdto.toString());
 		try{
 			if(service.detail2Service(num)!=null){
 				System.out.println("trpage if : "+service.detail2Service(num));
-				request.setAttribute("dto", service.detail2Service(num));
+				session.setAttribute("dto", service.detail2Service(num));
 				return ".staff.TrUpdateView";
 			}else{
 				return ".staff.TrInsertView";
 			}			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			request.setAttribute("result", "강사 등록/수정 페이지 이동 실패!");
+			session.setAttribute("result", "강사 등록/수정 페이지 이동 실패!");
 			return ".staff.ResultView";
 		}
 	}
@@ -108,27 +108,27 @@ public class TrainerController {
 	
 	
 	@RequestMapping(value="/trpage/trinsert", method= RequestMethod.POST)
-	public String insert(TrainerDto dto, HttpServletRequest request){
+	public String insert(TrainerDto dto, HttpSession session){
 		System.out.println("trinsert"+dto.toString());
 		try{
 			service.insertService(dto);
-			request.setAttribute("result", "강사 등록 성공!");
+			session.setAttribute("result", "강사 등록 성공!");
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			request.setAttribute("result", "강사 등록 실패!");
+			session.setAttribute("result", "강사 등록 실패!");
 		}
 			return ".staff.ResultView";
 	}
 	
 	@RequestMapping(value="/trpage/trupdate", method = RequestMethod.POST)
-	public String update(TrainerDto dto, HttpServletRequest request){
+	public String update(TrainerDto dto, HttpSession session){
 	try{
 		System.out.println("trupdate"+dto.toString());
 		service.updateService(dto);
-		request.setAttribute("result", "강사 수정 성공!");
+		session.setAttribute("result", "강사 수정 성공!");
 	}catch(Exception e){
 		System.out.println(e.getMessage());
-		request.setAttribute("result", "강사 수정 실패!");
+		session.setAttribute("result", "강사 수정 실패!");
 	}
 		return ".staff.ResultView";
 	}

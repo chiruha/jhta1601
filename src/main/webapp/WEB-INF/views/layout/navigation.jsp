@@ -98,7 +98,6 @@
             	<li><a href="<c:url value='/stflist'/>">Staff 목록</a></li>
                 <li><a href="<c:url value='/stfinsert'/>">Staff 등록</a></li>
         		<li><a href="<c:url value='/memselectAll'/>">Member 목록</a></li>
-            	<li><a href="<c:url value='/PTscOkView'/>">Pt강사승인</a></li>
                 <li><a href="<c:url value='/payinsert'/>">월급계산</a></li>
                 <li><a href="<c:url value='/trlist'/>">Trainer 목록</a></li>
              	<li><a href="<c:url value='/ctinsert'/>">Center 등록</a></li>

@@ -1,4 +1,4 @@
-drop sequence eventcomm_seq;
+
 drop sequence event_seq;
 drop table eventcomments;
 drop table event;

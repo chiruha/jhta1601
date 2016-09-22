@@ -501,7 +501,10 @@
 	<select id="regiListAll" parameterType="hashmap" resultType="fitness.dto.RegistrationDto">
 		select * from(
 			select aa.*,rownum rnum from(
-				select * from registration
+				select r.*,m.mem_name from registration r, member m where r.mem_num=m.mem_num
+				<if test="mnum!=null">
+					and r.mem_num=#{mnum}
+				</if>
 				order by rg_num desc
 			)aa
 		)

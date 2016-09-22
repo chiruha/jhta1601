@@ -5,7 +5,7 @@
 <!-- 검색은 과목별로 볼 수 있도록!!(할 일) -->
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-	<h3 class="text-center">수강등록 정보</h3>
+	<h3 class="text-center">수강등록정보</h3>
 <h5 class="text-right"><a href="<c:url value='/regiSelect'/>">전체보기</a></h5>
 <div class="row">
 	<div class="col-md-12">
@@ -13,6 +13,7 @@
 	<tr>
 		<th>등록번호</th>
 		<th>회원번호</th>
+		<th>회원이름</th>
 		<th>등록유형</th>
 		<th>프로그램 등록비</th>
 		<th>락카비</th>
@@ -24,6 +25,7 @@
 	<tr>
 		<td>${dto.rg_num}</td>
 		<td>${dto.mem_num }</td>
+		<td>${dto.mem_name }</td>
 		<td>
 		<c:choose>
 			<c:when test="${dto.rg_type == '단과과목'}">

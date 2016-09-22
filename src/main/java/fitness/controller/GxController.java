@@ -11,14 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import fitness.dto.CenterDto;
 
 import fitness.dto.GxregisterDto;
 import fitness.dto.GxsubjectDto;
 import fitness.service.CenterService;
-import fitness.service.RegistrationService;
+
 import fitness.service.gxregisterService;
 
 
@@ -40,7 +40,7 @@ public class GxController {
 		return ".exercise.gxMent";
 	}
 
-	@RequestMapping(value="/gxMent",method=RequestMethod.POST)
+	@RequestMapping(value="/gxMent")
 	public String gxmentmove(HttpServletRequest request,GxregisterDto gxdto,HttpSession session){
 		System.out.println("gxMent µµÂø");
 		

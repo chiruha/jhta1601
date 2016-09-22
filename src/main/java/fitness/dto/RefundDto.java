@@ -8,16 +8,18 @@ public class RefundDto {
 	private Date rf_left;
 	private int ptrefund;
 	private int gxrefund;
+	private int ct_code;
 	
 	public RefundDto() {}
 
-	public RefundDto(int rf_num, String rg_numlist, Date rf_left, int ptrefund, int gxrefund) {
+	public RefundDto(int rf_num, String rg_numlist, Date rf_left, int ptrefund, int gxrefund, int ct_code) {
 		super();
 		this.rf_num = rf_num;
 		this.rg_numlist = rg_numlist;
 		this.rf_left = rf_left;
 		this.ptrefund = ptrefund;
 		this.gxrefund = gxrefund;
+		this.ct_code = ct_code;
 	}
 
 	public int getRf_num() {
@@ -60,11 +62,20 @@ public class RefundDto {
 		this.gxrefund = gxrefund;
 	}
 
+	public int getCt_code() {
+		return ct_code;
+	}
+
+	public void setCt_code(int ct_code) {
+		this.ct_code = ct_code;
+	}
+
 	@Override
 	public String toString() {
 		return "RefundDto [rf_num=" + rf_num + ", rg_numlist=" + rg_numlist + ", rf_left=" + rf_left + ", ptrefund="
-				+ ptrefund + ", gxrefund=" + gxrefund + "]";
+				+ ptrefund + ", gxrefund=" + gxrefund + ", ct_code=" + ct_code + "]";
 	}
+
 	
 	
 	

@@ -418,7 +418,9 @@ create table refund				--환불
 	rg_numlist varchar2(50) , -- rg_num 등록번호 가져오기
 	rf_left date,			--잔여일
 	ptrefund number(20), -- pt환불액
-	gxrefund number(20) -- gx환불액	
+	gxrefund number(20) -- gx환불액
+	gxrefund number(20), -- gx환불액
+	ct_code number(5) 	--지점코드 PK		
 );
 CREATE SEQUENCE RF_SEQ;
 
@@ -533,7 +535,7 @@ create table properiod --단과과목 등록기간테이블
 (
 	properiod_num number(20) primary key,
 	rg_num number(20) references registration(rg_num),
-	mem_num number(20) references member(mem_num),
+	mem_num number(20) references member(mem_num),	
 	pro_signmonth number(6), --등록개월수
 	pro_regdate date, --단과과목 시작일
 	pro_expiration date --PT만료일

@@ -5,6 +5,46 @@
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
 
+	<!--////////// 환불관련 - 작성자 : 고석곤 //////////-->
+	<!-- 환불입력 -->
+	<insert id="refundInset" parameterType="fitness.dto.RefundDto">
+		insert into refund values(rf_seq.nextval, #{rg_numlist}, sysdate, #{ptrefund},#{gxrefund} )
+	</insert>
+	
+	<!-- 환불리스트 -->
+	<select id="refundlist" resultType="fitness.dto.RefundDto">
+		select * from refund
+	</select>
+	<select id="refundrgnum" resultType="fitness.dto.RegistrationDto" parameterType="hashmap">
+		select rg_num,rg_type from registration where mem_num=#{mem_num}
+	</select>
+	
+	<!-- 총금액 -->
+	<select id="totregimoney" resultType="fitness.dto.RegistrationDto" parameterType="int">
+		select * from registration where mem_num=#{mem_num}	
+	</select>
+	
+	<!-- 환불일정 -->
+	<select id="ptgxoneday" resultType="fitness.dto.RefundDayImpleDto" parameterType="int">
+		select  pt.mem_num, round(nvl((pt_expiration-ptr_initdate),0),0) as ptday,
+            			   round( nvl((pro_expiration-pro_regdate),0),0) as gxday,
+            			  round(nvl((pt_expiration-sysdate),0),0) as spsday,
+            			   round(nvl((pro_expiration-sysdate),0),0) as sgxday
+						   from ptperiod pt,properiod gx
+			 			   where pt.mem_num=#{value}
+	</select>
+	
+	<!-- 회원이름검색 memSearchList -->
+	<select id="memNaSeList" parameterType="hashmap" resultType="fitness.dto.MemberDto">		
+			select * from(
+				select bb.mem_num,bb.mem_name,bb.mem_phone,rownum rnum from(
+					select * from member
+					where mem_name like '%' || #{refundname} || '%'
+					order by mem_num desc
+				)bb
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+
 	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
 	<insert id="gxinsert" parameterType="fitness.dto.GxregisterDto">
 		insert into gx_register values(

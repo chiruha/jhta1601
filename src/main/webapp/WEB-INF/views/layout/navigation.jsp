@@ -69,25 +69,26 @@
 			</c:when>
 			
 			<c:when test="${not empty sessionScope.snum}">
-			<!-- Staff Mypage dropdown 메뉴 -->
+			<!-- Staff Manager dropdown 메뉴 -->
         	<li class="dropdown">
-         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Maneger
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manager
          	 <span class="caret"></span></a>
         	  <ul class="dropdown-menu">
         	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">Attendance</a></li>
             	<li><a href="<c:url value='/stflist'/>">Staff List</a></li>
-                <li><a href="<c:url value='/stfinsert'/>">Staff Insert</a></li>
         		<li><a href="<c:url value='/memselectAll'/>">Member List</a></li>
                 <li><a href="<c:url value='/regiSelect'/>">Regi List</a></li>                
                 <li><a href="<c:url value='/slistAll'/>">Satt List</a></li>
-               	<li><a href="<c:url value='/posinsert'/>">Add Pos</a></li>
                  <li><a href="<c:url value='/regiInsert'/>">Add Regi</a></li>
+                <li><a href="<c:url value='/stfinsert'/>">Add Staff</a></li>
                 <li><a href="<c:url value='/nocinsert'/>">Add Notice</a></li>
+               	<li><a href="<c:url value='/posinsert'/>">Add Pos</a></li>
                 <li><a href="<c:url value='/deptinsert'/>">Add Dept </a></li>
              	<li><a href="<c:url value='/ctinsert'/>">Add Center</a></li>
                 <li><a href="<c:url value='/payinsert'/>">Payment</a></li>
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
           </ul>		
+          <!-- Staff Trainer dropdown 메뉴 -->
           <li class="dropdown">
          	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trainer
          	 <span class="caret"></span></a>

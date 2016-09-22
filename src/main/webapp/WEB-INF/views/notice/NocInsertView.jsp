@@ -40,8 +40,6 @@
 		<div class="col-md-3">
 	<button class="btn pull-left" id="btn" type="reset">
 	<span class="glyphicon glyphicon-remove"></span>  Cancle </button>
-	
-	
 	</div>
 </div>
 </form>

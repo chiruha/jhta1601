@@ -51,9 +51,9 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<c:url value='/regiInsert'/>">수강등록</a></li>
-           
              <li><a href="<c:url value='/ptrinsert'/>">Pt 예약</a></li>
-             <li><a href="<c:url value='/gxRegisterView'/>">Gx 일정조회</a></li>             
+             <li><a href="<c:url value='/gxRegisterView'/>">Gx일정조회</a></li>             
+             <li><a href="<c:url value='/gxinsert'/>">Gx일정등록</a></li>
           </ul>
 
        
@@ -151,7 +151,7 @@
             </div>
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-phone"></span> Phone</label>
-              <input type="text" class="form-control" id="usrname" name="mem_phone"  placeholder="Write your phone number">
+              <input type="password" class="form-control" id="usrname" name="mem_phone"  placeholder="Write your phone number">
             </div>
               <button type="submit" class="btn btn-block">Login
                 <span class="glyphicon glyphicon-ok"></span>

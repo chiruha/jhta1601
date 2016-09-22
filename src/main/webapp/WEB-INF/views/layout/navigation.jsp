@@ -43,22 +43,68 @@
         </li>
 
         
-       
-        
         <!-- 수강  dropdown 메뉴 -->
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">수강
+		<li><a href="<c:url value='/gxRegisterView'/>">Schedule</a></li>
+
+
+      
+       <c:choose>
+			<c:when test="${not empty sessionScope.mnum}">
+			
+	        	  <!-- Member Mypage dropdown 메뉴 -->
+ 			<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyPage
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<c:url value='/regiInsert'/>">수강등록</a></li>
-             <li><a href="<c:url value='/ptrinsert'/>">Pt 예약</a></li>
-             <li><a href="<c:url value='/gxRegisterView'/>">Gx일정조회</a></li>             
-             <li><a href="<c:url value='/gxinsert'/>">Gx일정등록</a></li>
+           <li><a href="<c:url value='/attcheck?type=mem&num=${mnum }'/>">Attendance</a></li>
+               <li><a href="<c:url value='/ptrinsert'/>">Book Pt</a></li>
+              <li><a href="<c:url value='/MemPTscOkView'/>">Confirm Pt</a></li>
+              <li><a href="<c:url value='/refundDay'/>">Refund</a></li>
+              <li><a href="<c:url value='/regiSelect?mem_num=${mnum }'/>">Regi Info</a></li>
+              <c:if test="${not empty mnum}">
+             <li><a href="<c:url value='/listOne?mem_num=${mnum}'/>">Personal Info</a></li>
+          </c:if>
+ 
           </ul>
-
+			</c:when>
+			
+			<c:when test="${not empty sessionScope.snum}">
+			<!-- Staff Mypage dropdown 메뉴 -->
+        	<li class="dropdown">
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Maneger
+         	 <span class="caret"></span></a>
+        	  <ul class="dropdown-menu">
+        	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">Attendance</a></li>
+            	<li><a href="<c:url value='/stflist'/>">Staff List</a></li>
+                <li><a href="<c:url value='/stfinsert'/>">Staff Insert</a></li>
+        		<li><a href="<c:url value='/memselectAll'/>">Member List</a></li>
+                <li><a href="<c:url value='/regiSelect'/>">Regi List</a></li>                
+                <li><a href="<c:url value='/slistAll'/>">Satt List</a></li>
+               	<li><a href="<c:url value='/posinsert'/>">Add Pos</a></li>
+                 <li><a href="<c:url value='/regiInsert'/>">Add Regi</a></li>
+                <li><a href="<c:url value='/nocinsert'/>">Add Notice</a></li>
+                <li><a href="<c:url value='/deptinsert'/>">Add Dept </a></li>
+             	<li><a href="<c:url value='/ctinsert'/>">Add Center</a></li>
+                <li><a href="<c:url value='/payinsert'/>">Payment</a></li>
+                 <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
+          </ul>		
+          <li class="dropdown">
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trainer
+         	 <span class="caret"></span></a>
+        	  <ul class="dropdown-menu">
+        	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">Attendance</a></li>
+				<li><a href="<c:url value='/trlist'/>">Trainer List</a></li>
+            	<li><a href="<c:url value='/mlistAll'/>">Matt List</a></li>
+            	<li><a href="<c:url value='/PTscOkView'/>">PT Confirm</a></li>
+				<li><a href="<c:url value='/gxinsert'/>">Add  Schedule</a></li>
+          </ul>		
+			</c:when>
+		</c:choose>
+      
        
-        
-          <!-- Login Dialog 메뉴 -->
+      
+      
+                 <!-- Login Dialog 메뉴 -->
       <c:choose>
 			<c:when test="${empty sessionScope.memnum}">
 	        	  <li><a href="#login" data-toggle="modal" data-target="#LoginModal">
@@ -71,60 +117,11 @@
 				 
 			</c:otherwise>
 		</c:choose>
-      
-       <c:choose>
-			<c:when test="${not empty sessionScope.mnum}">
-			
-	        	  <!-- Member Mypage dropdown 메뉴 -->
- 			<li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyPage
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-           <li><a href="<c:url value='/attcheck?type=mem&num=${mnum }'/>">출석체크</a></li>
-              <li><a href="<c:url value='/MemPTscOkView'/>">Pt 예약확인</a></li>
-              <li><a href="<c:url value='/regiSelect?mem_num=${mnum }'/>">수강등록정보</a></li>
-              <c:if test="${not empty mnum}">
-             <li><a href="<c:url value='/listOne?mem_num=${mnum}'/>">개인정보</a></li>
-          </c:if>
-          
-          
-          
-          </ul>
-			</c:when>
-			
-			<c:when test="${not empty sessionScope.snum}">
-			<!-- Staff Mypage dropdown 메뉴 -->
-        	<li class="dropdown">
-         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">AdPage
-         	 <span class="caret"></span></a>
-        	  <ul class="dropdown-menu">
-        	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">출석체크</a></li>
-            	<li><a href="<c:url value='/stflist'/>">Staff 목록</a></li>
-                <li><a href="<c:url value='/stfinsert'/>">Staff 등록</a></li>
-        		<li><a href="<c:url value='/memselectAll'/>">Member 목록</a></li>
-                <li><a href="<c:url value='/payinsert'/>">월급계산</a></li>
-                <li><a href="<c:url value='/trlist'/>">Trainer 목록</a></li>
-             	<li><a href="<c:url value='/ctinsert'/>">Center 등록</a></li>
-                <li><a href="<c:url value='/deptinsert'/>">Dept 등록</a></li>
-                <li><a href="<c:url value='/regiSelect'/>">수강조회</a></li>
-                <li><a href="<c:url value='/nocinsert'/>">공지등록</a></li>
-                <li><a href="<c:url value='/slistAll'/>">직원출석부</a></li>
-            	<li><a href="<c:url value='/mlistAll'/>">회원출석부</a></li>
-                 <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
-          </ul>		
-			</c:when>
-		</c:choose>
-      
-       
-      
-      
-       
 
           
     
-          
            <!-- sitemap  메뉴 -->
-        <li><a href="<c:url value='/'/>">SiteMap</a></li>
+          <li><a href="<c:url value='/?test=goboot'/>">SiteMap</a></li>
         
       </ul>
    

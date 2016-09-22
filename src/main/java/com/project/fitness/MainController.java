@@ -13,9 +13,9 @@ public class MainController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(@RequestParam(value="test", defaultValue="none") String test) {
 		if(test.equals("goboot")){
-			return ".bootmain";
+			return ".main";
 		}
-		return ".main";
+		return ".bootmain";
 	}
 	
 }

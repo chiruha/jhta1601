@@ -146,11 +146,13 @@ function memList(mem_num){
 				var mem_num = $("[name='mem_num']").val();
 				var ptrefund = $("[name='ptmove']").val();
 				var gxrefund = $("[name='gxmove']").val();
-				alert(mem_num+ptrefund+gxrefund);
+				var ct_code = $("[name='ct_code']").val();				
+				alert(mem_num+ptrefund+gxrefund+ct_code);
 				var param = {};
 				param.mem_num = mem_num;
 				param.ptrefund = ptrefund;
-				param.gxrefund = gxrefund;				
+				param.gxrefund = gxrefund;
+				param.ct_code = ct_code;
 				$.ajax({
 					url:"/fitness/ptgxmove1",
 					dataType:"json",
@@ -164,7 +166,7 @@ function memList(mem_num){
 						for(var i=0; i<data.length;i++){
 							html += "<tr>";							         
 							html += "<td>" + data[i].rf_num + "</td>";
-							html += "<td>" + data[i].rg_type + "</td>";
+							html += "<td>" + data[i].rg_numlist + "</td>";
 							html += "<td>" + data[i].rf_left + "</td>";
 							html += "<td>" + data[i].ptrefund + "</td>";
 							html += "<td>" + data[i].gxrefund + "</td>";
@@ -231,6 +233,7 @@ function memList(mem_num){
 		$(".rg_price").css("display", "");
 		
 	}
+	
 	
 	
 	
@@ -346,7 +349,12 @@ function memList(mem_num){
  </div>  
  	         
  <div class="rg_price" style="display: none;">	         
-  PT환불액:<input type="text" class="ptmove" name="ptmove"> GX환불액:<input type="text" class="gxmove" name="gxmove">  
+  PT환불액:<input type="text" class="ptmove" name="ptmove"> 단과환불액:<input type="text" class="gxmove" name="gxmove" value="0">  
+  지점선택 <select name="ct_code" id="ct_code">
+		  <c:forEach var="clist"  items="${ctlist}">
+				<option value="${clist.ct_code }">${clist.ct_name}</option>	
+		  </c:forEach>
+		  </select>  
   <input type="button" class="refundmove" value="전송"> 
 </div>  
 
@@ -385,7 +393,7 @@ function memList(mem_num){
 		    <thead>
 	        <tr>
 		        <th>등록번호</th> 
-		        <th>등록번호</th>
+		        <th>과목종류</th>
 		        <th>환불날짜</th>						        
 		        <th>PT환불액</th>
 		        <th>GX환불액</th>		        

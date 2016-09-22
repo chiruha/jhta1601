@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import fitness.dto.CenterDto;
 import fitness.dto.MemberDto;
 import fitness.dto.RefundDayImpleDto;
 import fitness.dto.RefundDto;
 import fitness.dto.RegistrationDto;
 import fitness.dto.ptrMemDto;
+import fitness.service.CenterService;
 import fitness.service.MemberService;
 import fitness.service.RefundDayService;
 import fitness.service.RefundService;
@@ -30,9 +32,10 @@ import page.util.PageUtil;
 
 @Controller
 public class RefundController {
-	@Autowired RefundDayService refundDayService;	
-	@Autowired RefundService refundservice;
-	@Autowired RegistrationService regiservice;
+	@Autowired private RefundDayService refundDayService;	
+	@Autowired private RefundService refundservice;
+	@Autowired private RegistrationService regiservice;
+	@Autowired private CenterService cts;
 	
 	@RequestMapping(value="/refundDay",method= RequestMethod.GET)
 	public String refundDay(HttpSession session,HttpServletRequest request){
@@ -134,30 +137,34 @@ public class RefundController {
 	
 	@RequestMapping(value="/ptgxmove1",method= {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public String ptgxmove(int mem_num,int ptrefund,int gxrefund,RefundDto refundto){
+	public String ptgxmove(int mem_num,int ptrefund,int gxrefund,int ct_code,RefundDto refundto,HttpSession session){
 		System.out.println("ptgxmoveµµÂøPOST");
-		System.out.println("mem_num"+mem_num+"ptmove"+ptrefund+"gxrefund"+gxrefund);
+		System.out.println("mem_num"+mem_num+"ptmove"+ptrefund+"gxrefund"+gxrefund+"ct_code:"+ct_code);
+		
+		List<CenterDto> ctlist = cts.listService();
+		session.setAttribute("ctlist", ctlist);
+		System.out.println(ctlist);
+		
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", mem_num);		
 		
 		List<RegistrationDto> rglist = refundservice.refundrgnum(map);
 		System.out.println("rglist:"+rglist);
-		String str = "";
-		String str1 = "";
+		String str = "";		
 		String str2 = "";
 		for(int i=0; i < rglist.size(); i++){
-			 str = rglist.get(i).getRg_type();			 
-			// str1=Integer.toString(str);			 
+			 str = rglist.get(i).getRg_type();			 			 
 			 str2+= str+" ";
 		}	
 		System.out.println("str2:"+str2);
 		String str3 ="";
-		String[] values = str2.split(" ",4);
+		String[] values = str2.split(",",4);
 		for(int x = 0; x < values.length; x++){
 			str3+=values[x]+" ";
 			if(str3!="null"){
-				refundto.setRg_numlist(str3);				
-			//	refundservice.regiInsert(refundto);
+				refundto.setRg_numlist(str2);				
+				refundservice.regiInsert(refundto);
 				break;
 			}
 		}		

@@ -8,7 +8,7 @@
 	<!--////////// 환불관련 - 작성자 : 고석곤 //////////-->
 	<!-- 환불입력 -->
 	<insert id="refundInset" parameterType="fitness.dto.RefundDto">
-		insert into refund values(rf_seq.nextval, #{rg_numlist}, sysdate, #{ptrefund},#{gxrefund} )
+		insert into refund values(rf_seq.nextval, #{rg_numlist}, sysdate, #{ptrefund},#{gxrefund},#{ct_code} )
 	</insert>
 	
 	<!-- 환불리스트 -->
@@ -26,12 +26,14 @@
 	
 	<!-- 환불일정 -->
 	<select id="ptgxoneday" resultType="fitness.dto.RefundDayImpleDto" parameterType="int">
-		select  pt.mem_num, round(nvl((pt_expiration-ptr_initdate),0),0) as ptday,
-            			   round( nvl((pro_expiration-pro_regdate),0),0) as gxday,
-            			  round(nvl((pt_expiration-sysdate),0),0) as spsday,
-            			   round(nvl((pro_expiration-sysdate),0),0) as sgxday
-						   from ptperiod pt,properiod gx
-			 			   where pt.mem_num=#{value}
+		select * from 
+		  ( select pt.mem_num,round(nvl((pt_expiration-ptr_initdate),0),0) as ptday,
+		    round(nvl((pt_expiration-sysdate),0),0) as spsday
+		    from ptperiod pt where mem_num=#{value})pp,
+		   (select gx.mem_num, round( nvl((pro_expiration-pro_regdate),0),0) as gxday,
+		    round(nvl((pro_expiration-sysdate),0),0) as sgxday
+		    from properiod gx where mem_num=#{value})gg
+		where pp.mem_num=#{value} and pp.mem_num=gg.mem_num (+)		   
 	</select>
 	
 	<!-- 회원이름검색 memSearchList -->

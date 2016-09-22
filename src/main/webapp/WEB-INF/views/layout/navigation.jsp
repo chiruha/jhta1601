@@ -65,7 +65,7 @@
 	        	  <span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 			</c:when>
 			<c:otherwise>
-				<li> <a href="" >[ ${sessionScope.memnum }님 환영합니다 ]</a></li>	
+				<li> <a href="<c:url value='/godetail'/>" >[ ${memnum }님 환영합니다 ]</a></li>	
 				 <li><a href="<c:url value='/logout'/>" >
 				 <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 				 

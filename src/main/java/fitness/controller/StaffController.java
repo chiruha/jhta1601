@@ -32,6 +32,24 @@ public class StaffController {
 	@Autowired private CenterService cts;
 	@Autowired private PositionService pos;	
 
+	@RequestMapping("/godetail")
+	public String godetail(HttpSession session){
+		try{
+			Object mnum=session.getAttribute("mnum");
+			Object snum=session.getAttribute("snum");
+			if(mnum!=null){
+				return "forward : /listOne?mem_num="+mnum;
+			}
+			if(snum!=null){
+				return "forward :/stfdetail?stf_num="+snum;
+			}
+			System.out.println("mnum : "+mnum+", snum : "+snum);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			session.setAttribute("result", "Mypage 이동 실패!");
+		}
+		return ".staff.ResultView";
+	}
 	
 	@RequestMapping(value="/stfinsert",method= RequestMethod.GET)
 	public String insert(	HttpServletRequest requset){  // insert 페이지로 이동
@@ -70,15 +88,17 @@ public class StaffController {
 	public String list(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpServletRequest request){
 		String ct_code=request.getParameter("ct_code");
 		String pos_code=request.getParameter("pos_code");
+		String stf_num=request.getParameter("stf_num");
 		String stf_name=request.getParameter("stf_name");
 		String stf_phone=request.getParameter("stf_phone");
 		String keyword=request.getParameter("keyword");
 		String stype=request.getParameter("stype");
 		// 아무것도 선택되지 않았을 때
-		System.out.println("(직원검색) 지점: "+ct_code+", 직급: "+pos_code+", 이름: "+stf_name+", 전화: "+stf_phone+", 검색어: "+keyword+"stype : "+stype);
+		System.out.println("(직원검색) 지점: "+ct_code+", 직급: "+pos_code+", 이름: "+stf_name+", 전화: "+stf_phone+", snum: "+stf_num+", 검색어: "+keyword+", stype : "+stype);
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("ct_code", ct_code);
 		map.put("pos_code", pos_code);
+		map.put("stf_num", stf_num);
 		map.put("stf_name", stf_name);
 		map.put("stf_phone", stf_phone);
 		map.put("stype", stype);
@@ -92,6 +112,7 @@ public class StaffController {
 		// 체크박스 선택 유지를 위한 값 보내주기
 		request.setAttribute("ct_code", ct_code);
 		request.setAttribute("pos_code", pos_code);
+		request.setAttribute("stf_num", stf_num);
 		request.setAttribute("stf_name", stf_name);
 		request.setAttribute("stf_phone", stf_phone); 
 		request.setAttribute("keyword", keyword);

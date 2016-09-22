@@ -129,8 +129,8 @@
 		<td>${dto.stf_num }</td>
 		<td><a href="stfdetail?stf_num=${dto.stf_num}">${dto.stf_name }</a></td>
 		<td>${dto.stf_phone }</td>
-		<td>${dto.pos_code }</td>
-		<td>${dto.ct_code }</td>
+		<td>${dto.pos_code } : ${dto.pos_name }</td>
+		<td>${dto.ct_code } : ${dto.ct_name }</td>
 		<td>${dto.stf_date }</td>
 	</tr>
 	</c:forEach>
@@ -146,6 +146,7 @@
 
 	<div class="row">
 			<div class="col-sm-12">
+				<input type="checkbox" name="stf_num"   value="num" <c:if test="${stf_num ne null }">checked="checked"</c:if>>직원번호
 				<input type="checkbox" name="stf_name"   value="name" <c:if test="${stf_name ne null }">checked="checked"</c:if>>이름
 				<input type="checkbox" name="stf_phone"   value="tel" <c:if test="${stf_phone ne null }">checked="checked"</c:if>>전화
 

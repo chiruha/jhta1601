@@ -71,9 +71,12 @@ create table center				--지점정보
 	ct_intro varchar2(4000)		--지점소개
 );
 CREATE SEQUENCE CT_SEQ;
-insert into center values(ct_seq.nextval,'화정지점','031-111-1234','화정역','화정에 있는 지점');
-insert into center values(ct_seq.nextval,'종로지점','02-222-2224','종로3가역','종로에 있는 지점');
-insert into center values(ct_seq.nextval,'본점','02-333-4444','종로3가역','강남에 있는 지점');
+insert into center values(ct_seq.nextval,'화정지점','031-111-1234','화정역 1번출구','Fitness Center 화정지점');
+insert into center values(ct_seq.nextval,'종로지점','02-222-2224','종각역 2번출구','Fitness Center 종로지점');
+insert into center values(ct_seq.nextval,'신촌지점','02-333-7896','신촌역 3번출구','Fitness Center 신촌지점');
+insert into center values(ct_seq.nextval,'송파지점','02-333-6514','송파역 4번 출구','Fitness Center 송파지점');
+insert into center values(ct_seq.nextval,'압구정점','02-444-7582','압구정역 5번 출구','Fitness Center 강남지점');
+insert into center values(ct_seq.nextval,'본점','02-555-9463','종로3가역 6번 출구','Fitness Center 본점');
 --화정지점 ct_code 1등록
 
 create table member 			--회원정보
@@ -88,7 +91,7 @@ create table member 			--회원정보
 	mem_birth date not null,		--생년월일
 	regdate date not null,		--가입일
 	mem_picture varchar2(1000) not null,	--사진파일
-	ct_code number(5)	REFERENCES CENTER(CT_CODE) --지점코드 FK
+	ct_code number(5)	 --지점코드 FK
 );
 CREATE SEQUENCE MEM_SEQ;
 
@@ -108,7 +111,7 @@ create table position			--직급정보
 (
 	pos_code varchar2(20) primary key,	--직급코드 PK
 	pos_name varchar2(50),		--직급이름
-	dept_code number(5) REFERENCES DEPARTMENT(DEPT_CODE) --부서코드 FK
+	dept_code number(5)  --부서코드 FK
 );
 INSERT INTO position VALUES('A','대표이사',1);
 INSERT INTO position VALUES('B','본부장',1);
@@ -133,19 +136,16 @@ create table staff				--스태프
 	stf_phone varchar2(50),		--스태프전화
 	stf_date date DEFAULT SYSDATE,	--스태프등록일
 	stf_picture varchar2(1000),		--스태프사진
-	pos_code varchar2(20) REFERENCES POSITION(POS_CODE),	--직급코드 FK
-	ct_code number(5) DEFAULT 0 REFERENCES CENTER(CT_CODE) --지점코드 FK
+	pos_code varchar2(20) ,	--직급코드 FK
+	ct_code number(5) DEFAULT 0  --지점코드 FK
 );
 CREATE SEQUENCE STAFF_SEQ;
-insert into staff values(staff_seq.nextval,'NOTICE_TEST1','011',sysdate,'TEST1.jpg','A',1);
-insert into staff values(staff_seq.nextval,'NOTICE_TEST2','017',sysdate,'TEST2.jpg','B',2);
-insert into staff values(staff_seq.nextval,'NOTICE_TEST3','019',sysdate,'TEST3.jpg','C',3);
 
 
 create table freeboard			--자유게시판
 ( 
 	fb_num number(5) primary key,	--글번호 PK
-	mem_num number(5) REFERENCES MEMBER(MEM_NUM),--작성자 FK
+	mem_num number(5) ,--작성자 FK
 	fb_title varchar2(100),		--글제목
 	fb_content varchar2(4000),		--글내용
 	fb_date date,			--작성일
@@ -174,7 +174,7 @@ create table qnaboard			--QnA게시판
 create table registration			--등록정보
 (
 	rg_num number(5) primary key,	--등록번호
-	mem_num number(5) REFERENCES MEMBER(MEM_NUM),--회원번호 FK
+	mem_num number(5) ,--회원번호 FK
 	rg_type varchar2(20),		--등록종류
 	rg_price number,		--등록가격
 	locker_price number(30) DEFAULT 0,	--락커가격
@@ -185,7 +185,7 @@ CREATE SEQUENCE REGI_SEQ;
 create table trainer				--강사정보
 (
 	tr_num number(5) primary key,	--강사번호 PK
-	stf_num number(5) REFERENCES STAFF(STF_NUM), --스태프번호 FK
+	stf_num number(5) , --스태프번호 FK
 	tr_career varchar2(4000),		--강사경력
 	tr_intro varchar2(4000)		--강사소개
 );
@@ -208,10 +208,10 @@ create table pt_schedule				--PT스케줄
 	pts_num number(5) primary key,	--PT스케줄번호 PK
 	pts_start date,			--PT시작일
 	pts_end date,			--PT만료일
-	mem_num number(5) REFERENCES MEMBER(MEM_NUM), --회원번호FK
-	tt_num number(5) REFERENCES TIMETABLE(TT_NUM), --시간번호FK
-	tr_num number(5) REFERENCES TRAINER(TR_NUM), --강사번호FK
-	ct_code number(5) REFERENCES CENTER(CT_CODE)  --지점코드FK
+	mem_num number(5), --회원번호FK
+	tt_num number(5) , --시간번호FK
+	tr_num number(5) , --강사번호FK
+	ct_code number(5)   --지점코드FK
 );
 CREATE SEQUENCE PTS_SEQ;
 
@@ -219,14 +219,14 @@ create table pt_log				--운동일지
 (
 	ptl_num number(5) primary key,	--일지번호 PK
 	ptl_content varchar2(4000),		--일지내용
-	pts_num number(5) REFERENCES PT_SCHEDULE(PTS_NUM) --PT스케줄번호 FK
+	pts_num number(5)  --PT스케줄번호 FK
 );
 CREATE SEQUENCE PTL_SEQ;
 
 create table medicalcheck			--의료정보
 (
 	md_num number(5) primary key,	--md번호 PK
-	mem_num number(5) REFERENCES MEMBER(MEM_NUM), --회원번호 FK
+	mem_num number(5) , --회원번호 FK
 	relative varchar2(50),   		-- 상대적정보
 	absolute varchar2(50),		-- 절대적정보
 	par_q varchar2(50)			-- 질문응답
@@ -237,7 +237,7 @@ create table sales				--매출
 (	
 	sal_num number(5) primary key,	--매출번호 PK
 	sal_money number,		--매출금액	
-	ct_code number(5)	REFERENCES CENTER(CT_CODE) --지점코드 FK
+	ct_code number(5)		 --지점코드 FK
 );
 CREATE SEQUENCE SALES_SEQ;
 
@@ -247,8 +247,8 @@ create table mem_att			--회원출석
 	in_date date,			--출석일시 
 	out_date date,		--귀가일시
 	x_time number(5), 			--운동시간
-	mem_num number(5) REFERENCES MEMBER(MEM_NUM),--회원번호 FK	
-	ct_code number(5) REFERENCES CENTER(CT_CODE) --지점코드 FK			--지점코드
+	mem_num number(5) ,--회원번호 FK	
+	ct_code number(5)  --지점코드 FK			--지점코드
 );
 CREATE SEQUENCE MATT_SEQ;
 
@@ -259,7 +259,7 @@ create table stf_att				--직원출퇴근
 	in_date date,			--출근일시
 	out_date date,			--퇴근일시 
 	work_time number(5), -- 근무시간
-	stf_num number(5) REFERENCES STAFF(STF_NUM), --직원번호 FK
+	stf_num number(5) , --직원번호 FK
 	ct_code number(5)			--지점코드
 );
 CREATE SEQUENCE SATT_SEQ;
@@ -268,7 +268,7 @@ CREATE SEQUENCE SATT_SEQ;
 create table payment			--월급
 (
 	pay_num number(5) primary key,	--월급번호 PK
-	stf_num number(5) REFERENCES STAFF(STF_NUM),  --스태프 번호 FK
+	stf_num number(5) ,  --스태프 번호 FK
 	time_sum number(5),   -- 총근무시간
 	pay_tot number,		--월급합계
 	pay_date date			--지급날짜
@@ -278,16 +278,16 @@ CREATE SEQUENCE PAY_SEQ;
 create table notice				--공지사항	
 (
 	nt_num number(5) primary key,	--글번호 PK
-	stf_num number(5) REFERENCES STAFF(STF_NUM), --스태프 번호 FK
+	stf_num number(5) , --스태프 번호 FK
 	nt_title varchar2(100),			--글제목
 	nt_content varchar2(4000),		--글내용
 	nt_date date,			--작성일
 	nt_hit number(5)			--조회수
 );
 CREATE SEQUENCE NOTICE_SEQ;
-insert into notice values(notice_seq.nextval,'1','공지사항입니다','겨울할인행사',sysdate,0);
-insert into notice values(notice_seq.nextval,'2','공지사항입니다','운동복할인',sysdate,0);
-insert into notice values(notice_seq.nextval,'3','공지사항입니다','락커룸할인',sysdate,0);
+-- insert into notice values(notice_seq.nextval,'1','공지사항입니다','겨울할인행사',sysdate,0);
+-- insert into notice values(notice_seq.nextval,'2','공지사항입니다','운동복할인',sysdate,0);
+-- insert into notice values(notice_seq.nextval,'3','공지사항입니다','락커룸할인',sysdate,0);
 
 
 create table subject				--과목정보
@@ -303,8 +303,8 @@ create table gx_schedule			--GX스케줄
 	gx_start date,			--강의시작일
 	gx_end date,			--강의만료일
 	tt_num number(5) REFERENCES TIMETABLE(TT_NUM), --시간번호 FK
-	tr_num number(5) REFERENCES TRAINER(TR_NUM), --강사번호 FK
-	ct_code number(5) REFERENCES CENTER(CT_CODE) --지점코드 FK
+	tr_num number(5) , --강사번호 FK
+	ct_code number(5)  --지점코드 FK
 );
 CREATE SEQUENCE GX_SEQ;
 
@@ -312,7 +312,7 @@ create table event				--이벤트
 (
 	ev_num number(5) primary key,	--이벤트번호 PK
 	ev_title varchar2(10),		--이벤트제목
-	stf_num number(5) REFERENCES STAFF(STF_NUM), --이벤트작성자 FK
+	stf_num number(5) , --이벤트작성자 FK
 	ev_content varchar2(4000),		--이벤트내용
 	re_writer varchar2(50),		--댓글작성자
 	re_content varchar2(1000)		--댓글내용
@@ -327,7 +327,7 @@ create table survey
 	sv_lifestyle varchar2(1000),
 	sv_goal varchar2(1000),
 	sv_memo varchar2(2000),
-	mem_num number(5) REFERENCES MEMBER(MEM_NUM),
+	mem_num number(5) ,
 	sv_agree varchar2(10) CHECK(SV_AGREE IN ('YES','NO'))
 
 );
@@ -336,8 +336,8 @@ CREATE SEQUENCE SV_SEQ;
 create table pt_register
 (
 	ptr_num number(5) primary key, --회원등록넘버	
-	tr_num number(5) REFERENCES TRAINER(TR_NUM), --트레이너 정보
-	rg_num number(5) REFERENCES REGISTRATION(RG_NUM), --회원 정보
+	tr_num number(5) , --트레이너 정보
+	rg_num number(5) , --회원 정보
 	ptr_initdate varchar2(50), --회원시작일
 	ptr_time varchar2(50), --회원시간
 	ptr_count number(3), --PT횟수
@@ -351,8 +351,8 @@ COMMIT;
 create table gx_register
 (
 	gx_num number(5) primary key, --회원등록넘버
-	tr_num number(5) REFERENCES TRAINER(TR_NUM), --트레이너 정보
-	ct_code number(5)	REFERENCES CENTER(CT_CODE), --지점코드 FK
+	tr_num number(5) , --트레이너 정보
+	ct_code number(5)	, --지점코드 FK
 	mom09 varchar2(20), -- 월요일 09시
 	tue09 varchar2(20), -- 화요일 09시
 	wed09 varchar2(20), -- 수요일 09시

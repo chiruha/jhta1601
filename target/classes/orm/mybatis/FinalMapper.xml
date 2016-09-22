@@ -312,45 +312,56 @@
 	</insert>
 	<select id="stflist" resultType="fitness.dto.StaffDto" parameterType="hashmap">
 		select * from( select  stf.*,rownum rnum from
-			(select * from staff	
-			<where>
-			<if test="ct_code!=null">
-				ct_code like '%'||#{ct_code}||'%'
+				(select s.*,c.ct_name,p.pos_name from staff s, center c, position p 
+				where s.ct_code=c.ct_code and s.pos_code=p.pos_code
+					<if test="ct_code!=null">
+				and s.ct_code like '%'||#{ct_code}||'%'
 			</if>
 			<if test="pos_code!=null">
-				and pos_code like '%' || #{pos_code}|| '%'
+				and s.pos_code like '%'||#{pos_code}||'%'
 			</if>
 			<if test="stf_name!=null">
-				and stf_name like '%' || #{keyword}|| '%'
+				and s.stf_name like '%'||#{keyword}||'%'
+			</if>
+			<if test="stf_num!=null">
+				and s.stf_num like '%'||#{keyword}||'%'
 			</if>
 			<if test="stf_phone!=null">
-				and stf_phone like '%' || #{keyword}|| '%'
+				and s.stf_phone like '%'||#{keyword}||'%'
 			</if>
-			<if test="stype!=null">
-				and  ${stype} like '%' || #{keyword}|| '%'
+				<if test="stype!=null">
+				and  s.${stype} like '%' || #{keyword}|| '%'
 			</if>
-		</where>
-			)stf
-		)
+	
+				)stf
+			)
+			
+		
 		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	<select id="getStfCount" resultType="int" parameterType="hashmap">
-		select count(stf_num) cnt from staff
-		<where>
+		select count(stf_num) cnt from 
+				(select s.*,c.ct_name,p.pos_name from staff s, center c, position p 
+					where s.ct_code=c.ct_code and s.pos_code=p.pos_code
 			<if test="ct_code!=null">
-				ct_code like '%'||#{ct_code}||'%'
+				and s.ct_code like '%'||#{ct_code}||'%'
 			</if>
 			<if test="pos_code!=null">
-				and pos_code like '%'||#{pos_code}||'%'
+				and s.pos_code like '%'||#{pos_code}||'%'
 			</if>
 			<if test="stf_name!=null">
-				and stf_name like '%'||#{keyword}||'%'
+				and s.stf_name like '%'||#{keyword}||'%'
+			</if>
+			<if test="stf_num!=null">
+				and s.stf_num like '%'||#{keyword}||'%'
 			</if>
 			<if test="stf_phone!=null">
-				and stf_phone like '%'||#{keyword}||'%'
+				and s.stf_phone like '%'||#{keyword}||'%'
 			</if>
-			
-		</where>
+				<if test="stype!=null">
+				and  s.${stype} like '%' || #{keyword}|| '%'
+			</if>
+		)
 	</select>
 	<select id="stfdetail" parameterType="int" resultType="fitness.dto.StaffDto">
 		select * from staff where stf_num=#{value}

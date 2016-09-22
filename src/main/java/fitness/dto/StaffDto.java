@@ -9,9 +9,26 @@ public class StaffDto {
 	private Date stf_date;
 	private String stf_picture;
 	private String pos_code;
+	private String pos_name;
 	private int ct_code;
-	
+	private String ct_name;
 	public StaffDto() {}
+
+	
+	public StaffDto(int stf_num, String stf_name, String stf_phone, Date stf_date, String stf_picture, String pos_code,
+			String pos_name, int ct_code, String ct_name) {
+		super();
+		this.stf_num = stf_num;
+		this.stf_name = stf_name;
+		this.stf_phone = stf_phone;
+		this.stf_date = stf_date;
+		this.stf_picture = stf_picture;
+		this.pos_code = pos_code;
+		this.pos_name = pos_name;
+		this.ct_code = ct_code;
+		this.ct_name = ct_name;
+	}
+
 
 	public StaffDto(int stf_num, String stf_name, String stf_phone, Date stf_date, String stf_picture, String pos_code,
 			int ct_code) {
@@ -24,6 +41,26 @@ public class StaffDto {
 		this.pos_code = pos_code;
 		this.ct_code = ct_code;
 	}
+
+	public String getPos_name() {
+		return pos_name;
+	}
+
+
+	public void setPos_name(String pos_name) {
+		this.pos_name = pos_name;
+	}
+
+
+	public String getCt_name() {
+		return ct_name;
+	}
+
+
+	public void setCt_name(String ct_name) {
+		this.ct_name = ct_name;
+	}
+
 
 	public int getStf_num() {
 		return stf_num;

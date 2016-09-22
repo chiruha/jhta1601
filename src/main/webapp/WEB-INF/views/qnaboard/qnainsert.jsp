@@ -28,14 +28,14 @@
 <div class="row">
 <div class="col-md-3"></div>
 	<div class="col-md-6">
-	<label>글제목</label>
+	<label>질문제목</label>
 	<input type="text" name="qna_title" placeholder="Write a Title"  class="input-sm"><br>
 	</div>
 	</div>
 	<div class="row">
 <div class="col-md-3"></div>
 	<div class="col-md-6">
-	<label>글내용</label>
+	<label>질문내용</label>
 	</div>
 	</div>
 	<div class="row">

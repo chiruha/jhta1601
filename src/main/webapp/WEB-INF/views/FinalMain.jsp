@@ -12,7 +12,6 @@
 	<ul>
 		<li><a href="<c:url value='/refundDay'/>">환불</a></li>
 		<li><a href="<c:url value='/ptrinsert'/>">PT 예약</a></li>
-		<%-- <li><a href="<c:url value='/gxinsert'/>">GX 예약</a></li>--%>
 		<li><a href="<c:url value='/gxinsert'/>">GX일정입력</a></li>		
 		<li><a href="<c:url value='/gxRegisterView'/>">GX일정보기</a></li>
 		<li><a href="<c:url value='/PTscOkView'/>">PT강사승인페이지</a></li>
@@ -43,8 +42,6 @@
 		<li><a href="<c:url value='/nocinsert'/>">공지사항 등록</a></li>
 		<li><a href="<c:url value='/noclist'/>">공지사항목록</a></li>
 		
-		<li><a href="<c:url value='/?test=goboot'/>">bootstrap test</a></li>
-		<li><a href="<c:url value='/?test=test1'/>">bootstrap test1</a></li>
 	</ul>
 
 

@@ -116,7 +116,9 @@ public class RegistrationController {
 		int totalRowCount=service.getCountRegi();
 		PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);//한페이지10줄, 페이재갯수5개
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
-		map.put("mem_num", mem_num);
+		if(mem_num>0){
+			map.put("mnum", mem_num);			
+		}
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<RegistrationDto> list=service.regiListAll(map);

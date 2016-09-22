@@ -43,11 +43,13 @@ public class PaymentController {
 	}
 	@RequestMapping("/payinsert")
 	public String insert(HttpSession session,PaymentDto dto){
-		System.out.println("payinsert : "+dto.toString()+", dto"+dto.getPay_tot());
 		try{
-			ps.insertService(dto);
-			session.setAttribute("result", "월급지급 완료");
-			return ".staff.ResultView";
+			System.out.println("payinsert : "+dto.toString()+", dto"+dto.getPay_tot());
+				if(dto.getPay_tot()>0){
+					ps.insertService(dto);
+					session.setAttribute("result", "월급지급 완료");
+					return ".staff.ResultView";
+				}
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}

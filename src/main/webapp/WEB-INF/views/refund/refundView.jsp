@@ -164,11 +164,11 @@ function memList(mem_num){
 						for(var i=0; i<data.length;i++){
 							html += "<tr>";							         
 							html += "<td>" + data[i].rf_num + "</td>";
-							html += "<td>" + data[i].rg_numlist + "</td>";
+							html += "<td>" + data[i].rg_type + "</td>";
 							html += "<td>" + data[i].rf_left + "</td>";
 							html += "<td>" + data[i].ptrefund + "</td>";
 							html += "<td>" + data[i].gxrefund + "</td>";
-							html += "</tr>";							
+							html += "</tr>";				
 						}
 						$("#resultrefund tbody").append(html);
 						$("#resultrefund").css("display", "");

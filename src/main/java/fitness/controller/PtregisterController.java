@@ -17,6 +17,7 @@ import fitness.dto.GxregisterDto;
 import fitness.dto.PtregisterDto;
 import fitness.dto.RegistrationDto;
 import fitness.dto.StaffDto;
+import fitness.dto.TrainerDto;
 import fitness.dto.ptrMemDto;
 import fitness.service.CenterService;
 import fitness.service.PtregisterService;
@@ -44,10 +45,12 @@ public class PtregisterController {
 	public String insert(HttpSession session) {
 		List<CenterDto> ctlist = cts.listService();
 		session.setAttribute("ctlist", ctlist);
-
-		List<StaffDto> stlist = staffservice.ptstafflist();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		List<TrainerDto> stlist = trservice.listService(map);
 		System.out.println("stlist" + stlist);
 		session.setAttribute("stlist", stlist);
+		
 		return ".exercise.PtRegisterView";
 	}
 

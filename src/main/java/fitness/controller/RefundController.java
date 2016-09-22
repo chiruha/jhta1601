@@ -142,21 +142,21 @@ public class RefundController {
 		
 		List<RegistrationDto> rglist = refundservice.refundrgnum(map);
 		System.out.println("rglist:"+rglist);
-		int str = 0;
+		String str = "";
 		String str1 = "";
 		String str2 = "";
 		for(int i=0; i < rglist.size(); i++){
-			 str = rglist.get(i).getRg_num();			 
-			 str1=Integer.toString(str);			 
-			 str2+= str1+" ";
+			 str = rglist.get(i).getRg_type();			 
+			// str1=Integer.toString(str);			 
+			 str2+= str+" ";
 		}	
 		System.out.println("str2:"+str2);
 		String str3 ="";
 		String[] values = str2.split(" ",4);
 		for(int x = 0; x < values.length; x++){
-			str3+=values[x]+",";
+			str3+=values[x]+" ";
 			if(str3!="null"){
-				refundto.setRg_numlist(str3);
+				refundto.setRg_numlist(str3);				
 			//	refundservice.regiInsert(refundto);
 				break;
 			}

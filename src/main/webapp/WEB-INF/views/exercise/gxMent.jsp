@@ -90,7 +90,7 @@
 	       		<td>
 	       			<select name="mon10" id="mon10" >
                       <c:forEach var="gxlist"  items="${gxlist}">
-                          <option value="${gxlist.gx_code }">${gxlist.gx_name}</option> 
+                          <option value="${gxlist.gx_name }">${gxlist.gx_name}</option> 
                       </c:forEach>    
                 	</select>
 	       		<td>
@@ -313,7 +313,7 @@
 	       </tr>
     </tbody>
 	</table>
-		 <a href="#" onclick="form.submit()">저장</a>	
+		 <input type="submit" value="보내기" >	
  	</form>
 <br>
 <br>

@@ -16,6 +16,7 @@ public class GxregisterDao {
 	private final String NAMESPACE="orm.mybatis.FinalMapper";
 	
 	public int insert(GxregisterDto dto){
+		System.out.println("GxregisterDto:"+dto);
 		return sqlSession.insert(NAMESPACE+".gxinsert",dto);
 	}
 	public GxregisterDto detail(int gx_num){

@@ -110,10 +110,13 @@ public class RegistrationController {
 	}
 	//----------| 수강등록회원 전체보기(selectList)(테이블명: registration,prosign,ptsign) |----------//
 	@RequestMapping("/regiSelect")
-	public ModelAndView regiSelect(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session){
+	public ModelAndView regiSelect(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session,
+			@RequestParam(value="mem_num",defaultValue="0") int mem_num){
+		System.out.println("mnum : "+mem_num);
 		int totalRowCount=service.getCountRegi();
 		PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);//한페이지10줄, 페이재갯수5개
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
+		map.put("mem_num", mem_num);
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<RegistrationDto> list=service.regiListAll(map);

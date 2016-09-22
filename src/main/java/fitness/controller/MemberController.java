@@ -101,7 +101,7 @@ public class MemberController {
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<MemberDto> list=service.list(map);
-		System.out.println("전체보기"+list);
+		System.out.println("Mlist : "+list);
 		ModelAndView mv=new ModelAndView();
 		mv.addObject("list",list);
 		mv.addObject("pu",pu);

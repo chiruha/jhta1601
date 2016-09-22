@@ -65,7 +65,7 @@
 	        	  <span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 			</c:when>
 			<c:otherwise>
-				<li> <a href="<c:url value='/godetail'/>" >[ ${memnum }님 환영합니다 ]</a></li>	
+				<li> <a href="#" >[ ${memnum }님 환영합니다 ]</a></li>	
 				 <li><a href="<c:url value='/logout'/>" >
 				 <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 				 
@@ -80,11 +80,15 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyPage
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-           <li><a href="<c:url value='/attcheck?type=mem&num=${sessionScope.mnum }'/>">출석체크</a></li>
+           <li><a href="<c:url value='/attcheck?type=mem&num=${mnum }'/>">출석체크</a></li>
               <li><a href="<c:url value='/MemPTscOkView'/>">Pt 예약확인</a></li>
-              <c:if test="${not empty sessionScope.mnum}">
-             <li><a href="<c:url value='/listOne?mem_num=${sessionScope.mnum}'/>">개인정보</a></li>
+              <li><a href="<c:url value='/regiSelect?mem_num=${mnum }'/>">수강등록정보</a></li>
+              <c:if test="${not empty mnum}">
+             <li><a href="<c:url value='/listOne?mem_num=${mnum}'/>">개인정보</a></li>
           </c:if>
+          
+          
+          
           </ul>
 			</c:when>
 			

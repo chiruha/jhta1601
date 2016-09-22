@@ -32,24 +32,7 @@ public class StaffController {
 	@Autowired private CenterService cts;
 	@Autowired private PositionService pos;	
 
-	@RequestMapping("/godetail")
-	public String godetail(HttpSession session){
-		try{
-			Object mnum=session.getAttribute("mnum");
-			Object snum=session.getAttribute("snum");
-			if(mnum!=null){
-				return "forward : /listOne?mem_num="+mnum;
-			}
-			if(snum!=null){
-				return "forward :/stfdetail?stf_num="+snum;
-			}
-			System.out.println("mnum : "+mnum+", snum : "+snum);
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			session.setAttribute("result", "Mypage 이동 실패!");
-		}
-		return ".staff.ResultView";
-	}
+	
 	
 	@RequestMapping(value="/stfinsert",method= RequestMethod.GET)
 	public String insert(	HttpServletRequest requset){  // insert 페이지로 이동

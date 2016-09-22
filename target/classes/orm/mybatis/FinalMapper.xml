@@ -268,7 +268,9 @@
 			(select t.*,stf_name,c.ct_code,c.ct_name,p.* from trainer t, staff s,center c, position p 
 			where t.stf_num=s.stf_num and s.ct_code=c.ct_code and s.pos_code=p.pos_code	)tr
 		)
+		<if test="startRow!=null">
 		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		</if>
 		<if test="ttype!=null">
 				and  ${ttype} like '%' || #{tkeyword}|| '%'
 		</if>

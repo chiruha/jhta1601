@@ -104,6 +104,10 @@ insert into member values(mem_seq.nextval,'김도윤','027-9845-1289','강북구 수유�
 insert into member values(mem_seq.nextval,'김진주','028-1235-0145','강북구 수유동','aba@gmail.com',25,'남','1986/04/08',sysdate,'TEST3.jpG1',6);
 insert into member values(mem_seq.nextval,'김은세','029-9845-1289','강북구 수유동','aba@gmail.com',25,'남','1986/04/08',sysdate,'TEST3.jpG2',4);
 insert into member values(mem_seq.nextval,'김송이','030-1235-0145','강북구 수유동','aba@gmail.com',25,'남','1986/04/08',sysdate,'TEST3.jpF1',6);
+insert into member values(mem_seq.nextval,'나루토','010','나뭇잎마을','나뭇잎@gmail.com',25,'남','1986/04/08',sysdate,'TEST3.jpF1',1);
+insert into member values(mem_seq.nextval,'사스케','010','나뭇잎마을','나뭇잎@gmail.com',25,'남','1986/04/08',sysdate,'TEST3.jpF1',1);
+
+
 -- 직원등록 ------------------------------------------------------------------------------------------------------
 insert into staff values(staff_seq.nextval,'김지아','011-111-5545',sysdate,'TEST1.jpg','A',1);
 insert into staff values(staff_seq.nextval,'김자영','012-6565-9889',sysdate,'TEST2.jpg','B',2);
@@ -210,6 +214,8 @@ insert into staff values(staff_seq.nextval,'최동호','028-1235-0145',sysdate,'TES
 insert into staff values(staff_seq.nextval,'유자룡','029-9845-1289',sysdate,'TEST3.jpg','G1',5);
 insert into staff values(staff_seq.nextval,'노의성','030-1235-0145',sysdate,'TEST3.jpg','G2',5);
 insert into staff values(staff_seq.nextval,'이레무','999-999-999',sysdate,'TEST3.jpg','F1',6);
+insert into staff values(staff_seq.nextval,'손오공','010',sysdate,'TEST3.jpg','F1',1);
+insert into staff values(staff_seq.nextval,'베지터','010',sysdate,'TEST3.jpg','F1',1);
 
 -- 강사등록 ----------------------------------------------------------------------------------------------------------------------
 insert into trainer values(tr_seq.nextval, 6,1,'신입강사 김예솔입니다');
@@ -266,6 +272,8 @@ insert into trainer values(tr_seq.nextval, 98,9,'당신의 S라인을 책임질 베테랑 강
 insert into trainer values(tr_seq.nextval, 99,10,'베테랑 강사 유자룡입니다');
 insert into trainer values(tr_seq.nextval, 100,10,'베테랑 강사 노의성입니다');
 insert into trainer values(tr_seq.nextval, 101,9,'레무입니다, 1 부터 아니 0 부터 시작하죠');
+insert into trainer values(tr_seq.nextval, 102,9,'오공입니다, 1 부터 아니 0 부터 시작하죠');
+insert into trainer values(tr_seq.nextval, 103,9,'베지터입니다, 1 부터 아니 0 부터 시작하죠');
 
 -------- 직원 출석 ---------------------------------------------------------------------------------------------------------------------
 insert into stf_att values(satt_seq.nextval,  TO_DATE('2016/09/01 09:00:40', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/09/01 19:00:40', 'yyyy/mm/dd hh24:mi:ss'), 0, 1,1);

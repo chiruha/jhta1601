@@ -110,13 +110,12 @@ public class PtregisterController {
 	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST,produces="application/json;charset=utf-8")
 	@ResponseBody
 	public Object insert(PtregisterDto dto,HttpSession session){		
-		System.out.println("ptrinsert µµÂø");
+		System.out.println("ptrinsert µµÂø"+dto.toString());
 		
-		System.out.println(session.getAttribute("mnum"));		
-		int mnum= (Integer) session.getAttribute("mnum");		
+		System.out.println(session.getAttribute("mnum"));
+		int mnum= (Integer) session.getAttribute("mnum");
 		System.out.println("mnum"+mnum);
-		
-		
+		System.out.println("dto"+dto);
 		
 	//	System.out.println("mem_num"+session.getAttribute("mnum"));
 		//¸â¹ö Á¤º¸ ÃßÃâ
@@ -135,21 +134,12 @@ public class PtregisterController {
 		System.out.println("rg_num:"+rg_num);		
 		dto.setRg_num(rg_num);		
 		
-		int gtr_num=dto.getTr_num();
-		int tr_num=trservice.detail2Service(gtr_num).getTr_num();
-		dto.setTr_num(tr_num);		
-		System.out.println("tr_num"+tr_num);
-		
-		String ptr_ok=service.ptr_rg_numinfo(Integer.toString(rg_num)).getPtr_ok();			
-		System.out.println("ptr_ok:"+ptr_ok);
-		
-		dto.setPtr_ok(ptr_ok);		
-		
 		int ptr_count=service.ptrcount(rg_num);
 		System.out.println("ptr_count:"+ptr_count);		
 		dto.setPtr_count(ptr_count);		
-		System.out.println(dto.getPtr_ok());
-		if(dto.getRg_num()!=rg_num){
+		System.out.println("dto.getPtr_ok()"+dto.getPtr_ok());		
+		
+		if(dto.getRg_num()==rg_num){
 			service.insert(dto);	
 			System.out.println("dto°á°ú"+dto);
 			  
@@ -162,13 +152,11 @@ public class PtregisterController {
 				System.out.println("ptrdto"+ptrdto);			  
 				
 			}catch(Exception e){
-				System.out.println(e.getMessage());
+				System.out.println(e.getMessage());				
+			}			
+				return   ptrdto;
 				
-			}
-			
-				return   ptrdto;			
 		}else if(dto.getPtr_ok().equals("½ÂÀÎÃë¼Ò")){
-			
 			System.out.println("½ÂÀÎ »èÁ¦");
 			int ptr_num = dto.getPtr_num();
 			service.ptDelete(ptr_num);

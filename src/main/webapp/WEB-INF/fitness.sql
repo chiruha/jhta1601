@@ -233,14 +233,6 @@ create table medicalcheck			--의료정보
 );
 CREATE SEQUENCE MD_SEQ;
 
-create table sales				--매출
-(	
-	sal_num number(5) primary key,	--매출번호 PK
-	sal_money number,		--매출금액	
-	ct_code number(5)		 --지점코드 FK
-);
-CREATE SEQUENCE SALES_SEQ;
-
 create table mem_att			--회원출석
 (	
 	matt_num number(5) primary key, 	--회원출석번호PK
@@ -418,7 +410,6 @@ create table refund				--환불
 	rg_numlist varchar2(50) , -- rg_num 등록번호 가져오기
 	rf_left date,			--잔여일
 	ptrefund number(20), -- pt환불액
-	gxrefund number(20) -- gx환불액
 	gxrefund number(20), -- gx환불액
 	ct_code number(5) 	--지점코드 PK		
 );
@@ -550,6 +541,16 @@ create table ptperiod --PT과목 등록기간테이블
 	ptr_initdate date, --PT과목 시작일
 	pt_expiration date --PT 만료일
 );
+create table income(--지점별 월수입 테이블
+	income_num number(5) primary key, --수입번호
+	ct_code number(5), --지점코드
+	tot_rg number, --월 프로그램 총합
+	tot_locker number(30), --월 락카총합
+	tot_wear number(30), --월 운동복총합
+	tot_income number, -- 월 프로그램락카운동복 총합
+	income_startdate date --월수입계산기준일(시작일)
+);
+create sequence income_seq; --월수입시퀀스
 --------------------------------------------------------
 --제약조건 추가줄때 옵션 예)
 --ALTER TABLE GROUPS

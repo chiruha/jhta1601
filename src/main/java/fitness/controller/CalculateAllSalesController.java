@@ -20,7 +20,7 @@ public class CalculateAllSalesController {
 	public String salesInsertForm(){
 		return ".sales.calculateAllSales";
 	}
-	//------------------|지점별 매출 검색하기(테이블명: member&registration join해서)|------------------//
+	//------------------|지점별 수입 검색하기(테이블명: income)|------------------//
 	@RequestMapping(value="/centerIncomeSelect/xml",produces="application/xml;charset=utf-8")
 	@ResponseBody
 	public String centerIncomeSelect(String searchMonth,String centerList){
@@ -70,7 +70,7 @@ public class CalculateAllSalesController {
 		System.out.println("toString(): "+sb.toString());
 		return sb.toString();
 	}
-	//------------------|지점별 매출 검색하기(테이블명: member&registration join해서)|------------------//
+	//------------------|지점별 환불 검색하기(테이블명: refund)|------------------//
 		@RequestMapping(value="/centerRefundSelect/xml",produces="application/xml;charset=utf-8")
 		@ResponseBody
 		public String centerRefundSelect(String searchMonth1,String centerList1){

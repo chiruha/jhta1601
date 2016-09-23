@@ -278,8 +278,7 @@
 		</if>
 	</select>
 	<select id="trdetail" parameterType="int" resultType="fitness.dto.TrainerDto">
-		select * from trainer 
-		where tr_num=#{value}
+		select * from trainer where tr_num=#{value}
 	</select>
 		<select id="trdetail2" parameterType="int" resultType="fitness.dto.TrainerDto">
 		select * from trainer where stf_num=#{value}

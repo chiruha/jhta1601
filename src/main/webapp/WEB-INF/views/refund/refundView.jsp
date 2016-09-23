@@ -244,7 +244,7 @@ function memList(mem_num){
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-	<h3 class="text-center">Trainer List</h3>
+	<h3 class="text-center">Refund List</h3>
 <!-- <form name="form" action="refundlist" method="post" onsubmit="javascript:return false;"> -->
 <div class="form-group has-success has-feedback">
 <div class="input-group">

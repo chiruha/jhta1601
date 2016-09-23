@@ -12,7 +12,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<c:url value='/?test=goboot'/>">Fitness
+      <a class="navbar-brand" href="<c:url value='/'/>">Fitness
 		
 	</a>
     </div>
@@ -59,8 +59,7 @@
            <li><a href="<c:url value='/attcheck?type=mem&num=${mnum }'/>">Attendance</a></li>
                <li><a href="<c:url value='/ptrinsert'/>">Book Pt</a></li>
               <li><a href="<c:url value='/MemPTscOkView'/>">Confirm Pt</a></li>
-              <li><a href="<c:url value='/refundDay'/>">Refund</a></li>
-              <li><a href="<c:url value='/regiSelect?mem_num=${mnum }'/>">Regi Info</a></li>
+              <li><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">Regi Info</a></li>
               <c:if test="${not empty mnum}">
              <li><a href="<c:url value='/listOne?mem_num=${mnum}'/>">Personal Info</a></li>
           </c:if>
@@ -79,6 +78,7 @@
         		<li><a href="<c:url value='/memselectAll'/>">Member List</a></li>
                 <li><a href="<c:url value='/regiSelect'/>">Regi List</a></li>                
                 <li><a href="<c:url value='/slistAll'/>">Satt List</a></li>
+	            <li><a href="<c:url value='/refundDay'/>">Refund</a></li>
                  <li><a href="<c:url value='/regiInsert'/>">Add Regi</a></li>
                 <li><a href="<c:url value='/stfinsert'/>">Add Staff</a></li>
                 <li><a href="<c:url value='/nocinsert'/>">Add Notice</a></li>

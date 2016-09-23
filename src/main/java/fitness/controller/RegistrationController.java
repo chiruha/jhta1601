@@ -103,25 +103,36 @@ public class RegistrationController {
 				System.out.println("ptsigndto: "+dto3.toString());
 				System.out.println("prosigndto: "+dto2.toString());
 			}
-			return ".member.memSuccess";
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			return ".member.memError";
-		}
+			req.setAttribute("result", "수강등록 신청완료");	
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+				req.setAttribute("result", "수강등록 신청실패");	
+			}
+			return ".staff.ResultView";
 	}
 	//----------| 수강등록회원 전체보기(selectList)(테이블명: registration,prosign,ptsign) |----------//
 	@RequestMapping("/regiSelect")
-	public ModelAndView regiSelect(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session){
+	public ModelAndView regiSelect(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session,
+			@RequestParam(value="mnum", defaultValue="0") int mnum){
+		System.out.println("mnum : "+mnum);
+		ModelAndView mv=new ModelAndView(".registration.regiListAll");
 		int totalRowCount=service.getCountRegi();
 		PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);//한페이지10줄, 페이재갯수5개
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
+		if(mnum>0){
+			map.put("mnum", mnum);
+			session.setAttribute("gotype", mnum);
+		}
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<RegistrationDto> list=service.regiListAll(map);
-		ModelAndView mv=new ModelAndView();
 		mv.addObject("listAll",list);
 		mv.addObject("pu",pu);
-		mv.setViewName(".registration.regiListAll");
+		System.out.println("list size : "+list.size()); 
+		if(list.size()==0){
+			session.setAttribute("result", "수강등록 내역이 없습니다");
+			mv.setViewName(".staff.ResultView");						
+		}
 		return mv;
 	}
 	//----------| 회원별 수강목록 보기(selectAll)(테이블명: registration,prosign,ptsign) |----------//
@@ -301,11 +312,12 @@ public class RegistrationController {
 				System.out.println("ptsigndto: "+dto3.toString());
 				System.out.println("prosigndto: "+dto2.toString());
 			}
-			return ".member.memSuccess";
+			req.setAttribute("result", "수강정보 수정완료");	
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".member.memError";
+			req.setAttribute("result", "수강정보 수정실패");	
 		}
+		return ".staff.ResultView";
 	}
 	@RequestMapping("/regiDelete")
 	public String regiDel(HttpServletRequest req){
@@ -335,11 +347,12 @@ public class RegistrationController {
 				service.ptperiodDel(rg_num);
 				service.regiDel(rg_num);
 			}
-			return ".member.memSuccess";
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			return ".member.memError";
-		}
+			req.setAttribute("result", "수강정보 삭제완료");	
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+				req.setAttribute("result", "수강정보 삭제실패");	
+			}
+			return ".staff.ResultView";
 		
 	}
 

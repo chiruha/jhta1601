@@ -427,9 +427,9 @@ $(document).ready(function(){
 </script>
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-	<h3 class="text-center">Member Insert</h3>
+	<h3 class="text-center">Register for Subjects</h3>
 	<p class="text-center">
-		<em>Welcome to our family !!</em>
+		<em>Start Exercise With Us!!</em><br>
 	</p>
 	<div class="row">
 
@@ -442,7 +442,7 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-sm-3"> 
 			<p >
-			<span class="glyphicon glyphicon-search"></span> Search for member
+			<span class="glyphicon glyphicon-search"> </span> Search for member
 			</p>
 		</div>
 		<div class="col-sm-3"> 

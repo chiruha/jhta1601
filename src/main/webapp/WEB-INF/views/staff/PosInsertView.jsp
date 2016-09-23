@@ -7,17 +7,17 @@
 	<h3 class="text-center">Position Insert</h3>
 
 	<div class="row">
-		<div class="col-md-3"></div>
+		<div class="col-md-2"></div>
 
-		<div class="col-md-6">
+		<div class="col-md-8">
 			<form action="posinsert" method="post" >
 
 			<div class="row">
-						<div class="col-sm-3 form-group"></div>
-						<div class="col-sm-3 form-group">
+						<div class="col-sm-2 form-group"></div>
+						<div class="col-sm-4-right">
 						<span class="glyphicon glyphicon-home"> Dept</span>
 						</div>
-						<div class="col-sm-3 form-group">
+						<div class="col-sm-4 form-group">
 						 <select name="dept_code" class="select form-control">
 						 	<c:forEach var="dlist"  items="${deptlist}">
 									<option value="${dlist.dept_code }">${dlist.dept_name}</option>	
@@ -26,16 +26,16 @@
 					</div>
 					</div>
 				<div class="row">
-				<div class="col-sm-3 form-group"></div>
-					<div class="col-sm-6 form-group">
+				<div class="col-sm-2 form-group"></div>
+					<div class="col-sm-8 form-group">
 						<input class="form-control" placeholder="Position Code" type="text"
 							required name="pos_code" class="required"> 
 							<span class="addmsg"></span>
 					</div>
 					</div>
 					<div class="row">
-					<div class="col-sm-3 form-group"></div>
-					<div class="col-sm-6 form-group">
+					<div class="col-sm-2 form-group"></div>
+					<div class="col-sm-8 form-group">
 						<input class="form-control" placeholder="Position Name" type="tel"
 							required name="pos_name" class="required"> 
 							<span class="addmsg"></span>
@@ -43,12 +43,12 @@
 				</div>
 				<br>
 		<div class="row">
-			<div class="col-sm-3 form-group"></div>
-				<div class="col-sm-3 form-group">
+			<div class="col-sm-2 form-group"></div>
+				<div class="col-sm-4 form-group">
 				<button class="btn pull-left" id="btn" type="submit">
 				<span class="glyphicon glyphicon-ok"></span> Ok </button>
 				</div>
-					<div class="col-sm-3 form-group">
+					<div class="col-sm-4 form-group">
 				<button class="btn pull-right" id="btn" type="reset">
 				<span class="glyphicon glyphicon-remove"></span>  Cancle </button>
 				</div>

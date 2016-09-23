@@ -8,7 +8,7 @@
 	<!--////////// 환불관련 - 작성자 : 고석곤 //////////-->
 	<!-- 환불입력 -->
 	<insert id="refundInset" parameterType="fitness.dto.RefundDto">
-		insert into refund values(rf_seq.nextval, #{rg_numlist}, sysdate, #{ptrefund},#{gxrefund},#{ct_code} )
+		insert into refund values(rf_seq.nextval, #{mem_num },sysdate , #{rg_num },#{ct_code },#{rg_type },#{refund_price })
 	</insert>
 	
 	<!-- 환불리스트 -->

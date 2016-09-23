@@ -1,65 +1,60 @@
 package fitness.dto;
 
-import java.sql.Date;
+
 
 public class RefundDto {
-	private int rf_num;
-	private String rg_numlist;
-	private Date rf_left;
-	private int ptrefund;
-	private int gxrefund;
+	private int refund_num;
+	private int mem_num;
+	private int refund_date;
+	private int rg_num;
 	private int ct_code;
+	private String rg_type;
+	private int refund_price;
 	
 	public RefundDto() {}
 
-	public RefundDto(int rf_num, String rg_numlist, Date rf_left, int ptrefund, int gxrefund, int ct_code) {
+	public RefundDto(int refund_num, int mem_num, int refund_date, int rg_num, int ct_code, String rg_type,
+			int refund_price) {
 		super();
-		this.rf_num = rf_num;
-		this.rg_numlist = rg_numlist;
-		this.rf_left = rf_left;
-		this.ptrefund = ptrefund;
-		this.gxrefund = gxrefund;
+		this.refund_num = refund_num;
+		this.mem_num = mem_num;
+		this.refund_date = refund_date;
+		this.rg_num = rg_num;
 		this.ct_code = ct_code;
+		this.rg_type = rg_type;
+		this.refund_price = refund_price;
 	}
 
-	public int getRf_num() {
-		return rf_num;
+	public int getRefund_num() {
+		return refund_num;
 	}
 
-	public void setRf_num(int rf_num) {
-		this.rf_num = rf_num;
+	public void setRefund_num(int refund_num) {
+		this.refund_num = refund_num;
 	}
 
-	public String getRg_numlist() {
-		return rg_numlist;
+	public int getMem_num() {
+		return mem_num;
 	}
 
-	public void setRg_numlist(String rg_numlist) {
-		this.rg_numlist = rg_numlist;
+	public void setMem_num(int mem_num) {
+		this.mem_num = mem_num;
 	}
 
-	public Date getRf_left() {
-		return rf_left;
+	public int getRefund_date() {
+		return refund_date;
 	}
 
-	public void setRf_left(Date rf_left) {
-		this.rf_left = rf_left;
+	public void setRefund_date(int refund_date) {
+		this.refund_date = refund_date;
 	}
 
-	public int getPtrefund() {
-		return ptrefund;
+	public int getRg_num() {
+		return rg_num;
 	}
 
-	public void setPtrefund(int ptrefund) {
-		this.ptrefund = ptrefund;
-	}
-
-	public int getGxrefund() {
-		return gxrefund;
-	}
-
-	public void setGxrefund(int gxrefund) {
-		this.gxrefund = gxrefund;
+	public void setRg_num(int rg_num) {
+		this.rg_num = rg_num;
 	}
 
 	public int getCt_code() {
@@ -70,18 +65,29 @@ public class RefundDto {
 		this.ct_code = ct_code;
 	}
 
-	@Override
-	public String toString() {
-		return "RefundDto [rf_num=" + rf_num + ", rg_numlist=" + rg_numlist + ", rf_left=" + rf_left + ", ptrefund="
-				+ ptrefund + ", gxrefund=" + gxrefund + ", ct_code=" + ct_code + "]";
+	public String getRg_type() {
+		return rg_type;
 	}
 
+	public void setRg_type(String rg_type) {
+		this.rg_type = rg_type;
+	}
+
+	public int getRefund_price() {
+		return refund_price;
+	}
+
+	public void setRefund_price(int refund_price) {
+		this.refund_price = refund_price;
+	}
+
+	@Override
+	public String toString() {
+		return "RefundDto [refund_num=" + refund_num + ", mem_num=" + mem_num + ", refund_date=" + refund_date
+				+ ", rg_num=" + rg_num + ", ct_code=" + ct_code + ", rg_type=" + rg_type + ", refund_price="
+				+ refund_price + "]";
+	}
 	
 	
-	
-	
-	
-	
-	
-	
+
 }

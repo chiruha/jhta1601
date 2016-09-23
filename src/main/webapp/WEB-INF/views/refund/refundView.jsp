@@ -95,14 +95,14 @@ function memList(mem_num){
 					} else {
 						for(var i=0; i<data.length;i++){
 							html += "<tr>";
-							html += "<td>" + data[i].rg_num + "</td>";            
+							html += "<td><span class='rg_num'>" + data[i].rg_num + "</span></td>";            
 							html += "<td>" + data[i].mem_num + "</td>";
-							html += "<td>" + data[i].rg_type + "</td>";
+							html += "<td><span class='rg_type'>" + data[i].rg_type + "</td>";
 							html += "<td>" + data[i].rg_price + "</td>";
 							html += "<td>" + data[i].locker_price + "</td>";
 							html += "<td>" + data[i].wear_price + "</td>";
 							//html += "<td><input type=\"checkbox\" value='\"+data[i].rg_price + data[i].locker_price + data[i].wear_price\"' id='checktot' onclick='memCale(" + (data[i].rg_price + data[i].locker_price + data[i].wear_price) + ")'></td>";
-							html += "<td><input type=\"checkbox\" value=" + (data[i].rg_price + data[i].locker_price + data[i].wear_price) + " id='checktot' onclick='memCale()'></td>";
+							html += "<td><input type=\"checkbox\" name='ck' value=" + (data[i].rg_price + data[i].locker_price + data[i].wear_price) + " id='checktot' onclick='memCale()'></td>";
 							html += "</tr>";							
 						}
 					}
@@ -133,7 +133,7 @@ function memList(mem_num){
 							html += "<td>" + data[i].ptday + "</td>";
 							html += "<td>" + data[i].gxday + "</td>";
 							html += "<td>" + data[i].spsday + "</td>";
-							html += "<td>" + data[i].sgxday + "</td>";
+							html += "<td>" + data[i].sgxday + "</td>";							
 							html += "</tr>";							
 						}
 						$("#resultTableday tbody").append(html);
@@ -144,15 +144,21 @@ function memList(mem_num){
 			
 			$(".refundmove").click(function name() {
 				var mem_num = $("[name='mem_num']").val();
-				var ptrefund = $("[name='ptmove']").val();
-				var gxrefund = $("[name='gxmove']").val();
-				var ct_code = $("[name='ct_code']").val();				
-				alert(mem_num+ptrefund+gxrefund+ct_code);
+				var refund_price = $("[name='totpaymove']").val();				
+				var ct_code = $("[name='ct_code']").val();					
+				
+				var tr=$("[name='ck']:checked").parent().parent();
+				var rg_num=tr.find(".rg_num").text();
+				var rg_type=tr.find(".rg_type").text();
+				alert("rg_num+rg_type:"+rg_num+rg_type);
+				
 				var param = {};
 				param.mem_num = mem_num;
-				param.ptrefund = ptrefund;
-				param.gxrefund = gxrefund;
-				param.ct_code = ct_code;
+				param.refund_price = refund_price;
+				param.ct_code = ct_code;		
+				param.rg_num = rg_num;
+				param.rg_type = rg_type;				
+				
 				$.ajax({
 					url:"/fitness/ptgxmove1",
 					dataType:"json",
@@ -165,11 +171,13 @@ function memList(mem_num){
 						var html="";
 						for(var i=0; i<data.length;i++){
 							html += "<tr>";							         
-							html += "<td>" + data[i].rf_num + "</td>";
-							html += "<td>" + data[i].rg_numlist + "</td>";
-							html += "<td>" + data[i].rf_left + "</td>";
-							html += "<td>" + data[i].ptrefund + "</td>";
-							html += "<td>" + data[i].gxrefund + "</td>";
+							html += "<td>" + data[i].refund_num + "</td>";
+							html += "<td>" + data[i].mem_num + "</td>";
+							html += "<td>" + data[i].refund_date + "</td>";
+							html += "<td>" + data[i].rg_num + "</td>";
+							html += "<td>" + data[i].ct_code + "</td>";
+							html += "<td>" + data[i].rg_type + "</td>";
+							html += "<td>" + data[i].refund_price + "</td>";
 							html += "</tr>";				
 						}
 						$("#resultrefund tbody").append(html);
@@ -193,12 +201,13 @@ function memList(mem_num){
 						var html="";
 						for(var i=0; i<data.length;i++){
 							html += "<tr>";							         
-							html += "<td>" + data[i].rf_num + "</td>";
-							html += "<td>" + data[i].rg_numlist + "</td>";
-							html += "<td>" + data[i].rf_left + "</td>";
-							html += "<td>" + data[i].ptrefund + "</td>";
-							html += "<td>" + data[i].gxrefund + "</td>";
+							html += "<td>" + data[i].refund_num + "</td>";
+							html += "<td>" + data[i].mem_num + "</td>";
+							html += "<td>" + data[i].refund_date + "</td>";
+							html += "<td>" + data[i].rg_num + "</td>";
 							html += "<td>" + data[i].ct_code + "</td>";
+							html += "<td>" + data[i].rg_type + "</td>";
+							html += "<td>" + data[i].refund_price + "</td>";
 							html += "</tr>";							
 						}
 						$("#resultrefund2 tbody").append(html);
@@ -233,8 +242,15 @@ function memList(mem_num){
 		 for(var i in valueArr){
 		           str += Number(valueArr[i]);
 		    }		 
+		 alert(str);
 		$(".rg_price").val(str);
 		$(".rg_price").css("display", "");
+		
+		 var str2 = null;		 
+		 for(var i in valueArr){
+		           str2 += Number(valueArr[i]);
+		    }		 
+		 alert(str2);
 		
 	}
 	
@@ -353,7 +369,7 @@ function memList(mem_num){
  </div>  
  	         
  <div class="rg_price" style="display: none;">	         
-  PT환불액:<input type="text" class="ptmove" name="ptmove"> 단과환불액:<input type="text" class="gxmove" name="gxmove" value="0">  
+  총환불액:<input type="text" class="totpaymove" name="totpaymove">   
   지점선택   <select name="ct_code" id="ct_code">
 			  <c:forEach var="clist"  items="${ctlist}">
 				<option value="${clist.ct_code }">${clist.ct_name}</option>	

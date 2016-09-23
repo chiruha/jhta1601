@@ -412,17 +412,16 @@ INSERT INTO gxsubject VALUES('E','ABT');
 INSERT INTO gxsubject VALUES('F','바디펌프');
 INSERT INTO gxsubject VALUES('Z','기타');
 
-create table refund				--환불
-(
-	rf_num number(20) primary key,	--환불번호 PK
-	rg_numlist varchar2(50) , -- rg_num 등록번호 가져오기
-	rf_left date,			--잔여일
-	ptrefund number(20), -- pt환불액
-	gxrefund number(20) -- gx환불액
-	gxrefund number(20), -- gx환불액
-	ct_code number(5) 	--지점코드 PK		
+create table refund(					 --환불
+	refund_num number(10)  primary key,
+	mem_num number(10),			 	-- 회원번호
+	refund_date date,   			 -- 환불날짜
+	rg_num  number(10),              -- 등록번호 
+	ct_code number(10),              -- 지점코드
+	rg_type varchar2(20),            -- 운동종류
+	refund_price number(10) 		 -- 총금액	
 );
-CREATE SEQUENCE RF_SEQ;
+CREATE SEQUENCE RF_SEQ;;
 
 
 drop sequence event_seq;

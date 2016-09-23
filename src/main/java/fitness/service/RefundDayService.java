@@ -21,7 +21,7 @@ public class RefundDayService {
 	public List<MemberDto> memNaSeList(HashMap<String, Object>map){
 		return refundDayDao.memNaSeList(map);
 	}
-	public RefundDayImpleDto ptgxoneday(int mem_num){
+	public List<RefundDayImpleDto> ptgxoneday(int mem_num){
 		return refundDayDao.ptgxoneday(mem_num);
 	}
 

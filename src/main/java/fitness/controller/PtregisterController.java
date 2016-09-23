@@ -144,8 +144,7 @@ public class PtregisterController {
 			System.out.println("dto°á°ú"+dto);
 			  
 			PtregisterDto ptrdto =null;
-			try{
-				
+			try{				
 				int maxnum=service.ptmaxNum();
 				System.out.println(maxnum);
 				ptrdto =  service.detailService(maxnum);

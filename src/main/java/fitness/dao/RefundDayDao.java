@@ -25,11 +25,10 @@ public class RefundDayDao {
 		return sqlSession.selectList(NAMESPACE+".memNaSeList",map);
 	}
 	
-	public RefundDayImpleDto ptgxoneday(int mem_num){
-		return sqlSession.selectOne(NAMESPACE+".ptgxoneday",mem_num);
+	public List<RefundDayImpleDto>  ptgxoneday(int mem_num){
+		return sqlSession.selectList(NAMESPACE+".ptgxoneday",mem_num);
 	}
 }
-
 
 
 

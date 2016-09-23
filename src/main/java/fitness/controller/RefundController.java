@@ -42,16 +42,9 @@ public class RefundController {
 		System.out.println("refundDayµµÂø");
 		List<CenterDto> ctlist = cts.listService();
 		session.setAttribute("ctlist", ctlist);
-		System.out.println(ctlist);
-		
-		
-		/*
-		int mem_num= (Integer) session.getAttribute("mnum");
-		System.out.println("mem_num:"+mem_num);
-		List<RegistrationDto> totregimoney =refundDayService.totregimoney(mem_num);		
-		System.out.println("totregimoney"+totregimoney);
-		request.setAttribute("totregimoney",totregimoney);
-		*/
+	
+		System.out.println(ctlist);		
+	
 		return ".refund.refundView";
 	}
 	
@@ -91,6 +84,7 @@ public class RefundController {
 	public String totregimoney(int mem_num){
 		System.out.println("totregimoneyµµÂøPOST");
 		System.out.println("mem_num"+mem_num);
+		
 		 List<RegistrationDto> totregimoney = refundDayService.totregimoney(mem_num);
 		 System.out.println("totregimoney"+totregimoney);
 		
@@ -115,80 +109,76 @@ public class RefundController {
 	public String ptgxoneday(int mem_num){
 		System.out.println("ptgxonedayµµÂøPOST");
 		System.out.println("mem_num"+mem_num);
-		RefundDayImpleDto refundto=refundDayService.ptgxoneday(mem_num);
-		System.out.println("refundto"+refundto);
-		int mem_num1=refundto.getMem_num();
-		int ptday=refundto.getPtday();
-		int gxday = refundto.getGxday();
-		int spsday = refundto.getSpsday();
-		int sgxday = refundto.getSgxday();
 		
-		JSONArray totday= new JSONArray();
-		RefundDayImpleDto dto = new RefundDayImpleDto(mem_num1, ptday, gxday, spsday, sgxday);
-		System.out.println("dto:"+dto);		
+		List<RefundDayImpleDto> refundto=refundDayService.ptgxoneday(mem_num);
+		System.out.println("refundto"+refundto);				
 		
-		JSONObject jo=new JSONObject();
-		jo.put("mem_num",  dto.getMem_num());
-		jo.put("ptday",  dto.getPtday());
-		jo.put("gxday",  dto.getGxday());
-		jo.put("spsday",  dto.getSpsday());
-		jo.put("sgxday",  dto.getSgxday());
-		totday.add(jo);
+		JSONArray tot = new JSONArray();
 		
-		System.out.println("today:"+totday.toString());
-		return totday.toString();
+		 for(RefundDayImpleDto dto:refundto){
+			 JSONObject jo=new JSONObject();
+			 jo.put("mem_num", dto.getMem_num());
+			 jo.put("ptday", dto.getPtday());
+			 jo.put("gxday", dto.getGxday());
+			 jo.put("spsday", dto.getSpsday());
+			 jo.put("sgxday", dto.getSgxday());			
+			 tot.add(jo);
+		 }				 	
+		
+		System.out.println("tot.toString();:"+tot.toString());
+		return tot.toString();
 	}
 	
 	@RequestMapping(value="/ptgxmove1",method= {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public String ptgxmove(int mem_num,int ptrefund,int gxrefund,int ct_code,RefundDto refundto,HttpSession session){
+	public String ptgxmove(RefundDto refundto,HttpSession session){
 		System.out.println("ptgxmoveµµÂøPOST");
-		System.out.println("mem_num"+mem_num+"ptmove"+ptrefund+"gxrefund"+gxrefund+"ct_code:"+ct_code);
-		
-		List<CenterDto> ctlist = cts.listService();
-		session.setAttribute("ctlist", ctlist);
-		System.out.println(ctlist);
-		
+		System.out.println("refundto:"+refundto);
+						
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("mem_num", mem_num);		
+		map.put("mem_num", refundto.getMem_num());	
 		
+		/*
 		List<RegistrationDto> rglist = refundservice.refundrgnum(map);
 		System.out.println("rglist:"+rglist);
-		String str = "";		
-		String str2 = "";
+		int rg_num = 0;		
+		String rg_type = "";
 		for(int i=0; i < rglist.size(); i++){
-			 str = rglist.get(i).getRg_type();			 			 
-			 str2+= str+" ";
-		}	
-		System.out.println("str2:"+str2);
-		String str3 ="";
-		String[] values = str2.split(",",4);
-		for(int x = 0; x < values.length; x++){
-			str3+=values[x]+" ";
-			if(str3!="null"){
-				refundto.setRg_numlist(str2);				
-				refundservice.regiInsert(refundto);
-				break;
-			}
-		}		
+			rg_num = rglist.get(i).getRg_num();			 			 
+			rg_type = rglist.get(i).getRg_type();
+			refundto.setRg_num(rg_num);
+			System.out.println("rg_num:"+rg_num);
+			refundto.setRg_type(rg_type);
+			System.out.println("rg_type:"+rg_type);
+			
+			System.out.println("refundtoÃÖÁ¾:"+refundto);
+			break;
+		}
+		*/
+		refundservice.regiInsert(refundto);	
+		
 		List<RefundDto> refundlist = refundservice.refundlist();
 		 JSONArray tot = new JSONArray();
 		 
 		 for(RefundDto dto:refundlist){
 			 System.out.println("refundlist:"+refundlist);
 			 JSONObject jo=new JSONObject();
-			 jo.put("rf_num", dto.getRf_num());
-			 jo.put("rg_numlist", dto.getRg_numlist());
-			 jo.put("rf_left", dto.getRf_left().toString());
-			 jo.put("ptrefund", dto.getPtrefund());
-			 jo.put("gxrefund", dto.getGxrefund());			 
+			 jo.put("refund_num", dto.getRefund_num());
+			 jo.put("mem_num", dto.getMem_num());
+			 jo.put("refund_date", dto.getRefund_date());
+			 jo.put("rg_num", dto.getRg_num());
+			 jo.put("ct_code", dto.getCt_code());
+			 jo.put("rg_type", dto.getRg_type());
+			 jo.put("refund_price", dto.getRefund_price());
 			 tot.add(jo);
 		 }	
 		 	System.out.println("tot.toString():"+tot.toString());
 			return tot.toString();
-	}
+			
 	
+	}
+	/*
 	@RequestMapping(value="/ptgxmove2",method= {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public String ptgxmove2(){
@@ -208,7 +198,7 @@ public class RefundController {
 		 }	
 		 	System.out.println("tot.toString():"+tot.toString());
 			return tot.toString();
-	}
+	}*/
 	
 }
 

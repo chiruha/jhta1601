@@ -158,7 +158,7 @@
 	</div>
 	<div class="row">
 			<div class="col-sm-8">
-				<input type="text" placeholder="검색 조건을 선택하세요" class="form-control" size="15" name="keyword" id="keyword" value="${keyword }">
+				<input type="text" placeholder="조회할 이름을 선택하세요" class="form-control" size="15" name="keyword" id="keyword" value="${keyword }">
 				<span id="sp"></span>
 							
 			</div>

@@ -2,18 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
 <style type="text/css">
-	body{font-size: 0.8em;}
-	h1{text-align: center;}
-		
-    #ptime{width:100px}
+	#dlg{font-size: 12px;}
+    #ptime{width:100px; }
 </style>
 <link rel="stylesheet" type="text/css" href="/fitness/resources/css/jquery-ui.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <%--
 <link rel="stylesheet" href="/fitness/resources/css/jquery.timepicker.css">
  --%>
+<script type="text/javascript" src="/fitness/resources/js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="/fitness/resources/js/jquery-ui.min.js"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <%--
@@ -23,6 +22,8 @@
 	$(function function_name(argument) {
 		$("#open_btn").click(function function_name(argument) {
 			$("#dlg").dialog("open"); //다이얼로그 열기
+	
+		
 		});
 		$("#dlg").dialog({
 			autoOpen:false,
@@ -39,18 +40,23 @@
 							type:"post",
 							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code+"&tr_num="+tr_num,							
 							success:function function_name(data) {
-								alert(data);
+								//alert(data);
 								if(data.ptr_num!=0){
-								var str = "회원등록:" + data.ptr_num +"<br>" +
-										  "트레이너:"+ data.tr_num +"<br>" +
-										  "회원:" + data.rg_num + "<br>" +
-										  "회원시작일:" + data.ptr_initdate + "<br>" +
-								          "회원시간:" +  data.ptr_time + "<br>" +
-								          "PT횟수:" + data.ptr_count + "<br>" +
-								          "지점코드:" + data.ct_code + "<br>" +
-								          "회원승인:" + data.ptr_ok	+ "<br>" +
-								          "수정은 개인정보 회원란에서 해주쉬면됩니다.";
-								alert(str); 
+								var str =
+									
+								"<div class='row'><div class='col-sm-3'></div>"+
+										  "<div class='col-sm-3'><label>트레이너 : "+ data.tr_num+"</label></div>" +
+										  "<div class='col-sm-3'><label>등록번호 : " + data.rg_num + "</label></div>" +
+								"</div><div class='row'><div class='col-sm-3'></div>"+
+										  "<div class='col-sm-6'><label>회원시작일 : " + data.ptr_initdate + "</label></div>" +
+								 "</div><div class='row'><div class='col-sm-3'></div>"+
+								          "<div class='col-sm-3'><label>회원시간 : " +  data.ptr_time + "</label></div>" +
+								          "<div class='col-sm-3'><label>PT횟수 : " + data.ptr_count + "</label></div>" +
+								 "</div><div class='row'><div class='col-sm-3'></div>"+
+								          "<div class='col-sm-3'><label>지점코드 : " + data.ct_code + "</label></div>" +
+								          "<div class='col-sm-3'><label>회원승인 : " + data.ptr_ok	+ "</label></div>";
+							
+								//alert(str); 
 								 $("#result").html(str);	
 								}else{
 									$("#result").html("이미 PT 신청하셨습니다.");
@@ -85,16 +91,18 @@
 		
 	});
 </script>
-
-	<h1 id="open_btn">PT일정(click)</h1>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h2 class="text-center" id="open_btn">PT Schedule</h2>
+	<h5 class="text-center">(click)</h5> <br>
 	
 	<div id="box">
-		<div id="dlg" title="PT일정">			
-			<label for="pdate">PT시작일</label><br>
-			<input type="text" id="pdate" ><br><br>
-			<label for="ptime">PT시간</label><br>
-			<select name="time" id="time">
-			<option value="06:00">시간선택해주세요</option>
+		<div id="dlg" title="PT Schedule" >			
+			<label for="pdate"> PT시작일 </label>
+			<input type="text" id="pdate" size="10" class="input-sm"><br><br>
+			<label for="ptime"> PT  시간 </label>
+			<select name="time" id="time" class="select input-sm">
+			<option value="06:00">시간선택</option>
 			<option value="06:00">06:00</option>
 			<option value="07:00">07:00</option>
 			<option value="08:00">08:00</option>
@@ -114,27 +122,24 @@
 			<option value="22:00">22:00</option>		
 			</select>
 			<br><br>
-			지점선택 <select name="ct_code" id="ct_code">
+			<label for="ct_code"> Center </label> <select name="ct_code" id="ct_code" class="select input-sm">
 					<c:forEach var="clist"  items="${ctlist}">
 						<option value="${clist.ct_code }">${clist.ct_name}</option>	
 					</c:forEach>	
 					</select><br><br>
-			강사선택 <select name="st_code" id="st_code">
+			<label for="st_code"> Trainer </label> <select name="st_code" id="st_code" class="select input-sm">
 					<c:forEach var="slist"  items="${stlist}">
-						<option value="${slist.tr_num }">${slist.stf_name}</option>	
+						<option value="${slist.stf_num }">${slist.stf_name}</option>	
 					</c:forEach>	
 					</select><br><br>	
 					
 		</div>
 	</div>
 <div id="result"></div>
-<div >
-	<a href="<c:url value='/'/>">Header Page (홈으로 이동)</a> 
-</div>
 
 	
 
-
+</div>
 
 
 

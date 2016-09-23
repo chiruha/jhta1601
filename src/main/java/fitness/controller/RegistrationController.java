@@ -338,8 +338,5 @@ public class RegistrationController {
 			System.out.println(e.getMessage());
 			return ".member.memError";
 		}
-		
 	}
-
-	
 }

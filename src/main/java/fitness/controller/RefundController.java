@@ -50,17 +50,23 @@ public class RefundController {
 	
 	@RequestMapping(value="/refundDay",method= RequestMethod.POST)
 	@ResponseBody
-	public String refundDay(String refundname,@RequestParam(value="pageNum",defaultValue="1") int pageNum){
+	public String refundDay(String refundname,@RequestParam(value="pageNum",defaultValue="1") int pageNum,HttpSession session){
 		System.out.println("refundDay도착POST");
 		System.out.println("refundname"+refundname);
+		
+		
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("refundname", refundname);		
 		
-		PageUtil pu=new PageUtil(pageNum, 10, 10, 10);
+		int memNaCount = refundservice.memNaCount(map); 
+		
+		PageUtil pu=new PageUtil(pageNum, memNaCount, 10, 10);
 		
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
+		
+		System.out.println("pu:"+pu+"|"+memNaCount);
 		
 		List<MemberDto> searchList=refundDayService.memNaSeList(map);
 		System.out.println("검색조건보기: "+searchList);
@@ -71,12 +77,23 @@ public class RefundController {
 			jo.put("mem_num", dto.getMem_num());
 			jo.put("mem_name", dto.getMem_name());
 			jo.put("mem_phone", dto.getMem_phone());
+			jo.put("ct_name", dto.getCt_name());
+			
 			arr.add(jo);			
 		}		
+		JSONObject page = new JSONObject();
+		page.put("pageNum", pu.getPageNum());
+		page.put("startPageNum", pu.getStartPageNum());
+		page.put("endPageNum", pu.getPageNum());
+		page.put("totalPageCount", memNaCount);
+		
+		JSONObject rr= new JSONObject();
+		rr.put("arr", arr);
+		rr.put("page", page);
 		
 		
-		
-		return arr.toString();
+		System.out.println(rr.toString()+"rr.toString()");
+		return rr.toString();
 	}
 	
 	@RequestMapping(value="/totregimoney",method= RequestMethod.POST)

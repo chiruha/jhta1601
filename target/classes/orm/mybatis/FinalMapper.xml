@@ -39,12 +39,21 @@
 	<!-- 회원이름검색 memSearchList -->
 	<select id="memNaSeList" parameterType="hashmap" resultType="fitness.dto.MemberDto">		
 			select * from(
-				select bb.mem_num,bb.mem_name,bb.mem_phone,rownum rnum from(
-					select * from member
-					where mem_name like '%' || #{refundname} || '%'
+				select bb.mem_num,bb.mem_name,bb.mem_phone,bb.ct_name,rownum rnum from(
+					select m.*,c.ct_name from member m , center c
+					where mem_name like '%' || #{refundname} || '%' and m.ct_code = c.ct_code
 					order by mem_num desc
 				)bb
 			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+	
+	<select id="memNaCount" parameterType="hashmap" resultType="int">
+		select count(mem_num) from 
+		(select bb.mem_num,bb.mem_name,bb.mem_phone,bb.ct_name,rownum rnum from(
+					select m.*,c.ct_name from member m , center c
+					where mem_name like '%' || #{refundname} || '%' and m.ct_code = c.ct_code
+					order by mem_num desc
+				)bb)
 	</select>
 
 	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->

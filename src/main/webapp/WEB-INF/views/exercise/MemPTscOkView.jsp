@@ -2,33 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">PT Confrim</h3>
 
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
- 
-<br>
-<br>
-<h1>PT확인</h1>
-<table border="1" style="width:700px">
-    <caption><a href="<c:url value='/'/>">게시판</a></caption>
-    <colgroup>
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />
-        <col width='20%' />       
-    </colgroup>
+<div class="row">
+	<div class="col-md-12">
+<table border="1" class="table" >
     <thead>
         <tr>
         	<th>PT강사이름</th>
@@ -49,59 +29,14 @@
        	</tr>			 	
 		  </c:forEach>
     </tbody>
-</table>	
- 
-<br>
-<br>
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-	
-	
-	
-
+</table>	<br>
+ </div>
+ </div>
+ <div class="row">
+	<div class="col-md-12"><br>
+	</div>
+	</div>
+</div>
 	
 	
 	

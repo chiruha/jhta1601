@@ -175,7 +175,10 @@ function memList(mem_num){
 						$("#resultrefund tbody").append(html);
 						$("#resultrefund").css("display", "");
 					}				
-				});			
+				});	
+				
+				
+				
 			});
 			
 			$(".refundmove2").click(function name() {						
@@ -195,6 +198,7 @@ function memList(mem_num){
 							html += "<td>" + data[i].rf_left + "</td>";
 							html += "<td>" + data[i].ptrefund + "</td>";
 							html += "<td>" + data[i].gxrefund + "</td>";
+							html += "<td>" + data[i].ct_code + "</td>";
 							html += "</tr>";							
 						}
 						$("#resultrefund2 tbody").append(html);
@@ -350,11 +354,13 @@ function memList(mem_num){
  	         
  <div class="rg_price" style="display: none;">	         
   PT환불액:<input type="text" class="ptmove" name="ptmove"> 단과환불액:<input type="text" class="gxmove" name="gxmove" value="0">  
-  지점선택 <select name="ct_code" id="ct_code">
-		  <c:forEach var="clist"  items="${ctlist}">
+  지점선택   <select name="ct_code" id="ct_code">
+			  <c:forEach var="clist"  items="${ctlist}">
 				<option value="${clist.ct_code }">${clist.ct_name}</option>	
-		  </c:forEach>
-		  </select>  
+			  </c:forEach>
+			</select>  
+  
+  			
   <input type="button" class="refundmove" value="전송"> 
 </div>  
 
@@ -374,7 +380,7 @@ function memList(mem_num){
 		        <th>등록번호</th>
 		        <th>환불날짜</th>						        
 		        <th>PT환불액</th>
-		        <th>GX환불액</th>		        
+		        <th>GX환불액</th>		        		        
 	        </tr>
 		   	</thead>
 		   	<tbody>
@@ -384,11 +390,12 @@ function memList(mem_num){
 <table id="resultrefund2" style='width:700px; border:1px solid black; display:none;' >
 		<caption><a href='/fitness'>홈</a></caption>
 			<colgroup>
-		        <col width='20%' />
-		        <col width='20%' />
-		        <col width='20%' />
-		        <col width='20%' />
-		        <col width='20%' />		        
+		        <col width='17%' />
+		        <col width='17%' />
+		        <col width='17%' />
+		        <col width='17%' />
+		        <col width='17%' />
+		        <col width='16%' />			        
 		    	</colgroup>
 		    <thead>
 	        <tr>
@@ -396,7 +403,8 @@ function memList(mem_num){
 		        <th>과목종류</th>
 		        <th>환불날짜</th>						        
 		        <th>PT환불액</th>
-		        <th>GX환불액</th>		        
+		        <th>GX환불액</th>
+		        <th>지점</th>		        
 	        </tr>
 		   	</thead>
 		   	<tbody>

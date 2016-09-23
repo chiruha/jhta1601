@@ -1,13 +1,11 @@
 package fitness.controller;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -103,7 +101,7 @@ public class RegistrationController {
 				System.out.println("ptsigndto: "+dto3.toString());
 				System.out.println("prosigndto: "+dto2.toString());
 			}
-			return ".member.memSuccess";
+			return ".member.registrationInsert";
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			return ".member.memError";

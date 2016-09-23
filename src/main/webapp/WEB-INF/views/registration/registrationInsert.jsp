@@ -14,6 +14,8 @@ var keyword="";
 var memSearch="";
 function ajaxSearchMem(pageNum,memSearch,keyword){
 	//alert("검색버튼 클릭!!!!");
+	//alert("memSearch: "+memSearch);
+	//alert("pageNum: "+pageNum);	
 	$.ajax({
 		url:"/fitness/memlist/xml",
 		data:"pageNum="+pageNum+"&keyword=" + keyword+"&memSearch=" + memSearch,
@@ -31,22 +33,29 @@ function ajaxSearchMem(pageNum,memSearch,keyword){
 				var getStartPageNum=$(this).find("getStartPageNum").text();
 				var getEndPageNum=$(this).find("getEndPageNum").text();
 				var getTotalPageCount=$(this).find("getTotalPageCount").text();
+				//alert("getPageNum:"+getPageNum);
+				//alert("getTotalRowCount:"+getTotalRowCount);
+				//alert("getRowBlockCount:"+getRowBlockCount);
+				//alert("getPageBlockCount:"+getPageBlockCount);
+				//alert("getStartPageNum:"+getStartPageNum);
+				//alert("getTotalPageCount : "+getTotalPageCount);
+				//alert("getEndPageNum : "+getEndPageNum);
 				var html2="";
 				html2+="<div id='contact' class='container'>";
 				html2+="<div class='col-md-12'>";
 				html2+="<div class='row'>";
 				html2+="<div class='col-sm-4'>";
-				if(getStartPageNum>5){//이전
+				if(Number(getStartPageNum)>5){//이전
 					alert("1getStartPageNum: "+getStartPageNum);
 					alert("1getEndPageNum: "+getEndPageNum);
 					alert("1getTotalPageCount: "+getTotalPageCount);
-					html2+="<a href='javascript:ajaxSearchMem("+(getStartPageNum-1)+",\""+memSearch+"\",\""+keyword+"\")' class='pasing'>prev&nbsp;</a>";
+					html2+="<a href='javascript:ajaxSearchMem("+(Number(getStartPageNum)-1)+",\""+memSearch+"\",\""+keyword+"\")' class='pasing'>prev&nbsp;</a>";
 				}else{
 					html2+="prev&nbsp;";
 				}
 				html2+="</div>";
 				html2+="<div class='col-sm-4'>";
-				for(var i=getStartPageNum;i<=getEndPageNum;i++){//페이징
+				for(var i=Number(getStartPageNum);i<=Number(getEndPageNum);i++){//페이징
 					if(i==getPageNum){
 						html2+="<a href='javascript:ajaxSearchMem("+i+",\""+memSearch+"\",\""+keyword+"\")' class='pasing'><span style='color:blue'>&nbsp;"+i+"&nbsp;</span></a>";
 					}else{
@@ -55,8 +64,10 @@ function ajaxSearchMem(pageNum,memSearch,keyword){
 				}
 				html2+="</div>";
 				html2+="<div class='col-sm-4'>";
-				if(getEndPageNum<getTotalPageCount){//다음
-					html2+="<a href='javascript:ajaxSearchMem("+i+",\""+memSearch+"\",\""+keyword+"\")' class='pasing'>next&nbsp;</a>";
+				//alert("ㅠㅠㅠㅠ/:"+getEndPageNum+","+getTotalPageCount);
+				if(Number(getEndPageNum)<Number(getTotalPageCount)){//다음
+					//alert("다음?");
+					html2+="<a href='javascript:ajaxSearchMem("+(Number(getEndPageNum)+1)+",\""+memSearch+"\",\""+keyword+"\")' class='pasing'>next&nbsp;</a>";
 				}else{
 					html2+="next&nbsp;";
 				}
@@ -427,7 +438,7 @@ $(document).ready(function(){
 </script>
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-	<h3 class="text-center">Member Insert</h3>
+	<h3 class="text-center">Register for Courses</h3>
 	<p class="text-center">
 		<em>Welcome to our family !!</em>
 	</p>

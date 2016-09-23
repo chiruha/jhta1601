@@ -611,9 +611,12 @@
 	</select>
 	<!-- member검색페이징처리(검색글의 갯수) -->
 	<select id="getMemSearchCount" parameterType="hashmap" resultType="int">
-		select count(mem_num) cnt from member where ${memSearch} like '%' || #{keyword} || '%'
+		select count(mem_num) cnt from member 
+			where 
+		<if test="memSearch!=null">
+			${memSearch} like '%' || #{keyword} || '%'
+		</if>
 	</select>
- 
 	
 	<!--////////// notice 공지사항  - 작성자 : 김재원 //////////-->
 	

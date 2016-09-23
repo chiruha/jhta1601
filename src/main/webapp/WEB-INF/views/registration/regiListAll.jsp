@@ -6,7 +6,7 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<h3 class="text-center">수강등록정보</h3>
-<h5 class="text-right"><a href="<c:url value='/regiSelect'/>">전체보기</a></h5>
+	<h5 class="text-right"><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">전체보기</a></h5>
 <div class="row">
 	<div class="col-md-12">
 	<table  class="table th" >

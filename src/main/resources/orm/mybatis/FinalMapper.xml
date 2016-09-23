@@ -278,8 +278,7 @@
 		</if>
 	</select>
 	<select id="trdetail" parameterType="int" resultType="fitness.dto.TrainerDto">
-		select * from trainer 
-		where tr_num=#{value}
+		select * from trainer where tr_num=#{value}
 	</select>
 		<select id="trdetail2" parameterType="int" resultType="fitness.dto.TrainerDto">
 		select * from trainer where stf_num=#{value}
@@ -469,7 +468,7 @@
 <!--////////// 수강등록 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 1.insert - registration(기본정보등록) table -->
 	<insert id="regiInsert" parameterType="fitness.dto.RegistrationDto">
-		insert into registration values(regi_seq.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price})
+		insert into registration values(regi_seq.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price},sysdate)
 	</insert>
 	<!-- (insert)2.registration 테이블의 rg_num의 큰번호 받아오기 -->
 	<select id="rgNum" resultType="int">
@@ -611,9 +610,12 @@
 	</select>
 	<!-- member검색페이징처리(검색글의 갯수) -->
 	<select id="getMemSearchCount" parameterType="hashmap" resultType="int">
-		select count(mem_num) cnt from member where ${memSearch} like '%' || #{keyword} || '%'
+		select count(mem_num) cnt from member 
+			where 
+		<if test="memSearch!=null">
+			${memSearch} like '%' || #{keyword} || '%'
+		</if>
 	</select>
- 
 	
 	<!--////////// notice 공지사항  - 작성자 : 김재원 //////////-->
 	
@@ -944,6 +946,73 @@
 	<update id="fbrep" parameterType="fitness.dto.FreeboardDto">
 		update freeboard set fb_step=#{fb_step}+1 where fb_ref=#{fb_ref} and fb_step>#{fb_step}
 	</update>	
+<!--////////// 지점별 월매출 - 작성자 : 이성진 //////////-->	
+	<!-- 지점별 월(month) 매출(수입)현황 select해와서 월수입 테이블에 insert하기 -->
+	<!-- 
+		<select id="centerSalesSelectAll" parameterType="hashmap" resultType="fitness.dto.SalesSelectDto">
+		select * from(
+			select aa.*, rownum rnum from(
+				select * from(
+					select m.mem_num, m.ct_code, r.rg_num, r.rg_price, r.locker_price, r.wear_price, r.rg_type, r.signdate
+					from member m, registration r
+					where m.mem_num=r.mem_num
+				)where ct_code=#{ct_code} 
+				<if test="income_month!=null">
+					and incomemonth between #{signdate} and to_char(last_day(#{signdate}))
+				</if>
+				order by r.signdate desc)
+			)aa
+		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+		
+	 -->
+	 <!-- 
+	 <select id="centerSalesSelectAll" parameterType="hashmap" resultType="fitness.dto.SalesSelectDto">
+		select * from(
+			select m.mem_num, m.ct_code, r.rg_num, r.rg_price, r.locker_price, r.wear_price, r.rg_type, r.signdate
+			from member m, registration r
+			where m.mem_num=r.mem_num
+		)where ct_code=#{ct_code} 
+		<if test="income_month!=null">
+			and incomemonth between #{signdate} and to_char(last_day(#{signdate}))
+		</if>
+		order by r.signdate desc)
+	</select>
+	 
+	  -->
+	<select id="centerSalesSelectAll" parameterType="hashmap" resultType="fitness.dto.SalesSelectDto">
+		select * from(
+			select m.mem_num, m.ct_code, r.rg_num, r.rg_price, r.locker_price, r.wear_price, r.rg_type, r.signdate
+			from member m, registration r
+			where m.mem_num=r.mem_num
+		)where 
+		<if test="centerList!=null">
+			ct_code=#{centerList}
+		</if> 
+		<if test="searchMonth!=null">
+			and signdate between #{searchMonth} and to_char(last_day(#{searchMonth}))
+		</if>
+		order by signdate desc
+	</select>
+	<!-- 지점별 매출 등록하기(insert) -->
+	<insert id="centerInsert" parameterType="fitness.dto.IncomeDto">
+		insert into income values(income_seq.nextval,#{ct_code},#{tot_rg},#{tot_locker},#{tot_wear},#{tot_income},#{income_startdate})
+	</insert>
+	<!-- 지점별 수입 뽑아오기 -->
+	<select id="centerIncomeSelect" parameterType="hashmap" resultType="fitness.dto.IncomeDto">
+		select * from income
+		where 
+		<if test="centerList!=null">
+			ct_code=#{centerList}
+		</if> 
+		<if test="searchMonth!=null">
+			and income_startdate between #{searchMonth} and to_char(last_day(#{searchMonth}))
+		</if>
+		order by income_startdate desc
+	</select>
 	
+	<!-- 회사 매출현황(수입-월급) -->
+	
+		
 	
 </mapper>

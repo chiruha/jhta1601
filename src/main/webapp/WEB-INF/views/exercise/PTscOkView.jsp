@@ -12,21 +12,7 @@ $(document).ready(function() {
 });
 </script>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
- 
-<br>
-<br>
+
 <h1>PT승인대기</h1>
 <table border="1" style="width:700px">
     <caption><a href="<c:url value='/'/>">게시판</a></caption>

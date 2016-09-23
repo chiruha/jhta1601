@@ -37,8 +37,6 @@ public class PtregisterController {
 	@Autowired
 	private RegistrationService regiservice;
 	@Autowired
-	private StaffService staffservice;
-	@Autowired
 	private gxregisterService gxservice;
 
 	@RequestMapping(value = "/ptrinsert", method = RequestMethod.GET)

@@ -348,12 +348,15 @@ CREATE SEQUENCE PTR_SEQ;
 
 COMMIT;
 
+alter table gx_register rename column ct_code to ct_name;
+alter table gx_register modify (ct_name varchar2(20));
+alter table gx_register rename column mom09 to mon09;
 create table gx_register
 (
 	gx_num number(5) primary key, --회원등록넘버
 	tr_num number(5) , --트레이너 정보
-	ct_code number(5)	, --지점코드 FK
-	mom09 varchar2(20), -- 월요일 09시
+	ct_name varchar2(20)	, --지점코드 FK
+	mon09 varchar2(20), -- 월요일 09시
 	tue09 varchar2(20), -- 화요일 09시
 	wed09 varchar2(20), -- 수요일 09시
 	thu09 varchar2(20), -- 목요일 09시

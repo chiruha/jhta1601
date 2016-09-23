@@ -1,22 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div id="PosInsert">
-<h1>직급등록 페이지</h1>
-<form action="posinsert" method="post" >
- 직급코드 <input type="text" name="pos_code"><br>  <!--  유효성 검사 하기  -->
- 직급이름 <input type="text" name="pos_name"><br>
- 부서코드 <select name="dept_code">
-	<c:forEach var="dlist"  items="${deptlist}">
-		<option value="${dlist.dept_code }">${dlist.dept_name}</option>	
-	</c:forEach>	
-</select><br>
- 
 
-<input type="submit" value="등록">
-<input type="reset" value="취소">
-</form>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">Position Insert</h3>
 
+	<div class="row">
+		<div class="col-md-3"></div>
 
+		<div class="col-md-6">
+			<form action="posinsert" method="post" >
 
+			<div class="row">
+						<div class="col-sm-3 form-group"></div>
+						<div class="col-sm-3 form-group">
+						<span class="glyphicon glyphicon-home"> Dept</span>
+						</div>
+						<div class="col-sm-3 form-group">
+						 <select name="dept_code" class="select form-control">
+						 	<c:forEach var="dlist"  items="${deptlist}">
+									<option value="${dlist.dept_code }">${dlist.dept_name}</option>	
+							</c:forEach>	
+						</select>
+					</div>
+					</div>
+				<div class="row">
+				<div class="col-sm-3 form-group"></div>
+					<div class="col-sm-6 form-group">
+						<input class="form-control" placeholder="Position Code" type="text"
+							required name="pos_code" class="required"> 
+							<span class="addmsg"></span>
+					</div>
+					</div>
+					<div class="row">
+					<div class="col-sm-3 form-group"></div>
+					<div class="col-sm-6 form-group">
+						<input class="form-control" placeholder="Position Name" type="tel"
+							required name="pos_name" class="required"> 
+							<span class="addmsg"></span>
+					</div>
+				</div>
+				<br>
+		<div class="row">
+			<div class="col-sm-3 form-group"></div>
+				<div class="col-sm-3 form-group">
+				<button class="btn pull-left" id="btn" type="submit">
+				<span class="glyphicon glyphicon-ok"></span> Ok </button>
+				</div>
+					<div class="col-sm-3 form-group">
+				<button class="btn pull-right" id="btn" type="reset">
+				<span class="glyphicon glyphicon-remove"></span>  Cancle </button>
+				</div>
+		</div>
+			</form>
+		</div>
+	</div>
+	<br>
 </div>

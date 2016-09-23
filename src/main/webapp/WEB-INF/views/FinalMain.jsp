@@ -17,6 +17,8 @@
 		<li><a href="<c:url value='/PTscOkView'/>">PT강사승인페이지</a></li>
 		<li><a href="<c:url value='/MemPTscOkView'/>">회원승인페이지</a></li>
 		
+		<li><a href="<c:url value='centertotalsalesInsert'/>">지점별 월매출 계산하기(이성진-미완)</a></li>
+		<li><a href="<c:url value='incomeInsert'/>">지점별 월수입 계산하기(이성진-완성)</a></li>
 		<li><a href="<c:url value='eventInsert'/>">Event 게시판 등록하기(이성진)</a></li>
 		<li><a href="<c:url value='eventSelectAll'/>">Event 게시판 전체목록보기(이성진)</a></li>
 		<li><a href="<c:url value='/qnaselectAll'/>">QnA 게시판 (이성진)</a></li>

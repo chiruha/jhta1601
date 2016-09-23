@@ -1229,3 +1229,4 @@ insert into stf_att values(satt_seq.nextval, 	TO_DATE('2016/05/31 07:00:40', 'yy
 
 update stf_att set work_time=round((out_date-in_date)*24); 
 commit;
+

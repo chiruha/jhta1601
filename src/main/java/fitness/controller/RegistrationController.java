@@ -1,5 +1,6 @@
 package fitness.controller;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -66,8 +67,8 @@ public class RegistrationController {
 		System.out.println("pt_name: "+pt_name);
 		System.out.println("pro_name: "+pro_name);
 		
-		RegistrationDto dto1=new RegistrationDto(0, mem_num, rg_type, rg_price, locker_price, wear_price);
-		
+		RegistrationDto dto1=new RegistrationDto(0, mem_num, rg_type, rg_price, locker_price, wear_price,null);
+	
 		try{
 			System.out.println("regi컨트롤러: "+dto1.toString());
 			service.regiInsert(dto1);//registration테이블에 insert
@@ -110,15 +111,10 @@ public class RegistrationController {
 	}
 	//----------| 수강등록회원 전체보기(selectList)(테이블명: registration,prosign,ptsign) |----------//
 	@RequestMapping("/regiSelect")
-	public ModelAndView regiSelect(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session,
-			@RequestParam(value="mem_num",defaultValue="0") int mem_num){
-		System.out.println("mnum : "+mem_num);
+	public ModelAndView regiSelect(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session){
 		int totalRowCount=service.getCountRegi();
 		PageUtil pu=new PageUtil(pageNum, totalRowCount,10,5);//한페이지10줄, 페이재갯수5개
 		HashMap<String, Integer> map=new HashMap<String, Integer>();
-		if(mem_num>0){
-			map.put("mnum", mem_num);			
-		}
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		List<RegistrationDto> list=service.regiListAll(map);
@@ -269,7 +265,7 @@ public class RegistrationController {
 		System.out.println("pt_name: "+pt_name);
 		System.out.println("pro_name: "+pro_name);
 		
-		RegistrationDto dto1=new RegistrationDto(0, mem_num, rg_type, rg_price, locker_price, wear_price);
+		RegistrationDto dto1=new RegistrationDto(0, mem_num, rg_type, rg_price, locker_price, wear_price,null);
 		try{
 			System.out.println("수정하기regi컨트롤러: "+dto1.toString());
 			int uu=service.regiInsert(dto1);//registration테이블에 insert

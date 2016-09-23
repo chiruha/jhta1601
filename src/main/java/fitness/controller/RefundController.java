@@ -40,6 +40,10 @@ public class RefundController {
 	@RequestMapping(value="/refundDay",method= RequestMethod.GET)
 	public String refundDay(HttpSession session,HttpServletRequest request){
 		System.out.println("refundDayµµÂø");
+		List<CenterDto> ctlist = cts.listService();
+		session.setAttribute("ctlist", ctlist);
+		System.out.println(ctlist);
+		
 		
 		/*
 		int mem_num= (Integer) session.getAttribute("mnum");
@@ -198,7 +202,8 @@ public class RefundController {
 			 jo.put("rg_numlist", dto.getRg_numlist());
 			 jo.put("rf_left", dto.getRf_left().toString());
 			 jo.put("ptrefund", dto.getPtrefund());
-			 jo.put("gxrefund", dto.getGxrefund());			 
+			 jo.put("gxrefund", dto.getGxrefund());
+			 jo.put("ct_code", dto.getCt_code());
 			 tot.add(jo);
 		 }	
 		 	System.out.println("tot.toString():"+tot.toString());

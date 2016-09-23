@@ -121,7 +121,7 @@
 					</select><br><br>
 			강사선택 <select name="st_code" id="st_code">
 					<c:forEach var="slist"  items="${stlist}">
-						<option value="${slist.stf_num }">${slist.stf_name}</option>	
+						<option value="${slist.tr_num }">${slist.stf_name}</option>	
 					</c:forEach>	
 					</select><br><br>	
 					

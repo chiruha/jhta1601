@@ -65,7 +65,7 @@ function memList(mem_num){
 						 html += "<td><input type='button' value='선택' id='btnSelectMemNum' onclick='memList("+data.arr[i].mem_num+")'></td>";
 						 html += "</tr>";				 
 						}
-						
+						<%--
 					 	html += "<tr><td>"+
 					 	"<c:choose>	<c:when test='${pu.startPageNum>5 }'>"+
 					 	"<a href='${pu.startPageNum-1}' class='pasing'>prev&nbsp;</a></c:when><c:otherwise>"+
@@ -82,7 +82,7 @@ function memList(mem_num){
 							"</c:when><c:otherwise>	&nbsp;next</c:otherwise></c:choose></div>"
 							+"</td></tr>";	 	
 					 	
-					 	
+					 	--%>
 						$("#memberNum").css("display", "");
 					
 					}

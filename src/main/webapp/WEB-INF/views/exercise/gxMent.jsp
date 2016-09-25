@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-	<h1>gx스케줄러</h1>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">Group Exercise Schedule</h3>
+	<div class="row">
+	<div class="col-md-12">
 	<form name="form" action="gxMent" method="post">	
-	<table border="1" style="width:600px">
-    <caption><a href="<c:url value='/?test=goboot'/>">게시판</a></caption>
+	<table border="1" class="table th">
     <colgroup>
         <col width='12.5%' />
         <col width='12.5%' />
@@ -312,11 +315,16 @@
                 </select>        		
 	       </tr>
     </tbody>
-	</table>
-		 <input type="submit" value="보내기" >	
- 	</form>
-<br>
-<br>
+			</table>
+	<div class="col-sm-12">
+				<button class="btn pull-right" id="btn" type="submit">
+				<span class="glyphicon glyphicon-ok"></span>  Save </button><br>
+			</div>
+			</form>
+</div>
+</div>
+</div>
+
 
  
  

@@ -124,23 +124,10 @@
 </table>
 </div>
 </div>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-<div class="container">
+  
 <div class="row">
 <div class="col-md-5">
-<input type='text' id='datepicker' size='13' name='start_date' placeholder='근무시작일 선택' class='input-sm'>
+<input type='text' id='datepicker' size='15' name='start_date' placeholder='근무시작일 선택' class='input-sm'>
 <span id="emsg"></span>
 </div>
 </div>

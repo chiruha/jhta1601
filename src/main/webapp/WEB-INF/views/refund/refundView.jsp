@@ -18,10 +18,17 @@ var class_by_name = $('[name="test_name"]').attr('class');
 */
 function memList(mem_num){	
 	$("#attachMemNum").val(mem_num);
+	
+	$(".pasing").click(function(event) {
+		//alert($(this).attr("href"));
+		event.preventDefault();
+		$("#pageNum").val($(this).attr("href"));
+		nameSearch();
+	});
 }
 	///// ------------------------번호찾아오기--------------------------------------------------
 	$(function function_name(argument) {
-		$(".nameSearch").click(function name() {
+		$(".nameSearch").click(function nameSearch() {
 			var refundname = $("[name='refundname']").val();
 			
 			if(refundname == "" || refundname == null || refundname == undefined) {
@@ -49,14 +56,33 @@ function memList(mem_num){
 						html = "<tr><td colspan=\"4\" style=\"text-align:center;\">검색된 자료가 없습니다.</td></tr>";
 						
 					} else {
-					for(var i=0; i<data.length;i++){
+					for(var i=0; i<data.arr.length;i++){
 						 html += "<tr>";
-						 html += "<td>"+data[i].mem_num+"</td>";            
-						 html += "<td>"+data[i].mem_name+"</td>";
-						 html += "<td>"+data[i].mem_phone+"</td>";						                
-						 html += "<td><input type='button' value='선택' id='btnSelectMemNum' onclick='memList("+data[i].mem_num+")'></td>";
+						 html += "<td>"+data.arr[i].mem_num+"</td>";            
+						 html += "<td>"+data.arr[i].mem_name+"</td>";
+						 html += "<td>"+data.arr[i].mem_phone+"</td>";
+						 html += "<td>"+data.arr[i].ct_name+"</td>";	
+						 html += "<td><input type='button' value='선택' id='btnSelectMemNum' onclick='memList("+data.arr[i].mem_num+")'></td>";
 						 html += "</tr>";				 
 						}
+						<%--
+					 	html += "<tr><td>"+
+					 	"<c:choose>	<c:when test='${pu.startPageNum>5 }'>"+
+					 	"<a href='${pu.startPageNum-1}' class='pasing'>prev&nbsp;</a></c:when><c:otherwise>"+
+						"prev&nbsp;	</c:otherwise></c:choose>"+
+						"<c:forEach var='i' begin='"+data.page.startPageNum-1+"' end='${pu.endPageNum }'>"+
+							"<c:choose><c:when test='${i==pu.pageNum }'>"+
+									"<a href='${i }' class='pasing'>"+
+									"<span style='color:blue'>${i }</span></a>"+
+								"</c:when><c:otherwise><a href='${i }' class='pasing'>"+
+									"<span style='color:#555'>${i }</span></a>"+
+								"</c:otherwise>	</c:choose></c:forEach>"+						
+							"<c:choose><c:when test='${pu.endPageNum<pu.totalPageCount}'>"+
+								"<a href='${pu.endPageNum+1 }' class='pasing'> &nbsp;next</a>"+
+							"</c:when><c:otherwise>	&nbsp;next</c:otherwise></c:choose></div>"
+							+"</td></tr>";	 	
+					 	
+					 	--%>
 						$("#memberNum").css("display", "");
 					
 					}
@@ -280,22 +306,30 @@ function memList(mem_num){
 	<table id="resultNameSearch" style='width:600px; border:1px solid black; display: none;' >
 			<caption><a href='/fitness'>홈</a></caption>
 			<colgroup>
-		        <col width='25%' />
-		        <col width='25%' />
-		        <col width='25%' />
-		        <col width='25%' />
+		        <col width='20%' />
+		        <col width='20%' />
+		        <col width='20%' />
+		        <col width='20%' />
+		        <col width='20%' />
 		    	</colgroup>
 		    	<thead>
 	        <tr>
 		        <th>번호</th> 
 		        <th>이름</th>
 		        <th>전화번호</th>						        
+		        <th>지점</th>
 		        <th>선택</th>						                    
 	        </tr>
 	   		</thead>
 	   		<tbody>	 
-	    	</tbody>
+	    	</tbody>	    	
 	</table>
+
+
+
+		
+		
+	
 	
 
 <br><br>

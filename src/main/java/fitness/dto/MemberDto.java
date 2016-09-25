@@ -14,8 +14,26 @@ public class MemberDto {
 	private Date regdate;
 	private String mem_picture;
 	private int ct_code;
+	private String ct_name;
 	
 	public MemberDto() {}
+
+	public MemberDto(int mem_num, String mem_name, String mem_phone, String mem_addr, String mem_email, int mem_age,
+			String mem_gen, String mem_birth, Date regdate, String mem_picture, int ct_code, String ct_name) {
+		super();
+		this.mem_num = mem_num;
+		this.mem_name = mem_name;
+		this.mem_phone = mem_phone;
+		this.mem_addr = mem_addr;
+		this.mem_email = mem_email;
+		this.mem_age = mem_age;
+		this.mem_gen = mem_gen;
+		this.mem_birth = mem_birth;
+		this.regdate = regdate;
+		this.mem_picture = mem_picture;
+		this.ct_code = ct_code;
+		this.ct_name = ct_name;
+	}
 
 	public MemberDto(int mem_num, String mem_name, String mem_phone, String mem_addr, String mem_email, int mem_age,
 			String mem_gen, String mem_birth, Date regdate, String mem_picture, int ct_code) {
@@ -31,6 +49,14 @@ public class MemberDto {
 		this.regdate = regdate;
 		this.mem_picture = mem_picture;
 		this.ct_code = ct_code;
+	}
+
+	public String getCt_name() {
+		return ct_name;
+	}
+
+	public void setCt_name(String ct_name) {
+		this.ct_name = ct_name;
 	}
 
 	public int getMem_num() {

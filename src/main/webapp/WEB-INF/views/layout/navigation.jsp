@@ -86,7 +86,9 @@
                 <li><a href="<c:url value='/deptinsert'/>">Add Dept </a></li>
              	<li><a href="<c:url value='/ctinsert'/>">Add Center</a></li>
                 <li><a href="<c:url value='/payinsert'/>">Payment</a></li>
+               <%--
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
+                --%>
           </ul>		
           <!-- Staff Trainer dropdown 메뉴 -->
           <li class="dropdown">

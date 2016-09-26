@@ -12,7 +12,12 @@ import fitness.dto.PtregisterDto;
 
 import fitness.dto.RegistrationDto;
 
+
+
+import fitness.dto.RegistrationDto;
+
 import fitness.dto.PtrMemDto;
+
 
 
 

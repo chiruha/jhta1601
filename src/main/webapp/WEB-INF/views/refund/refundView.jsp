@@ -51,9 +51,9 @@ function memList(mem_num){
 					$("#resultTableday tbody tr").remove();	
 					$("#resultTable tbody tr").remove();					
 					var html = "";
-					if(data.length == 0) {						
+					if(data.arr.length == 0) {						
 						$("#memberNum").remove();
-						html = "<tr><td colspan=\"4\" style=\"text-align:center;\">검색된 자료가 없습니다.</td></tr>";
+						html = "<tr><td colspan=\"5\" style=\"text-align:center;\">검색된 자료가 없습니다.</td></tr>";
 						
 					} else {
 					for(var i=0; i<data.arr.length;i++){

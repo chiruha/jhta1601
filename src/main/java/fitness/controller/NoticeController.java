@@ -33,12 +33,13 @@ public class NoticeController {
 		try{
 			System.out.println(dto);
 			service.insert(dto);
-			return ".notice.NocSuccess";
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			return ".notice.NocError";
+			session.setAttribute("result", "공지 글 추가 완료!");
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+				session.setAttribute("result", "공지 글 추가 실패!");
+			}
+			return ".staff.ResultView";
 		}
-	}
 	//검색 기능 포함한 목록보기
 	@RequestMapping("/noclist")
 	public String selectAll(@RequestParam(value="pageNum",defaultValue="1") int pageNum, HttpSession session,
@@ -87,14 +88,15 @@ public class NoticeController {
 		}
 	//글 삭제하기 딜리트
 	@RequestMapping("/nocDelete")
-	public String nocDelete(int nt_num){
+	public String nocDelete(int nt_num, HttpSession session){
 		try{
 			service.NocDelete(nt_num);
-			return ".notice.NocSuccess";
+			session.setAttribute("result", "공지 글 삭제 완료!");
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".notice.NocError";
+			session.setAttribute("result", "공지 글 삭제 실패!");
 		}
+		return ".staff.ResultView";
 	}
 	//글 수정하기 업데이트"nocUpdate?nt_num=${dto.nt_num }"
 	@RequestMapping(value="/nocUpdate", method= RequestMethod.GET) 
@@ -109,14 +111,12 @@ public class NoticeController {
         try{
         	System.out.println(dto.toString());
         	service.NocUpdate(dto);
-    		session.setAttribute("dto", dto); 
-    		return ".notice.NocSuccess";     
-        }catch(Exception e){ 				
-        	System.out.println(e.getMessage()); 
-        	return ".notice.NocError"; 
-        }
-		
-	
-	}
+    		session.setAttribute("result", "공지 글 수정 완료!");
+    		}catch(Exception e){
+    			System.out.println(e.getMessage());
+    			session.setAttribute("result", "공지 글 수정 실패!");
+    		}
+    		return ".staff.ResultView";
+    	}
 }
 

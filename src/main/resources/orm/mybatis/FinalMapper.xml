@@ -157,7 +157,7 @@
 		where aa.mem_num=m.mem_num
 	</select>
 	
-	<select id="ptrmemlistAll" parameterType="hashmap" resultType="fitness.dto.ptrMemDto">
+	<select id="ptrmemlistAll" parameterType="hashmap" resultType="fitness.dto.PtrMemDto">
 		select ptr_initdate, ptr_time, ptr_count, ptr_ok, mem_name, stf_name from 
 			(select aa.*,pt.ptr_initdate, pt.ptr_time, pt.ptr_count, pt.ptr_ok,  pt.tr_num  from pt_register pt,
 			    (select mem_name, rg_num from member m, registration r where m.mem_num=r.mem_num and m.mem_num=#{mem_num})aa

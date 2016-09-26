@@ -18,13 +18,13 @@ import fitness.dto.PtregisterDto;
 import fitness.dto.RegistrationDto;
 import fitness.dto.StaffDto;
 import fitness.dto.TrainerDto;
-import fitness.dto.ptrMemDto;
+import fitness.dto.PtrMemDto;
 import fitness.service.CenterService;
 import fitness.service.PtregisterService;
 import fitness.service.RegistrationService;
 import fitness.service.StaffService;
 import fitness.service.TrainerService;
-import fitness.service.gxregisterService;
+import fitness.service.GxregisterService;
 
 @Controller
 public class PtregisterController {
@@ -37,7 +37,7 @@ public class PtregisterController {
 	@Autowired
 	private RegistrationService regiservice;
 	@Autowired
-	private gxregisterService gxservice;
+	private GxregisterService gxservice;
 
 	@RequestMapping(value = "/ptrinsert", method = RequestMethod.GET)
 	public String insert(HttpSession session) {
@@ -59,7 +59,7 @@ public class PtregisterController {
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", mnum);
-		List<ptrMemDto> list = service.ptmemOkService(map);
+		List<PtrMemDto> list = service.ptmemOkService(map);
 		System.out.println("map" + map);
 
 		session.setAttribute("list", list);

@@ -22,7 +22,7 @@ import fitness.dto.MemberDto;
 import fitness.dto.RefundDayImpleDto;
 import fitness.dto.RefundDto;
 import fitness.dto.RegistrationDto;
-import fitness.dto.ptrMemDto;
+import fitness.dto.PtrMemDto;
 import fitness.service.CenterService;
 import fitness.service.MemberService;
 import fitness.service.RefundDayService;

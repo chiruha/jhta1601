@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import fitness.dto.SalesSelectDto;
 
 @Repository
-public class centerSalesSelectDao {
+public class CenterSalesSelectDao {
 	@Autowired private SqlSession sqlSession;
 	private final String NAMESPACE="orm.mybatis.FinalMapper";
 	//------------------|지점별 월매출 검색하기(테이블명: member&registration join해서)|------------------//

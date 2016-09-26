@@ -19,12 +19,12 @@ import fitness.dto.GxregisterDto;
 import fitness.dto.GxsubjectDto;
 import fitness.service.CenterService;
 
-import fitness.service.gxregisterService;
+import fitness.service.GxregisterService;
 
 
 @Controller
 public class GxController {
-	@Autowired private gxregisterService service;
+	@Autowired private GxregisterService service;
 	@Autowired private CenterService cts;
 	
 	

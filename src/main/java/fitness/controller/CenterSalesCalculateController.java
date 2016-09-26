@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import fitness.dto.CenterDto;
 import fitness.dto.SalesSelectDto;
 import fitness.service.CenterService;
-import fitness.service.centerSalesSelectService;
+import fitness.service.CenterSalesSelectService;
 
 @Controller
 public class CenterSalesCalculateController {
-	@Autowired private centerSalesSelectService service;
+	@Autowired private CenterSalesSelectService service;
 	@Autowired private CenterService centerservice;//지점목록 뽑아오기
 	//--------------------| 지점 매출계산하기 페이지로 가기 |--------------------//
 	@RequestMapping(value="/incomeInsert",method=RequestMethod.GET)

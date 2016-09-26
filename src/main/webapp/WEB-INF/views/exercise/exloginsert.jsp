@@ -2,11 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>board6</title>
+
 <script>
 function fn_formSubmit(){
 	var form1 = document.form1;
@@ -29,8 +25,8 @@ function fn_formSubmit(){
 	document.form1.submit();	
 } 
 </script>
-</head>
-<body>
+
+
 	<form name="form1" action="board6Save" method="post" enctype="multipart/form-data">
 		<table border="1" style="width:600px">
 			<caption>게시판</caption>
@@ -68,5 +64,3 @@ function fn_formSubmit(){
 		<input type="hidden" name="brdno" value="<c:out value="${boardInfo.brdno}"/>"> 
 		<a href="#" onclick="fn_formSubmit()">저장</a>
 	</form>	
-</body>
-</html> 

@@ -24,7 +24,7 @@ import fitness.service.PtregisterService;
 import fitness.service.RegistrationService;
 import fitness.service.StaffService;
 import fitness.service.TrainerService;
-import fitness.service.gxregisterService;
+import fitness.service.GxregisterService;
 
 @Controller
 public class PtregisterController {
@@ -37,7 +37,7 @@ public class PtregisterController {
 	@Autowired
 	private RegistrationService regiservice;
 	@Autowired
-	private gxregisterService gxservice;
+	private GxregisterService gxservice;
 
 	@RequestMapping(value = "/ptrinsert", method = RequestMethod.GET)
 	public String insert(HttpSession session) {

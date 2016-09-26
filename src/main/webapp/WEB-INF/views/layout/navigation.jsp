@@ -38,7 +38,7 @@
             <li><a href="<c:url value='/noclist'/>">Notice</a></li>
             <li><a href="<c:url value='/qnaselectAll'/>">QnA</a></li>
             <li><a href="<c:url value='/eventSelectAll'/>">Event</a></li>
-            <li><a href="<c:url value='#'/>">FreeBoard</a></li>
+            <li><a href="<c:url value='/fblist'/>">FreeBoard</a></li>
           </ul>
         </li>
 
@@ -70,7 +70,7 @@
 			<c:when test="${not empty sessionScope.snum}">
 			<!-- Staff Manager dropdown 메뉴 -->
         	<li class="dropdown">
-         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manager
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
          	 <span class="caret"></span></a>
         	  <ul class="dropdown-menu">
         	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">Attendance</a></li>
@@ -93,10 +93,10 @@
          	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trainer
          	 <span class="caret"></span></a>
         	  <ul class="dropdown-menu">
-        	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">Attendance</a></li>
 				<li><a href="<c:url value='/trlist'/>">Trainer List</a></li>
             	<li><a href="<c:url value='/mlistAll'/>">Matt List</a></li>
             	<li><a href="<c:url value='/PTscOkView'/>">PT Confirm</a></li>
+            	<li><a href="<c:url value='/exloginsert'/>">PT Diary</a></li>
 				<li><a href="<c:url value='/gxinsert'/>">Add  Schedule</a></li>
           </ul>		
 			</c:when>

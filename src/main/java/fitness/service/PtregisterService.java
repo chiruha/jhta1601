@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import fitness.dao.PtregisterDao;
 import fitness.dto.GxsubjectDto;
 import fitness.dto.PtregisterDto;
-import fitness.dto.ptrMemDto;
+import fitness.dto.PtrMemDto;
 
 
 
@@ -26,7 +26,7 @@ public class PtregisterService {
 	public List<PtregisterDto>  ptOkService(HashMap<String, Object> map){
 		return ptregisterDao.list(map);
 	}
-	public List<ptrMemDto>  ptmemOkService(HashMap<String, Object> map){
+	public List<PtrMemDto>  ptmemOkService(HashMap<String, Object> map){
 		return ptregisterDao.memlist(map);
 	}
 	

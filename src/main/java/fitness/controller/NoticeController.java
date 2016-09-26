@@ -94,7 +94,7 @@ public class NoticeController {
 			session.setAttribute("result", "공지 글 삭제 완료!");
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			session.setAttribute("result", "공지 글 삭제 실패!");
+			session.setAttribute("result", "공지 글 삭제 실패!!");
 		}
 		return ".staff.ResultView";
 	}

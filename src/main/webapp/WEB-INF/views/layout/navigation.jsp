@@ -120,10 +120,11 @@
 		</c:choose>
 
           
-    
+		<c:if test="${not empty sessionScope.snum}">
            <!-- sitemap  메뉴 -->
           <li><a href="<c:url value='/?test=goboot'/>">SiteMap</a></li>
-        
+		</c:if>
+
       </ul>
    
    

@@ -40,8 +40,8 @@
 							type:"post",
 							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code+"&tr_num="+tr_num,							
 							success:function function_name(data) {
-								//alert(data);
-								if(data.ptr_num!=0){
+								alert(data);
+								if(data.ptr_num!=0 && data != 9999){
 								var str =
 									
 								"<div class='row'><div class='col-sm-3'></div>"+
@@ -58,9 +58,12 @@
 							
 								//alert(str); 
 								 $("#result").html(str);	
+								}else if(data==9999){
+									$("#result").html("등록센터가서 등록해주세요.");
 								}else{
 									$("#result").html("이미 PT 신청하셨습니다.");
 								}
+								
 								 
 							}			  				
 							
@@ -129,7 +132,7 @@
 					</select><br><br>
 			<label for="st_code"> Trainer </label> <select name="st_code" id="st_code" class="select input-sm">
 					<c:forEach var="slist"  items="${stlist}">
-						<option value="${slist.stf_num }">${slist.stf_name}</option>	
+						<option value="${slist.tr_num }">${slist.stf_name}</option>	
 					</c:forEach>	
 					</select><br><br>	
 					

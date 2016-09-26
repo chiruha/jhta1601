@@ -174,6 +174,7 @@ public class RefundController {
 		}
 		*/
 		refundservice.regiInsert(refundto);	
+		System.out.println("refundto:"+refundto);
 		
 		List<RefundDto> refundlist = refundservice.refundlist();
 		 JSONArray tot = new JSONArray();

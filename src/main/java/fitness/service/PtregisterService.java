@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import fitness.dao.PtregisterDao;
 import fitness.dto.GxsubjectDto;
 import fitness.dto.PtregisterDto;
+import fitness.dto.RegistrationDto;
 import fitness.dto.ptrMemDto;
 
 
@@ -43,14 +44,17 @@ public class PtregisterService {
 	public PtregisterDto ptr_numinfo(int tr_num){		
 		return ptregisterDao.ptr_numinfo(tr_num);
 	}
-	public int ptrcount(int rg_num){
+	public Integer ptrcount(int rg_num){
 		return ptregisterDao.ptrcount(rg_num);
 	}
 	public int ptDelete(int ptr_num){
 		return ptregisterDao.ptDelete(ptr_num);
 	}
-	public PtregisterDto ptr_rg_numinfo(String rg_num){
+	public List<PtregisterDto> ptr_rg_numinfo(String rg_num){
 		return ptregisterDao.ptr_rg_numinfo(rg_num);
+	}
+	public RegistrationDto regi_info(int mnum){
+		return ptregisterDao.regi_info(mnum);
 	}
 	
 }

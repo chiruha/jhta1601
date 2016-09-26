@@ -114,30 +114,35 @@ public class PtregisterController {
 		int mnum= (Integer) session.getAttribute("mnum");
 		System.out.println("mnum"+mnum);
 		System.out.println("dto"+dto);
-		
-	//	System.out.println("mem_num"+session.getAttribute("mnum"));
-		//멤버 정보 추출
-		/* 첫번째 방법 hashmap, 두번쨰 방법 List 셋번째 방법  오라클 쿼리 조작
-		List<RegistrationDto> list = regiservice.ptRe();
-		int n=0;
-		for(int i=0; i<list.size(); i++){
 			
-			if(list.get(i).getRg_type().equals("PT")){
-				n=list.get(i).getRg_num();
-			}
-		}
-		System.out.println(n);
-		*/
-		int rg_num=regiservice.ptRe(mnum).getRg_num(); //두가지 정보를 받아서 처리해야한다.		
+		
+		int rg_num = service.regi_info(mnum).getRg_num(); //두가지 정보를 받아서 처리해야한다.		
 		System.out.println("rg_num:"+rg_num);		
 		dto.setRg_num(rg_num);		
 		
-		int ptr_count=service.ptrcount(rg_num);
+		Integer ptr_count=service.ptrcount(rg_num);
+		dto.setPtr_count(ptr_count);
+		if(ptr_count==null){
+			System.out.println("값이 0임");
+			int n=9999;
+			
+			return n;
+			
+		}
+		service.insert(dto);
+		List<PtregisterDto> ptrlist=service.ptr_rg_numinfo(Integer.toString(rg_num));
+		String ptr_ok =null;
+		for(int i=0; i<ptrlist.size(); i++){
+			 ptr_ok =ptrlist.get(i).getPtr_ok();
+		}
+		
 		System.out.println("ptr_count:"+ptr_count);		
 		dto.setPtr_count(ptr_count);		
-		System.out.println("dto.getPtr_ok()"+dto.getPtr_ok());		
+		System.out.println("ptr_ok:"+ptr_ok);		
 		
-		if(dto.getRg_num()==rg_num){
+		System.out.println("dto.getRg_num():"+dto.getRg_num()+"|"+"rg_num:"+rg_num);
+		
+		if(dto.getRg_num()!=rg_num){
 			service.insert(dto);	
 			System.out.println("dto결과"+dto);
 			  
@@ -153,7 +158,7 @@ public class PtregisterController {
 			}			
 				return   ptrdto;
 				
-		}else if(dto.getPtr_ok().equals("승인취소")){
+		}else if(ptr_ok.equals("승인취소")){
 			System.out.println("승인 삭제");
 			int ptr_num = dto.getPtr_num();
 			service.ptDelete(ptr_num);
@@ -178,8 +183,9 @@ public class PtregisterController {
 				return   ptrdto;	
 				
 		}else{
-			System.out.println("똑같은 값이 있음");			
-			  
+			System.out.println("똑같은 값이 있음");
+			int maxnum=service.ptmaxNum();
+			service.ptDelete(maxnum);
 			PtregisterDto ptrdto = new PtregisterDto();
 			try{				
 				System.out.println("ptrdto"+ptrdto);			  

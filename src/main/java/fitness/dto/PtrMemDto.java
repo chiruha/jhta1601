@@ -1,6 +1,6 @@
 package fitness.dto;
 
-public class ptrMemDto {
+public class PtrMemDto {
 	private String ptr_initdate;
 	private String ptr_time;
 	private int ptr_count;
@@ -8,9 +8,9 @@ public class ptrMemDto {
 	private String mem_name;
 	private String stf_name;
 	
-	public ptrMemDto() {}
+	public PtrMemDto() {}
 
-	public ptrMemDto(String ptr_initdate, String ptr_time, int ptr_count, String ptr_ok, String mem_name,
+	public PtrMemDto(String ptr_initdate, String ptr_time, int ptr_count, String ptr_ok, String mem_name,
 			String stf_name) {
 		super();
 		this.ptr_initdate = ptr_initdate;

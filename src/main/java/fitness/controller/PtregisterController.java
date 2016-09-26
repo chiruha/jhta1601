@@ -18,7 +18,7 @@ import fitness.dto.PtregisterDto;
 import fitness.dto.RegistrationDto;
 import fitness.dto.StaffDto;
 import fitness.dto.TrainerDto;
-import fitness.dto.ptrMemDto;
+import fitness.dto.PtrMemDto;
 import fitness.service.CenterService;
 import fitness.service.PtregisterService;
 import fitness.service.RegistrationService;
@@ -59,7 +59,7 @@ public class PtregisterController {
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", mnum);
-		List<ptrMemDto> list = service.ptmemOkService(map);
+		List<PtrMemDto> list = service.ptmemOkService(map);
 		System.out.println("map" + map);
 
 		session.setAttribute("list", list);

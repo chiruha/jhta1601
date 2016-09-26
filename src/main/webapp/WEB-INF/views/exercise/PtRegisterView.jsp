@@ -32,7 +32,8 @@
 					var ptr_initdate=$("#pdate").val();
 					var ptr_time=$("#time").val();
 					var ct_code=$("#ct_code").val();
-					var tr_num=$("#st_code").val();				
+					var tr_num=$("#st_code").val();	
+					alert(tr_num);
 					$("#dlg").dialog("close");
 					$.ajax({
 							url:"/fitness/ptrinsert",
@@ -61,7 +62,7 @@
 								}else if(data==9999){
 									$("#result").html("등록센터가서 등록해주세요.");
 								}else{
-									$("#result").html("이미 PT 신청하셨습니다.");
+									$("#result").html("<h3 class='text-center'>이미 PT 신청하셨습니다.</h3>");
 								}
 								
 								 

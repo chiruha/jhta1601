@@ -142,7 +142,7 @@ public class PtregisterController {
 		
 		System.out.println("dto.getRg_num():"+dto.getRg_num()+"|"+"rg_num:"+rg_num);
 		
-		if(dto.getRg_num()!=rg_num){
+		if(dto.getRg_num()==rg_num){
 			service.insert(dto);	
 			System.out.println("dto°á°ú"+dto);
 			  

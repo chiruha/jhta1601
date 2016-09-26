@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 import fitness.dao.PtregisterDao;
 import fitness.dto.GxsubjectDto;
 import fitness.dto.PtregisterDto;
-<<<<<<< HEAD
+
 import fitness.dto.RegistrationDto;
-import fitness.dto.ptrMemDto;
-=======
+
+
 
 import fitness.dto.RegistrationDto;
 
 import fitness.dto.PtrMemDto;
->>>>>>> 5f854db239df1aa9d85386e2740f4f6ee6e37ecf
+
 
 
 

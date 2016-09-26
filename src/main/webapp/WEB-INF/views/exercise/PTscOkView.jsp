@@ -12,17 +12,12 @@ $(document).ready(function() {
 });
 </script>
 
-
-<h1>PT승인대기</h1>
-<table border="1" style="width:700px">
-    <caption><a href="<c:url value='/'/>">게시판</a></caption>
-    <colgroup>
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />
-        <col width='20%' />       
-    </colgroup>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h4 class="text-center">PT승인대기</h4>
+	<div class="row">
+	<div class="col-md-12">
+<table border="1" class="table">   
     <thead>
         <tr>
         	<th>회원이름</th>
@@ -58,20 +53,15 @@ $(document).ready(function() {
         </c:forEach>
     </tbody>
 </table>	
- 
-<br>
+ </div>
+ </div>
 <br>
 
-<h1>PT승인완료</h1>
-<table border="1" style="width:600px">
-    <caption><a href="<c:url value='/'/>">게시판</a></caption>
-    <colgroup>
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />       
-    </colgroup>
+	<h4 class="text-center">PT승인완료</h4>
+	<div class="row">
+	<div class="col-md-12">
+<table border="1" class="table">   
+   
     <thead>
         <tr>
         	<th>회원이름</th>
@@ -97,21 +87,13 @@ $(document).ready(function() {
         </c:forEach>
     </tbody>
 </table>	
- 
 <br>
-<br>
+</div></div>
 
-
-<h1>PT승인취소</h1>
-<table border="1" style="width:600px">
-    <caption><a href="<c:url value='/'/>">게시판</a></caption>
-    <colgroup>
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />
-        <col width='10%' />       
-    </colgroup>
+	<h4 class="text-center">PT승인취소</h4>
+	<div class="row">
+	<div class="col-md-12">
+<table border="1" class="table">   
     <thead>
         <tr>
         	<th>회원이름</th>
@@ -137,94 +119,12 @@ $(document).ready(function() {
         </c:forEach>
     </tbody>
 </table>	
- 
-<br>
-<br>
+ </div></div></div>
 
 
 
 
-	
-	
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-	<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 	
 	
 	

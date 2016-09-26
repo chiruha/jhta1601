@@ -287,6 +287,17 @@ function memList(mem_num){
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<h3 class="text-center">Refund List</h3>
+<<<<<<< HEAD
+<!-- <form name="form" action="refundlist" method="post" onsubmit="javascript:return false;"> -->
+<div class="row">
+<div class="col-md-4"></div>
+	<div class="col-md-6">
+<input type="text" id="refundname" name="refundname" class="input-sm" placeholder="이름검색">
+	<button class="btn-link" id="nameSearch" type="submit">
+	<span class="glyphicon glyphicon-search"></span> 조회 </button>
+	</div>
+	
+=======
 	<!-- <form name="form" action="refundlist" method="post" onsubmit="javascript:return false;"> -->
 	<div class="row">
 		<div class="col-md-4"></div>
@@ -297,6 +308,7 @@ function memList(mem_num){
 				<span class="glyphicon glyphicon-search"></span> 조회
 			</button>
 		</div>
+>>>>>>> 0b63a82d8db9f98647e4f9f8ea6a126d26b9209b
 	</div>
 	<!-- </form> -->
 	<br>

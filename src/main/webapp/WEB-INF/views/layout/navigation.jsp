@@ -12,8 +12,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<c:url value='/'/>">Fitness
-		
+      <a  href="<c:url value='/'/>">
+		 <img src="resources/img/fitimg/Logo.png" alt="Fitness" height="60">
 	</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">

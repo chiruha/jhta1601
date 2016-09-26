@@ -28,7 +28,7 @@ function memList(mem_num){
 }
 	///// ------------------------번호찾아오기--------------------------------------------------
 	$(function function_name(argument) {
-		$(".nameSearch").click(function nameSearch() {
+		$("#nameSearch").click(function nameSearch() {
 			var refundname = $("[name='refundname']").val();
 			
 			if(refundname == "" || refundname == null || refundname == undefined) {
@@ -288,17 +288,15 @@ function memList(mem_num){
 <div id="contact" class="container">
 	<h3 class="text-center">Refund List</h3>
 <!-- <form name="form" action="refundlist" method="post" onsubmit="javascript:return false;"> -->
-<div class="form-group has-success has-feedback">
-<div class="input-group">
-    <span class="input-group-addon">@</span>
-    <input type="text" class="form-control" id="inputGroupSuccess1"  placeholder="검색 조건을 선택하세요"
-    aria-describedby="inputGroupSuccess1Status">
-  </div>
-  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-</div>
-	이름검색 :　<input type="text" id="refundname" name="refundname" >
-	<input type="button" value="조회" class="nameSearch">
+<div class="row">
+<div class="col-md-4"></div>
+	<div class="col-md-6">
+<input type="text" id="refundname" name="refundname" class="input-sm" placeholder="이름검색">
+	<button class="btn-link" id="btn" type="submit">
+	<span class="glyphicon glyphicon-search"></span> 조회 </button>
+	</div>
+	
+	</div>
 <!-- </form> -->
 <br>
 

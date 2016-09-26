@@ -10,6 +10,7 @@
 <h1>main page</h1>
 <img src="resources/img/f1.jpg"><br>
 	<ul>
+		<li><a href="<c:url value='/exloginsert'/>">운동일지</a></li>
 		<li><a href="<c:url value='/refundDay'/>">환불</a></li>
 		<li><a href="<c:url value='/ptrinsert'/>">PT 예약</a></li>
 		<li><a href="<c:url value='/gxinsert'/>">GX일정입력</a></li>		

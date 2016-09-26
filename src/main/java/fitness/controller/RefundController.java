@@ -205,18 +205,19 @@ public class RefundController {
 		 for(RefundDto dto:refundlist){
 			 System.out.println("refundlist:"+refundlist);
 			 JSONObject jo=new JSONObject();
-			 jo.put("rf_num", dto.getRf_num());
-			 jo.put("rg_numlist", dto.getRg_numlist());
-			 jo.put("rf_left", dto.getRf_left().toString());
-			 jo.put("ptrefund", dto.getPtrefund());
-			 jo.put("gxrefund", dto.getGxrefund());
+			 jo.put("refund_num", dto.getRefund_num());
+			 jo.put("mem_num", dto.getMem_num());
+			 jo.put("refund_date", dto.getRefund_date());
+			 jo.put("rg_num", dto.getRg_num());
 			 jo.put("ct_code", dto.getCt_code());
+			 jo.put("rg_type", dto.getRg_type());
+			 jo.put("refund_price", dto.getRefund_price());
 			 tot.add(jo);
 		 }	
 		 	System.out.println("tot.toString():"+tot.toString());
 			return tot.toString();
-	}*/
-	
+	}
+	*/
 }
 
 

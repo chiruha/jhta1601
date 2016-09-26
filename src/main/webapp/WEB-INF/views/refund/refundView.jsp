@@ -51,9 +51,9 @@ function memList(mem_num){
 					$("#resultTableday tbody tr").remove();	
 					$("#resultTable tbody tr").remove();					
 					var html = "";
-					if(data.length == 0) {						
+					if(data.arr.length == 0) {						
 						$("#memberNum").remove();
-						html = "<tr><td colspan=\"4\" style=\"text-align:center;\">검색된 자료가 없습니다.</td></tr>";
+						html = "<tr><td colspan=\"5\" style=\"text-align:center;\">검색된 자료가 없습니다.</td></tr>";
 						
 					} else {
 					for(var i=0; i<data.arr.length;i++){
@@ -292,7 +292,7 @@ function memList(mem_num){
 <div class="col-md-4"></div>
 	<div class="col-md-6">
 <input type="text" id="refundname" name="refundname" class="input-sm" placeholder="이름검색">
-	<button class="btn-link" id="btn" type="submit">
+	<button class="btn-link" id="nameSearch" type="submit">
 	<span class="glyphicon glyphicon-search"></span> 조회 </button>
 	</div>
 	

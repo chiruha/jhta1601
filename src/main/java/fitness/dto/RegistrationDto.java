@@ -11,6 +11,31 @@ public class RegistrationDto {
 	private int locker_price;//락카가격
 	private int wear_price;//운동복가격
 	private Date signdate;//등록일
+	
+	private String ct_code;//지점코드(환불에서 사용)
+	
+	public String getCt_code() {
+		return ct_code;
+	}
+
+	public void setCt_code(String ct_code) {
+		this.ct_code = ct_code;
+	}
+
+	public RegistrationDto(int rg_num, int mem_num, String mem_name, String rg_type, int rg_price, int locker_price,
+			int wear_price, Date signdate, String ct_code) {
+		super();
+		this.rg_num = rg_num;
+		this.mem_num = mem_num;
+		this.mem_name = mem_name;
+		this.rg_type = rg_type;
+		this.rg_price = rg_price;
+		this.locker_price = locker_price;
+		this.wear_price = wear_price;
+		this.signdate = signdate;
+		this.ct_code = ct_code;
+	}
+
 	public RegistrationDto() {}
 	
 	public RegistrationDto(int rg_num, int mem_num, String rg_type, int rg_price, int locker_price, int wear_price,

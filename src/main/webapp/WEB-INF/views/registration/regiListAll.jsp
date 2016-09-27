@@ -6,7 +6,7 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<h3 class="text-center">수강등록정보</h3>
-	<h5 class="text-right"><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">전체보기</a></h5>
+	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> <a href="<c:url value='/regiSelect?mnum=${mnum}'/>"> 전체보기</a></h5>
 <div class="row">
 	<div class="col-md-12">
 	<table  class="table th" >
@@ -54,8 +54,33 @@
 <br>
 </div>
 </div>
-
-
+<!-- 수강 등록정보 검색하기 
+	1.첫번째 selectBox : 검색조건(회원이름/등록유형/지점명)
+	2.두번째 selectBox : Ajax로 받아와서 뿌려주기(등록유형/지점명)
+	3.inputBox : 회원이름 검색하는 공간
+-->
+<form action="regiSearchList">
+<div class="row">
+<div class="col-sm-9">
+<span class="glyphicon glyphicon-search"> </span> 검색하기
+	<select class="select input-sm" name="regiSearch">
+		<option value="default">--검색조건--</option>
+		<option value="mem_name">회원이름</option>
+		<option value="rg_type">등록유형</option>
+		<option value="ct_code">지점명</option>
+	</select>
+	<select class="select input-sm" name="keywordSelect">
+		<option value="default">--선택--</option>
+	</select>
+	<input class="input-sm" type="text" name="keywordMemName">
+	</div>
+	<div class="col-sm">
+	<button class="btn pull-right" id="btn" type="submit">
+		<span class="glyphicon glyphicon-search"> search </span>
+	</button>
+	</div>
+</div>
+</form>
 <!-- 페이징처리 -->
 	<div class="row">
 		<div class="text-center">

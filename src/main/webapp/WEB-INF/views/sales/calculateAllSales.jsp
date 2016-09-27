@@ -27,6 +27,7 @@ function ajaxSearchCenter(centerList,searchMonth){
 	 			"<td rowspan='2'>지점번호</td>"+
 	 			"<td colspan='4'>한 달 가격</th>"+
 	 			"<td rowspan='2'>계산시작일</td>"+
+	 			"<td rowspan='2'>선택</td>"+
 	 		"</tr>"+
 	 		"<tr>"+
 	 			"<td>프로그램가격</td>"+
@@ -55,6 +56,7 @@ function ajaxSearchCenter(centerList,searchMonth){
 								"<td>"+tot_wear+"</td>"+
 								"<td>"+tot_income+"</td>"+
 								"<td>"+income_startdate+"</td>"+
+								"<td><input type='radio' onclick='selectIncome("+ct_code+",\""+income_startdate+"\",\""+tot_income+"\")'></td>"+
 						"</tr>";
 					alert("tot_rg: "+tot_rg);
 				}
@@ -92,6 +94,18 @@ function ajaxSearchCenter(centerList,searchMonth){
 		}		
 	});
 }
+function selectIncome(ct_code,income_startdate,tot_income){
+	alert("계산시작일: "+income_startdate);
+	alert("수입 지점코드: "+ct_code);
+	alert("지점 한달 총 수입 : "+tot_income);
+	$("#ct_num").val(ct_code);
+	$("#cts_income").val(tot_income);
+	$("#cts_date").val(income_startdate);
+	$("#ct_num1").val(ct_code);
+	$("#cts_income1").val(tot_income);
+	$("#cts_date1").val(income_startdate);
+
+}
 ////----------------------------------------|refund|----------------------------------------////
 var centerList1="";
 var searchMonth1="";
@@ -102,49 +116,54 @@ function ajaxSearchRefund(centerList1,searchMonth1){
 		data:"centerList1="+centerList1+"&searchMonth1="+searchMonth1,
 		success:function(data){
 			alert("데이타 가져오자");
-			var div=document.getElementById("CenterRefundList");
-			alert("div: "+div);
-			div.innerHTML="";
-			var html="";
-			html+=
+			var div2=document.getElementById("CenterRefundList");
+			alert("div2: "+div2);
+			div2.innerHTML="";
+			var html2="";
+			html2 +=
 			"<div class='col-md-12'>"+
 			"<table name='inFrm' class='table th' width='1000'>"+
 			"<tr>"+
 				"<td>환불번호</td>"+
 	 			"<td>지점번호</td>"+
-	 			"<td>회원</th>"+
+	 			"<td>회원번호</th>"+
+	 			"<td>등록유형</th>"+
 	 			"<td>환불금액</td>"+
-	 			"<td>계산시작일</td>"+
+	 			"<td>환불날짜</td>"+
+	 			"<td>선택</td>"+
 		 	"</tr>";
 			var ctcode1;
 			$(data).find("result").each(function(){
-				alert("ctctctct");
-				var len=$(this).find("getIncome_num").length;
+				alert("22222222222222222");
+				var len=$(this).find("getCt_code").length;
 				alert("length: "+len);
 				for(var i=0;i<len;i++){
-					var income_num=$(this).find("getIncome_num").text();
+					var refund_num=$(this).find("getRefund_num").text();
+					var mem_num=$(this).find("getMem_num").text();
+					var refund_date=$(this).find("getRefund_date").text();
 					var ct_code=$(this).find("getCt_code").text();
-					var tot_rg=$(this).find("getTot_rg").text();
-					var tot_locker=$(this).find("getTot_locker").text();
-					var tot_wear=$(this).find("getTot_wear").text();
-					html+="<tr>"+
-								"<td>"+income_num+"</td>"+
+					var rg_type=$(this).find("getRg_type").text();
+					var refund_price=$(this).find("getRefund_price").text();
+					html2 +="<tr>"+
+								"<td>"+refund_num+"</td>"+
 								"<td>"+ct_code+"</td>"+
-								"<td>"+tot_rg+"</td>"+
-								"<td>"+tot_locker+"</td>"+
-								"<td>"+tot_wear+"</td>"+
+								"<td>"+mem_num+"</td>"+
+								"<td>"+rg_type+"</td>"+
+								"<td>"+refund_price+"</td>"+
+								"<td>"+refund_date+"</td>"+
+								"<td><input type='checkbox' onclick='selectRefund("+ct_code+","+len+",\""+Number(refund_price)+"\")'></td>"+
 						"</tr>";
-					alert("tot_rg: "+tot_rg);
+					alert("ct_code22222: "+ct_code);
 				}
 			});
-			html += "</table>";
-			html += "</div>";
+			html2 += "</table>";
+			html2 += "</div>";
 			//alert("html:"+html);
 			//$("#ctcode1").attr("value",ctcode1);
-			var incomeInfo=document.createElement("div");
+			var refundInfo=document.createElement("div2");
 			//alert("salesInfo: "+salesInfo);
-			incomeInfo.innerHTML=html;
-			div.appendChild(incomeInfo);
+			refundInfo.innerHTML=html2;
+			div2.appendChild(refundInfo);
 			
 			//$(data).find("sum").each(function(){
 			//	alert("가격계산???????????");
@@ -169,6 +188,16 @@ function ajaxSearchRefund(centerList1,searchMonth1){
 			//});
 		}		
 	});
+}
+var totRefund=0;
+function selectRefund(ct_code,len,refund_price){
+	alert("환불 ctcode : "+ct_code);
+	alert("환불 행의 갯수 : "+len);
+	alert("환불 가격 : "+refund_price);
+	totRefund += parseInt(refund_price);
+	alert("총 환불액 : "+totRefund);
+	$("#cts_refund").val(totRefund);
+	$("#cts_refund1").val(totRefund);
 }
 $(document).ready(function(){
 	alert("welcome!!");
@@ -192,6 +221,7 @@ $(document).ready(function(){
 		searchMonth=$("#searchMonth").val();
 		ajaxSearchCenter(centerList,searchMonth);//센터검색/month검색 ajax호출하기
 	});
+	
 //--------------------|refund|--------------------//
 	$.ajax({
 		url:"/fitness/salesCenterList/xml",
@@ -211,6 +241,15 @@ $(document).ready(function(){
 		searchMonth1=$("#searchMonth1").val();
 		ajaxSearchRefund(centerList1,searchMonth1);//센터검색/month검색 ajax호출하기
 	});
+//--------------------| 수입-지출 |--------------------//	
+	$("#btn").click(function(){
+		var income=$("#cts_income").val();
+		var refund=$("#cts_refund").val();
+		var cts_totsales=Number(income)-Number(refund);
+		
+		$("#cts_totsales").val(cts_totsales);
+		$("#cts_totsales1").val(cts_totsales);
+	});
 });
 
 </script>
@@ -224,9 +263,12 @@ $(document).ready(function(){
 	create table centertotalsales(
 		cts_num number(5) primary key,
 		ct_num number(5),
-		cts_totsales number
+		cts_income number,
+		cts_refund number,
+		cts_totsales number,
+		cts_date date
 	);
-	create sequence cts_num.seq;
+	create sequence ctsnum_seq;
  -->
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
@@ -265,9 +307,11 @@ $(document).ready(function(){
 </div>
 <!-- 1. Income 내용을 div에 뿌린다. -->
 <div id="CenterIncomeList"></div>
+
+
 <!-- 1. Refund 검색기능 : select 박스 2개 : 지점선택,날짜선택 -->
 <div class="col-md-12">
-	<!-- 지점검색하기!!! -->
+	<!-- 환불지점검색하기!!! -->
 	<div class="row">
 		<div class="col-sm-4"> 
 			<p >
@@ -293,9 +337,74 @@ $(document).ready(function(){
 <!-- 1. Refund 내용을 div에 뿌린다. -->
 <div id="CenterRefundList"></div>
 <!-- 페이징 맨 나중에...-->
-<form name="frm" method="post" action="totalSalesInsert" onsubmit="return validator();">
-<!-- 환불 총합 구하기 -->
 
-<!-- 한달 총 매출 = 수입 - 환불 -->
+<!-- 월매출 총합 구하기 -->
+<form name="frm" method="post" action="totalSalesInsert" onsubmit="return validator();">
+<!-- 회원번호를 select해서 input="text"에 집어넣기!! -->
+<div class="col-md-12">
+	<p >
+		<span class="glyphicon glyphicon-pencil"></span> Calculate Total Sales = Income - Refund
+	</p>
+<table class="table th" width="1000">
+	<tr>
+		<th>계산기준일</th>
+		<td colspan="2">
+			<div class="col-sm-12 form-group"> 
+				<input type="text" class="form-control" disabled="disabled" id="cts_date"><input type="hidden" name="cts_date" id="cts_date1">
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<th>지점번호</th>
+		<td colspan="2">
+			<div class="col-sm-12 form-group"> 
+				<input type="text" class="form-control" disabled="disabled" id="ct_num"><input type="hidden" name="ct_code" id="ct_num1">
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<th>월 수입</th>
+		<td colspan="2">
+			<div class="col-sm-12 form-group"> 
+				<input type="text" class="form-control" disabled="disabled" id="cts_income"><input type="hidden" name="cts_income" id="cts_income1">
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<th>월 환불액</th>
+		<td colspan="2">
+			<div class="col-sm-12 form-group"> 
+				<input type="text" class="form-control" disabled="disabled" id="cts_refund"><input type="hidden" name="cts_refund" id="cts_refund1">
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<th>총 월매출</th>
+		<td>
+			<div class="col-sm-6">
+				<button class="btn-default btn-xs" id="btn" type="button">
+				<span class="glyphicon glyphicon-usd"></span>  Calculate </button>
+			</div>
+		
+			<div class="col-sm-6 form-group"> 
+				<input type="text" class="form-control" disabled="disabled" id="cts_totsales"><input type="hidden" name="cts_totsales" id="cts_totsales1">
+			</div>
+		</td>
+	</tr>
+</table>
+
+	<div class="row">
+		<div class="col-md-6">
+			<button class="btn pull-right" type="submit">
+			<span class="glyphicon glyphicon-ok"></span>  지점별 총 월매출 등록 </button>
+		</div>
+		<div class="col-md-6">
+			<button class="btn pull-left"type="reset">
+			<span class="glyphicon glyphicon-remove"></span>  취소 </button>
+		</div>
+	</div>
+	
+</div>
+
 </form>	
 </div>

@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div id="contact" class="container">
+	<h3 class="text-center">Event게시판</h3>
+	<h5 class="text-right"><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">전체보기</a></h5>
+<div class="row">
+	<div class="col-md-12">
 
-<h1>이벤트 게시판</h1>
 <c:choose>
 	<c:when test="${not empty sessionScope.snum }"><!-- 직원인경우 -->
-			<a href="<c:url value='/eventInsert'/>">글쓰기</a>
+			<span class="glyphicon glyphicon-pencil"></span><a href="<c:url value='/eventInsert'/>">글쓰기</a>
 	</c:when>
 </c:choose>
 <input type="hidden" value="${selectNew.ev_num }">
@@ -41,7 +45,7 @@
 </table>
 <br>
 <!-- /////////////// 댓글 쓰기 /////////////// -->
-<h1>댓글쓰기</h1>
+<h5 class="text-left">댓글쓰기</h5>
 <!-- 유효성테스트: 비회원인 경우 로그인하라는 alert창 뜨게 하기!!! -->
 <form method="post" action="EventCommentsInsert">
 	<%--  부모글에 대한 정보를 hidden으로 서버에 전송--%>
@@ -250,8 +254,8 @@ $(document).ready(function(){
 <div id="answerList"></div>
 <div id="answerPaging"></div>
 <br>
+<h5 class="text-left"><span class="glyphicon glyphicon-align-justify"></span> 이벤트글 목록</h5>
 
-<h1>이벤트글 목록</h1>
 <table border="1" class='table-bordered' width="1000">
 	<tr>
 		<th>이벤트번호</th>
@@ -280,3 +284,6 @@ $(document).ready(function(){
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
+</div>
+</div>
+</div>

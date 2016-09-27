@@ -1010,9 +1010,102 @@
 		</if>
 		order by income_startdate desc
 	</select>
+	<!-- 환불할 회원 검색하기 -->
+	<select id="memRegiRefundSearch" parameterType="hashmap" resultType="fitness.dto.RegistrationDto">
+		select * from(
+			select aa. *, rownum rnum from(
+			select * from registration
+				where 
+				<if test="memSearch!=null">
+					${memSearch} like '%' || #{keyword} || '%'
+					order by rg_num desc
+				</if>
+			)aa
+		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		
+	</select>
+	<!-- 환불할 회원 검색한 List 페이징처리(글의 갯수 구하기) -->
+	<select id="memRegiRefundSearchCount" parameterType="hashmap" resultType="int">
+		select count(rg_num) cnt from registration
+			where 
+		<if test="memSearch!=null">
+			${memSearch} like '%' || #{keyword} || '%'
+		</if>
+	</select>
+	<!-- 환불할 회원 등록지점정보 뽑아오기(table member) -->
+	<select id="regiRefundCenter" parameterType="hashmap" resultType="fitness.dto.MemberDto">
+		select * from member where mem_num=#{mem_num}
+	</select>
+	<!-- 환불할 회원이 '단과과목'을 선택한 경우, 선택 '과목'정보 뽑아오기 -->
+	<select id="simpleSelect" parameterType="hashmap" resultType="fitness.dto.ProsignDto">
+		select * from(
+			select s.rg_num, s.mem_num, s.pro_name, s.pro_code, p.pro_signmonth,p.pro_regdate,p.pro_expiration
+			from prosign s, properiod p
+			where s.rg_num=p.rg_num
+		)where rg_num=#{rg_num}
+	</select>
+	<!-- 환불할 회원이 '단과과목'을 선택한 경우, 선택 '가격'정보 뽑아오기 -->
+	<select id="simplePriceSelect" parameterType="hashmap" resultType="fitness.dto.ProgramPriceDto">
+		select ps.pro_code, pr.pro_price from prosign ps, programprice pr where ps.pro_code=pr.pro_code and ps.rg_num=#{rg_num}
+	</select> 
 	
-	<!-- 회사 매출현황(수입-월급) -->
+	<!-- 환불할 회원이 'PT과목'을 선택한 경우, 선택'과목'정보 뽑아오기 -->
+	<select id="ptSelect" parameterType="hashmap" resultType="fitness.dto.PtsignDto">
+		select * from(
+			select ps.rg_num, ps.mem_num, ps.pt_name, ps.ptr_count, ps.pt_code, p.pt_signmonth,p.ptr_initdate,p.pt_expiration 
+			from ptsign ps, ptperiod p
+			where ps.rg_num=p.rg_num
+		)where rg_num=#{rg_num}
+	</select>
+	<!-- 환불할 회원이 'PT과목'을 선택한 경우, 선택 '가격'정보 뽑아오기 -->
+	<select id="ptPriceSelect" parameterType="hashmap" resultType="fitness.dto.PtPriceDto">
+		select ps.pt_code, pr.pt_price from ptsign ps, ptprice pr where ps.pt_code=pr.pt_code and ps.rg_num=#{rg_num}
+	</select>
+	<!-- 단과과목 총 수업일(환불날짜) 계산하기 -->
+	<select id="calculateSimpleOneday" resultType="int" parameterType="hashmap">
+		select trunc(pro_expiration-pro_regdate) cnt from properiod where rg_num=#{rg_num}
+	</select>
+	<!-- PT과목 총 수업일(환불날짜) 계산하기 -->
+	<select id="calculatePtOneday" resultType="int" parameterType="hashmap">
+		select trunc(pt_expiration-ptr_initdate) cnt from ptperiod where rg_num=#{rg_num}
+	</select>
+	<!-- 단과 총 잔여일 계산 만기일-오늘 -->
+	<select id="calculateSimpleRemnant" resultType="int" parameterType="hashmap">
+		select trunc(pro_expiration-sysdate) remnant from properiod where rg_num=#{rg_num}
+	</select>
+	<!-- PT 총 잔여일 계산 만기일-오늘 -->
+	<select id="calculatePtRemnant" resultType="int" parameterType="hashmap">
+		select trunc(pt_expiration-sysdate) remnant from ptperiod where rg_num=#{rg_num}
+	</select>
+	<!-- 환불계산하기 -->
+	<insert id="refundSeongjinInsert" parameterType="fitness.dto.RefundSeongjinDto">
+		insert into refundseongjin values(refundseongjin_seq.nextval,#{mem_num},sysdate,#{rg_num},#{ct_code},#{rg_type},#{refund_price})
+	</insert>
+	<!-- 지점별 월(month) 환불 내역 뽑아오기 -->
+	<select id="centerrefundselect" resultType="fitness.dto.RefundSeongjinDto" parameterType="hashmap">
+		select * from refundseongjin 
+		where 
+		<if test="centerList!=null">
+		ct_code=#{centerList}
+		</if>
+		<if test="searchMonth!=null">
+		and refund_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
+		</if>
+	</select>
 	
+	<!-- 지점별 월 매출(수입-환불) -->
+	<insert id="ctsInsert" parameterType="fitness.dto.CenterTotalSalesDto">
+		insert into centertotalsales values(ctsnum_seq.nextval,#{ct_code},#{cts_income},#{cts_refund},#{cts_totsales},#{cts_date})
+	</insert>
+	<!-- 지점별 월 매출 현황(전체목록 받아오기) -->
+	<select id="ctsSelect" parameterType="hashmap" resultType="fitness.dto.CenterTotalSalesDto">
+		select * from centertotalsales
+		where
+		<if test="searchMonth!=null">
+			and cts_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
+		</if>
+		order by ct_code asc
+	</select>
 		
 	
 </mapper>

@@ -4,15 +4,17 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<h3 class="text-center">QnA List</h3>
-	<h5 class="text-right"><a href="<c:url value='/qnaselectAll'/>">전체보기</a></h5>
+	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> <a href="<c:url value='/qnaselectAll'/>">전체보기</a></h5>
 	<div class="row">
 	<div class="col-md-12">
 <c:choose>
 	<c:when test="${not empty sessionScope.mnum }">
-		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+		
+<span class="glyphicon glyphicon-pencil"></span> <a href="<c:url value='/qnainsert'/>">글쓰기</a>
 	</c:when>
 	<c:when test="${not empty sessionScope.snum }">
-		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+		
+<span class="glyphicon glyphicon-pencil"></span> <a href="<c:url value='/qnainsert'/>">글쓰기</a>
 	</c:when>
 </c:choose>
 	
@@ -55,7 +57,8 @@
 
 <form method="post" action="qnaSearch">
 <div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-6">
+		<span class="glyphicon glyphicon-search"> </span> 검색하기
 	<select name="field" class="select input-sm" >
 		<option value="mem_num">글쓴이</option>
 		<option value="qna_title">글제목</option>
@@ -63,7 +66,7 @@
 	</select>
 		<input type="text" placeholder=" 검색어를 입력하세요" class="input-sm"  name="keyword" id="keyword" value="${keyword }">
 </div>
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 				<button class="btn pull-right " id="btn" type="submit">
 				<span class="glyphicon glyphicon-search"></span>  search </button><br>
 		</div>
@@ -72,10 +75,12 @@
 
 <c:choose>
 	<c:when test="${not empty sessionScope.mnum }">
-		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+		
+<span class="glyphicon glyphicon-pencil"></span> <a href="<c:url value='/qnainsert'/>">글쓰기</a>
 	</c:when>
 	<c:when test="${not empty sessionScope.snum }">
-		<a href="<c:url value='/qnainsert'/>">글쓰기</a>
+		
+<span class="glyphicon glyphicon-pencil"></span> <a href="<c:url value='/qnainsert'/>">글쓰기</a>
 	</c:when>
 </c:choose>
 

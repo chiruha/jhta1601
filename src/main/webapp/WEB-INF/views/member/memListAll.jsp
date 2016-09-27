@@ -5,7 +5,7 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<h3 class="text-center">Member List</h3>
-	<h5 class="text-right"><a href="<c:url value='/memselectAll'/>">전체보기</a></h5>
+	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span><a href="<c:url value='/memselectAll'/>"> 전체보기</a></h5>
 	<div class="row">
 	<div class="col-md-12">
 	
@@ -31,9 +31,11 @@
 </div>
 	
 <!-- 회원검색하기 : 회원검색 후 -> 프로그램등록(registration) -->
-	<form action="memSearchList">
+
+<form action="memSearchList">
 <div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-6">
+<span class="glyphicon glyphicon-search"> </span> 회원검색
 			<select class="select input-sm" name="memSearch">
 		<option value="mem_num">회원번호</option>
 		<option value="mem_name">회원이름</option>
@@ -41,7 +43,7 @@
 	</select>
 	<input type="text" placeholder=" 검색어를 입력하세요" class="input-sm"  name="keyword" id="keyword" value="${keyword }">
 </div>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 				<button class="btn pull-right " id="btn" type="submit">
 				<span class="glyphicon glyphicon-search"></span>  search </button><br>
 		</div>
@@ -53,10 +55,10 @@
 <!-- 페이징 |이전| -->
 <c:choose>
 	<c:when test="${pu.startPageNum>5 }">
-		<a href="memselectAll?pageNum=${pu.startPageNum -1 }">|이전|</a>
+		<a href="memselectAll?pageNum=${pu.startPageNum -1 }"> prev </a>
 	</c:when>
 	<c:otherwise>
-		이전
+		prev
 	</c:otherwise>
 </c:choose>
 <!-- 페이징처리 -->
@@ -73,10 +75,10 @@
 <!-- 페이징 |다음| -->
 <c:choose>
 	<c:when test="${pu.endPageNum<pu.totalPageCount }">
-		<a href="memselectAll?pageNum=${pu.endPageNum +1 }">|다음|</a>
+		<a href="memselectAll?pageNum=${pu.endPageNum +1 }"> next </a>
 	</c:when>
 	<c:otherwise>
-		다음
+		next
 	</c:otherwise>
 </c:choose>
 	</div>

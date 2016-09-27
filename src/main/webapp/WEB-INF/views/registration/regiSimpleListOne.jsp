@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<h1>단과과목 수강정보 상세보기</h1>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">단과과목 수강정보 상세보기</h3>
+	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> <a href="<c:url value='/regiSelect?mnum=${mnum}'/>"> 전체보기</a></h5>
+<div class="row">
 <br>
 등록번호 : ${dto1.rg_num }
 <br>
-<table border="1" width="700">
+<table border="1" class="table th" width="700">
 	<tr>
 		<th>회원번호</th>
 		<td>${dto1.mem_num }</td>
@@ -27,5 +31,6 @@
 		<td>${dto1.pro_expiration }</td>
 	</tr>
 </table>
-<br>
+</div>
+</div>
 

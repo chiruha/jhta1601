@@ -7,7 +7,7 @@
 	2. 월급정보를 받아온다(Ajax) - div에 list로 뿌린다.
 	4. 1-2의 값을 구한다=회사 총매출
 	5. 총 매출 구해서 -> CenterTotalSales 테이블에 insert한다.
-	create table companySales(
+	create table companysales(
 		comsales_num number(5) primary key,
 		center_sales number,
 		staff_payment number,

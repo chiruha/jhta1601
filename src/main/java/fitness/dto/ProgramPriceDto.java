@@ -6,7 +6,7 @@ public class ProgramPriceDto {
 	private String pro_name;//프로그램이름 및 등록개월수
 	private int pro_signmonth;//프로그램 등록개월수
 	private int pro_price;//프로그램가격
-	
+
 	public ProgramPriceDto(){}
 
 	public ProgramPriceDto(int pro_num, String pro_code, String pro_name, int pro_signmonth, int pro_price) {

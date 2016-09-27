@@ -64,33 +64,11 @@ function ajaxSearchCenter(centerList,searchMonth){
 			html += "</table>";
 			html += "</div>";
 			//alert("html:"+html);
-			//$("#ctcode1").attr("value",ctcode1);
 			var incomeInfo=document.createElement("div");
 			//alert("salesInfo: "+salesInfo);
 			incomeInfo.innerHTML=html;
 			div.appendChild(incomeInfo);
 			
-			//$(data).find("sum").each(function(){
-			//	alert("가격계산???????????");
-			//	$("#searchMonth1").empty();
-			//	$("#totProgram").empty();
-			//	$("#totLocker").empty();
-				//$("#totWear").empty();
-				//$("#tot_income").empty();
-				
-				//var searchMonth1=$(this).find("searchMonth").text();
-				//var totProgram=$(this).find("totProgram").text();
-				//var totLocker=$(this).find("totLocker").text();
-				//var totWear=$(this).find("totWear").text();
-				//var tot_income=Number(totProgram)+Number(totLocker)+Number(totWear);
-				//alert("totProgram: "+totProgram);
-				//alert("총합계산 : "+tot_income)
-			//	$("#searchMonth1").attr("value",searchMonth1);
-			//	$("#totProgram").attr("value",totProgram);
-			//	$("#totLocker").attr("value",totLocker);
-			//	$("#totWear").attr("value",totWear);
-			//	$("#tot_income").attr("value",tot_income);
-			//});
 		}		
 	});
 }
@@ -158,34 +136,11 @@ function ajaxSearchRefund(centerList1,searchMonth1){
 			});
 			html2 += "</table>";
 			html2 += "</div>";
-			//alert("html:"+html);
-			//$("#ctcode1").attr("value",ctcode1);
 			var refundInfo=document.createElement("div2");
 			//alert("salesInfo: "+salesInfo);
 			refundInfo.innerHTML=html2;
 			div2.appendChild(refundInfo);
 			
-			//$(data).find("sum").each(function(){
-			//	alert("가격계산???????????");
-			//	$("#searchMonth1").empty();
-			//	$("#totProgram").empty();
-			//	$("#totLocker").empty();
-				//$("#totWear").empty();
-				//$("#tot_income").empty();
-				
-				//var searchMonth1=$(this).find("searchMonth").text();
-				//var totProgram=$(this).find("totProgram").text();
-				//var totLocker=$(this).find("totLocker").text();
-				//var totWear=$(this).find("totWear").text();
-				//var tot_income=Number(totProgram)+Number(totLocker)+Number(totWear);
-				//alert("totProgram: "+totProgram);
-				//alert("총합계산 : "+tot_income)
-			//	$("#searchMonth1").attr("value",searchMonth1);
-			//	$("#totProgram").attr("value",totProgram);
-			//	$("#totLocker").attr("value",totLocker);
-			//	$("#totWear").attr("value",totWear);
-			//	$("#tot_income").attr("value",tot_income);
-			//});
 		}		
 	});
 }

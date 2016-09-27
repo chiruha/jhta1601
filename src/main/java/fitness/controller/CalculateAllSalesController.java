@@ -127,7 +127,7 @@ public class CalculateAllSalesController {
 			return sb.toString();
 		}
 	//--------------------| 지점 매출계산 insert 하기 |--------------------//
-	@RequestMapping(value="/centertotalsalesInsert",method=RequestMethod.POST)
+	@RequestMapping(value="/totalSalesInsert",method=RequestMethod.POST)
 	public String ctsInsert(CenterTotalSalesDto dto,HttpServletRequest req){
 		int ct_code=Integer.parseInt(req.getParameter("ct_code"));
 		int cts_income=Integer.parseInt(req.getParameter("cts_income"));

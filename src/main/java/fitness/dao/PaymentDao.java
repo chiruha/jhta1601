@@ -1,6 +1,7 @@
 package fitness.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,11 @@ public class PaymentDao {
 	}
 	public int insertDao(PaymentDto dto){
 		return sqlSession.insert(NameSpace+".payinsert", dto);
+	}
+	public int payCnt(HashMap<String, Object> map){
+		return   sqlSession.selectOne(NameSpace+".payCnt", map);
+	}
+	public List<PaymentDto> payList(HashMap<String, Object> map){
+		return   sqlSession.selectList(NameSpace+".paylist", map);
 	}
 }

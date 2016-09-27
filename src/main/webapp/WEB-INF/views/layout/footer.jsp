@@ -8,7 +8,7 @@
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
-  <p>Bootstrap Theme Made By <a href="http://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
+  <p>Welcome to our FITNESS Homepage!! <a href="<c:url value='/'/>" data-toggle="tooltip" title="Visit FITNESS Center"></a></p>
 </footer>
 
 <script>

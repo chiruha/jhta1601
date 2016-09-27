@@ -9,7 +9,7 @@ var name_by_id = $('#test_id').attr('name');
 var class_by_id = $('#test_id').attr('class');
  
 //class로 접근하여 가져오기
-var name_by_class = $('.test_class').attr('name');
+var name_by_class = $('.test_class').attr('name');  
 var id_by_class = $('.test_class').attr('id ');
  
 //name으로 접근하여 가져오기
@@ -26,70 +26,68 @@ function memList(mem_num){
 		nameSearch();
 	});
 }
+function nameSearch(p) {
+	var refundname = $("[name='refundname']").val();
+	
+	if(refundname == "" || refundname == null || refundname == undefined) {
+		//alert("이름을 입력하세요.");
+		$("[name='refundname']").focus();
+		return false;
+	}			
+	//alert(refundname);
+	$.ajax({
+		url:"/fitness/refundDay",
+		dataType:"json",
+		type:"post",
+		/* data:"refundname="+refundname, */
+		data: {
+			refundname : refundname,
+			pageNum:p
+		},
+		success:function function_name(data) {
+		
+			$("#resultNameSearch tbody tr").remove();
+			$("#resultTableday tbody tr").remove();	
+			$("#resultTable tbody tr").remove();					
+			var html = "";
+			var html2 = "";
+			if(data.arr.length == 0) {						
+				$("#memberNum").remove();
+				html = "<tr><td colspan=\"5\" style=\"text-align:center;\">검색된 자료가 없습니다.</td></tr>";
+				
+			} else {
+			for(var i=0; i<data.arr.length;i++){
+				 html += "<tr>";
+				 html += "<td>"+data.arr[i].mem_num+"</td>";            
+				 html += "<td>"+data.arr[i].mem_name+"</td>";
+				 html += "<td>"+data.arr[i].mem_phone+"</td>";
+				 html += "<td>"+data.arr[i].ct_name+"</td>";	
+				 html += "<td><input type='radio' class='input-radio' value='선택' name='rd' id='btnSelectMemNum' onclick='memList("+data.arr[i].mem_num+")'></td>";
+				 html += "</tr>";				 
+				}					
+				//html2 += "<div>"+data.page.startPageNum+"</div>";
+				 if(data.page.startPageNum>0){
+					 html2 +='<a href="javascript:nameSearch(1)">prev</a>';
+				 }		 	
+			 	
+				 
+				 
+				$("#memberNum").css("display", "");
+			
+			}
+				
+				$("#resultNameSearch tbody").append(html);
+				$("#mempage").append(html2);
+				$("#resultNameSearch").css("display", "");					
+		}				
+	});
+	
+}
 	///// ------------------------번호찾아오기--------------------------------------------------
 	$(function function_name(argument) {
-		$("#nameSearch").click(function nameSearch() {
-			var refundname = $("[name='refundname']").val();
-			
-			if(refundname == "" || refundname == null || refundname == undefined) {
-				//alert("이름을 입력하세요.");
-				$("[name='refundname']").focus();
-				return false;
-			}			
-			//alert(refundname);
-			$.ajax({
-				url:"/fitness/refundDay",
-				dataType:"json",
-				type:"post",
-				/* data:"refundname="+refundname, */
-				data: {
-					refundname : refundname
-				},
-				success:function function_name(data) {
-				
-					$("#resultNameSearch tbody tr").remove();
-					$("#resultTableday tbody tr").remove();	
-					$("#resultTable tbody tr").remove();					
-					var html = "";
-					if(data.arr.length == 0) {						
-						$("#memberNum").remove();
-						html = "<tr><td colspan=\"5\" style=\"text-align:center;\">검색된 자료가 없습니다.</td></tr>";
+		$("#nameSearch").click(function() {			
+				nameSearch(1);
 						
-					} else {
-					for(var i=0; i<data.arr.length;i++){
-						 html += "<tr>";
-						 html += "<td>"+data.arr[i].mem_num+"</td>";            
-						 html += "<td>"+data.arr[i].mem_name+"</td>";
-						 html += "<td>"+data.arr[i].mem_phone+"</td>";
-						 html += "<td>"+data.arr[i].ct_name+"</td>";	
-						 html += "<td><input type='radio' class='input-radio' value='선택' name='rd' id='btnSelectMemNum' onclick='memList("+data.arr[i].mem_num+")'></td>";
-						 html += "</tr>";				 
-						}
-						<%--
-					 	html += "<tr><td>"+
-					 	"<c:choose>	<c:when test='${pu.startPageNum>5 }'>"+
-					 	"<a href='${pu.startPageNum-1}' class='pasing'>prev&nbsp;</a></c:when><c:otherwise>"+
-						"prev&nbsp;	</c:otherwise></c:choose>"+
-						"<c:forEach var='i' begin='"+data.page.startPageNum-1+"' end='${pu.endPageNum }'>"+
-							"<c:choose><c:when test='${i==pu.pageNum }'>"+
-									"<a href='${i }' class='pasing'>"+
-									"<span style='color:blue'>${i }</span></a>"+
-								"</c:when><c:otherwise><a href='${i }' class='pasing'>"+
-									"<span style='color:#555'>${i }</span></a>"+
-								"</c:otherwise>	</c:choose></c:forEach>"+						
-							"<c:choose><c:when test='${pu.endPageNum<pu.totalPageCount}'>"+
-								"<a href='${pu.endPageNum+1 }' class='pasing'> &nbsp;next</a>"+
-							"</c:when><c:otherwise>	&nbsp;next</c:otherwise></c:choose></div>"
-							+"</td></tr>";	 	
-					 	
-					 	--%>
-						$("#memberNum").css("display", "");
-					
-					}
-						$("#resultNameSearch tbody").append(html);	
-						$("#resultNameSearch").css("display", "");					
-				}				
-			});			
 		});
 		
 		$("#btnSelectMemNum").click(function(){
@@ -170,13 +168,14 @@ function memList(mem_num){
 			
 			$(".refundmove").click(function name() {
 				var mem_num = $("[name='mem_num']").val();
-				var refund_price = $("[name='totpaymove']").val();				
+				//var refund_price = $("[name='totpaymove']").val();
+				var refund_price = $('#totalmomey').val();
 				var ct_code = $("[name='ct_code']").val();					
 				
 				var tr=$("[name='ck']:checked").parent().parent();
 				var rg_num=tr.find(".rg_num").text();
 				var rg_type=tr.find(".rg_type").text();
-				//alert("rg_num+rg_type:"+rg_num+rg_type);
+				alert("refund_price:"+refund_price);
 				
 				var param = {};
 				param.mem_num = mem_num;
@@ -193,7 +192,7 @@ function memList(mem_num){
 					success:function function_name(data) {
 						//alert(data)						
 						$("#resultrefund tbody tr").remove();
-						//alert(data);
+						alert(data);
 						var html="";
 						for(var i=0; i<data.length;i++){
 							html += "<tr>";							         
@@ -321,6 +320,7 @@ function memList(mem_num){
 		<tbody>
 		</tbody>
 	</table>
+		<div id="mempage"></div>
 
 
 
@@ -420,7 +420,7 @@ function memList(mem_num){
 <div class="row">
 			<div class="col-sm-2">	총환불액</div>
 			<div class="col-sm-4">
-			<input type="text" class="totpaymove input-sm" name="totpaymove input-sm">
+			<input type="text" class="totpaymove input-sm" name="totpaymove input-sm" id="totalmomey">
 			</div>
 			<div class="col-sm-2">	지점선택</div>
 			<div class="col-sm-4">

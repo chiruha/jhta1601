@@ -184,7 +184,7 @@ public class RefundController {
 			 JSONObject jo=new JSONObject();
 			 jo.put("refund_num", dto.getRefund_num());
 			 jo.put("mem_num", dto.getMem_num());
-			 jo.put("refund_date", dto.getRefund_date());
+			 jo.put("refund_date", dto.getRefund_date().toString());
 			 jo.put("rg_num", dto.getRg_num());
 			 jo.put("ct_code", dto.getCt_code());
 			 jo.put("rg_type", dto.getRg_type());
@@ -196,7 +196,7 @@ public class RefundController {
 			
 	
 	}
-	/*
+	
 	@RequestMapping(value="/ptgxmove2",method= {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public String ptgxmove2(){
@@ -208,7 +208,7 @@ public class RefundController {
 			 JSONObject jo=new JSONObject();
 			 jo.put("refund_num", dto.getRefund_num());
 			 jo.put("mem_num", dto.getMem_num());
-			 jo.put("refund_date", dto.getRefund_date());
+			 jo.put("refund_date", dto.getRefund_date().toString());
 			 jo.put("rg_num", dto.getRg_num());
 			 jo.put("ct_code", dto.getCt_code());
 			 jo.put("rg_type", dto.getRg_type());
@@ -218,7 +218,7 @@ public class RefundController {
 		 	System.out.println("tot.toString():"+tot.toString());
 			return tot.toString();
 	}
-	*/
+	
 }
 
 

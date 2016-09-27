@@ -987,41 +987,10 @@
 	<update id="fbrep" parameterType="fitness.dto.FreeboardDto">
 		update freeboard set fb_step=#{fb_step}+1 where fb_ref=#{fb_ref} and fb_step>#{fb_step}
 	</update>	
-<<<<<<< HEAD
+
 <!--////////// 지점별 월매출 - 작성자 : 이성진 //////////-->	
 	<!-- 지점별 월(month) 매출(수입)현황 select해와서 월수입 테이블에 insert하기 -->
-	<!-- 
-		<select id="centerSalesSelectAll" parameterType="hashmap" resultType="fitness.dto.SalesSelectDto">
-		select * from(
-			select aa.*, rownum rnum from(
-				select * from(
-					select m.mem_num, m.ct_code, r.rg_num, r.rg_price, r.locker_price, r.wear_price, r.rg_type, r.signdate
-					from member m, registration r
-					where m.mem_num=r.mem_num
-				)where ct_code=#{ct_code} 
-				<if test="income_month!=null">
-					and incomemonth between #{signdate} and to_char(last_day(#{signdate}))
-				</if>
-				order by r.signdate desc)
-			)aa
-		)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-	</select>
-		
-	 -->
-	 <!-- 
-	 <select id="centerSalesSelectAll" parameterType="hashmap" resultType="fitness.dto.SalesSelectDto">
-		select * from(
-			select m.mem_num, m.ct_code, r.rg_num, r.rg_price, r.locker_price, r.wear_price, r.rg_type, r.signdate
-			from member m, registration r
-			where m.mem_num=r.mem_num
-		)where ct_code=#{ct_code} 
-		<if test="income_month!=null">
-			and incomemonth between #{signdate} and to_char(last_day(#{signdate}))
-		</if>
-		order by r.signdate desc)
-	</select>
-	 
-	  -->
+
 	<select id="centerSalesSelectAll" parameterType="hashmap" resultType="fitness.dto.SalesSelectDto">
 		select * from(
 			select m.mem_num, m.ct_code, r.rg_num, r.rg_price, r.locker_price, r.wear_price, r.rg_type, r.signdate
@@ -1134,11 +1103,7 @@
 		and refund_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
 		</if>
 	</select>
-=======
 
-
->>>>>>> c2090a443fd0bee8e327ec4ec8981eba2fa28a61
-	
 	<!-- 지점별 월 매출(수입-환불) -->
 	<insert id="ctsInsert" parameterType="fitness.dto.CenterTotalSalesDto">
 		insert into centertotalsales values(ctsnum_seq.nextval,#{ct_code},#{cts_income},#{cts_refund},#{cts_totsales},#{cts_date})

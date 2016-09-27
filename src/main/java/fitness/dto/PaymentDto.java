@@ -8,7 +8,22 @@ public class PaymentDto {
 	private int time_sum;
 	private int pay_tot;
 	private Date pay_date;
+	private String stf_name;
+	private String stf_phone;
 	public PaymentDto() {	}
+	
+	public PaymentDto(int pay_num, int stf_num, int time_sum, int pay_tot, Date pay_date, String stf_name,
+			String stf_phone) {
+		super();
+		this.pay_num = pay_num;
+		this.stf_num = stf_num;
+		this.time_sum = time_sum;
+		this.pay_tot = pay_tot;
+		this.pay_date = pay_date;
+		this.stf_name = stf_name;
+		this.stf_phone = stf_phone;
+	}
+
 	public PaymentDto(int pay_num, int stf_num, int time_sum, int pay_tot, Date pay_date) {
 		super();
 		this.pay_num = pay_num;
@@ -17,6 +32,23 @@ public class PaymentDto {
 		this.pay_tot = pay_tot;
 		this.pay_date = pay_date;
 	}
+	
+	public String getStf_name() {
+		return stf_name;
+	}
+
+	public void setStf_name(String stf_name) {
+		this.stf_name = stf_name;
+	}
+
+	public String getStf_phone() {
+		return stf_phone;
+	}
+
+	public void setStf_phone(String stf_phone) {
+		this.stf_phone = stf_phone;
+	}
+
 	public int getPay_num() {
 		return pay_num;
 	}
@@ -47,11 +79,13 @@ public class PaymentDto {
 	public void setPay_date(Date pay_date) {
 		this.pay_date = pay_date;
 	}
+
 	@Override
 	public String toString() {
 		return "PaymentDto [pay_num=" + pay_num + ", stf_num=" + stf_num + ", time_sum=" + time_sum + ", pay_tot="
-				+ pay_tot + ", pay_date=" + pay_date + "]";
+				+ pay_tot + ", pay_date=" + pay_date + ", stf_name=" + stf_name + ", stf_phone=" + stf_phone + "]";
 	}
+
 	
 	
 }

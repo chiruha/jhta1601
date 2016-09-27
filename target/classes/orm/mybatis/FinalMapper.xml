@@ -252,21 +252,33 @@
 	<insert id="payinsert" parameterType="fitness.dto.PaymentDto">
 		insert into payment values(pay_seq.nextval, #{stf_num}, #{time_sum}, #{pay_tot}, sysdate)
 	</insert>
-	<select id="paylist">
+	<select id="paylist"  parameterType="hashmap" resultType="fitness.dto.PaymentDto">
 		select * from( select stf.*,rownum rnum from
-			(select * from staff	
+			(select p.*,stf_name,stf_phone from staff s, payment p where s.stf_num=p.stf_num )stf
 			<where>
-			
-				<if test="stype!=null">
-				and  ${stype} like '%' || #{satt_keyword}|| '%'
-				</if>
-			
+				<if test="ptype!=null">
+					and ${ptype} like '%' || #{keyword}|| '%'
+				</if>	
+					<if test="start_date!=null">
+					and pay_date between #{start_date} and to_char(add_months(#{start_date},3))
+				</if>		
 		</where>
-			)stf
 		)
 		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
-	
+	<select id="payCnt" parameterType="hashmap" resultType="int">
+	select count(pay_num) from ( select stf.*,rownum rnum from
+			(select p.*,stf_name,stf_phone from staff s, payment p where s.stf_num=p.stf_num )stf
+		<where>
+				<if test="ptype!=null">
+					and ${ptype} like '%' || #{keyword}|| '%'
+				</if>	
+					<if test="start_date!=null">
+					and pay_date between #{start_date} and to_char(add_months(#{start_date},3))
+				</if>		
+		</where>
+		)
+	</select>
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">
@@ -1080,12 +1092,11 @@
 	<!-- 지점별 월 매출 현황(전체목록 받아오기) -->
 	<select id="ctsSelect" parameterType="hashmap" resultType="fitness.dto.CenterTotalSalesDto">
 		select * from centertotalsales
-		where
 		<if test="searchMonth!=null">
-			and cts_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
+			where cts_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
 		</if>
 		order by ct_code asc
 	</select>
 		
-	
+
 </mapper>

@@ -59,6 +59,7 @@ function ajaxSearchCenter(centerList,searchMonth){
 							"<td>"+wear_price+"</td>"+
 							"<td>"+signdate+"</td>"+
 						"</tr>";
+					$("#searchMonth1").attr("value",signdate);
 				}
 			});
 			html += "</table>";
@@ -85,7 +86,7 @@ function ajaxSearchCenter(centerList,searchMonth){
 				var tot_income=Number(totProgram)+Number(totLocker)+Number(totWear);
 				//alert("totProgram: "+totProgram);
 				//alert("총합계산 : "+tot_income)
-				$("#searchMonth1").attr("value",searchMonth1);
+				//
 				$("#totProgram").attr("value",totProgram);
 				$("#totLocker").attr("value",totLocker);
 				$("#totWear").attr("value",totWear);

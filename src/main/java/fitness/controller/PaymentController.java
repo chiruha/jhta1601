@@ -1,5 +1,7 @@
 package fitness.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -150,4 +152,38 @@ public class PaymentController {
 		return sb.toString();
 		
 	}
+	@RequestMapping("/paylist")
+	public String paylist( HttpServletRequest request,@RequestParam(value="pageNum",defaultValue="1") int pageNum,
+		HttpSession session){
+		Date today=new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd");
+		String start_date=sdf.format(today);
+		String date=request.getParameter("start_date");
+		if(date!=null&&date!="") start_date=date;
+		String ptype=request.getParameter("ptype");
+		String pkeyword=request.getParameter("pkeyword");
+		String stf_num=request.getParameter("stf_num");
+		HashMap<String, Object>map=new HashMap<String, Object>();
+		map.put("stf_num", stf_num);
+		map.put("ptype", ptype);
+		map.put("keyword", pkeyword);
+		map.put("start_date", start_date);
+		int totalRowCount=ps.payCnt(map);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 10, 5);
+		map.put("startRow", pu.getStartRow());
+		map.put("endRow", pu.getEndRow());
+		List<PaymentDto> paylist=ps.payList(map);
+		System.out.println("stf_num : "+stf_num+", ptype : "+ptype+", key : "+pkeyword);
+		System.out.println("paylist : "+paylist);
+		session.setAttribute("ptype", ptype);
+		session.setAttribute("pkeyword", pkeyword);
+		session.setAttribute("pstf_num", stf_num);
+		session.setAttribute("start_date", start_date);
+		session.setAttribute("paylist", paylist);
+		session.setAttribute("pu", pu);
+		
+		return ".payment.PayListView";
+	}
+	
+	
 }

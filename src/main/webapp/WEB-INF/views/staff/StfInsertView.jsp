@@ -35,7 +35,7 @@
 				<span class="glyphicon glyphicon-user"> Position</span>
 				</div>
 				<div class="col-sm-3 form-group">
-						<select name="pos_code" class="form-group-sm select">
+						<select name="pos_code" class="select input-sm">
 							<c:forEach var="plist" items="${poslist}">
 								<option value="${plist.pos_code }">${plist.pos_name}</option>
 							</c:forEach>
@@ -45,7 +45,7 @@
 						<span class="glyphicon glyphicon-home"> Center</span>
 						</div>
 						<div class="col-sm-3 form-group">
-						<select name="ct_code" class="form-group-sm select">
+						<select name="ct_code" class="select input-sm">
 							<c:forEach var="clist" items="${ctlist}">
 								<option value="${clist.ct_code }">${clist.ct_name}</option>
 							</c:forEach>

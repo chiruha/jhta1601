@@ -104,7 +104,7 @@ public class PaymentController {
 
 	@RequestMapping(value="/xmlpay",produces="application/xml;charset=utf-8")
 	@ResponseBody
-	public String paycul(@RequestParam(value="stf_num",defaultValue="0") int stf_num, HttpServletRequest request,
+	public String paycul(@RequestParam(value="stf_num",defaultValue="1") int stf_num, HttpServletRequest request,
 			@RequestParam(value="start_date",defaultValue="0") String start_date){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		StringBuffer sb=new StringBuffer();
@@ -150,4 +150,19 @@ public class PaymentController {
 		return sb.toString();
 		
 	}
+	@RequestMapping("/paylist")
+	public String paylist(@RequestParam(value="stf_num",defaultValue="0") int stf_num, HttpServletRequest request,
+			@RequestParam(value="start_date",defaultValue="0") String start_date,
+			@RequestParam(value="pageNum",defaultValue="1") int pageNum){
+		String ptype=request.getParameter("ptype");
+		String pkeyword=request.getParameter("pkeyword");
+		HashMap<String, Object>map=new HashMap<String, Object>();
+		map.put("stf_num", stf_num);
+		map.put("ptype", ptype);
+		map.put("keyword", pkeyword);
+		
+		return ".payment.PayListView";
+	}
+	
+	
 }

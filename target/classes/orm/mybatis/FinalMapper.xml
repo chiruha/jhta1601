@@ -4,39 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
-	<!--////////// 운동일지관련 - 작성자 : 고석곤 //////////-->	
-    	<insert id="exloginsert" parameterType="fitness.dto.ExerciseLogDto">
-			insert into exercise_Log values
-			(exlog_seq.nextval,#{exlog_title },#{exlog_writer },#{exlog_content  },#{exlog_member  },sysdate )
-		</insert>
-		
-		<select id="exloggetCount" resultType="int">
-			select nvl(count(exlog_num),0) from exercise_Log	
-		</select>
-	
-	<select id="exloglist" resultType="fitness.dto.ExerciseLogDto" parameterType="hashmap">
-		<if test="field!=null">
-		select * from(
-	    select aa.*,rownum rnum from
-	    (
-		    select * from exercise_Log 
-				where ${field} like '%' || #{keyword} || '%'
-		    order by exlog_num desc
-	    )aa
-  		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
-		</if>
-		<if test="field==null">
-			select * from(
-				select aa. *, rownum rnum from(
-					select * from exercise_Log
-					order by exlog_num desc
-				)aa
-			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-		</if> 
-	</select>
-    
-    
-
+	 
 	<!--////////// 환불관련 - 작성자 : 고석곤 //////////-->	
 	<!-- 환불입력 -->
 	<insert id="refundInset" parameterType="fitness.dto.RefundDto">
@@ -285,19 +253,26 @@
 	</insert>
 	<select id="paylist">
 		select * from( select stf.*,rownum rnum from
-			(select * from staff	
+			(select p.*,stf_name,stf_phone from staff s, payment p where s.stf_num=p.stf_num )stf
 			<where>
-			
-				<if test="stype!=null">
-				and  ${stype} like '%' || #{satt_keyword}|| '%'
-				</if>
-			
+				<if test="ptype!=null">
+					${ptype} like '%' || #{keyword}|| '%'
+				</if>		
 		</where>
-			)stf
 		)
 		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
-	
+	<select id="payCnt" parameterType="hashmap" resultType="int">
+	select count(pay_num) from ( select stf.*,rownum rnum from
+			(select p.*,stf_name,stf_phone from staff s, payment p where s.stf_num=p.stf_num )stf
+			<where>
+				<if test="ptype!=null">
+					${ptype} like '%' || #{keyword}|| '%'
+				</if>		
+		</where>
+		)
+		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->
 	<insert id="trinsert" parameterType="fitness.dto.TrainerDto">

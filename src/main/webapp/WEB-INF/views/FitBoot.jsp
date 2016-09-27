@@ -55,14 +55,14 @@
 <!-- Container (The Band Section) -->
 <div id="band" class="container text-center">
   <h3>Fitness Center</h3>
-  <p><em>We Love Life!</em></p>
-  <p>건강을 추구하고 아름다운 바디를 만들어드리는 저희 FITNESS 를 찾아주셔서 감사합니다!! 전문 강사진들로 구성된 저희 FITNESS 에서 차원이 다른 서비스를 받아보세요</p>
+  <p><em>Make S Line with Us!!</em></p>
+  <p>건강을 추구하고 아름다운 바디를 만들어드리는 저희 FITNESS 를 찾아주셔서 감사합니다!! <br>전문 강사진들로 구성된 저희 FITNESS 에서 차원이 다른 서비스를 받아보세요</p>
   <br>
   <div class="row">
     <div class="col-sm-4">
       <p class="text-center"><strong></strong></p><br>
       <a href="#demo" data-toggle="collapse">
-        <img src="resources/img/center/Tr_Apgujeong_01.jpg" class="img-circle" alt="몰랑이 1" width="255" height="255">
+        <img src="resources/img/center/Tr_Apgujeong_01.jpg" class="img-circle person" alt="몰랑이 1" width="255" height="255">
       </a>
       <div id="demo" class="collapse">
       </div>
@@ -70,7 +70,7 @@
     <div class="col-sm-4">
       <p class="text-center"><strong></strong></p><br>
       <a href="#demo2" data-toggle="collapse">
-        <img src="resources/img/center/Tr_Jongno_02.jpg" class="img-circle" alt="몰랑이 2" width="255" height="255">
+        <img src="resources/img/center/Tr_Jongno_02.jpg" class="img-circle person" alt="몰랑이 2" width="255" height="255">
       </a>
       <div id="demo2" class="collapse">
       </div>
@@ -78,7 +78,7 @@
     <div class="col-sm-4">
       <p class="text-center"><strong></strong></p><br>
       <a href="#demo3" data-toggle="collapse">
-        <img src="resources/img/center/Tr_Jongno_01.jpg" class="img-circle" alt="몰랑이 3" width="255" height="255">
+        <img src="resources/img/center/Tr_Jongno_01.jpg" class="img-circle person" alt="몰랑이 3" width="255" height="255">
       </a>
       <div id="demo3" class="collapse">
       </div>
@@ -88,38 +88,6 @@
 
 
   
-  
-
-<!-- Container (Contact Section) -->
-<div id="contact" class="container">
-  
-  <h3 class="text-center">From The Blog</h3>
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#tab1">Yejin</a></li>
-    <li><a data-toggle="tab" href="#tab2">Seonjin</a></li>
-    <li><a data-toggle="tab" href="#tab3">Koni</a></li>
-     <li><a data-toggle="tab" href="#tab4">Kim</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="tab1" class="tab-pane fade in active">
-      <h2>Yejin</h2>
-      <p> we've been on the road for some time now. Looking forward to lorem ipsum.</p>
-    </div>
-    <div id="tab2" class="tab-pane fade">
-      <h2>Seonjin</h2>
-      <p>Always a pleasure people! Hope you enjoyed it as much as I did. Could I BE.. any more pleased?</p>
-    </div>
-    <div id="tab3" class="tab-pane fade">
-      <h2>Koni</h2>
-      <p>I mean, sometimes I enjoy the show</p>
-    </div>
-    <div id="tab4" class="tab-pane fade">
-      <h2>Kim</h2>
-      <p> I enjoy other things.</p>
-    </div>
-  </div>
-</div>
 
 
 

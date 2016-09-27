@@ -22,13 +22,29 @@
         
       <!-- Introduce  dropdown 메뉴 -->
         <li>   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Intro
-        	 <span class="caret"></span></a>
-         	 <ul class="dropdown-menu">
-          		  <li> <a href="#">Center</a></li>
-          		  <li><a href="#">Company</a></li>
-         		   <li><a href="<c:url value='/trlist'/>">Trainer</a></li>
+            <span class="caret"></span></a>
+             <ul class="dropdown-menu">
+                  <li><a href="#">Company</a></li>
+                  <li><a href="<c:url value='/trlist'/>">Trainer</a></li>
           </ul>
         </li>
+        
+        <!-- Center 메뉴 -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Center
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="<c:url value='/Jongnosamga'/>">본점</a></li>
+                <li><a href="<c:url value='/Apgujeong'/>">압구정점</a><li>
+                <li><a href="<c:url value='/Hwajeong'/>">화정점</a><li>
+                <li><a href="<c:url value='/Jongno'/>">종로점</a><li>
+                <li><a href="<c:url value='/Sinchon'/>">신촌점</a><li>
+                <li><a href="<c:url value='/Songpa'/>">송파점</a><li>
+          </ul>
+        </li>
+        
+        
+        
         
         <!-- Board 메뉴 -->
         <li class="dropdown">
@@ -86,6 +102,9 @@
                 <li><a href="<c:url value='/deptinsert'/>">Add Dept </a></li>
              	<li><a href="<c:url value='/ctinsert'/>">Add Center</a></li>
                 <li><a href="<c:url value='/payinsert'/>">Payment</a></li>
+                <li><a href="<c:url value='/ctsSelect'/>">Income List</a></li>
+                <li><a href="<c:url value='/centertotalsalesInsert'/>">지점별 월매출</a></li>
+                 <li><a href="<c:url value='/incomeInsert'/>">지점별 월수입 계산</a></li>
                <%--
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
                 --%>

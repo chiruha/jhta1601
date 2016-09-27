@@ -987,7 +987,7 @@
 	<update id="fbrep" parameterType="fitness.dto.FreeboardDto">
 		update freeboard set fb_step=#{fb_step}+1 where fb_ref=#{fb_ref} and fb_step>#{fb_step}
 	</update>	
-<<<<<<< HEAD
+
 <!--////////// 지점별 월매출 - 작성자 : 이성진 //////////-->	
 	<!-- 지점별 월(month) 매출(수입)현황 select해와서 월수입 테이블에 insert하기 -->
 	<!-- 
@@ -1134,10 +1134,6 @@
 		and refund_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
 		</if>
 	</select>
-=======
-
-
->>>>>>> c2090a443fd0bee8e327ec4ec8981eba2fa28a61
 	
 	<!-- 지점별 월 매출(수입-환불) -->
 	<insert id="ctsInsert" parameterType="fitness.dto.CenterTotalSalesDto">

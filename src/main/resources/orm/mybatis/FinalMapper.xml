@@ -4,39 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
-	<!--////////// 운동일지관련 - 작성자 : 고석곤 //////////-->	
-    	<insert id="exloginsert" parameterType="fitness.dto.ExerciseLogDto">
-			insert into exercise_Log values
-			(exlog_seq.nextval,#{exlog_title },#{exlog_writer },#{exlog_content  },#{exlog_member  },sysdate )
-		</insert>
-		
-		<select id="exloggetCount" resultType="int">
-			select nvl(count(exlog_num),0) from exercise_Log	
-		</select>
-	
-	<select id="exloglist" resultType="fitness.dto.ExerciseLogDto" parameterType="hashmap">
-		<if test="field!=null">
-		select * from(
-	    select aa.*,rownum rnum from
-	    (
-		    select * from exercise_Log 
-				where ${field} like '%' || #{keyword} || '%'
-		    order by exlog_num desc
-	    )aa
-  		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
-		</if>
-		<if test="field==null">
-			select * from(
-				select aa. *, rownum rnum from(
-					select * from exercise_Log
-					order by exlog_num desc
-				)aa
-			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-		</if> 
-	</select>
-    
-    
-
+	 
 	<!--////////// 환불관련 - 작성자 : 고석곤 //////////-->	
 	<!-- 환불입력 -->
 	<insert id="refundInset" parameterType="fitness.dto.RefundDto">

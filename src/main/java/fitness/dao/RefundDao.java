@@ -26,6 +26,9 @@ public class RefundDao {
 	public List<RefundDto> refundlist(){
 		return sqlSession.selectList(NAMESPACE+".refundlist");
 	}
+	public int memNaCount(HashMap<String, Object>map){
+		return sqlSession.selectOne(NAMESPACE+".memNaCount",map);
+	}
 }
 
 

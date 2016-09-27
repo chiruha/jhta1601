@@ -27,6 +27,9 @@ public class RefundService {
 		public List<RefundDto> refundlist(){
 			return refundDao.refundlist();
 		}
+		public int memNaCount(HashMap<String, Object>map){
+			return refundDao.memNaCount(map);
+		}
 
 	
 	

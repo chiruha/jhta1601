@@ -12,8 +12,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<c:url value='/'/>">Fitness
-		
+      <a  href="<c:url value='/'/>">
+		 <img src="resources/img/fitimg/Logo.png" alt="Fitness" height="60">
 	</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -38,7 +38,7 @@
             <li><a href="<c:url value='/noclist'/>">Notice</a></li>
             <li><a href="<c:url value='/qnaselectAll'/>">QnA</a></li>
             <li><a href="<c:url value='/eventSelectAll'/>">Event</a></li>
-            <li><a href="<c:url value='#'/>">FreeBoard</a></li>
+            <li><a href="<c:url value='/fblist'/>">FreeBoard</a></li>
           </ul>
         </li>
 
@@ -70,7 +70,7 @@
 			<c:when test="${not empty sessionScope.snum}">
 			<!-- Staff Manager dropdown 메뉴 -->
         	<li class="dropdown">
-         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manager
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
          	 <span class="caret"></span></a>
         	  <ul class="dropdown-menu">
         	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">Attendance</a></li>
@@ -86,17 +86,19 @@
                 <li><a href="<c:url value='/deptinsert'/>">Add Dept </a></li>
              	<li><a href="<c:url value='/ctinsert'/>">Add Center</a></li>
                 <li><a href="<c:url value='/payinsert'/>">Payment</a></li>
+               <%--
                  <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
+                --%>
           </ul>		
           <!-- Staff Trainer dropdown 메뉴 -->
           <li class="dropdown">
          	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trainer
          	 <span class="caret"></span></a>
         	  <ul class="dropdown-menu">
-        	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">Attendance</a></li>
 				<li><a href="<c:url value='/trlist'/>">Trainer List</a></li>
             	<li><a href="<c:url value='/mlistAll'/>">Matt List</a></li>
             	<li><a href="<c:url value='/PTscOkView'/>">PT Confirm</a></li>
+            	<li><a href="<c:url value='/exloginsert'/>">PT Diary</a></li>
 				<li><a href="<c:url value='/gxinsert'/>">Add  Schedule</a></li>
           </ul>		
 			</c:when>
@@ -120,10 +122,11 @@
 		</c:choose>
 
           
-    
+		<c:if test="${not empty sessionScope.snum}">
            <!-- sitemap  메뉴 -->
           <li><a href="<c:url value='/?test=goboot'/>">SiteMap</a></li>
-        
+		</c:if>
+
       </ul>
    
    

@@ -4,8 +4,40 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 매퍼 파일은 일반적으로 table 당 하나 -->
 <mapper namespace="orm.mybatis.FinalMapper"> <!-- 패키지 명. 파일이름 -->
+	<!--////////// 운동일지관련 - 작성자 : 고석곤 //////////-->	
+    	<insert id="exloginsert" parameterType="fitness.dto.ExerciseLogDto">
+			insert into exercise_Log values
+			(exlog_seq.nextval,#{exlog_title },#{exlog_writer },#{exlog_content  },#{exlog_member  },sysdate )
+		</insert>
+		
+		<select id="exloggetCount" resultType="int">
+			select nvl(count(exlog_num),0) from exercise_Log	
+		</select>
+	
+	<select id="exloglist" resultType="fitness.dto.ExerciseLogDto" parameterType="hashmap">
+		<if test="field!=null">
+		select * from(
+	    select aa.*,rownum rnum from
+	    (
+		    select * from exercise_Log 
+				where ${field} like '%' || #{keyword} || '%'
+		    order by exlog_num desc
+	    )aa
+  		) <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+		</if>
+		<if test="field==null">
+			select * from(
+				select aa. *, rownum rnum from(
+					select * from exercise_Log
+					order by exlog_num desc
+				)aa
+			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+		</if> 
+	</select>
+    
+    
 
-	<!--////////// 환불관련 - 작성자 : 고석곤 //////////-->
+	<!--////////// 환불관련 - 작성자 : 고석곤 //////////-->	
 	<!-- 환불입력 -->
 	<insert id="refundInset" parameterType="fitness.dto.RefundDto">
 		insert into refund values(rf_seq.nextval, #{mem_num },sysdate , #{rg_num },#{ct_code },#{rg_type },#{refund_price })
@@ -39,12 +71,21 @@
 	<!-- 회원이름검색 memSearchList -->
 	<select id="memNaSeList" parameterType="hashmap" resultType="fitness.dto.MemberDto">		
 			select * from(
-				select bb.mem_num,bb.mem_name,bb.mem_phone,rownum rnum from(
-					select * from member
-					where mem_name like '%' || #{refundname} || '%'
+				select bb.mem_num,bb.mem_name,bb.mem_phone,bb.ct_name,rownum rnum from(
+					select m.*,c.ct_name from member m , center c
+					where mem_name like '%' || #{refundname} || '%' and m.ct_code = c.ct_code
 					order by mem_num desc
 				)bb
 			)<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+	
+	<select id="memNaCount" parameterType="hashmap" resultType="int">
+		select count(mem_num) from 
+		(select bb.mem_num,bb.mem_name,bb.mem_phone,bb.ct_name,rownum rnum from(
+					select m.*,c.ct_name from member m , center c
+					where mem_name like '%' || #{refundname} || '%' and m.ct_code = c.ct_code
+					order by mem_num desc
+				)bb)
 	</select>
 
 	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
@@ -116,7 +157,7 @@
 		where aa.mem_num=m.mem_num
 	</select>
 	
-	<select id="ptrmemlistAll" parameterType="hashmap" resultType="fitness.dto.ptrMemDto">
+	<select id="ptrmemlistAll" parameterType="hashmap" resultType="fitness.dto.PtrMemDto">
 		select ptr_initdate, ptr_time, ptr_count, ptr_ok, mem_name, stf_name from 
 			(select aa.*,pt.ptr_initdate, pt.ptr_time, pt.ptr_count, pt.ptr_ok,  pt.tr_num  from pt_register pt,
 			    (select mem_name, rg_num from member m, registration r where m.mem_num=r.mem_num and m.mem_num=#{mem_num})aa
@@ -468,7 +509,7 @@
 <!--////////// 수강등록 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 1.insert - registration(기본정보등록) table -->
 	<insert id="regiInsert" parameterType="fitness.dto.RegistrationDto">
-		insert into registration values(regi_seq.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price},sysdate)
+		insert into registration values(regi_seq.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price})
 	</insert>
 	<!-- (insert)2.registration 테이블의 rg_num의 큰번호 받아오기 -->
 	<select id="rgNum" resultType="int">
@@ -946,6 +987,7 @@
 	<update id="fbrep" parameterType="fitness.dto.FreeboardDto">
 		update freeboard set fb_step=#{fb_step}+1 where fb_ref=#{fb_ref} and fb_step>#{fb_step}
 	</update>	
+<<<<<<< HEAD
 <!--////////// 지점별 월매출 - 작성자 : 이성진 //////////-->	
 	<!-- 지점별 월(month) 매출(수입)현황 select해와서 월수입 테이블에 insert하기 -->
 	<!-- 
@@ -1092,6 +1134,10 @@
 		and refund_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
 		</if>
 	</select>
+=======
+
+
+>>>>>>> c2090a443fd0bee8e327ec4ec8981eba2fa28a61
 	
 	<!-- 지점별 월 매출(수입-환불) -->
 	<insert id="ctsInsert" parameterType="fitness.dto.CenterTotalSalesDto">

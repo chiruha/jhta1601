@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-   
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <script type="text/javascript">
 /*
 //id로 접근하여 가져오기
@@ -18,18 +18,25 @@ var class_by_name = $('[name="test_name"]').attr('class');
 */
 function memList(mem_num){	
 	$("#attachMemNum").val(mem_num);
+	
+	$(".pasing").click(function(event) {
+		//alert($(this).attr("href"));
+		event.preventDefault();
+		$("#pageNum").val($(this).attr("href"));
+		nameSearch();
+	});
 }
 	///// ------------------------번호찾아오기--------------------------------------------------
 	$(function function_name(argument) {
-		$(".nameSearch").click(function name() {
+		$("#nameSearch").click(function nameSearch() {
 			var refundname = $("[name='refundname']").val();
 			
 			if(refundname == "" || refundname == null || refundname == undefined) {
-				alert("이름을 입력하세요.");
+				//alert("이름을 입력하세요.");
 				$("[name='refundname']").focus();
 				return false;
 			}			
-			alert(refundname);
+			//alert(refundname);
 			$.ajax({
 				url:"/fitness/refundDay",
 				dataType:"json",
@@ -44,19 +51,38 @@ function memList(mem_num){
 					$("#resultTableday tbody tr").remove();	
 					$("#resultTable tbody tr").remove();					
 					var html = "";
-					if(data.length == 0) {						
+					if(data.arr.length == 0) {						
 						$("#memberNum").remove();
-						html = "<tr><td colspan=\"4\" style=\"text-align:center;\">검색된 자료가 없습니다.</td></tr>";
+						html = "<tr><td colspan=\"5\" style=\"text-align:center;\">검색된 자료가 없습니다.</td></tr>";
 						
 					} else {
-					for(var i=0; i<data.length;i++){
+					for(var i=0; i<data.arr.length;i++){
 						 html += "<tr>";
-						 html += "<td>"+data[i].mem_num+"</td>";            
-						 html += "<td>"+data[i].mem_name+"</td>";
-						 html += "<td>"+data[i].mem_phone+"</td>";						                
-						 html += "<td><input type='button' value='선택' id='btnSelectMemNum' onclick='memList("+data[i].mem_num+")'></td>";
+						 html += "<td>"+data.arr[i].mem_num+"</td>";            
+						 html += "<td>"+data.arr[i].mem_name+"</td>";
+						 html += "<td>"+data.arr[i].mem_phone+"</td>";
+						 html += "<td>"+data.arr[i].ct_name+"</td>";	
+						 html += "<td><input type='radio' class='input-radio' value='선택' name='rd' id='btnSelectMemNum' onclick='memList("+data.arr[i].mem_num+")'></td>";
 						 html += "</tr>";				 
 						}
+						<%--
+					 	html += "<tr><td>"+
+					 	"<c:choose>	<c:when test='${pu.startPageNum>5 }'>"+
+					 	"<a href='${pu.startPageNum-1}' class='pasing'>prev&nbsp;</a></c:when><c:otherwise>"+
+						"prev&nbsp;	</c:otherwise></c:choose>"+
+						"<c:forEach var='i' begin='"+data.page.startPageNum-1+"' end='${pu.endPageNum }'>"+
+							"<c:choose><c:when test='${i==pu.pageNum }'>"+
+									"<a href='${i }' class='pasing'>"+
+									"<span style='color:blue'>${i }</span></a>"+
+								"</c:when><c:otherwise><a href='${i }' class='pasing'>"+
+									"<span style='color:#555'>${i }</span></a>"+
+								"</c:otherwise>	</c:choose></c:forEach>"+						
+							"<c:choose><c:when test='${pu.endPageNum<pu.totalPageCount}'>"+
+								"<a href='${pu.endPageNum+1 }' class='pasing'> &nbsp;next</a>"+
+							"</c:when><c:otherwise>	&nbsp;next</c:otherwise></c:choose></div>"
+							+"</td></tr>";	 	
+					 	
+					 	--%>
 						$("#memberNum").css("display", "");
 					
 					}
@@ -73,7 +99,7 @@ function memList(mem_num){
 		});		
 		
 		// -----------------------------------tot금액찾아오기--------------------------------------------------
-		$(".mem_tot").click(function name() {
+		$("#mem_tot").click(function name() {
 			var mem_num = $("[name='mem_num']").val();
 		//	alert(mem_num);
 			$.ajax({
@@ -102,7 +128,7 @@ function memList(mem_num){
 							html += "<td>" + data[i].locker_price + "</td>";
 							html += "<td>" + data[i].wear_price + "</td>";
 							//html += "<td><input type=\"checkbox\" value='\"+data[i].rg_price + data[i].locker_price + data[i].wear_price\"' id='checktot' onclick='memCale(" + (data[i].rg_price + data[i].locker_price + data[i].wear_price) + ")'></td>";
-							html += "<td><input type=\"checkbox\" name='ck' value=" + (data[i].rg_price + data[i].locker_price + data[i].wear_price) + " id='checktot' onclick='memCale()'></td>";
+							html += "<td><input type='checkbox' name='ck' value=" + (data[i].rg_price + data[i].locker_price + data[i].wear_price) + " id='checktot' onclick='memCale()'></td>";
 							html += "</tr>";							
 						}
 					}
@@ -113,9 +139,9 @@ function memList(mem_num){
 		});
 		// -----------------------------------totday찾아오기--------------------------------------------------
 				
-			$(".mem_tot").click(function name() {
+			$("#mem_tot").click(function name() {
 				var mem_num = $("[name='mem_num']").val();
-				alert(mem_num);
+				//alert(mem_num);
 				$.ajax({
 					url:"/fitness/ptgxoneday",
 					dataType:"json",
@@ -125,7 +151,7 @@ function memList(mem_num){
 					}, 
 					success:function function_name(data) {						
 						$("#resultTableday tbody tr").remove();						
-						alert(data);
+						//alert(data);
 						var html="";
 						for(var i=0; i<data.length;i++){
 							html += "<tr>";							         
@@ -150,7 +176,7 @@ function memList(mem_num){
 				var tr=$("[name='ck']:checked").parent().parent();
 				var rg_num=tr.find(".rg_num").text();
 				var rg_type=tr.find(".rg_type").text();
-				alert("rg_num+rg_type:"+rg_num+rg_type);
+				//alert("rg_num+rg_type:"+rg_num+rg_type);
 				
 				var param = {};
 				param.mem_num = mem_num;
@@ -165,9 +191,9 @@ function memList(mem_num){
 					type:"post",
 					data: param, 
 					success:function function_name(data) {
-						alert(data)						
+						//alert(data)						
 						$("#resultrefund tbody tr").remove();
-						alert(data);
+						//alert(data);
 						var html="";
 						for(var i=0; i<data.length;i++){
 							html += "<tr>";							         
@@ -195,9 +221,9 @@ function memList(mem_num){
 					dataType:"json",
 					type:"post",					 
 					success:function function_name(data) {
-						alert(data)						
+						//alert(data)						
 						$("#resultrefund2 tbody tr").remove();
-						alert(data);
+						//alert(data);
 						var html="";
 						for(var i=0; i<data.length;i++){
 							html += "<tr>";							         
@@ -250,7 +276,7 @@ function memList(mem_num){
 		 for(var i in valueArr){
 		           str2 += Number(valueArr[i]);
 		    }		 
-		 alert(str2);
+		 //alert(str2);
 		
 	}
 
@@ -258,184 +284,189 @@ function memList(mem_num){
 
 
 
-<!-- Container (Contact Section) -->
+
 <div id="contact" class="container">
 	<h3 class="text-center">Refund List</h3>
-<!-- <form name="form" action="refundlist" method="post" onsubmit="javascript:return false;"> -->
-<div class="form-group has-success has-feedback">
-<div class="input-group">
-    <span class="input-group-addon">@</span>
-    <input type="text" class="form-control" id="inputGroupSuccess1"  placeholder="검색 조건을 선택하세요"
-    aria-describedby="inputGroupSuccess1Status">
-  </div>
-  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-</div>
-	이름검색 :　<input type="text" id="refundname" name="refundname" >
-	<input type="button" value="조회" class="nameSearch">
-<!-- </form> -->
-<br>
 
-<div id="resultName"></div>	
-	<table id="resultNameSearch" style='width:600px; border:1px solid black; display: none;' >
-			<caption><a href='/fitness'>홈</a></caption>
-			<colgroup>
-		        <col width='25%' />
-		        <col width='25%' />
-		        <col width='25%' />
-		        <col width='25%' />
-		    	</colgroup>
-		    	<thead>
-	        <tr>
-		        <th>번호</th> 
-		        <th>이름</th>
-		        <th>전화번호</th>						        
-		        <th>선택</th>						                    
-	        </tr>
-	   		</thead>
-	   		<tbody>	 
-	    	</tbody>
+	<%--  <form name="form" action="refundlist" method="post" onsubmit="javascript:return false;"> --%>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-6">
+			<input type="text" id="refundname" name="refundname" class="input-sm"
+				placeholder="이름검색">
+			<button class="btn-link" id="nameSearch" type="submit">
+				<span class="glyphicon glyphicon-search"></span> 조회
+			</button>
+		</div>
+
+
+
+	</div>
+	<!-- </form> -->
+	<br>
+
+	<div id="resultName"></div>
+
+	<table id="resultNameSearch" style='display: none;' class="table">
+
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>전화번호</th>
+				<th>지점</th>
+				<th>선택</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
 	</table>
+
+
+
+
+
+
+
+
+	<br>
+	<br>
+	<!-- 회원번호를 select해서 input="text"에 집어넣기!! -->
+	<div id="memberNum" style="display: none;">
+		회원번호 <input type="text" name="mem_num" id="attachMemNum"	placeholder="회원번호 입력" class="input-sm"> 
+		<input type="button"	value="환불검색" id="mem_tot" class="btn-link">
+	</div>
+
+	<br>
+	<div id="resultTot"></div>
+	<table id="resultTable" style='display: none;' class="table">
+
+		<thead>
+			<tr>
+				<th>등록번호</th>
+				<th>회원번호</th>
+				<th>등록과목</th>
+				<th>등록가격</th>
+				<th>사물함</th>
+				<th>유니폼</th>
+				<th>선택</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<br> <br>
+	<div class="rg_price" style="display: none;">
+		총등록금액 <input type="text" class="rg_price input-sm" style="display: none;">
+	</div>
+
+	<table id="resultTableday" style='display: none;' class="table">
+		<thead>
+			<tr>
+				<th>등록번호</th>
+				<th>PT등록일수</th>
+				<th>단과등록일수</th>
+				<th>PT남은등록일수</th>
+				<th>단과남은등록일수</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<br> <br>
 	
+	<div class="rg_price" style="display: none;">
+		<div class="row">
+			<div class="col-sm-2">총등록금액</div>
+			<div class="col-sm-4">
+				<input type="text" placeholder="총등록금액" class="rg_price input-sm">
+				<br>
+			</div>
 
-<br><br>
-<!-- 회원번호를 select해서 input="text"에 집어넣기!! -->
-<div id="memberNum" style="display: none;">
-	회원번호 <input type="text" name="mem_num" id="attachMemNum">
-	<input type="button" value="환불검색" class="mem_tot">
+			<div class="col-sm-2">등록일수</div>
+			<div class="col-sm-4">
+				<input type="text" placeholder="등록일수" class="totday input-sm"> <br>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-2">하루치 수업료</div>
+			<div class="col-sm-4">
+				<input type="text" placeholder="하루치 수업료" class="dayca input-sm"> 
+				<input	type="button" value="계산" class="ilday btn-link"><br>
+			</div>
+			<div class="col-sm-2">현재까지</div>
+			<div class="col-sm-4">
+				<input type="text" placeholder="운동만료일-오늘날짜" class="todaymoney input-sm">
+				<br>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-2">하루치 수업료</div>
+			<div class="col-sm-4">
+				<input type="text" placeholder="하루치수업료" class="dayca input-sm"> <br>
+			</div>
+			<div class="col-sm-2">환불액</div>
+			<div class="col-sm-4">
+				<input type="text" placeholder="하루치 수업료" class="repay input-sm" > 
+				<input	type="button" value="환불액" class="remoney btn-link"><br>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="rg_price" style="display: none;">
+<div class="row">
+			<div class="col-sm-2">	총환불액</div>
+			<div class="col-sm-4">
+			<input type="text" class="totpaymove input-sm" name="totpaymove input-sm">
+			</div>
+			<div class="col-sm-2">	지점선택</div>
+			<div class="col-sm-4">
+		 <select name="ct_code" id="ct_code" class="select input-sm">
+			<c:forEach var="clist" items="${ctlist}">
+				<option value="${clist.ct_code }">${clist.ct_name}</option>
+			</c:forEach>
+		</select> <input type="button" class="refundmove btn-link" value="전송">
+		</div>
+	</div>
 </div>
 
-<br>
-<div id="resultTot"></div>	
-	<table id="resultTable" style='width:700px; border:1px solid black; display:none;' >
-		<caption><a href='/fitness'>홈</a></caption>
-			<colgroup>
-		        <col width='10%' />
-		        <col width='10%' />
-		        <col width='10%' />
-		        <col width='10%' />
-		        <col width='10%' />
-		        <col width='10%' />
-		        <col width='10%' />
-		    	</colgroup>
-		    <thead>
-	        <tr>
-		        <th>등록번호</th> 
-		        <th>회원번호</th>
-		        <th>등록과목</th>						        
-		        <th>등록가격</th>
-		        <th>사물함</th>
-		        <th>유니폼</th>
-		        <th>선택</th>
-	        </tr>
-		   	</thead>
-		   	<tbody>
-		    </tbody>
-	</table>								
-<br>
+	<table id="resultrefund" style='display: none;' class="table">
 
-<br>
-<div class="rg_price" style="display: none;">
-총등록금액
-<input type="text" class="rg_price" style="display: none;">
-</div>
-
-<table id="resultTableday" style='width:700px; border:1px solid black; display:none;' >
-		<caption><a href='/fitness'>홈</a></caption>
-			<colgroup>
-		        <col width='20%' />
-		        <col width='20%' />
-		        <col width='20%' />
-		        <col width='20%' />
-		        <col width='20%' />		        
-		    	</colgroup>
-		    <thead>
-	        <tr>
-		        <th>등록번호</th> 
-		        <th>PT등록일수</th>
-		        <th>단과등록일수</th>						        
-		        <th>PT남은등록일수</th>
-		        <th>단과남은등록일수</th>		        
-	        </tr>
-		   	</thead>
-		   	<tbody>
-		    </tbody>
-	</table>
-<br>
-<br>
-<div class="rg_price" style="display: none;">
-	총등록금액:<input type="text" placeholder="총등록금액" class="rg_price"> <br>
-    등록일수:<input type="text" placeholder="등록일수" class="totday"> <br>
-	하루치 수업료:<input type="text" placeholder="하루치 수업료" class="dayca">
-    <input type="button" value="계산" class="ilday"><br>
- 	현재까지:<input type="text" placeholder="운동만료일-오늘날짜" class="todaymoney"> <br>
- 	하루치 수업료:<input type="text" placeholder="하루치수업료" class="dayca"> <br>
- 	환불액:<input type="text" placeholder="하루치 수업료" class="repay">
-    <input type="button" value="환불액" class="remoney"><br>
- </div>  
- 	         
- <div class="rg_price" style="display: none;">	         
-  총환불액:<input type="text" class="totpaymove" name="totpaymove">   
-  지점선택   <select name="ct_code" id="ct_code">
-			  <c:forEach var="clist"  items="${ctlist}">
-				<option value="${clist.ct_code }">${clist.ct_name}</option>	
-			  </c:forEach>
-			</select>  
-  
-  			
-  <input type="button" class="refundmove" value="전송"> 
-</div>  
-
- 
-<table id="resultrefund" style='width:700px; border:1px solid black; display:none;' >
-		<caption><a href='/fitness'>홈</a></caption>
-			<colgroup>
-		        <col width='20%' />
-		        <col width='20%' />
-		        <col width='20%' />
-		        <col width='20%' />
-		        <col width='20%' />		        
-		    	</colgroup>
-		    <thead>
-	        <tr>
-		        <th>등록번호</th> 
-		        <th>등록번호</th>
-		        <th>환불날짜</th>						        
-		        <th>PT환불액</th>
-		        <th>GX환불액</th>		        		        
-	        </tr>
-		   	</thead>
-		   	<tbody>
-		    </tbody>
-</table>
-
-<table id="resultrefund2" style='width:700px; border:1px solid black; display:none;' >
-		<caption><a href='/fitness'>홈</a></caption>
-			<colgroup>
-		        <col width='17%' />
-		        <col width='17%' />
-		        <col width='17%' />
-		        <col width='17%' />
-		        <col width='17%' />
-		        <col width='16%' />			        
-		    	</colgroup>
-		    <thead>
-	        <tr>
-		        <th>등록번호</th> 
-		        <th>과목종류</th>
-		        <th>환불날짜</th>						        
-		        <th>PT환불액</th>
-		        <th>GX환불액</th>
-		        <th>지점</th>		        
-	        </tr>
-		   	</thead>
-		   	<tbody>
-		    </tbody>
+		<thead>
+			<tr>
+				<th>등록번호</th>
+				<th>등록번호</th>
+				<th>환불날짜</th>
+				<th>PT환불액</th>
+				<th>GX환불액</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
 	</table>
 
-   
-    
-<a href="#" class="refundmove2">환불내역 보기</a>
+	<table id="resultrefund2"	style=' display: none;' class="table">
+
+		<thead>
+			<tr>
+				<th>등록번호</th>
+				<th>과목종류</th>
+				<th>환불날짜</th>
+				<th>PT환불액</th>
+				<th>GX환불액</th>
+				<th>지점</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+
+
+	<a href="#" class="refundmove2">환불내역 보기</a>
 </div>
 
 

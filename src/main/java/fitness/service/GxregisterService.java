@@ -14,7 +14,7 @@ import fitness.dto.PtregisterDto;
 
 
 @Service
-public class gxregisterService {
+public class GxregisterService {
 	@Autowired GxregisterDao gxregisterDao;
 	
 	public int insert(GxregisterDto dto){

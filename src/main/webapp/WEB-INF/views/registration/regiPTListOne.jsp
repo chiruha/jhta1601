@@ -6,8 +6,18 @@
 	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> <a href="<c:url value='/regiSelect?mnum=${mnum}'/>"> 전체보기</a></h5>
 <div class="row">
 
+<<<<<<< HEAD
 수강등록번호 :${dto1.rg_num }
 <table border="1"  class="table th" width="700">
+=======
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">PT과목 수강정보 상세보기</h3>
+<h6 class="text-left">수강등록번호 : ${dto1.rg_num }</h6>
+<div class="row">
+	<div class="col-md-12">
+<table border="1"  class="table th">
+>>>>>>> c2090a443fd0bee8e327ec4ec8981eba2fa28a61
 	<tr>
 		<th>회원번호</th>
 		<td>${dto1.mem_num }</td>
@@ -33,5 +43,10 @@
 		<td>${dto1.pt_expiration }</td>
 	</tr>
 </table>
+<<<<<<< HEAD
+=======
+<br>
+</div>
+>>>>>>> c2090a443fd0bee8e327ec4ec8981eba2fa28a61
 </div>
 </div>

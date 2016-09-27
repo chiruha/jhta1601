@@ -1103,11 +1103,7 @@
 		and refund_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
 		</if>
 	</select>
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 8adc6630a22ddf981761fd8f96f653671ec87b98
 	<!-- 지점별 월 매출(수입-환불) -->
 	<insert id="ctsInsert" parameterType="fitness.dto.CenterTotalSalesDto">
 		insert into centertotalsales values(ctsnum_seq.nextval,#{ct_code},#{cts_income},#{cts_refund},#{cts_totsales},#{cts_date})
@@ -1115,12 +1111,11 @@
 	<!-- 지점별 월 매출 현황(전체목록 받아오기) -->
 	<select id="ctsSelect" parameterType="hashmap" resultType="fitness.dto.CenterTotalSalesDto">
 		select * from centertotalsales
-		where
 		<if test="searchMonth!=null">
-			and cts_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
+			where cts_date between #{searchMonth} and to_char(last_day(#{searchMonth}))
 		</if>
 		order by ct_code asc
 	</select>
 		
-	
+
 </mapper>

@@ -1,5 +1,7 @@
 package fitness.dto;
 
+import java.sql.Date;
+
 public class IncomeDto {
 	private int income_num;//수입번호
 	private int ct_code;
@@ -7,12 +9,13 @@ public class IncomeDto {
 	private int tot_locker;
 	private int tot_wear;
 	private int tot_income;
-	private String income_startdate;
+	private Date income_startdate;
+	private String income_startdate2;
 	
 	public IncomeDto(){}
 	
 	public IncomeDto(int income_num, int ct_code, int tot_rg, int tot_locker, int tot_wear, int tot_income,
-			String income_startdate) {
+			Date income_startdate) {
 		super();
 		this.income_num = income_num;
 		this.ct_code = ct_code;
@@ -21,6 +24,27 @@ public class IncomeDto {
 		this.tot_wear = tot_wear;
 		this.tot_income = tot_income;
 		this.income_startdate = income_startdate;
+	}
+
+	public IncomeDto(int i, int ct_code2, int tot_rg2, int tot_locker2, int tot_wear2, int tot_income2,
+			String income_startdate2) {
+		this.income_num = i;
+		this.ct_code = ct_code2;
+		this.tot_rg = tot_rg2;
+		this.tot_locker = tot_locker2;
+		this.tot_wear = tot_wear2;
+		this.tot_income = tot_income2;
+		this.income_startdate2 = income_startdate2;
+	}
+
+	
+	
+	public String getIncome_startdate2() {
+		return income_startdate2;
+	}
+
+	public void setIncome_startdate2(String income_startdate2) {
+		this.income_startdate2 = income_startdate2;
 	}
 
 	public int getIncome_num() {
@@ -71,11 +95,11 @@ public class IncomeDto {
 		this.tot_income = tot_income;
 	}
 
-	public String getIncome_startdate() {
+	public Date getIncome_startdate() {
 		return income_startdate;
 	}
 
-	public void setIncome_startdate(String income_startdate) {
+	public void setIncome_startdate(Date income_startdate) {
 		this.income_startdate = income_startdate;
 	}
 

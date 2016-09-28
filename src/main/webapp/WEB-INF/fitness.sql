@@ -178,7 +178,8 @@ create table registration			--등록정보
 	rg_type varchar2(20),		--등록종류
 	rg_price number,		--등록가격
 	locker_price number(30) DEFAULT 0,	--락커가격
-	wear_price number(30) DEFAULT 0	--운동복가격
+	wear_price number(30) DEFAULT 0,	--운동복가격
+	signdate date
 );
 CREATE SEQUENCE REGI_SEQ;
 

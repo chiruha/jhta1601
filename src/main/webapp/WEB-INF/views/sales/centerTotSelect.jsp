@@ -12,12 +12,12 @@
 <script type="text/javascript">
 var searchMonth="";
 function ajaxSearchTotInfo(searchMonth){
-	alert("TotInfo 가져오자!!");
+	//alert("TotInfo 가져오자!!");
 	$.ajax({
 		url:"/fitness/ctsSelect/xml",
 		data:"searchMonth="+searchMonth,
 		success:function(data){
-			alert("데이타 가져오자!!!");
+			//alert("데이타 가져오자!!!");
 			var div=document.getElementById("totList");
 			//alert("div: "+div);
 			div.innerHTML="";

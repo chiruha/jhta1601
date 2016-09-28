@@ -89,24 +89,24 @@ function noneMem(){//비회원이 댓글을 달려고 하는 경우
 	alert("로그인 하세요!");
 }
 function resetUpdate(comm_numa){//수정하기 취소
-	alert("수정하기기 취소 : "+comm_numa);
+	//alert("수정하기기 취소 : "+comm_numa);
 	var comm_numa=document.getElementById(comm_numa);
 	comm_numa.style.display="none";
 }
 function reUpdate(comm_numa){//댓글 수정하기
-	alert(comm_numa);
+	//alert(comm_numa);
 	var comm_numa=document.getElementById(comm_numa);
 		comm_numa.style.display="block";	
 }
 
 function reset(comm_num){//댓글의 댓글쓰기 취소
-	alert("댓글쓰기 취소 : "+comm_num);
+	//alert("댓글쓰기 취소 : "+comm_num);
 	var comm_num=document.getElementById(comm_num);
 	//comm_num.style.display="block";	
 	comm_num.style.display="none";
 }
 function reAnswer(comm_num){//댓글의 댓글달기
-	alert(comm_num);
+	//alert(comm_num);
 	var comm_num=document.getElementById(comm_num);
 		comm_num.style.display="block";	
 		//comm_num.style.display="none";	
@@ -281,7 +281,7 @@ function ajaxComm(pageNum){
 $(document).ready(function(){
 	//alert("댓글보기!!");
 	$("#answer").click(function(){
-		alert("버튼클릭!!!");
+		//alert("버튼클릭!!!");
 		ajaxComm(1);//ajax호출하기!!!
 	});	
 });

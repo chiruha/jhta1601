@@ -9,14 +9,14 @@
 var centerList="";
 var searchMonth="";
 function ajaxSearchCenter(centerList,searchMonth){
-	alert("잘되나?");
+	//alert("잘되나?");
 	$.ajax({
 		url:"/fitness/centerIncomeSelect/xml",
 		data:"centerList="+centerList+"&searchMonth="+searchMonth,
 		success:function(data){
-			alert("데이타 가져오자");
+			//alert("데이타 가져오자");
 			var div=document.getElementById("CenterIncomeList");
-			alert("div: "+div);
+			//alert("div: "+div);
 			div.innerHTML="";
 			var html="";
 			html+=
@@ -37,9 +37,9 @@ function ajaxSearchCenter(centerList,searchMonth){
 		 	"</tr>";
 			var ctcode1;
 			$(data).find("result").each(function(){
-				alert("ctctctct");
+				//alert("ctctctct");
 				var len=$(this).find("getIncome_num").length;
-				alert("length: "+len);
+				//alert("length: "+len);
 				for(var i=0;i<len;i++){
 					var income_num=$(this).find("getIncome_num").text();
 					var ct_code=$(this).find("getCt_code").text();
@@ -58,7 +58,7 @@ function ajaxSearchCenter(centerList,searchMonth){
 								"<td>"+income_startdate+"</td>"+
 								"<td><input type='radio' onclick='selectIncome("+ct_code+",\""+income_startdate+"\",\""+tot_income+"\")'></td>"+
 						"</tr>";
-					alert("tot_rg: "+tot_rg);
+					//alert("tot_rg: "+tot_rg);
 				}
 			});
 			html += "</table>";
@@ -73,9 +73,9 @@ function ajaxSearchCenter(centerList,searchMonth){
 	});
 }
 function selectIncome(ct_code,income_startdate,tot_income){
-	alert("계산시작일: "+income_startdate);
-	alert("수입 지점코드: "+ct_code);
-	alert("지점 한달 총 수입 : "+tot_income);
+	//alert("계산시작일: "+income_startdate);
+	//alert("수입 지점코드: "+ct_code);
+	//alert("지점 한달 총 수입 : "+tot_income);
 	$("#ct_num").val(ct_code);
 	$("#cts_income").val(tot_income);
 	$("#cts_date").val(income_startdate);
@@ -88,14 +88,14 @@ function selectIncome(ct_code,income_startdate,tot_income){
 var centerList1="";
 var searchMonth1="";
 function ajaxSearchRefund(centerList1,searchMonth1){
-	alert("환불잘되나?");
+	//alert("환불잘되나?");
 	$.ajax({
 		url:"/fitness/centerRefundSelect/xml",
 		data:"centerList1="+centerList1+"&searchMonth1="+searchMonth1,
 		success:function(data){
-			alert("데이타 가져오자");
+			//alert("데이타 가져오자");
 			var div2=document.getElementById("CenterRefundList");
-			alert("div2: "+div2);
+			//alert("div2: "+div2);
 			div2.innerHTML="";
 			var html2="";
 			html2 +=
@@ -112,9 +112,9 @@ function ajaxSearchRefund(centerList1,searchMonth1){
 		 	"</tr>";
 			var ctcode1;
 			$(data).find("result").each(function(){
-				alert("22222222222222222");
+				//alert("22222222222222222");
 				var len=$(this).find("getCt_code").length;
-				alert("length: "+len);
+				//alert("length: "+len);
 				for(var i=0;i<len;i++){
 					var refund_num=$(this).find("getRefund_num").text();
 					var mem_num=$(this).find("getMem_num").text();
@@ -131,7 +131,7 @@ function ajaxSearchRefund(centerList1,searchMonth1){
 								"<td>"+refund_date+"</td>"+
 								"<td><input type='checkbox' onclick='selectRefund("+ct_code+","+len+",\""+Number(refund_price)+"\")'></td>"+
 						"</tr>";
-					alert("ct_code22222: "+ct_code);
+					//alert("ct_code22222: "+ct_code);
 				}
 			});
 			html2 += "</table>";
@@ -146,16 +146,16 @@ function ajaxSearchRefund(centerList1,searchMonth1){
 }
 var totRefund=0;
 function selectRefund(ct_code,len,refund_price){
-	alert("환불 ctcode : "+ct_code);
-	alert("환불 행의 갯수 : "+len);
-	alert("환불 가격 : "+refund_price);
+	//alert("환불 ctcode : "+ct_code);
+	//alert("환불 행의 갯수 : "+len);
+	//alert("환불 가격 : "+refund_price);
 	totRefund += parseInt(refund_price);
-	alert("총 환불액 : "+totRefund);
+	//alert("총 환불액 : "+totRefund);
 	$("#cts_refund").val(totRefund);
 	$("#cts_refund1").val(totRefund);
 }
 $(document).ready(function(){
-	alert("welcome!!");
+	//alert("welcome!!");
 //--------------------|income|--------------------//
 	//지점목록centerList를 selectBox에 뿌리기
 	$.ajax({

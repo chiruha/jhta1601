@@ -36,7 +36,6 @@ drop table member;
 drop table center; 
 
 --제약조건은 대문자로 표시해둠 최종수정함!!
-
 drop sequence SV_SEQ;	-- 설문지 시퀀스
 drop sequence EVENT_SEQ;	-- EVENT 시퀀스
 drop sequence GX_SEQ; 	-- GX스케줄 시퀀스

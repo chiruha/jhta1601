@@ -22,7 +22,7 @@
 	
 	<!-- 총금액 -->
 	<select id="totregimoney" resultType="fitness.dto.RegistrationDto" parameterType="int">
-		select * from registration where mem_num=#{mem_num}	
+		select * from registration where mem_num=#{mem_num}	and rg_type='PT'
 	</select>
 	
 	<!-- 환불일정 -->

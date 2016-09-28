@@ -72,7 +72,7 @@ function ajaxSearchCenter(centerList,searchMonth){
 			div.appendChild(salesInfo);
 			
 			$(data).find("sum").each(function(){
-				alert("가격계산???????????");
+				//alert("가격계산???????????");
 				$("#searchMonth1").empty();
 				$("#totProgram").empty();
 				$("#totLocker").empty();

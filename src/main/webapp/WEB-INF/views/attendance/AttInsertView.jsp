@@ -19,23 +19,18 @@
 		</c:choose>
       
 <div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-sm-3 form-group">
-			<span class="glyphicon glyphicon-home"> Center</span>
-	</div>
-	<div class="col-sm-3 form-group">
-	<select name="ct_code" class="form-group-sm select">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-3">
+			<span class="glyphicon glyphicon-home"> Center </span><br>
+	<select name="ct_code" class="select input-sm">
 			<c:forEach var="clist" items="${ctlist}">
 					<option value="${clist.ct_code }">${clist.ct_name}</option>
 			</c:forEach>
-	</select><br>
-	</div><br>
-</div>
-<div class="row">
-<div class="col-md-3"></div>
-	<div class="col-md-6">
+	</select>
+	</div>
+	<div class="col-sm-3">
 	<button class="btn pull-right" id="btn" type="submit">
-				<span class="glyphicon glyphicon-search"></span>  check </button><br>
+				<span class="glyphicon glyphicon-search"></span>  Check </button><br>
 	</div>
 </div>
 </form>

@@ -71,7 +71,7 @@
            <li><a href="<c:url value='/attcheck?type=mem&num=${mnum }'/>">출석하기</a></li>
                <li><a href="<c:url value='/ptrinsert'/>">Pt 예약</a></li>
               <li><a href="<c:url value='/MemPTscOkView'/>">Pt 확인</a></li>
-              <li><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">수강정보</a></li>
+              <li><a href="<c:url value='/regiSelect?mnum=${mnum}&gotype=1'/>">수강정보</a></li>
               <c:if test="${not empty mnum}">
              <li><a href="<c:url value='/listOne?mem_num=${mnum}'/>">개인정보</a></li>
           </c:if>

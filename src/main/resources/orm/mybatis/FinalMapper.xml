@@ -22,7 +22,7 @@
 	
 	<!-- 총금액 -->
 	<select id="totregimoney" resultType="fitness.dto.RegistrationDto" parameterType="int">
-		select * from registration where mem_num=#{mem_num}	and rg_type='PT'
+		select * from registration where mem_num=#{mem_num}
 	</select>
 	
 	<!-- 환불일정 -->
@@ -34,7 +34,7 @@
 		   (select gx.mem_num, round( nvl((pro_expiration-pro_regdate),0),0) as gxday,
 		    round(nvl((pro_expiration-sysdate),0),0) as sgxday
 		    from properiod gx where mem_num=#{value})gg
-		where pp.mem_num=#{value} and pp.mem_num=gg.mem_num (+)		   
+		where pp.mem_num=#{value} and pp.mem_num=gg.mem_num		   
 	</select>
 	
 	<!-- 회원이름검색 memSearchList -->
@@ -80,6 +80,26 @@
 	</select>
 	
 	<!--////////// pt관련 - 작성자 : 고석곤 //////////-->	
+	<select id="rowback" resultType="integer">
+		select nvl(max(ptr_num||count(1)),0) ptr_num from pt_register group by ptr_num
+	</select>
+	
+	<select id="joong" parameterType="int" resultType="int">
+		select mem_num from
+ 		pt_register pr, ptsign ps
+ 		where pr.rg_num=ps.rg_num and mem_num=#{value} 
+	</select>
+	<select id="joong2" parameterType="int" resultType="int">
+		 select ptr_num from
+ 		 pt_register pr, ptsign ps
+ 		 where pr.rg_num=ps.rg_num and mem_num=#{value} 
+ 
+	</select>
+	
+	<select id="ptsignOk" resultType="fitness.dto.PtsignDto" parameterType="int">
+		select * from ptsign where mem_num=#{value}
+	</select>
+	
 	<delete id="ptDelete" parameterType="int">
 		delete from pt_register where ptr_num=#{value}
 	</delete>

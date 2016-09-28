@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import fitness.dao.PtregisterDao;
 import fitness.dto.GxsubjectDto;
 import fitness.dto.PtregisterDto;
-
+import fitness.dto.PtsignDto;
 import fitness.dto.RegistrationDto;
 
 
@@ -62,6 +62,18 @@ public class PtregisterService {
 	}
 	public RegistrationDto regi_info(int mnum){
 		return ptregisterDao.regi_info(mnum);
+	}
+	public PtsignDto ptsignOk(int mnum){
+		return ptregisterDao.ptsignOk(mnum);
+	}
+	public int joong(int mnum){
+		return ptregisterDao.joong(mnum);
+	}
+	public int joong2(int mnum){
+		return ptregisterDao.joong2(mnum);
+	}
+	public Integer rowback(){
+		return ptregisterDao.rowback();
 	}
 	
 }

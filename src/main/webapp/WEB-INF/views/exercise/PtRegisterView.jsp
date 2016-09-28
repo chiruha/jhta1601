@@ -32,36 +32,35 @@
 					var ptr_initdate=$("#pdate").val();
 					var ptr_time=$("#time").val();
 					var ct_code=$("#ct_code").val();
-					var tr_num=$("#st_code").val();	
-					alert(tr_num);
+					var tr_num=$("#st_code").val();						
 					$("#dlg").dialog("close");
 					$.ajax({
 							url:"/fitness/ptrinsert",
 							dataType:"json",
 							type:"post",
 							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code+"&tr_num="+tr_num,							
-							success:function function_name(data) {
-								alert(data);
-								if(data.ptr_num!=0 && data != 9999){
-								var str =
-									
+							success:function function_name(data) {								
+								if(data.ptr_num!=0 && data != 9999 && data != 9990){
+								var str =									
 								"<div class='row'><div class='col-sm-3'></div>"+
-										  "<div class='col-sm-3'><label>트레이너 : "+ data.tr_num+"</label></div>" +
-										  "<div class='col-sm-3'><label>등록번호 : " + data.rg_num + "</label></div>" +
+								"<div class='col-sm-3'><label>트레이너 : "+ data.tr_num+"</label></div>" +
+								"<div class='col-sm-3'><label>등록번호 : " + data.rg_num + "</label></div>" +
 								"</div><div class='row'><div class='col-sm-3'></div>"+
-										  "<div class='col-sm-6'><label>회원시작일 : " + data.ptr_initdate + "</label></div>" +
+								"<div class='col-sm-6'><label>회원시작일 : " + data.ptr_initdate + "</label></div>" +
 								 "</div><div class='row'><div class='col-sm-3'></div>"+
-								          "<div class='col-sm-3'><label>회원시간 : " +  data.ptr_time + "</label></div>" +
-								          "<div class='col-sm-3'><label>PT횟수 : " + data.ptr_count + "</label></div>" +
+								 "<div class='col-sm-3'><label>회원시간 : " +  data.ptr_time + "</label></div>" +
+								 "<div class='col-sm-3'><label>PT횟수 : " + data.ptr_count + "</label></div>" +
 								 "</div><div class='row'><div class='col-sm-3'></div>"+
-								          "<div class='col-sm-3'><label>지점코드 : " + data.ct_code + "</label></div>" +
-								          "<div class='col-sm-3'><label>회원승인 : " + data.ptr_ok	+ "</label></div>";
+								 "<div class='col-sm-3'><label>지점코드 : " + data.ct_code + "</label></div>" +
+								 "<div class='col-sm-3'><label>회원승인 : " + data.ptr_ok	+ "</label></div>";
 							
 								//alert(str); 
 								 $("#result").html(str);	
 								}else if(data==9999){
-									$("#result").html("등록센터가서 등록해주세요.");
-								}else{
+									$("#contact").remove();
+									$("#result").html("고객센터가서 문의해주시기 바람니다.");
+								}else if(data==9990){
+									$("#contact").remove();
 									$("#result").html("<h3 class='text-center'>이미 PT 신청하셨습니다.</h3>");
 								}
 								
@@ -92,7 +91,7 @@
 		
 		});	
 		
-		
+			
 	});
 </script>
 <!-- Container (Contact Section) -->
@@ -139,7 +138,7 @@
 					
 		</div>
 	</div>
-<div id="result"></div>
+
 
 	
 
@@ -149,5 +148,6 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 </div>
+<div id="result"></div>
 
 

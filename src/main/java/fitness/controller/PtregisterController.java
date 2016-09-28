@@ -39,7 +39,7 @@ public class PtregisterController {
 	private RegistrationService regiservice;
 	@Autowired
 	private GxregisterService gxservice;
-	
+
 	@Autowired
 	private MemberService mservice;
 
@@ -47,12 +47,12 @@ public class PtregisterController {
 	public String insert(HttpSession session) {
 		List<CenterDto> ctlist = cts.listService();
 		session.setAttribute("ctlist", ctlist);
-		
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		List<TrainerDto> stlist = trservice.listService(map);
 		System.out.println("stlist" + stlist);
 		session.setAttribute("stlist", stlist);
-		
+
 		return ".exercise.PtRegisterView";
 	}
 
@@ -117,19 +117,45 @@ public class PtregisterController {
 		String mem_name=mservice.listOne(mnum).getMem_name();
 		dto.setMem_name(mem_name);
 		dto.setMem_num(mnum);
-		int rg_num = service.regi_info(mnum).getRg_num();		
-		dto.setRg_num(rg_num);
 		
-		Integer ptr_count=service.ptrcount(rg_num);
-		dto.setPtr_count(ptr_count);
+		
+		try{
+			int ptr_count = service.ptsignOk(mnum).getPtr_count();
+			int rg_num = service.ptsignOk(mnum).getRg_num();
+			dto.setPtr_count(ptr_count);
+			dto.setRg_num(rg_num);			
+		}catch (Exception e) {
+			System.out.println("널발생");
+			int n=9999;
+			return n;
+		}
+		
+		
+		Integer n=service.rowback();
+		System.out.println("n이다:"+n);		
 		System.out.println("2번째 DTO:"+dto);
+		
 		//----중복처리 하면된다.--------------------------------------------
+		PtregisterDto ptrdto =null;
 		
-		
-		
+		try{
+			if(service.rowback()==0){
+				service.insert(dto);
+				int ptr_num=service.joong2(mnum);
+				ptrdto=service.detailService(ptr_num);
+				return ptrdto;
+		}else if(mnum!=service.joong(mnum)){
+				
+			}
+		}catch (Exception e) {
+			service.insert(dto);
+			int ptr_num=service.joong2(mnum);
+			ptrdto=service.detailService(ptr_num);
+			return ptrdto;
+		}
 			
-		return null;
-
+			int nk=9990;
+			return nk;
 		
 	}
 

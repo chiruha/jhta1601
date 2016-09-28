@@ -6,7 +6,7 @@ $(document).ready(function () {
 		$("button").click(function(event) {
 			event.preventDefault();
 			var id=event.target.getAttribute('id');
-			alert($(this).attr('id')); // id 찍어보기 
+			//alert($(this).attr('id')); // id 찍어보기 
 			//alert("id : "+id);
 			var form=document.detailform;
 			form.action=id;

@@ -1,37 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<h1>글정보보기</h1>
-<br>
-<br>
-<table border="1" width="700">
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+	<h3 class="text-center">Notice</h3>
+	<h5 class="text-right"><a href="<c:url value='/noclist'/>">전체보기</a></h5>
+	<div class="row">
+<div class="col-md-12">
+<table border="1"class="table">
 	<tr>
-		<td width="100">글번호</td>
-		<td colspan="2">${dto.nt_num}</td>
+		<td >글번호</td>
+		<td >${dto.nt_num}</td>
 	</tr>
 	<tr>
-		<td width="100">작성관리자</td>
-		<td colspan="2">${dto.stf_name}</td>
+		<td >작성관리자</td>
+		<td>${dto.stf_name}</td>
 	</tr>
 	<tr>
-		<td width="100">글제목</td>
-		<td colspan="2">${dto.nt_title}</td>
+		<td >글제목</td>
+		<td >${dto.nt_title}</td>
 	</tr>
 	<tr>
-		<td width="100">글내용</td>
-		<td colspan="2">${dto.nt_content}</td>
+		<td >글내용</td>
+		<td >${dto.nt_content}</td>
 	</tr>
 	<tr>
-		<td width="100">작성일</td>
-		<td colspan="2">${dto.nt_date}</td>
+		<td>작성일</td>
+		<td >${dto.nt_date}</td>
 	</tr>
 	<tr>
-		<td width="100">조회수</td>
-		<td colspan="2">${dto.nt_hit}</td>
+		<td >조회수</td>
+		<td >${dto.nt_hit}</td>
 	</tr>
 	
 </table>
-<a href="nocUpdate?nt_num=${dto.nt_num }">글정보수정</a>
-<a href="nocDelete?nt_num=${dto.nt_num }">글정보삭제</a>
-<a href="noclist">글목록</a>
+</div>
+<div class="row">
+<div class="col-md-3"></div>
+	<div class="col-md-3">
+	<a href="nocDelete?nt_num=${dto.nt_num }">
+	<button class="btn pull-right" id="ok" type="submit">
+	<span class="glyphicon glyphicon-remove"></span> Delete </button></a>	
+	</div>
+		<div class="col-md-3">
+		<a href="nocUpdate?nt_num=${dto.nt_num }">
+	<button class="btn pull-left" id="cancle" type="reset">
+	<span class="glyphicon glyphicon-ok"></span>  Update </button></a>
+	</div>
+	
+	</div>
+
+
+</div>
+</div>
 

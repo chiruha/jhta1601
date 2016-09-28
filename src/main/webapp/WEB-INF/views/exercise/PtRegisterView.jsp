@@ -97,8 +97,8 @@
 </script>
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-	<h2 class="text-center" id="open_btn">PT Schedule</h2>
-	<h5 class="text-center">(click)</h5> <br>
+	<div  id="open_btn"><h2 class="text-center">PT Schedule</h2>
+	<h5 class="text-center">( c l i c k )</h5> </div>
 	
 	<div id="box">
 		<div id="dlg" title="PT Schedule" >			
@@ -146,6 +146,8 @@
 </div>
 
 
-
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+</div>
 
 

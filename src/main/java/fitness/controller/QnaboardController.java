@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fitness.dto.CenterTotalSalesDto;
 import fitness.dto.QnaboardDto;
 import fitness.service.QnaboardService;
 import page.util.PageUtil;
@@ -78,13 +79,18 @@ public class QnaboardController {
 			QnaboardDto dto1=new QnaboardDto(snum, mem_num, stf_num, qna_title, qna_content, null, 0, qnaref, qnalev, qnastep);
 			System.out.println("insert 시 dto에 뭐가 담겼나?"+dto1);
 			service.qnaInsert(dto1);
-			return ".member.memSuccess";
+			
+			req.setAttribute("result", "게시판 글등록 성공!");
+			req.setAttribute("listurl", "<a href='qnaselectAll'>글목록</a>");
 		
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".member.memError";
+			req.setAttribute("result", "글 등록 실패");	
 		}
+		return ".staff.ResultView";
 	}
+
+	
 	//--------------------| 글 전체목록 보기 |--------------------//
 	@RequestMapping("/qnaselectAll")
 	public ModelAndView qnaListAll(@RequestParam(value="pageNum",defaultValue="1")int pageNum){

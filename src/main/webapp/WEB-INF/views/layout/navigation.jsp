@@ -21,17 +21,17 @@
 
         
       <!-- Introduce  dropdown 메뉴 -->
-        <li>   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Intro
+        <li>   <a class="dropdown-toggle" data-toggle="dropdown" href="#">소개
             <span class="caret"></span></a>
              <ul class="dropdown-menu">
-                  <li><a href="#">Company</a></li>
-                  <li><a href="<c:url value='/trlist'/>">Trainer</a></li>
+                  <li><a href="#">회사소개</a></li>
+                  <li><a href="<c:url value='/trlist'/>">강사소개</a></li>
           </ul>
         </li>
         
         <!-- Center 메뉴 -->
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Center
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">지점
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<c:url value='/Jongnosamga'/>">본점</a></li>
@@ -43,24 +43,20 @@
           </ul>
         </li>
         
-        
-        
-        
         <!-- Board 메뉴 -->
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Board
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">게시판
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<c:url value='/noclist'/>">Notice</a></li>
-            <li><a href="<c:url value='/qnaselectAll'/>">QnA</a></li>
-            <li><a href="<c:url value='/eventSelectAll'/>">Event</a></li>
-            <li><a href="<c:url value='/fblist'/>">FreeBoard</a></li>
+            <li><a href="<c:url value='/noclist'/>">공지게시판</a></li>
+            <li><a href="<c:url value='/fblist'/>">자유게시판</a></li>
+            <li><a href="<c:url value='/qnaselectAll'/>">질문게시판</a></li>
+            <li><a href="<c:url value='/eventSelectAll'/>">이벤트게시판</a></li>
           </ul>
         </li>
-
         
-        <!-- 수강  dropdown 메뉴 -->
-		<li><a href="<c:url value='/gxRegisterView'/>">Schedule</a></li>
+        <!-- 시간표 메뉴 -->
+		<li><a href="<c:url value='/gxRegisterView'/>">시간표</a></li>
 
 
       
@@ -72,12 +68,12 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyPage
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-           <li><a href="<c:url value='/attcheck?type=mem&num=${mnum }'/>">Attendance</a></li>
-               <li><a href="<c:url value='/ptrinsert'/>">Book Pt</a></li>
-              <li><a href="<c:url value='/MemPTscOkView'/>">Confirm Pt</a></li>
-              <li><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">Regi Info</a></li>
+           <li><a href="<c:url value='/attcheck?type=mem&num=${mnum }'/>">출석하기</a></li>
+               <li><a href="<c:url value='/ptrinsert'/>">Pt 예약</a></li>
+              <li><a href="<c:url value='/MemPTscOkView'/>">Pt 확인</a></li>
+              <li><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">수강정보</a></li>
               <c:if test="${not empty mnum}">
-             <li><a href="<c:url value='/listOne?mem_num=${mnum}'/>">Personal Info</a></li>
+             <li><a href="<c:url value='/listOne?mem_num=${mnum}'/>">개인정보</a></li>
           </c:if>
  
           </ul>
@@ -86,41 +82,53 @@
 			<c:when test="${not empty sessionScope.snum}">
 			<!-- Staff Manager dropdown 메뉴 -->
         	<li class="dropdown">
-         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리
+         	 <span class="caret"></span></a>
+        	  <ul class="dropdown-menu">     	   
+        		<li><a href="<c:url value='/memselectAll'/>">회원목록</a></li>
+                <li><a href="<c:url value='/mlistAll'/>">회원출석표</a></li>
+                 <li><a href="<c:url value='/regiInsert'/>">수강등록</a></li>
+                <li><a href="<c:url value='/regiSelect'/>">수강목록</a></li>                
+                
+           
+          </ul>		
+          <!-- 직원관리 메뉴 -->
+          <li class="dropdown">
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">직원관리
          	 <span class="caret"></span></a>
         	  <ul class="dropdown-menu">
-        	   <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">Attendance</a></li>
-            	<li><a href="<c:url value='/stflist'/>">Staff List</a></li>
-        		<li><a href="<c:url value='/memselectAll'/>">Member List</a></li>
-                <li><a href="<c:url value='/regiSelect'/>">Regi List</a></li>                
-                <li><a href="<c:url value='/slistAll'/>">Satt List</a></li>
-	            <li><a href="<c:url value='/refundDay'/>">Refund</a></li>
-                 <li><a href="<c:url value='/regiInsert'/>">Add Regi</a></li>
-                <li><a href="<c:url value='/stfinsert'/>">Add Staff</a></li>
-                <li><a href="<c:url value='/nocinsert'/>">Add Notice</a></li>
-               	<li><a href="<c:url value='/posinsert'/>">Add Pos</a></li>
-                <li><a href="<c:url value='/deptinsert'/>">Add Dept </a></li>
-             	<li><a href="<c:url value='/ctinsert'/>">Add Center</a></li>
-                <li><a href="<c:url value='/payinsert'/>">Payment</a></li>
-                 <li><a href="<c:url value='/paylist'/>">Payment List</a></li>
+        	  <li><a href="<c:url value='/attcheck?type=admin&num=${sessionScope.snum }'/>">출근하기</a></li>
+				<li><a href="<c:url value='/slistAll'/>">출퇴근표</a></li>
+            <li><a href="<c:url value='/stfinsert'/>">직원등록</a></li>
+            	<li><a href="<c:url value='/stflist'/>">직원목록</a></li>
+				<li><a href="<c:url value='/trlist'/>">강사목록</a></li>
+            	<li><a href="<c:url value='/PTscOkView'/>">PT 승인</a></li>
+				<li><a href="<c:url value='/gxinsert'/>">시간표등록</a></li>
+          </ul>		
+            <!-- 재무관리 메뉴 -->
+          <li class="dropdown">
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">재무관리
+         	 <span class="caret"></span></a>
+        	  <ul class="dropdown-menu">
+                <li><a href="<c:url value='/payinsert'/>">월급지급</a></li>
+                 <li><a href="<c:url value='/paylist'/>">월급지급표</a></li>
+        	    <li><a href="<c:url value='/SjRefundInsert'/>">환불하기</a></li>
                 <li><a href="<c:url value='/ctsSelect'/>">지점별 월매출</a></li>
                 <li><a href="<c:url value='/centertotalsalesInsert'/>">지점별 월매출 계산</a></li>
                  <li><a href="<c:url value='/incomeInsert'/>">지점별 월수입 계산</a></li>
-               <%--
-                 <li><a href="<c:url value='/testpage/?test=2'/>">icontest</a></li>
-                --%>
           </ul>		
-          <!-- Staff Trainer dropdown 메뉴 -->
+           <!-- 직원관리 메뉴 -->
           <li class="dropdown">
-         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trainer
+         	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">경영관리
          	 <span class="caret"></span></a>
         	  <ul class="dropdown-menu">
-				<li><a href="<c:url value='/trlist'/>">Trainer List</a></li>
-            	<li><a href="<c:url value='/mlistAll'/>">Matt List</a></li>
-            	<li><a href="<c:url value='/PTscOkView'/>">PT Confirm</a></li>
-            	<li><a href="<c:url value='/exloginsert'/>">PT Diary</a></li>
-				<li><a href="<c:url value='/gxinsert'/>">Add  Schedule</a></li>
+        	    <li><a href="<c:url value='/nocinsert'/>">공지등록</a></li>
+               	<li><a href="<c:url value='/posinsert'/>">직급등록</a></li>
+                <li><a href="<c:url value='/deptinsert'/>">부서등록 </a></li>
+             	<li><a href="<c:url value='/ctinsert'/>">지점등록</a></li>
           </ul>		
+          
+
 			</c:when>
 		</c:choose>
       

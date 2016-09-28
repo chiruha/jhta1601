@@ -1,6 +1,7 @@
 package fitness.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,11 @@ public class PaymentService {
 	}
 	public int insertService(PaymentDto dto){
 		return dao.insertDao(dto);
+	}
+	public int payCnt(HashMap<String, Object> map){
+		return   dao.payCnt(map);
+	}
+	public List<PaymentDto> payList(HashMap<String, Object> map){
+		return   dao.payList(map);
 	}
 }

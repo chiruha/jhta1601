@@ -102,6 +102,7 @@
                 <li><a href="<c:url value='/deptinsert'/>">Add Dept </a></li>
              	<li><a href="<c:url value='/ctinsert'/>">Add Center</a></li>
                 <li><a href="<c:url value='/payinsert'/>">Payment</a></li>
+                 <li><a href="<c:url value='/paylist'/>">Payment List</a></li>
                 <li><a href="<c:url value='/ctsSelect'/>">지점별 월매출</a></li>
                 <li><a href="<c:url value='/centertotalsalesInsert'/>">지점별 월매출 계산</a></li>
                  <li><a href="<c:url value='/incomeInsert'/>">지점별 월수입 계산</a></li>

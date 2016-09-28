@@ -1,11 +1,11 @@
 package fitness.dto;
 
-
+import java.sql.Date;
 
 public class RefundDto {
 	private int refund_num;
 	private int mem_num;
-	private int refund_date;
+	private Date refund_date;
 	private int rg_num;
 	private int ct_code;
 	private String rg_type;
@@ -13,7 +13,7 @@ public class RefundDto {
 	
 	public RefundDto() {}
 
-	public RefundDto(int refund_num, int mem_num, int refund_date, int rg_num, int ct_code, String rg_type,
+	public RefundDto(int refund_num, int mem_num, Date refund_date, int rg_num, int ct_code, String rg_type,
 			int refund_price) {
 		super();
 		this.refund_num = refund_num;
@@ -41,11 +41,11 @@ public class RefundDto {
 		this.mem_num = mem_num;
 	}
 
-	public int getRefund_date() {
+	public Date getRefund_date() {
 		return refund_date;
 	}
 
-	public void setRefund_date(int refund_date) {
+	public void setRefund_date(Date refund_date) {
 		this.refund_date = refund_date;
 	}
 

@@ -129,6 +129,7 @@ public class PtregisterController {
 			return n;
 			
 		}
+		
 		service.insert(dto);
 		List<PtregisterDto> ptrlist=service.ptr_rg_numinfo(Integer.toString(rg_num));
 		String ptr_ok =null;
@@ -143,7 +144,7 @@ public class PtregisterController {
 		System.out.println("dto.getRg_num():"+dto.getRg_num()+"|"+"rg_num:"+rg_num);
 		
 		if(dto.getRg_num()==rg_num){
-			service.insert(dto);	
+			//service.insert(dto);	
 			System.out.println("dto°á°ú"+dto);
 			  
 			PtregisterDto ptrdto =null;

@@ -23,7 +23,7 @@ public class RefundDao {
 	public List<RegistrationDto> refundrgnumlist(HashMap<String, Object>map){
 		return sqlSession.selectList(NAMESPACE+".refundrgnum",map);
 	}	
-	public List<RefundDto> refundlist(){
+	public List<RefundDto> refundlist(){		
 		return sqlSession.selectList(NAMESPACE+".refundlist");
 	}
 	public int memNaCount(HashMap<String, Object>map){

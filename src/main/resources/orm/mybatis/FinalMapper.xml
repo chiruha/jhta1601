@@ -15,6 +15,7 @@
 	<select id="refundlist" resultType="fitness.dto.RefundDto">
 		select * from refund
 	</select>
+	
 	<select id="refundrgnum" resultType="fitness.dto.RegistrationDto" parameterType="hashmap">
 		select rg_num,rg_type from registration where mem_num=#{mem_num}
 	</select>
@@ -251,12 +252,15 @@
 	<insert id="payinsert" parameterType="fitness.dto.PaymentDto">
 		insert into payment values(pay_seq.nextval, #{stf_num}, #{time_sum}, #{pay_tot}, sysdate)
 	</insert>
-	<select id="paylist">
+	<select id="paylist"  parameterType="hashmap" resultType="fitness.dto.PaymentDto">
 		select * from( select stf.*,rownum rnum from
 			(select p.*,stf_name,stf_phone from staff s, payment p where s.stf_num=p.stf_num )stf
 			<where>
 				<if test="ptype!=null">
-					${ptype} like '%' || #{keyword}|| '%'
+					and ${ptype} like '%' || #{keyword}|| '%'
+				</if>	
+					<if test="start_date!=null">
+					and pay_date between #{start_date} and to_char(add_months(#{start_date},3))
 				</if>		
 		</where>
 		)
@@ -265,13 +269,15 @@
 	<select id="payCnt" parameterType="hashmap" resultType="int">
 	select count(pay_num) from ( select stf.*,rownum rnum from
 			(select p.*,stf_name,stf_phone from staff s, payment p where s.stf_num=p.stf_num )stf
-			<where>
+		<where>
 				<if test="ptype!=null">
-					${ptype} like '%' || #{keyword}|| '%'
+					and ${ptype} like '%' || #{keyword}|| '%'
+				</if>	
+					<if test="start_date!=null">
+					and pay_date between #{start_date} and to_char(add_months(#{start_date},3))
 				</if>		
 		</where>
 		)
-		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	
 <!--////////// trainer 관련 - 작성자 : 유예진 //////////-->

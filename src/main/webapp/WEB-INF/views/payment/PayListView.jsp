@@ -9,25 +9,25 @@
 
  <script type="text/javascript">
 	$(document).ready(function() {
-		var type="${dtype}";
+		var type="${ptype}";
 		//alert("${dtype}")
 		if(type!=""&&type!=null){
 		//alert("type: ${sessionScope.stype}")
-			$("#dselbox").val("${dtype}").attr("selected","selected")		
+			$("#pselbox").val("${ptype}").attr("selected","selected")		
 		}
 		$("#btn").click(function(event) {
 			//alert($("#selbox option:selected").val())
 			event.preventDefault();
 				$("#sp").empty();
-			if($("#datt_keyword").val()=='' ){
+			if($("#pkeyword").val()=='' ){
 				$("#sp").append("검색어를 입력하세요!!").css({
 					"color":"#0080ff",
 					"font-size":"13px"
 				});
-			}else if($("#dselbox option:selected").val()=="stf_num"){
+			}else if($("#pselbox option:selected").val()=="stf_num"){
 				//alert("dsel :"+$("#dselbox option:selected").val())
 				//alert("검색 : "+$("#datt_keyword").val())
-				$("#stf_num").val($("#datt_keyword").val())
+				$("#stf_num").val($("#pkeyword").val())
 				document.listform.submit();
 			}else{
 				document.listform.submit();
@@ -39,29 +39,17 @@
 			$("#pageNum").val($(this).attr("href"));
 			document.listform.submit();
 		});
-		$("#search").click(function(event) {
+
+		$("#datepicker1").on("change",function(e) {
 			document.listform.submit();
 		});
-		
 	
 		 $( "#datepicker1" ).datepicker({
 			    dateFormat: 'yy/mm/dd'
 			  });
-		 $("#start_date").on("onchange", function() {
-			 alert("ws")
-			 $.ajax({
-				 url:"/fitness/wsum?stf_num="+$('#stf_num').val()+"&start_date="+$('#start_date').val(),
-				 dataType:"xml",
-				 success: function(data) {
-					 alert(date)
-					var sp=$(data).find("spay");
-					alert(sp)
-				}
-			 });
+		 
 			 
 		 });
-	});
-
 </script>
 
 
@@ -69,23 +57,19 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<form action="paylist" method="post" name="listform">
-	<h3 class="text-center"><a href="<c:url value='/slistAll'/>" class="none">Staff Attendance Detail</a> </h3>
+	<h3 class="text-center">Payment List </h3>
 <div class="row">
-	<div class="col-md-4">
-	<h5 id="ws" class="text-primary">총근무시간 ${wsum }</h5>
+	<div class="col-sm-8">
+	<h5 class="text-left"> <label>검색 시작일</label>
+	<input type="text" id="datepicker1" size="10" name="start_date" placeholder="날짜를 선택하세요(3개월 단위)" class="input-sm"
+		<c:if test="${start_date ne null}">value="${start_date }"</c:if>> </h5>
 	</div>
-	<div class="col-md-4">
-	<h5 class="text-center"> 
-	<input type="text" id="datepicker1" name="start_date" placeholder="날짜를 선택하세요(한달)" class="input-sm"
-		<c:if test="${ddate ne null}">value="${ddate }"</c:if>>	
-	<a href="#" id="search">검색</a> </h5>
-	</div>
-	<div class="col-md-4">
-	<h5 class="text-right"><a href="sdetail?stf_num=${dstf_num}">전체보기</a></h5>
+	<div class="col-sm-4">
+	<h5 class="text-right"><a href="paylist?stf_num=${pstf_num}">전체보기</a></h5>
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-sm-12">
 	<table  class="table th" >
 	<tr>
 		<th>직원번호</th>
@@ -98,7 +82,7 @@
 	<c:forEach var="dto" items="${paylist }">
 	<tr>
 		<td>${dto.stf_num }</td>
-		<td><a href="stfdetail?stf_num=${dto.stf_num}">${dto.stf_name }</a></td>
+		<td>${dto.stf_name }</td>
 		<td>${dto.stf_phone }</td>
 		<td>${dto.pay_tot }</td>
 		<td>${dto.pay_date }</td>
@@ -110,21 +94,20 @@
 	</div>
 </div>
 							
-	<input type="hidden" id="stf_num" name="stf_num" value="${dstf_num}">
+	<input type="hidden" id="stf_num" name="stf_num" value="${pstf_num}">
 		<input type="hidden" id="pageNum" name="pageNum">
 	<div class="row">
 		<div class="col-sm-2">
-			<select name="dtype" class="select input-sm" id="dselbox">
+			<select name="ptype" class="select input-sm" id="pselbox">
 					<option value="stf_num">직원번호</option>
 					<option value="stf_name">직원이름</option>
 					<option value="stf_phone">직원전화</option>
-					<option value="ct_name">출근지점</option>
 			</select>
 		</div>
 
 			<div class="col-sm-6">
 				<input type="text" placeholder="검색 조건을 선택하세요" class="form-control" size="15"
-				 name="datt_keyword" id="datt_keyword" <c:if test="${datt_keyword ne null}">value="${datt_keyword }"</c:if>>
+				 name="pkeyword" id="pkeyword" <c:if test="${pkeyword ne null}">value="${pkeyword }"</c:if>>
 				<span id="sp"></span>
 			</div>
 			<div class="col-sm-4">

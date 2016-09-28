@@ -111,7 +111,8 @@ public class RegistrationController {
 	//----------| 수강등록회원 전체보기(selectList)(테이블명: registration,prosign,ptsign) |----------//
 	@RequestMapping("/regiSelect")
 	public ModelAndView regiSelect(@RequestParam(value="pageNum", defaultValue="1") int pageNum, HttpSession session,
-			@RequestParam(value="mnum", defaultValue="0") int mnum){
+			@RequestParam(value="mnum", defaultValue="0") int mnum,
+			@RequestParam(value="gotype", defaultValue="0") int gotype){
 		System.out.println("mnum : "+mnum);
 		ModelAndView mv=new ModelAndView(".registration.regiListAll");
 		int totalRowCount=service.getCountRegi();
@@ -127,6 +128,10 @@ public class RegistrationController {
 		mv.addObject("listAll",list);
 		mv.addObject("pu",pu);
 		System.out.println("list size : "+list.size()); 
+		if(gotype==1){
+			mv.setViewName(".registration.regiOneMem");	
+			System.out.println("gotype : "+gotype);
+		}
 		if(list.size()==0){
 			session.setAttribute("result", "수강등록 내역이 없습니다");
 			mv.setViewName(".staff.ResultView");						

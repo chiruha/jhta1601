@@ -112,7 +112,7 @@
 			</div>
 			<div class="col-sm-4">
 				<button class="btn pull-right" id="btn" type="submit">
-				<span class="glyphicon glyphicon-search"></span>  search </button><br>
+				<span class="glyphicon glyphicon-search"></span>  Search </button><br>
 			</div>
 			</div>
 <br>

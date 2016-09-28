@@ -7,7 +7,7 @@
 <div class="row">
 
 수강등록번호 :${dto1.rg_num }
-<table border="1"  class="table th" width="700">
+<table border="1"  class="table th">
 	<tr>
 		<th>회원번호</th>
 		<td>${dto1.mem_num }</td>

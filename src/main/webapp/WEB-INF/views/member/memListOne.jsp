@@ -75,11 +75,20 @@ $(document).ready(function () {
 </div>
 </div>
 <div class="row">
-<div class="col-md-12">
-<button id="memUpdateList?mem_num=${dto.mem_num }" class="btn">수정</button>
-<button id="memDelete?mem_num=${dto.mem_num }" class="btn">삭제</button>
-
-</div>
+<div class="col-md-3"></div>
+		<div class="col-md-3">
+		<a href="memDelete?mem_num=${dto.mem_num }">
+	<button class="btn pull-left"  >
+	<span class="glyphicon glyphicon-ok"></span>  Update </button></a>
 	</div>
+		<div class="col-md-3">
+	<a href="memUpdateList?mem_num=${dto.mem_num }">
+	<button class="btn pull-right"  >
+	<span class="glyphicon glyphicon-remove"></span> Delete </button></a>	
+	</div>
+	</div>
+
+
+
 	</form>
 </div>

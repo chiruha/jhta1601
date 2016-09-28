@@ -70,7 +70,7 @@
 	</div>
 	<div class="col-sm">
 	<button class="btn pull-right" id="btn" type="submit">
-		<span class="glyphicon glyphicon-search"> search </span>
+		<span class="glyphicon glyphicon-search"> Search </span>
 	</button>
 	</div>
 </div>

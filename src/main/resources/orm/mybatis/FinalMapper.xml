@@ -484,7 +484,7 @@
 <!--////////// 수강등록 관련(회원등록) - 작성자:이성진 //////////-->
 	<!-- 1.insert - registration(기본정보등록) table -->
 	<insert id="regiInsert" parameterType="fitness.dto.RegistrationDto">
-		insert into registration values(regi_seq.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price})
+		insert into registration values(regi_seq.nextval,#{mem_num},#{rg_type},#{rg_price},#{locker_price},#{wear_price}, sysdate)
 	</insert>
 	<!-- (insert)2.registration 테이블의 rg_num의 큰번호 받아오기 -->
 	<select id="rgNum" resultType="int">

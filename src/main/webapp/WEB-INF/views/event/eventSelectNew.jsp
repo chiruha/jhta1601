@@ -3,17 +3,24 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="contact" class="container">
 	<h3 class="text-center">Event게시판</h3>
-	<h5 class="text-right"><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">전체보기</a></h5>
 <div class="row">
 	<div class="col-md-12">
-
-<c:choose>
-	<c:when test="${not empty sessionScope.snum }"><!-- 직원인경우 -->
-			<span class="glyphicon glyphicon-pencil"></span><a href="<c:url value='/eventInsert'/>">글쓰기</a>
-	</c:when>
-</c:choose>
+		<div class="col-sm-6">
+			<c:choose>
+				<c:when test="${not empty sessionScope.snum }"><!-- 직원인경우 -->
+					<span class="glyphicon glyphicon-pencil"></span><a href="<c:url value='/eventInsert'/>">글쓰기</a>
+				</c:when>
+			</c:choose>
+		</div>
+		<div class="col-sm-6">
+			<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">전체보기</a></h5>
+		</div>
+	</div>
+</div>
 <input type="hidden" value="${selectNew.ev_num }">
-<table border="1" class='table-bordered' width="1000">
+<div class="row">
+<div class="col-md-12">
+<table class="table th" width="1000">
 	<tr>
 		<td>| 작성일: ${selectNew.ev_date } |
 			<c:choose>
@@ -45,7 +52,7 @@
 </table>
 <br>
 <!-- /////////////// 댓글 쓰기 /////////////// -->
-<h5 class="text-left">댓글쓰기</h5>
+<h5 class="text-left"><span class='glyphicon glyphicon-pencil'></span>댓글쓰기</h5>
 <!-- 유효성테스트: 비회원인 경우 로그인하라는 alert창 뜨게 하기!!! -->
 <form method="post" action="EventCommentsInsert">
 	<%--  부모글에 대한 정보를 hidden으로 서버에 전송--%>
@@ -62,9 +69,15 @@
 			<input type="hidden" name="stf_num" value="${sessionScope.snum }">
 		</c:when>
 	</c:choose>
-	<textarea rows="2" cols="80" name="comments"></textarea>
-	<input type="submit" value="댓글등록"> 
-	<input type="reset" value="취소"> 
+	<div class="row">
+		<div class="col-md-10">
+			<textarea rows="2" cols="80" class="form-control" name="comments"></textarea>
+		</div>
+		<div class="col-md-2">
+			<button class="btn pull-right" type="submit">
+			<span class="glyphicon glyphicon-ok"></span>  댓글등록 </button>
+		</div>
+	</div>
 </form>
 <br>
 <!-- /////////////// 댓글 전체목록보기 /////////////// -->
@@ -152,25 +165,26 @@ function ajaxComm(pageNum){
 					var comm=document.createElement("div");
 					//alert("comm_ref : "+comm_ref);
 					//alert("comm_date"+comm_date);
-					var html="<table border='1' class='table-bordered' width='1000'>"+	
+					var html="<table class='table table-hover' width='1000'>"+	
 								"<tr>"+
-								"<th>";
+								"<td>";
+								html +="<h5 class='text-left'>";
 								if(comm_lev>0){
 									for(var i=0;i<comm_lev;i++){
 										html+="&nbsp;&nbsp";
 									}
 									//html=html+"[re]";
-									html=html+"<img src='/fitness/resources/img/hs6.png' height='15px'>";
+									html=html+"&nbsp;&nbsp&nbsp;&nbsp<span class='glyphicon glyphicon-arrow-right'></span>&nbsp;&nbsp";
 								}
 								//alert("stf_num: "+stf_num+" // mem_num: "+mem_num);
-								if(stf_num<1){
-									html+="글쓴이(회원) : "+mem_num+" | "+"작성일 : "+comm_date+" | ";	
+								if(mem_num>=1){
+									html+="글쓴이(회원) : "+mem_num+" | "+comm_date+" | ";	
 								}else if(mem_num<1){
-									html+="글쓴이(직원) : "+stf_num+" | "+"작성일 : "+comm_date+" | ";
+									html+="글쓴이(admin) : "+stf_num+" | "+comm_date+" | ";
 								}
 								var a="${sessionScope.mnum}";
 								//alert(a.length+"...");
-								//alert("${sessionScope.mnum}");	
+								//alert("${sessionScope.mnum}");
 								if(a.length>0){
 										html+="<a href='javascript:reAnswer(\""+comm_num+"\")'> 댓글달기 </a>"+" | ";
 									}else if("${sessionScope.snum}".length>0){
@@ -184,12 +198,21 @@ function ajaxComm(pageNum){
 											"<a href='EventCommentsDelete?comm_num="+comm_num+"'> 삭제하기 </a>"+" | "+
 											"<a href='javascript:reUpdate(\""+comm_num+"a\")'> 수정하기 </a>"+" | ";
 									}
-									html+="<br>"+
-									comments+
-									"</th>"+
-								"</tr>"+
-								"<tr>"+
-									"<th>"+
+									html+=
+									"<br>"+"<br>";
+									if(comm_lev>0){
+										for(var i=0;i<comm_lev;i++){
+											html+="&nbsp;&nbsp";
+										}
+										//html=html+"[re]";
+										html=html+"&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp";
+									}
+									
+									html += comments+
+									"</h5>"+
+									"</td>"+
+								
+									"<td>"+
 									"<div id='" +comm_num+"a' style='display: none'>"+
 									"<a href='javascript:reset(\""+comm_num+"a\")'>수정취소</a>"+
 										"<form method='post' action='EventCommentsUpdate'>"+
@@ -203,14 +226,20 @@ function ajaxComm(pageNum){
 										}else if("${sessionScope.snum }".length>0){
 											html+="<input type='hidden' name='stf_num' value='${sessionScope.snum }'>";
 										}
-											html+="<textarea rows='2' cols='80' name='comments'>"+comments+"</textarea>"+
-											"<input type='submit' value='수정'>"+"<br>"+
-										"</form>"+
+											html+=
+												"<div class='row'>"+
+													"<div class='col-md-10'>"+
+														"<textarea rows='2' cols='80' class='form-control' name='comments'>"+comments+"</textarea>"+
+													"</div>"+
+													"<div class='col-md-2'>"+
+														"<button class='btn pull-right' type='submit'><span class='glyphicon glyphicon-ok'></span>  댓글수정 </button>"+"<br>"+
+													"</div>"+
+												"</div>"+
+											"</form>"+
 									"</div>"+
-									"</th>"+
-								"</tr>"+
-								"<tr>"+
-									"<th>"+
+									"</td>"+
+							
+									"<td>"+
 									"<div id='" +comm_num+"' style='display: none'>"+
 									"<a href='javascript:reset(\""+comm_num+"\")'>댓글취소</a>"+
 										"<form method='post' action='EventCommentsInsert'>"+
@@ -224,11 +253,18 @@ function ajaxComm(pageNum){
 										}else if("${sessionScope.snum }"!=null){
 											html+="<input type='hidden' name='stf_num' value='${sessionScope.snum }'>";
 										}
-											html+="<textarea rows='2' cols='80' name='comments'></textarea>"+
-											"<input type='submit' value='댓글등록'>"+"<br>"+
+											html+=
+												"<div class='row'>"+
+													"<div class='col-md-10'>"+
+														"<textarea rows='2' cols='80' class='form-control' name='comments'></textarea>"+
+													"</div>"+
+													"<div class='col-md-2'>"+
+														"<button class='btn pull-right' type='submit'><span class='glyphicon glyphicon-ok'></span>  댓글등록 </button>"+"<br>"+
+													"</div>"+
+												"</div>"+
 										"</form>"+
 									"</div>"+
-									"</th>"+
+									"</td>"+
 							"</tr>"+
 							"</table>";
 					comm.innerHTML=html;
@@ -256,7 +292,7 @@ $(document).ready(function(){
 <br>
 <h5 class="text-left"><span class="glyphicon glyphicon-align-justify"></span> 이벤트글 목록</h5>
 
-<table border="1" class='table-bordered' width="1000">
+<table border="1" class='table th' width="1000">
 	<tr>
 		<th>이벤트번호</th>
 		<th>제목</th>
@@ -274,16 +310,38 @@ $(document).ready(function(){
 </table>
 <br>
 <!-- 글목록 페이징처리 -->
-<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
-	<c:choose>
-		<c:when test="${i==pu.pageNum }">
-			<a href="eventSelectAll?pageNum=${i }"><span style="color:blue">[${i }]</span></a>
-		</c:when>
-		<c:otherwise>
-			<a href="eventSelectAll?pageNum=${i }"><span style="color:#555">[${i }]</span></a>
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
+	<div class="row">
+		<div class="text-center">
+		<c:choose>
+			<c:when test="${pu.startPageNum>5 }">
+				<a href="memselectAll?pageNum=${pu.startPageNum -1 }"> prev </a>
+			</c:when>
+			<c:otherwise>
+				prev
+			</c:otherwise>
+		</c:choose>
+
+		<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+			<c:choose>
+				<c:when test="${i==pu.pageNum }">
+					<a href="eventSelectAll2?pageNum=${i }"><span style="color:blue">${i }</span></a>
+				</c:when>
+			<c:otherwise>
+				<a href="eventSelectAll2?pageNum=${i }"><span style="color:#555">${i }</span></a>
+			</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	
+		<c:choose>
+			<c:when test="${pu.endPageNum<pu.totalPageCount }">
+				<a href="memselectAll?pageNum=${pu.endPageNum +1 }"> next </a>
+			</c:when>
+			<c:otherwise>
+				next
+			</c:otherwise>
+		</c:choose>
+		</div>
+	</div>
 </div>
 </div>
 </div>

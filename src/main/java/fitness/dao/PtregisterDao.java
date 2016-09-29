@@ -47,8 +47,8 @@ public class PtregisterDao {
 	public PtregisterDto ptrgDetail(int rg_num){
 		return sqlSession.selectOne(NAMESPACE+".ptrgDetail",rg_num);
 	}
-	public PtregisterDto ptr_numinfo(int tr_num){
-		return sqlSession.selectOne(NAMESPACE+".ptr_numinfo",tr_num);
+	public int ptr_numinfo(int mem_num){
+		return sqlSession.selectOne(NAMESPACE+".ptr_numinfo",mem_num);
 	}
 	public List<StaffDto> ptstafflist(){
 		return   sqlSession.selectList(NAMESPACE+".ptstafflist");

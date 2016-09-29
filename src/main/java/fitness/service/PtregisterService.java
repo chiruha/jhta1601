@@ -48,8 +48,8 @@ public class PtregisterService {
 	public PtregisterDto ptrgDetail(int rg_num){
 		return ptregisterDao.ptrgDetail(rg_num);
 	}
-	public PtregisterDto ptr_numinfo(int tr_num){		
-		return ptregisterDao.ptr_numinfo(tr_num);
+	public int ptr_numinfo(int mem_num){		
+		return ptregisterDao.ptr_numinfo(mem_num);
 	}
 	public Integer ptrcount(int rg_num){
 		return ptregisterDao.ptrcount(rg_num);

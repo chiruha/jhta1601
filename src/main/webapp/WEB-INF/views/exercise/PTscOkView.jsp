@@ -80,7 +80,13 @@ $(document).ready(function() {
 				<td><c:out value="${dto.ptr_initdate }"/></td>
 				<td><c:out value="${dto.ptr_time }"/></td>
 				<td><c:out value="${dto.ptr_count }"/></td>
-				<td><c:out value="${dto.ptr_ok }"/></td>				    
+				<td><c:out value="${dto.ptr_ok }"/></td>
+				<td>
+				<form name="pokm" action="PTokmResult" method="post">
+				<input type="hidden" name="ptr_num2" value="<c:out value="${dto.ptr_num}"/>">					
+        		<input type="submit" value="삭제">
+        		</form>
+				</td>				    
            	</tr>
            </c:when>				
 		   </c:choose>
@@ -112,7 +118,13 @@ $(document).ready(function() {
 				<td><c:out value="${dto.ptr_initdate }"/></td>
 				<td><c:out value="${dto.ptr_time }"/></td>
 				<td><c:out value="${dto.ptr_count }"/></td>
-				<td><c:out value="${dto.ptr_ok }"/></td>	   
+				<td><c:out value="${dto.ptr_ok }"/></td>
+				<td>	
+				<form name="pokm" action="PTokmResult" method="post">
+				<input type="hidden" name="ptr_num2" value="<c:out value="${dto.ptr_num}"/>">					
+        		<input type="submit" value="삭제">
+				</form>
+				</td>	   
            	</tr>
           </c:when>				
 		  </c:choose>

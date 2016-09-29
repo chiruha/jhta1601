@@ -79,9 +79,7 @@ public class PtregisterController {
 		int snum = (Integer) session.getAttribute("snum");
 		System.out.println("snum:" + snum);
 
-		int ttr_num = trservice.detail2Service(snum).getTr_num();
-		System.out.println("ttr_num:" + ttr_num);
-		int tr_num = service.ptr_numinfo(ttr_num).getTr_num();
+		int tr_num = trservice.detail2Service(snum).getTr_num();
 		System.out.println("tr_num:" + tr_num);
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -96,67 +94,72 @@ public class PtregisterController {
 
 	@RequestMapping(value = "/PTokmResult", method = RequestMethod.POST)
 	public String ptokmresult(HttpServletRequest request, PtregisterDto dto) {
-		String pokm = request.getParameter("okm");
-		String ptr_num = request.getParameter("ptr_num");
-		System.out.println("trainer 전송결과:" + pokm + "," + ptr_num);
+		String ptr_num2 = request.getParameter("ptr_num2");
+		if (ptr_num2 != null) {
+			System.out.println("삭제");
+			service.ptDelete(Integer.parseInt(ptr_num2));
+			return "redirect:/PTscOkView";
+		} else {
+			String pokm = request.getParameter("okm");
+			String ptr_num = request.getParameter("ptr_num");
+			System.out.println("trainer 전송결과:" + pokm + "," + ptr_num);
 
-		dto.setPtr_num(Integer.parseInt(ptr_num));
-		dto.setPtr_ok(pokm);
-		System.out.println("ok" + dto.getPtr_ok());
-		System.out.println("num" + dto.getPtr_num());
-		service.ptrOkupdate(dto);
-		System.out.println("수정된 dto" + dto);
-		return "redirect:/PTscOkView";
+			dto.setPtr_num(Integer.parseInt(ptr_num));
+			dto.setPtr_ok(pokm);
+			System.out.println("ok" + dto.getPtr_ok());
+			System.out.println("num" + dto.getPtr_num());
+			service.ptrOkupdate(dto);
+			System.out.println("수정된 dto" + dto);
+			return "redirect:/PTscOkView";
+		}
 	}
 
-	@RequestMapping(value="/ptrinsert",method=RequestMethod.POST,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/ptrinsert", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public Object insert(PtregisterDto dto,HttpSession session){		
+	public Object insert(PtregisterDto dto, HttpSession session) {
 		System.out.println("ptrinsert 도착" + dto.toString());
-		int mnum= (Integer) session.getAttribute("mnum");
-		String mem_name=mservice.listOne(mnum).getMem_name();
+		int mnum = (Integer) session.getAttribute("mnum");
+		String mem_name = mservice.listOne(mnum).getMem_name();
 		dto.setMem_name(mem_name);
 		dto.setMem_num(mnum);
-		
-		
-		try{
+
+		try {
 			int ptr_count = service.ptsignOk(mnum).getPtr_count();
 			int rg_num = service.ptsignOk(mnum).getRg_num();
 			dto.setPtr_count(ptr_count);
-			dto.setRg_num(rg_num);			
-		}catch (Exception e) {
+			dto.setRg_num(rg_num);
+		} catch (Exception e) {
 			System.out.println("널발생");
-			int n=9999;
+			int n = 9999;
 			return n;
 		}
-		
-		
-		Integer n=service.rowback();
-		System.out.println("n이다:"+n);		
-		System.out.println("2번째 DTO:"+dto);
-		
-		//----중복처리 하면된다.--------------------------------------------
-		PtregisterDto ptrdto =null;
-		
-		try{
-			if(service.rowback()==0){
+
+		Integer n = service.rowback();
+		System.out.println("n이다:" + n);
+		System.out.println("2번째 DTO:" + dto);
+
+		// ----중복처리 하면된다.--------------------------------------------
+		PtregisterDto ptrdto = null;
+
+		try {
+			if (service.rowback() == 0) {
 				service.insert(dto);
-				int ptr_num=service.joong2(mnum);
-				ptrdto=service.detailService(ptr_num);
+				int ptr_num = service.joong2(mnum);
+				ptrdto = service.detailService(ptr_num);
 				return ptrdto;
-		}else if(mnum!=service.joong(mnum)){
-				
+			} else if (mnum != service.joong(mnum)) {
+
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			service.insert(dto);
-			int ptr_num=service.joong2(mnum);
-			ptrdto=service.detailService(ptr_num);
+			int ptr_num = service.joong2(mnum);
+			ptrdto = service.detailService(ptr_num);
 			return ptrdto;
 		}
-			
-			int nk=9990;
-			return nk;
-		
+
+		int nk = 9990;
+		return nk;
+
 	}
 
 }

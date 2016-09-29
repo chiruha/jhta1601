@@ -24,7 +24,7 @@
         <li>   <a class="dropdown-toggle" data-toggle="dropdown" href="#">소개
             <span class="caret"></span></a>
              <ul class="dropdown-menu">
-                  <li><a href="#">회사소개</a></li>
+                  <li><a href="<c:url value='/Company'/>">회사소개</a></li>
                   <li><a href="<c:url value='/trlist'/>">강사소개</a></li>
           </ul>
         </li>

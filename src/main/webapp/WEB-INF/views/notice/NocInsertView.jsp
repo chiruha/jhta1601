@@ -9,7 +9,7 @@
 <div class="col-md-3"></div>
 	<div class="col-md-4">
 			<input type="hidden" name="stf_num" value="${sessionScope.snum }">
-			<br><label>직원이름 ${memnum }</label><br>
+			<br><label>직원이름 : ${memnum }</label><br>
 </div>
 </div>
 <div class="row">

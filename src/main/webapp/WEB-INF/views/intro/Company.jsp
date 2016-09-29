@@ -228,7 +228,11 @@ li {
     </div>
   </div> -->
   <br>
-  <h3 class="text-center">Fitness</h3>
+  <h3 class="text-center">Fitness</h3><br>
+  
+  <div class="row">
+   <div class="col-sm-2"></div>
+    <div class="col-sm-10">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#tab1" aria-expanded="false">종로3가 본점</a></li>
     <li class=""><a data-toggle="tab" href="#tab2" aria-expanded="false">화정지점</a></li>
@@ -238,25 +242,31 @@ li {
   	<li class=""><a data-toggle="tab" href="#tab6" aria-expanded="false">압구정점</a></li>
   </ul>
   <br>
-
+</div>
+</div>
+  <div class="row">
+   <div class="col-sm-12">
   <div class="tab-content">
     <div id="tab1" class="tab-pane fade in active">
-    	<div><h3>종로3가 본점 </h3><h6>02-555-9463</h6></div>
+    	<div><h3 class="text-center">종로3가 본점 </h3><h6>02-555-9463</h6></div>
     </div>
     <div id="tab2" class="tab-pane fade">
-    	<div><h3>화정지점 </h3><h6>1588-1588</h6></div>
+    	<div><h3 class="text-center">화정지점 </h3><h6>1588-1588</h6></div>
     </div>
     <div id="tab3" class="tab-pane fade">
-        <div><h3>종로지점 </h3><h6>555-5555</h6></div>
+        <div><h3 class="text-center">종로지점 </h3><h6>555-5555</h6></div>
     </div>
     <div id="tab4" class="tab-pane fade">
-       	<div><h3>신촌지점 </h3><h6>019-555-9028</h6></div>
+       	<div><h3 class="text-center">신촌지점 </h3><h6>019-555-9028</h6></div>
     </div>
     <div id="tab5" class="tab-pane fade">
-      	<div><h3>송파정점 </h3><h6>031-1688-1688</h6></div>
+      	<div><h3 class="text-center">송파정점 </h3><h6>031-1688-1688</h6></div>
     </div>
     <div id="tab6" class="tab-pane fade">
-      	<div><h3>압구정점 </h3><h6>090-1688-1688</h6></div>
+      	<div><h3 class="text-center">압구정점 </h3><h6>090-1688-1688</h6></div>
     </div>
+  </div>
+    </div>
+  
   </div>
 </div>

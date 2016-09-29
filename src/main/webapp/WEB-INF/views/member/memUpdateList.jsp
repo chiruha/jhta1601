@@ -58,10 +58,13 @@
 </div>
 </div>
 <div class="row">
-<div class="col-md-12">
-<button class="btn" type="submit">수정</button>
-<button class="btn" type="reset">취소</button>
-
+<div class="col-sm-6">
+<button class="btn pull-left" type="submit">
+<span class="glyphicon glyphicon-ok" ></span>  Update </button>
+</div>
+<div class="col-sm-6">
+<button class="btn pull-right" type="reset">
+<span class="glyphicon glyphicon-remove" ></span>  Cancle </button>
 </div>
 	</div>
 	</form>

@@ -77,14 +77,13 @@ $(document).ready(function () {
 <div class="row">
 <div class="col-md-3"></div>
 		<div class="col-md-3">
-		<a href="memDelete?mem_num=${dto.mem_num }">
-	<button class="btn pull-left"  >
-	<span class="glyphicon glyphicon-ok"></span>  Update </button></a>
+
+	<button class="btn pull-left"  id="memUpdateList?mem_num=${dto.mem_num}">
+	<span class="glyphicon glyphicon-ok" ></span>  Update </button>
 	</div>
 		<div class="col-md-3">
-	<a href="memUpdateList?mem_num=${dto.mem_num }">
-	<button class="btn pull-right"  >
-	<span class="glyphicon glyphicon-remove"></span> Delete </button></a>	
+	<button class="btn pull-right" id="memDelete?mem_num=${dto.mem_num}" >
+	<span class="glyphicon glyphicon-remove" ></span> Delete </button>
 	</div>
 	</div>
 

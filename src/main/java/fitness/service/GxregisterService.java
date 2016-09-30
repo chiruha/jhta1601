@@ -23,11 +23,14 @@ public class GxregisterService {
 	public GxregisterDto detail(int gx_num){
 		return gxregisterDao.detail(gx_num);
 	}
-	public GxregisterDto gxlist(){
-		return gxregisterDao.gxlist();
+	public GxregisterDto gxlist(String ct_name){
+		return gxregisterDao.gxlist(ct_name);
 	}
 	public List<GxsubjectDto> gxsubject(){
 		return gxregisterDao.gxsubject();
+	}
+	public String searchGx(String ct_name){
+		return gxregisterDao.searchGx(ct_name);
 	}
 	
 	

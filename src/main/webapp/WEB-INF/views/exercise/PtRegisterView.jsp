@@ -39,7 +39,8 @@
 							dataType:"json",
 							type:"post",
 							data:"ptr_initdate="+ptr_initdate+"&ptr_time="+ptr_time+"&ct_code="+ct_code+"&tr_num="+tr_num,							
-							success:function function_name(data) {								
+							success:function function_name(data) {	
+								console.log("..."+data);
 								if(data.ptr_num!=0 && data != 9999 && data != 9990){
 								var str =									
 								"<div class='row'><div class='col-sm-3'></div>"+
@@ -61,7 +62,7 @@
 									$("#result").html("고객센터가서 문의해주시기 바람니다.");
 								}else if(data==9990){
 									$("#contact").remove();
-									$("#result").html("<h4 class='text-center'>이미 PT 신청하셨습니다.</h4>");
+									$("#result").html("<h3 class='text-center'>이미 PT 신청하셨습니다.</h3>");
 								}
 								
 								 
@@ -147,10 +148,7 @@
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-
-<div id="result" ></div>
-
-
 </div>
+<div id="result"></div>
 
 

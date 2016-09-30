@@ -65,9 +65,14 @@ public class PtregisterController {
 		map.put("mem_num", mnum);
 		List<PtrMemDto> list = service.ptmemOkService(map);
 		System.out.println("map" + map);
-
-		session.setAttribute("list", list);
-
+		
+		if(list.size()>0){
+			session.setAttribute("list", list);
+			session.setAttribute("aa", 1);
+		}else{			
+			session.setAttribute("aa", 1);
+		}
+			
 		System.out.println("list:" + list);
 
 		return ".exercise.MemPTscOkView";

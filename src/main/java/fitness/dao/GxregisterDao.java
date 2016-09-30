@@ -22,12 +22,14 @@ public class GxregisterDao {
 	public GxregisterDto detail(int gx_num){
 		return sqlSession.selectOne(NAMESPACE+".getInfo",gx_num);
 	}
-	public GxregisterDto gxlist(){
-		return sqlSession.selectOne(NAMESPACE+".gxlist");
+	public GxregisterDto gxlist(String ct_name){
+		return sqlSession.selectOne(NAMESPACE+".gxlist",ct_name);
 	}
 	public List<GxsubjectDto> gxsubject(){
-		return sqlSession.selectList(NAMESPACE+".gxsubject");
-		
+		return sqlSession.selectList(NAMESPACE+".gxsubject");		
+	}
+	public String searchGx(String ct_name){
+		return sqlSession.selectOne(NAMESPACE+".searchGx",ct_name);
 	}
 	
 }

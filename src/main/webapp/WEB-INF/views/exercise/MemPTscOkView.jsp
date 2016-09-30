@@ -18,7 +18,9 @@
 			<th>승인</th>	       
         </tr>
     </thead>
-    <tbody>     	
+    <tbody>
+    	<c:choose>
+    	 <c:when test="${aa==0 }">     	
        	 <c:forEach var="dto" items="${list }" varStatus="status">
        	 <tr>       	 
        	 	<td><c:out value="${dto.stf_name }"/></td>
@@ -28,6 +30,11 @@
 			<td><c:out value="${dto.ptr_ok }"/></td>
        	</tr>			 	
 		  </c:forEach>
+		 </c:when> 
+		 <c:otherwise>
+		 ㅋㅋㅋ
+		 </c:otherwise>
+		</c:choose>
     </tbody>
 </table>	<br>
  </div>

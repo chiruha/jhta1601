@@ -32,6 +32,7 @@
         </tr>
     </thead>
     <tbody> 
+    		
     		<tr><td colspan="8">오전시간표    			
     		 지점선택
     		 <select name="ct_name" id="ct_name">

@@ -34,6 +34,15 @@
         </tr>
     </thead>
     <tbody> 
+    		<tr>
+    			<td>지점선택
+    		 		<select name="ct_name" id="ct_name">
+					<c:forEach var="clist"  items="${ctlist}">						
+						<option value="${clist.ct_name }" ${param.ctlist eq "${clist.ct_name}" ? "selected":""  } >${clist.ct_name}</option>	
+					</c:forEach>	
+					</select>
+				</td>
+    		</tr>
     		<tr><td colspan="8">오전시간표    			
     		   	
 	       <tr>	

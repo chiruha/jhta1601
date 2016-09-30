@@ -42,20 +42,37 @@ public class GxController {
 
 	@RequestMapping(value="/gxMent")
 	public String gxmentmove(HttpServletRequest request,GxregisterDto gxdto,HttpSession session){
-		System.out.println("gxMent µµÂø");
-		
+		System.out.println("gxMent µµÂø");		
 		int snum = (Integer) session.getAttribute("snum");
 		gxdto.setStf_num(snum);		
 		System.out.println("gxdto:"+gxdto);
+		String ct_name=gxdto.getCt_name();
+		session.setAttribute("ct_name", ct_name);
+		System.out.println(ct_name);
 		
-		service.insert(gxdto);		
+		ct_name=service.searchGx(ct_name);
+		if(ct_name==null){
+			service.insert(gxdto);
+		}
+				
 		
 		return "redirect:/gxRegisterView";
 	}
 	@RequestMapping(value="/gxRegisterView")
-	public String gxRegisterView(ModelMap modelMap){
+	public String gxRegisterView(ModelMap modelMap,HttpSession session,HttpServletRequest request){		
+		String ct_name=(String)session.getAttribute("ct_name");
+		List<CenterDto> ctlist=cts.listService();
+		System.out.println("ctlist:"+ctlist);
+		session.setAttribute("ctlist",ctlist);
 		
-		GxregisterDto gxlist = service.gxlist();
+		
+		
+		if(ct_name==null){
+			 ct_name ="È­Á¤ÁöÁ¡";
+		}
+			System.out.println("ct_name:"+ct_name);
+		
+		GxregisterDto gxlist = service.gxlist(ct_name);
 		System.out.println("gxlist:"+gxlist);
 		modelMap.addAttribute("gxlist",gxlist);
 		

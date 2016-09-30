@@ -15,8 +15,7 @@ public class GxregisterDao {
 	@Autowired private SqlSession sqlSession;
 	private final String NAMESPACE="orm.mybatis.FinalMapper";
 	
-	public int insert(GxregisterDto dto){
-		System.out.println("GxregisterDto:"+dto);
+	public int insert(GxregisterDto dto){		
 		return sqlSession.insert(NAMESPACE+".gxinsert",dto);
 	}
 	

@@ -1,6 +1,5 @@
 package fitness.controller;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import fitness.dto.CenterDto;
 
 import fitness.dto.GxregisterDto;
@@ -21,94 +19,78 @@ import fitness.service.CenterService;
 
 import fitness.service.GxregisterService;
 
-
 @Controller
 public class GxController {
-	@Autowired private GxregisterService service;
-	@Autowired private CenterService cts;
-	
-	
-	@RequestMapping(value="/gxinsert",method=RequestMethod.GET)
-	public String insert(HttpSession session ,HttpServletRequest request){
-		List<CenterDto> ctlist=cts.listService();
-		System.out.println("ctlist:"+ctlist);
-		session.setAttribute("ctlist",ctlist);
-		
-		List<GxsubjectDto> gxlist= service.gxsubject();
-		System.out.println("gxlist:"+gxlist);
+	@Autowired
+	private GxregisterService service;
+	@Autowired
+	private CenterService cts;
+
+	@RequestMapping(value = "/gxinsert", method = RequestMethod.GET)
+	public String insert(HttpSession session, HttpServletRequest request) {
+		List<CenterDto> ctlist = cts.listService();
+		System.out.println("ctlist:" + ctlist);
+		session.setAttribute("ctlist", ctlist);
+
+		List<GxsubjectDto> gxlist = service.gxsubject();
+		System.out.println("gxlist:" + gxlist);
 		request.setAttribute("gxlist", gxlist);
 		return ".exercise.gxMent";
 	}
 
-	@RequestMapping(value="/gxMent")
-	public String gxmentmove(HttpServletRequest request,GxregisterDto gxdto,HttpSession session){
-		System.out.println("gxMent µµÂø");		
+	@RequestMapping(value = "/gxMent")
+	public String gxmentmove(HttpServletRequest request, GxregisterDto gxdto, HttpSession session) {
+		System.out.println("gxMent µµÂø");
 		int snum = (Integer) session.getAttribute("snum");
-		gxdto.setStf_num(snum);		
-		System.out.println("gxdto:"+gxdto);
-		String ct_name=gxdto.getCt_name();
-		int gx_num=service.gxlist(ct_name).getGx_num();
-		
-		gxdto.setGx_num(gx_num);
-		
-		session.setAttribute("ct_name", ct_name);
-		System.out.println(ct_name);		
-		
-		String ct_name1=service.searchGx(ct_name);
-		if(ct_name1==null){
+		gxdto.setStf_num(snum);
+		System.out.println("gxdto:" + gxdto);
+
+		String ct_name = gxdto.getCt_name();
+		if (service.gxlist(ct_name) != null) {
+			int gx_num = service.gxlist(ct_name).getGx_num();
+
+			gxdto.setGx_num(gx_num);
+
+			session.setAttribute("ct_name", ct_name);
+			System.out.println(ct_name);
+
+			String ct_name1 = service.searchGx(ct_name);
+			if (ct_name1 == null) {
+				service.insert(gxdto);
+			} else {
+				service.ct_nameupdate(gxdto);
+			}
+		}else{
 			service.insert(gxdto);
-		}else{			
-			service.ct_nameupdate(gxdto);
 		}
-				
-		
+
 		return "redirect:/gxRegisterView";
 	}
-	@RequestMapping(value="/gxRegisterView")
-	public String gxRegisterView(ModelMap modelMap,HttpSession session,HttpServletRequest request,String ct_name){		
-		
-	//	ct_name=(String)session.getAttribute("ct_name");
-		List<CenterDto> ctlist=cts.listService();
-		System.out.println("ctlist:"+ctlist);
-		session.setAttribute("ctlist",ctlist);	
+
+	@RequestMapping(value = "/gxRegisterView")
+	public String gxRegisterView(ModelMap modelMap, HttpSession session, HttpServletRequest request, String ct_name) {
+
+		// ct_name=(String)session.getAttribute("ct_name");
+		List<CenterDto> ctlist = cts.listService();
+		System.out.println("ctlist:" + ctlist);
+		session.setAttribute("ctlist", ctlist);
 		GxregisterDto gxlist = null;
-		if((String)session.getAttribute("ct_name")!=null ){
-			ct_name=(String)session.getAttribute("ct_name");
-			 gxlist = service.gxlist(ct_name);
-		}else if(ct_name!=null){
-			 gxlist = service.gxlist(ct_name);
-		}else{
+		if ((String) session.getAttribute("ct_name") != null) {
+			ct_name = (String) session.getAttribute("ct_name");
+			gxlist = service.gxlist(ct_name);
+		} else if (ct_name != null) {
+			gxlist = service.gxlist(ct_name);
+		} else {
 			ct_name = "È­Á¤ÁöÁ¡";
 			gxlist = service.gxlist(ct_name);
 		}
-		
-		System.out.println("ct_name:"+ct_name);
-		
-		 
-		System.out.println("gxlist:"+gxlist);
-		modelMap.addAttribute("gxlist",gxlist);
+
+		System.out.println("ct_name:" + ct_name);
+
+		System.out.println("gxlist:" + gxlist);
+		modelMap.addAttribute("gxlist", gxlist);
 		request.setAttribute("ct_name", ct_name);
 		return ".exercise.GxRegisterView";
 	}
-	
-	
-	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

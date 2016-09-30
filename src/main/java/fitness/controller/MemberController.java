@@ -86,19 +86,10 @@ public class MemberController {
 				System.out.println("name"+mem_name);
 			int n=service.insert(dto);
 			System.out.println("success로 안가나??"+n);
-<<<<<<< HEAD
 		}catch(IOException ie){
 			System.out.println(ie.getMessage());
 		}
 		return "forward:memselectAll";
-=======
-			session.setAttribute("result", "회원가입 성공!");
-		}catch(IOException ie){
-			System.out.println(ie.getMessage());
-			session.setAttribute("result", "회원가입 실패!");
-		}
-		return ".staff.ResultView";
->>>>>>> de98b345ec8707bede78dc3a1d74e9122b55c671
 	}
 	//--------------------| 회원전체목록보기 |--------------------//
 	@RequestMapping("/memselectAll")
@@ -186,19 +177,10 @@ public class MemberController {
 			System.out.println("디티오찍히나 : "+dto1);
 			int n=service.memUpdate(dto1);
 			System.out.println("수정성공!!"+n);
-<<<<<<< HEAD
 		}catch(IOException ie){
 			System.out.println(ie.getMessage());
 		}
 		return "forward:memselectAll";
-=======
-			session.setAttribute("result", "수정 성공!");
-			}catch(IOException ie){
-				System.out.println(ie.getMessage());
-				session.setAttribute("result", "수정 실패!");
-			}
-			return ".staff.ResultView";
->>>>>>> de98b345ec8707bede78dc3a1d74e9122b55c671
 	}
 	//--------------------| 회원검색하기 |--------------------//
 	@RequestMapping("/memSearchList")

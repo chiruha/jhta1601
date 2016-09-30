@@ -142,18 +142,7 @@
 
 
 	
-<<<<<<< HEAD
 
-</div>
-
-
-<!-- Container (Contact Section) -->
-<div id="contact" class="container">
-=======
-<div id="result" ></div>
-
-
->>>>>>> 7924229a9365819c80ad45d8df35958c9f18fb4c
 </div>
 <div id="result"></div>
 

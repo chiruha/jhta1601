@@ -10,7 +10,7 @@
 			event.preventDefault();
 			var id=event.target.getAttribute('id');
 			//alert($(this).attr('id')); // id 찍어보기 
-			alert("id : "+id);
+			//alert("id : "+id);
 			if(id=='/fitness/trdelete/?tr_num=${dto.tr_num }'){
 				$(location).attr('href',id);
 				//alert("loc : "+$(location).attr('href'));

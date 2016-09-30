@@ -31,9 +31,9 @@ public class FreeboardController {
 	public String insert(HttpSession session,FreeboardDto dto,
 			HttpServletRequest req){  // DB에 insert
 			
-		System.out.println("포스트로 오나잘오나 인서트"+dto.toString());
+	//	System.out.println("포스트로 오나잘오나 인서트"+dto.toString());
 		int fnum=service.fbmaxnum();
-		System.out.println("큰 글번호 잘오나 안오나" + fnum);
+	//	System.out.println("큰 글번호 잘오나 안오나" + fnum);
 		int fbnum=0;
 		int fbref=0;
 		int fblev=0;
@@ -48,16 +48,16 @@ public class FreeboardController {
 		//sSystem.out.println("snum:"+snum);
 		try{
 			if(dto.getFb_num()==0){//새글일경우 ,판단할기준점을 
-				System.out.println("새글찍히나");
+		//		System.out.println("새글찍히나");
 				fbref=fnum;
-				System.out.println("새글인경우fbref:"+fbref);
+		//		System.out.println("새글인경우fbref:"+fbref);
 			}else{//답글인경우
 				service.fbrep(dto);	//step+1
 		//		System.out.println("답글오나안오나");
 				fbref=dto.getFb_ref();
 				fblev=dto.getFb_lev()+1;
 				fbstep=dto.getFb_step()+1;
-				System.out.println("답글인경우 fb_lev:"+fblev+",fb_step:"+fbstep);
+		//		System.out.println("답글인경우 fb_lev:"+fblev+",fb_step:"+fbstep);
 			}
 			int mem_num=Integer.parseInt(req.getParameter("mem_num"));
 			String fb_title=req.getParameter("fb_title");
@@ -68,14 +68,16 @@ public class FreeboardController {
 		//	System.out.println("insert오나안오나뭐가들어있나"+dto1);
 			service.insertService(dto1);  
 		//	System.out.println(dto1.toString());
-			req.setAttribute("result", "게시판 글등록 성공!");
-			req.setAttribute("listurl", "<a href='fblist'>글목록</a>");
+			
+			//	req.setAttribute("result", "자유게시판 글등록 성공!");
+		//	req.setAttribute("listurl", "<a href='fblist'>글목록</a>");
 		}catch(Exception e){
-			System.out.println(e.getMessage());
-			req.setAttribute("result", "게시판 글등록 실패!");
+		//	System.out.println(e.getMessage());
+			req.setAttribute("result", "자유게시판 글등록 실패!");
 			req.setAttribute("listurl", "<a href='fblist'>글목록</a>");
 		}
-		return ".freeboard.ResultView";
+		return ".freeboard.FreeListView";
+		//return ".freeboard.ResultView";
 	}
 /*	@RequestMapping("/fbrep")
 	public ModelAndView fbrep(HttpServletRequest req,FreeboardDto dto){

@@ -198,7 +198,9 @@ filter: none;
     <p>- 서울 화정구 화정역 103-57 The Fitness 화정지점</p>
 <!-- * Daum 지도 - 지도퍼가기 -->
 <!-- 1. 지도 노드 -->
- <div class="col-sm-12">
+	<div class="row">
+    <div class="col-sm-1"></div>
+	<div class="col-sm-6">
 <div id="daumRoughmapContainer1474747282265" class="root_daum_roughmap root_daum_roughmap_landing"></div>
 
 <!--
@@ -218,37 +220,14 @@ filter: none;
 	}).render();
 </script>
 </div>
+<br>
 
-  <!-- <h3 class="text-center">Contact</h3>
-  <p class="text-center"><em>We love your opinions!</em></p>
 
-  <div class="row">
-    <div class="col-md-4">
-      <p>Fan? Drop a note.</p>
-      <p><span class="glyphicon glyphicon-map-marker"></span>Chicago, US</p>
-      <p><span class="glyphicon glyphicon-phone"></span>Phone: +00 1515151515</p>
-      <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p>
-    </div>
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-        </div>
-      </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-      <br>
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <button class="btn pull-right" type="submit">Send</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
+  </div>
   <br>
-  <h3 class="text-center">Fitness</h3>
+   <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
   <ul class="nav nav-tabs">
     <li class=""><a data-toggle="tab" href="#tab1" aria-expanded="false">종로3가 본점</a></li>
     <li class="active"><a data-toggle="tab" href="#tab2" aria-expanded="false">화정지점</a></li>
@@ -277,6 +256,8 @@ filter: none;
     </div>
     <div id="tab6" class="tab-pane fade">
       	<div><h3>압구정점 </h3><h6>090-1688-1688</h6></div>
-    </div>
+     </div>
   </div>
+</div>
+</div>
 </div>

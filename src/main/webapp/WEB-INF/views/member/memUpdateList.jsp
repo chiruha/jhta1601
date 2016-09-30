@@ -75,6 +75,7 @@
 </div>
 </div>
 <div class="row">
+<<<<<<< HEAD
 <div class="col-md-12">
 	<div class="row">
 		<div class="col-md-6">
@@ -86,6 +87,15 @@
 			<span class="glyphicon glyphicon-remove"></span>  Cancle </button>
 		</div>
 	</div>
+=======
+<div class="col-sm-6">
+<button class="btn pull-left" type="submit">
+<span class="glyphicon glyphicon-ok" ></span>  Update </button>
+</div>
+<div class="col-sm-6">
+<button class="btn pull-right" type="reset">
+<span class="glyphicon glyphicon-remove" ></span>  Cancle </button>
+>>>>>>> de98b345ec8707bede78dc3a1d74e9122b55c671
 </div>
 	</div>
 	</form>

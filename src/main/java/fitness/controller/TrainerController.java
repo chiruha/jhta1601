@@ -98,12 +98,10 @@ public class TrainerController {
 	public String delete(int tr_num, HttpServletRequest request){
 		try{
 			service.deleteService(tr_num);
-			request.setAttribute("result", "강사 삭제 완료");
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			request.setAttribute("result", "강사 삭제 실패");
 		}
-		return ".staff.ResultView";
+		return "forward:trlist";
 	}
 	
 	
@@ -125,11 +123,9 @@ public class TrainerController {
 	try{
 		System.out.println("trupdate"+dto.toString());
 		service.updateService(dto);
-		session.setAttribute("result", "강사 수정 성공!");
 	}catch(Exception e){
 		System.out.println(e.getMessage());
-		session.setAttribute("result", "강사 수정 실패!");
 	}
-		return ".staff.ResultView";
+		return "forward:trlist";
 	}
 }

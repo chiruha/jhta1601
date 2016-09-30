@@ -32,9 +32,18 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<h3 class="text-center">Notice</h3>
-	<h5 class="text-right"><a href="<c:url value='/noclist'/>">전체보기</a></h5>
+	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span>
+	<a href="<c:url value='/noclist'/>">전체보기</a></h5>
 <div class="row">
 	<div class="col-md-12">
+<c:choose>
+	<c:when test="${not empty sessionScope.snum }">
+		
+<span class="glyphicon glyphicon-pencil"></span> <a href="<c:url value='/nocinsert'/>">글쓰기</a>
+	</c:when>
+	
+</c:choose>
+	
 	<table  class="table th" >
 	<tr>
 			<th>글번호</th>
@@ -43,6 +52,7 @@
 			<th>작성일</th>
 			<th>조회수</th>
 	</tr>
+	
 	<c:forEach var="dto" items="${nlist }">
 			<tr>
 				<td><c:out value="${dto.nt_num }"/></td>

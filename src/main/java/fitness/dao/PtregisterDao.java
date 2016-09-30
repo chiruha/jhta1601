@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fitness.dto.PtregisterDto;
+import fitness.dto.PtsignDto;
 import fitness.dto.RegistrationDto;
 import fitness.dto.StaffDto;
 import fitness.dto.PtrMemDto;
@@ -46,8 +47,8 @@ public class PtregisterDao {
 	public PtregisterDto ptrgDetail(int rg_num){
 		return sqlSession.selectOne(NAMESPACE+".ptrgDetail",rg_num);
 	}
-	public PtregisterDto ptr_numinfo(int tr_num){
-		return sqlSession.selectOne(NAMESPACE+".ptr_numinfo",tr_num);
+	public int ptr_numinfo(int mem_num){
+		return sqlSession.selectOne(NAMESPACE+".ptr_numinfo",mem_num);
 	}
 	public List<StaffDto> ptstafflist(){
 		return   sqlSession.selectList(NAMESPACE+".ptstafflist");
@@ -65,6 +66,18 @@ public class PtregisterDao {
 	}	
 	public RegistrationDto regi_info(int mnum){
 		return sqlSession.selectOne(NAMESPACE+".totregimoney",mnum);
+	}
+	public PtsignDto ptsignOk(int mnum){
+		return sqlSession.selectOne(NAMESPACE+".ptsignOk",mnum);
+	}
+	public int joong(int mnum){
+		return sqlSession.selectOne(NAMESPACE+".joong",mnum);
+	}
+	public int joong2(int mnum){
+		return sqlSession.selectOne(NAMESPACE+".joong2",mnum);
+	}
+	public Integer rowback(){
+		return sqlSession.selectOne(NAMESPACE+".rowback");
 	}
 	
 }

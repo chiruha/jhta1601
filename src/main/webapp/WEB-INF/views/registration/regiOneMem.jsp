@@ -6,7 +6,8 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<h3 class="text-center">수강등록정보</h3>
-	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> <a href="<c:url value='/regiSelect?mnum=${mnum}'/>"> 전체보기</a></h5>
+	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> 
+	<a href="<c:url value='/regiSelect?mnum=${mnum}&gotype=1'/>"> 전체보기</a></h5>
 <div class="row">
 	<div class="col-md-12">
 	<table  class="table th" >
@@ -18,8 +19,6 @@
 		<th>프로그램 등록비</th>
 		<th>락카비</th>
 		<th>운동복비</th>
-		<th>수정하기</th>
-		<th>삭제하기</th>
 	</tr>
 	<c:forEach var="dto" items="${listAll}">
 	<tr>
@@ -42,12 +41,7 @@
 		<td>${dto.rg_price }</td>
 		<td>${dto.locker_price }</td>
 		<td>${dto.wear_price }</td>
-		<td>
-			<a href="regiUpdate?mem_num=${dto.mem_num }&rg_num=${dto.rg_num}">수정하기</a>
-		</td>
-		<td>
-			<a href="regiDelete?rg_num=${dto.rg_num}&rg_type=${dto.rg_type}">삭제하기</a>
-		</td>
+
 	</tr>
 	</c:forEach>
 </table>

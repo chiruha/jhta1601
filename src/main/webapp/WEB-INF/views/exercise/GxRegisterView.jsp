@@ -4,7 +4,10 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#ct_name").on("change",function(event){		
+	$("#ct_name").on("change",function(event){
+		//alert($(this).val());
+		
+		//$('#ct_name2').submit();
 		location.href="gxRegisterView?ct_name="+$(this).val();
 		
 	});    
@@ -47,7 +50,7 @@ $(document).ready(function() {
     				<form id="ct_name2" action="gxRegisterView">   				
     		 		<select name="ct_name" id="ct_name">
 					<c:forEach var="clist"  items="${ctlist}">						
-						<option value="${clist.ct_name }" ${clist.ct_name eq ct_name ? "selected":""  }>${clist.ct_name}</option>						
+						<option value="${clist.ct_name }" ${(clist.ct_name eq ct_name) ? "selected":""  }>${clist.ct_name}</option>						
 					</c:forEach>	
 					</select>
 					</form>					

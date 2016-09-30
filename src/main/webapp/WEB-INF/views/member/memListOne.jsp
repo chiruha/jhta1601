@@ -76,7 +76,6 @@ $(document).ready(function () {
 </div>
 </div>
 <div class="row">
-<<<<<<< HEAD
 <div class="col-md-12">
 	<div class="col-md-6">
 		<button class="btn pull-right" id="memUpdateList?mem_num=${dto.mem_num }" class="btn">Update</button>
@@ -85,20 +84,7 @@ $(document).ready(function () {
 		<button class="btn pull-left" id="memDelete?mem_num=${dto.mem_num }" class="btn">Delete</button>
 	</div>
 </div>
-=======
-<div class="col-md-3"></div>
-		<div class="col-md-3">
-
-	<button class="btn pull-left"  id="memUpdateList?mem_num=${dto.mem_num}">
-	<span class="glyphicon glyphicon-ok" ></span>  Update </button>
-	</div>
-		<div class="col-md-3">
-	<button class="btn pull-right" id="memDelete?mem_num=${dto.mem_num}" >
-	<span class="glyphicon glyphicon-remove" ></span> Delete </button>
-	</div>
->>>>>>> de98b345ec8707bede78dc3a1d74e9122b55c671
-	</div>
-
+</div>
 
 
 	</form>

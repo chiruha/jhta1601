@@ -59,11 +59,11 @@ public class EventCommentsController {
 			EventCommentsDto dto1=new EventCommentsDto(snum, ev_num, mem_num, stf_num, comments, null, cref, clev, cstep);
 			System.out.println("insert시 dto에 뭐가 담겼나?"+dto1.toString());
 			service.eventCommentsInsert(dto1);
-			return ".member.memSuccess";
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".member.memError";
-		}	
+		}
+		//if(ev_num==)
+		return "forward:eventSelectAll2";
 	}
 	
 	//----------------------------| selectNew |----------------------------//
@@ -161,11 +161,10 @@ public class EventCommentsController {
 		System.out.println("삭제번호 : "+comm_num);
 		try{
 			service.commDelete(comm_num);
-			return ".member.memSuccess";
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".member.memError";
 		}
+		return "forward:eventSelectAll";
 	}
 	//----------------------------| update |----------------------------//
 	//EventCommentsUpdate
@@ -173,10 +172,9 @@ public class EventCommentsController {
 	public String EventCommentsUpdate(EventCommentsDto dto){
 		try{
 			service.commUpdate(dto);
-			return ".member.memSuccess";
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".member.memError";
 		}
+		return "forward:eventSelectAll";
 	}
 }

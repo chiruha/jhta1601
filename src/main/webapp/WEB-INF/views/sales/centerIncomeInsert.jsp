@@ -49,6 +49,7 @@ function ajaxSearchCenter(centerList,searchMonth){
 					var signdate=$(this).find("signdate").text();
 					//alert("ct_code"+ct_code);
 					//alert("rg_price: "+rg_price);
+					//alert("signdate : "+signdate);
 					html+="<tr>"+
 							"<td>"+ct_code+"</td>"+
 							"<td>"+mem_num+"</td>"+

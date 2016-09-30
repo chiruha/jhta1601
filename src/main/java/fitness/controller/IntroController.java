@@ -33,5 +33,9 @@ public class IntroController {
 	public String Songpa(){
 		return ".intro.Songpa";
 	}
+	@RequestMapping(value="/Company",method= RequestMethod.GET)
+	public String Company(){
+		return ".intro.Company";
+	}
 	
 }

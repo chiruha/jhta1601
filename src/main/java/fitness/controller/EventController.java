@@ -61,11 +61,12 @@ public class EventController {
 			System.out.println(dto.toString());	
 			int n=service.eventInsert(dto);//입력하기
 			System.out.println("success인가?? "+n);
-			return ".member.memSuccess";
+			
 		}catch(IOException ie){
 			System.out.println(ie.getMessage());
-			return ".member.memError";
+			
 		}
+		return "forward:eventSelectAll";
 		
 	}
 	//--------------------| 이벤트 전체목록보기 & "최신글" 상세보기 |--------------------//
@@ -116,11 +117,10 @@ public class EventController {
 		try{
 			service.delAnswer(ev_num);
 			service.eventDel(ev_num);
-			return ".member.memSuccess";
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".member.memError";
 		}
+		return "forward:eventSelectAll";
 	}
 	//--------------------| 이벤트 수정페이지 상세보기 |--------------------//
 	@RequestMapping("/eventUpdateList")
@@ -161,10 +161,9 @@ public class EventController {
 			System.out.println("event Update Dto : "+dto1.toString());
 			int n=service.eventUpdate(dto1);//수정하기
 			System.out.println("수정success인가?? "+n);
-			return ".member.memSuccess";
 		}catch(IOException ie){
 			System.out.println(ie.getMessage());
-			return ".member.memError";
 		}
+		return "forward:eventSelectAll";
 	}
 }

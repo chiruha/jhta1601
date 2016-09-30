@@ -13,7 +13,7 @@
 			</c:choose>
 		</div>
 		<div class="col-sm-6">
-			<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span><a href="<c:url value='/regiSelect?mnum=${mnum}'/>">전체보기</a></h5>
+			<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span><a href="eventSelectAll">최신글보기</a></h5>
 		</div>
 	</div>
 </div>
@@ -52,7 +52,11 @@
 </table>
 <br>
 <!-- /////////////// 댓글 쓰기 /////////////// -->
-<h5 class="text-left"><span class='glyphicon glyphicon-pencil'></span>댓글쓰기</h5>
+<div class="row">
+	<div class="col-md-12">
+		<h5 class="text-left"><span class="glyphicon glyphicon-pencil"></span> 댓글쓰기</h5>
+	</div>
+</div>
 <!-- 유효성테스트: 비회원인 경우 로그인하라는 alert창 뜨게 하기!!! -->
 <form method="post" action="EventCommentsInsert">
 	<%--  부모글에 대한 정보를 hidden으로 서버에 전송--%>

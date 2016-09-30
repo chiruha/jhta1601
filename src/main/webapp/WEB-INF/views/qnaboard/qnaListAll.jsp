@@ -30,14 +30,15 @@
 	<c:forEach var="dto" items="${qnalist }">
 	<tr>
 		<td>${dto.qna_num }</td>
-		<td>
+		<td><h5 class='text-left'>
 			<c:if test="${dto.qna_lev>0 }">
 				<c:forEach var="i" begin="1" end="${dto.qna_lev }">
 					&nbsp;&nbsp;
 				</c:forEach>
-				[re]
+				&nbsp;&nbsp&nbsp;&nbsp<span class='glyphicon glyphicon-arrow-right'></span>&nbsp;&nbsp;
 			</c:if>
 			<a href="qnaListOne?qna_num=${dto.qna_num}">${dto.qna_title }</a>
+			</h5>
 		</td>
 		<c:choose>
 			<c:when test="${dto.mem_num<1 }">
@@ -100,17 +101,17 @@
 <c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 	<c:choose>
 		<c:when test="${i==pu.pageNum }">
-			<a href="memselectAll?pageNum=${i }"><span style="color:blue">${i }</span></a>
+			<a href="qnaselectAll?pageNum=${i }"><span style="color:blue">${i }</span></a>
 		</c:when>
 		<c:otherwise>
-			<a href="memselectAll?pageNum=${i }"><span style="color:#555">${i }</span></a>
+			<a href="qnaselectAll?pageNum=${i }"><span style="color:#555">${i }</span></a>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
 <!-- 페이징 |다음| -->
 <c:choose>
 	<c:when test="${pu.endPageNum<pu.totalPageCount }">
-		<a href="memselectAll?pageNum=${pu.endPageNum +1 }">|다음|</a>
+		<a href="qnaselectAll?pageNum=${pu.endPageNum +1 }">|다음|</a>
 	</c:when>
 	<c:otherwise>
 		다음

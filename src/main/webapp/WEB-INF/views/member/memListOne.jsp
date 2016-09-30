@@ -24,6 +24,7 @@ $(document).ready(function () {
 <form method="post" name="detailform" enctype="multipart/form-data">
 <div class="row">
 <div class="col-md-12">
+<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> <a href="memselectAll">목록보기</a></h5>
 <table border="1" class="table th" >
 	
 	<tr>
@@ -75,6 +76,16 @@ $(document).ready(function () {
 </div>
 </div>
 <div class="row">
+<<<<<<< HEAD
+<div class="col-md-12">
+	<div class="col-md-6">
+		<button class="btn pull-right" id="memUpdateList?mem_num=${dto.mem_num }" class="btn">Update</button>
+	</div>
+	<div class="col-md-6">
+		<button class="btn pull-left" id="memDelete?mem_num=${dto.mem_num }" class="btn">Delete</button>
+	</div>
+</div>
+=======
 <div class="col-md-3"></div>
 		<div class="col-md-3">
 
@@ -85,6 +96,7 @@ $(document).ready(function () {
 	<button class="btn pull-right" id="memDelete?mem_num=${dto.mem_num}" >
 	<span class="glyphicon glyphicon-remove" ></span> Delete </button>
 	</div>
+>>>>>>> de98b345ec8707bede78dc3a1d74e9122b55c671
 	</div>
 
 

@@ -3,14 +3,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 function ajaxSeachCenter(mem_num){
-	alert("센터뽑기 도착??"+mem_num);
+	//alert("센터뽑기 도착??"+mem_num);
 	$.ajax({
 		url:"/fitness/regiRefundCenter/xml",
 		data:"mem_num="+mem_num,
 		success:function(data){
 			$(data).find("ct").each(function(){
 			var ct_code=$(this).find("ct_code").text();
-			alert("ct_Code: "+ct_code);
+			//alert("ct_Code: "+ct_code);
 			$("#ct_code").attr("value",ct_code)
 			$("#ct_code1").attr("value",ct_code)
 			$("#mem_num").attr("value",mem_num);
@@ -122,24 +122,24 @@ function ajaxSearchRegiRefundMem(pageNum,keyword,memSearch){
 	});
 }
 function selectMember(mem_num,rg_num,rg_type){
-	alert("환불할 회원 선택!! - selectMember: ");
+	//alert("환불할 회원 선택!! - selectMember: ");
 	$("#rg_num").val(rg_num);
 	$("#rg_type").val(rg_type);
 	$("#rg_num1").val(rg_num);
 	$("#rg_type1").val(rg_type);
 	ajaxSeachCenter(mem_num);
 	if(rg_type=='단과과목'){
-		alert("단과");
+		//alert("단과");
 		ajaxTypeSimple(rg_num);
 	}else if(rg_type=='PT'){
-		alert("PT되나??????");
+		//alert("PT되나??????");
 		ajaxTypePt(rg_num);
 	}else if(rg_type=='여러과목'){
 		ajaxTypeMulti(rg_num);
 	}
 }
 function ajaxTypeSimple(rg_num){//단과과목 환불할 경우
-	alert("단과과목 ajax로 받아와보자!!!");
+	//alert("단과과목 ajax로 받아와보자!!!");
 	$.ajax({
 		url:"/fitness/simpleSelect/xml",
 		data:"rg_num="+rg_num,
@@ -158,8 +158,8 @@ function ajaxTypeSimple(rg_num){//단과과목 환불할 경우
 				var pro_expiration=$(this).find("pro_expiration").text();
 				var pro_price=$(this).find("pro_price").text();
 				var simple_remnant=$(this).find("simple_remnant").text()
-				alert("단과 data 받아왔나??::simple_remnant:"+simple_remnant);
-				alert("prosignmonth"+pro_signmonth);
+				//alert("단과 data 받아왔나??::simple_remnant:"+simple_remnant);
+				//alert("prosignmonth"+pro_signmonth);
 				html3 += "<div class='col-md-12'>"+
 				"<table name='inFrm' class='table th' width='700'>"+
 				"<tr>"+
@@ -193,7 +193,7 @@ function ajaxTypeSimple(rg_num){//단과과목 환불할 경우
 			html3 += "</div>";
 			//html += "</div>";
 			var infoSimple=document.createElement("div3");
-			alert("infoSimple"+infoSimple);
+			//alert("infoSimple"+infoSimple);
 			infoSimple.innerHTML=html3;
 			div3.appendChild(infoSimple);
 		}
@@ -201,7 +201,7 @@ function ajaxTypeSimple(rg_num){//단과과목 환불할 경우
 }
 ///ptSelect/xml
 function ajaxTypePt(rg_num){//pt환불할 경우
-	alert("pt ajax로 받아와보자!!!");
+	//alert("pt ajax로 받아와보자!!!");
 	$.ajax({
 		url:"/fitness/ptSelect/xml",
 		data:"rg_num="+rg_num,
@@ -222,8 +222,8 @@ function ajaxTypePt(rg_num){//pt환불할 경우
 				var ptr_initdate=$(this).find("getPtr_initdate").text();
 				var pt_expiration=$(this).find("getPt_expiration").text();
 				var pt_price=$(this).find("pt_price").text();
-				alert("pt info 받아왔나??::pt_oneday:"+pt_oneday);
-				alert("pt_signmonth: "+pt_signmonth);
+				//alert("pt info 받아왔나??::pt_oneday:"+pt_oneday);
+				//alert("pt_signmonth: "+pt_signmonth);
 				html4 += "<div class='col-md-12'>"+
 				"<table name='inFrm' class='table th' width='700'>"+
 				"<tr>"+
@@ -259,7 +259,7 @@ function ajaxTypePt(rg_num){//pt환불할 경우
 			html4 += "</div>";
 			//html += "</div>";
 			var infoPt=document.createElement("div4");
-			alert("infoPt"+infoPt);
+			//alert("infoPt"+infoPt);
 			infoPt.innerHTML=html4;
 			div4.appendChild(infoPt);
 		}
@@ -274,7 +274,7 @@ function ajaxTypeMulti(rg_num){//여러과목 선택한 경우
 			div5.innerHTML="";
 			var html5="";
 			//////pt정보, 단과 정보 모두 받아오기
-			alert("111111111111111111여러과목 되나??");
+			//alert("111111111111111111여러과목 되나??");
 			html5 += "<div class='col-md-12'>"+
 			"<table name='inFrm' class='table th' width='700'>"+
 			"<tr>"+
@@ -300,7 +300,7 @@ function ajaxTypeMulti(rg_num){//여러과목 선택한 경우
 				"<th>선택</th>"+
 			"</tr>";
 			$(data).find("multi").each(function(){
-				alert("여러과목 되나??");
+				//alert("여러과목 되나??");
 				var simple_remnant=$(this).find("simple_remnant").text();
 				var pt_remnant=$(this).find("pt_remnant").text();
 				var simple_oneday=$(this).find("simple_oneday").text();
@@ -320,9 +320,9 @@ function ajaxTypeMulti(rg_num){//여러과목 선택한 경우
 				var pt_expiration=$(this).find("getPt_expiration").text();
 				var pt_price=$(this).find("pt_price").text();
 				var pro_price=$(this).find("pro_price").text();
-				alert("rg_num"+rg_num);
-				alert("pro_signmonth 받아왔나??::pt_expiration:"+pro_signmonth);
-				alert("pt_signmonth: "+pt_signmonth);
+				//alert("rg_num"+rg_num);
+				//alert("pro_signmonth 받아왔나??::pt_expiration:"+pro_signmonth);
+				//alert("pt_signmonth: "+pt_signmonth);
 				html5 +=
 				"<tr>"+
 				"<td>"+rg_num+"</td>"+
@@ -351,7 +351,7 @@ function ajaxTypeMulti(rg_num){//여러과목 선택한 경우
 			html5 += "</div>";
 			//html += "</div>";
 			var infoMulti=document.createElement("div5");
-			alert("infoMulti"+infoMulti);
+			//alert("infoMulti"+infoMulti);
 			infoMulti.innerHTML=html5;
 			div5.appendChild(infoMulti);
 		}
@@ -372,7 +372,7 @@ function simpleInfo(rg_num,mem_num,simple_remnant,simple_oneday,pro_name,pro_cod
 	//환불액 = (운동만료일 - 오늘날짜:잔여일) * 하루치수업료 * 0.9
 	var simpleRefund=Number(simple_remnant)*Number(onedayMoney)*0.9;
 	var simpleRefundPrice=Math.floor(simpleRefund);
-	alert("단과 환불금액 : "+simpleRefundPrice);
+	//alert("단과 환불금액 : "+simpleRefundPrice);
 	$("#tot_price").attr("value",simpleRefundPrice);
 	$("#tot_price1").attr("value",simpleRefundPrice);
 }
@@ -384,21 +384,21 @@ function ptInfo(rg_num,mem_num,pt_remnant,pt_oneday,pt_price,pt_code,pt_name,ptr
 	$("#pt_signmonth").val(pt_signmonth);
 	$("#ptr_initdate").val(ptr_initdate);
 	$("#pt_expiration").val(pt_expiration);
-	alert("PT 총잔여일 넘어왔나??: "+pt_remnant);
+	//alert("PT 총잔여일 넘어왔나??: "+pt_remnant);
 	//하루치 수업료 = 총프로그램가격 / (총PT횟수)
 	var onedayMoney=Number(pt_price)/Number(pt_oneday);
 	//환불액 = (운동만료일 - 오늘날짜:잔여일) * 하루치수업료 * 0.9
 	var ptRefund=Number(pt_remnant)*Number(onedayMoney)*0.9;
 	var ptRefundPrice=Math.floor(ptRefund);
-	alert("PT 환불금액 : "+ptRefundPrice);
+	//alert("PT 환불금액 : "+ptRefundPrice);
 	$("#tot_price").attr("value",ptRefundPrice);
 	$("#tot_price1").attr("value",ptRefundPrice);
 }
 function multiInfo(rg_num,mem_num,simple_remnant,pt_remnant,simple_oneday,pt_oneday,pro_price,pt_price,pro_name,pro_code,pro_signmonth,pro_regdate,pro_expiration,pt_code,pt_name,ptr_count,pt_signmonth,ptr_initdate,pt_expiration){
-	alert("멀티로 왔나??:simple_oneday:"+simple_oneday);
-	alert("멀티로 왔나??:pt_oneday:"+pt_oneday);
-	alert("멀티로 왔나??:simple_remnant:"+simple_remnant);
-	alert("멀티로 왔나??:pt_remnant:"+pt_remnant);
+	//alert("멀티로 왔나??:simple_oneday:"+simple_oneday);
+	//alert("멀티로 왔나??:pt_oneday:"+pt_oneday);
+	//alert("멀티로 왔나??:simple_remnant:"+simple_remnant);
+	//alert("멀티로 왔나??:pt_remnant:"+pt_remnant);
 	$("#pro_price").val(pro_price);
 	$("#pt_price").val(pt_price);
 	$("#pro_name").val(pro_name);
@@ -434,17 +434,17 @@ function multiInfo(rg_num,mem_num,simple_remnant,pt_remnant,simple_oneday,pt_one
 	$("#tot_price1").attr("value",multiTotal);
 }
 $(document).ready(function(){
-	alert("ajax실행!!");
+	//alert("ajax실행!!");
 	$("#searchMember").click(function(){
-		alert("회원검색클릭!!");
+		//alert("회원검색클릭!!");
 		keyword=$("#keyword").val();
 		memSearch=$("#memSearch").val();
-		alert("keyword: "+keyword);
-		alert("memSearch: "+memSearch);
+		//alert("keyword: "+keyword);
+		//alert("memSearch: "+memSearch);
 		ajaxSearchRegiRefundMem(1,keyword,memSearch);
 	});
 	$("#btn").click(function(){
-		alert("버튼클릭");
+		//alert("버튼클릭");
 	});
 });
 

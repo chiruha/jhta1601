@@ -48,12 +48,6 @@ public class QnaboardController {
 		System.out.println("qna_lev : "+qna_lev);
 		System.out.println("qna_step : "+qna_step);
 		System.out.println("qna_ref : "+qna_ref);
-	
-		//int qnanum=Integer.parseInt("qna_num");
-		//int qnaref=Integer.parseInt("qna_ref");
-		//int qnalev=Integer.parseInt("qna_lev");
-		//int qnastep=Integer.parseInt("qna_step");
-		
 		
 		int snum=qnum+1;
 		System.out.println("snum: "+snum);
@@ -71,8 +65,6 @@ public class QnaboardController {
 				System.out.println("답글인 경우,, qna_lev: "+qnalev+", qna_step:"+qnastep);
 			}
 			
-			//int mem_num=Integer.parseInt(req.getParameter("mem_num"));
-			//int stf_num=Integer.parseInt(req.getParameter("stf_num"));
 			String qna_title=req.getParameter("qna_title");
 			String qna_content=req.getParameter("qna_content");
 			
@@ -80,14 +72,10 @@ public class QnaboardController {
 			System.out.println("insert 시 dto에 뭐가 담겼나?"+dto1);
 			service.qnaInsert(dto1);
 			
-			req.setAttribute("result", "게시판 글등록 성공!");
-			req.setAttribute("listurl", "<a href='qnaselectAll'>글목록</a>");
-		
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			req.setAttribute("result", "글 등록 실패");	
 		}
-		return ".staff.ResultView";
+		return "forward:qnaselectAll";
 	}
 
 	
@@ -131,22 +119,20 @@ public class QnaboardController {
 		try{
 			int n=service.qnaUpdate(dto);
 			System.out.println("수정이 잘 되나??"+n);
-			return ".member.memSuccess";
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".member.memError";
 		}
+		return "forward:qnaselectAll";
 	}
 	//--------------------| 글 삭제하기(상세보기) |--------------------//	
 	@RequestMapping("/qnaDelete")
 	public String qnaDelete(int qna_num){
 		try{
 			service.qnaDelete(qna_num);
-			return ".member.memSuccess";
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".member.memError";
 		}
+		return "forward:qnaselectAll";
 	}
 	//----------------------------| 글검색하기 |----------------------------//
 	@RequestMapping("/qnaSearch")

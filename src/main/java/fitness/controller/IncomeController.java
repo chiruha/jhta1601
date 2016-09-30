@@ -18,15 +18,16 @@ public class IncomeController {
 
 	//--------------------| 지점별 월 수입 등록 |--------------------//
 	@RequestMapping(value="/centerIncomeInsert",method=RequestMethod.POST)
-	public String centerInsert(IncomeDto dto){
+	public String centerInsert(IncomeDto dto,HttpServletRequest req){
 		System.out.println("IncomeController 도착!!");
 		try{
 			service.centerInsert(dto);
-			return ".member.memSuccess";
+			req.setAttribute("result", "지점별 월 수입 계산 성공");
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return ".member.memError";
+			req.setAttribute("result", "지점별 월 수입 계산 실패");
 		}
+		return ".staff.ResultView";
 	}
 
 	//--------------------| 지점별 월 수입 목록보기(Ajax->calculateAllSales.jsp) |--------------------//

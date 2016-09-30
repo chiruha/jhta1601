@@ -101,12 +101,10 @@ public class RegistrationController {
 				System.out.println("ptsigndto: "+dto3.toString());
 				System.out.println("prosigndto: "+dto2.toString());
 			}
-			req.setAttribute("result", "수강등록 신청완료");	
-			}catch(Exception e){
-				System.out.println(e.getMessage());
-				req.setAttribute("result", "수강등록 신청실패");	
-			}
-			return ".staff.ResultView";
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return "forward:regiSelect";
 	}
 	//----------| 수강등록회원 전체보기(selectList)(테이블명: registration,prosign,ptsign) |----------//
 	@RequestMapping("/regiSelect")
@@ -315,12 +313,10 @@ public class RegistrationController {
 				System.out.println("ptsigndto: "+dto3.toString());
 				System.out.println("prosigndto: "+dto2.toString());
 			}
-			req.setAttribute("result", "수강정보 수정완료");	
 		}catch(Exception e){
-			System.out.println(e.getMessage());
-			req.setAttribute("result", "수강정보 수정실패");	
+			System.out.println(e.getMessage());	
 		}
-		return ".staff.ResultView";
+		return "forward:regiSelect";
 	}
 	@RequestMapping("/regiDelete")
 	public String regiDel(HttpServletRequest req){
@@ -350,14 +346,9 @@ public class RegistrationController {
 				service.ptperiodDel(rg_num);
 				service.regiDel(rg_num);
 			}
-			req.setAttribute("result", "수강정보 삭제완료");	
-			}catch(Exception e){
-				System.out.println(e.getMessage());
-				req.setAttribute("result", "수강정보 삭제실패");	
-			}
-			return ".staff.ResultView";
-		
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return "forward:regiSelect";
 	}
-
-	
 }

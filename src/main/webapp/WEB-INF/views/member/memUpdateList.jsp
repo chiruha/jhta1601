@@ -9,7 +9,7 @@
 <div class="col-md-12">
 <table border="1" class="table th" >
 	<tr>
-		<td width="100">회원번호</td>
+		<td width="200">회원번호</td>
 		<td colspan="2">${dto.mem_num}</td>
 		<td rowspan="5" width="150">사진변경<br>
 		<img src="/fitness/resources/img/Member/${dto.mem_picture }"  height="150">
@@ -18,31 +18,46 @@
 	</tr>
 	<tr>
 		<td width="100">이름</td>
-		<td colspan="2"><input type="text" name="mem_name"class="input-sm" value="${dto.mem_name}"></td>
+		<td colspan="2">
+			<input type="text" name="mem_name" class="form-control" disabled="disabled" value="${dto.mem_name}">
+			<input type="hidden" name="mem_name"  value="${dto.mem_name}">	
+		</td>
 	</tr>
 	<tr>
 		<td width="100">성별</td>
-		<td colspan="2"><input type="text" name="mem_gen"class="input-sm" value="${dto.mem_gen}"></td>
+		<td colspan="2"><input type="text" name="mem_gen"  class="form-control" value="${dto.mem_gen}">
+		
+		</td>
 	</tr>
 	<tr>
 		<td width="100">나이</td>
-		<td colspan="2"><input type="text" name="mem_age" class="input-sm"value="${dto.mem_age}"></td>
+		<td colspan="2"><input type="text" name="mem_age"  class="form-control" value="${dto.mem_age}">
+		
+		</td>
 	</tr>
 	<tr>
-		<td width="100">생일<br>(6자리 - 예, 880101)</td>
-		<td colspan="2"><input type="text" name="mem_birth" class="input-sm"value="${dto.mem_birth}"></td>
+		<td width="100">생일</td>
+		<td colspan="2"><input type="text" name="mem_birth"  class="form-control" value="${dto.mem_birth}">
+		
+		</td>
 	</tr>
 	<tr>
 		<td width="100">이메일</td>
-		<td colspan="3"><input type="text" name="mem_email"class="input-sm" value="${dto.mem_email}"></td>
+		<td colspan="3"><input type="text" name="mem_email"  class="form-control" value="${dto.mem_email}">
+		
+		</td>
 	</tr>
 	<tr>
 		<td width="100">전화</td>
-		<td colspan="3"><input type="text" name="mem_phone"class="input-sm" value="${dto.mem_phone}"></td>
+		<td colspan="3"><input type="text" name="mem_phone"  class="form-control" value="${dto.mem_phone}">
+		
+		</td>
 	</tr>
 	<tr>
 		<td width="100">주소</td>
-		<td colspan="3"><input type="text" name="mem_addr"class="input-sm" value="${dto.mem_addr}"></td>
+		<td colspan="3"><input type="text" name="mem_addr"  class="form-control" value="${dto.mem_addr}">
+		
+		</td>
 	</tr>
 	<tr>
 		<td width="100">가입일</td>
@@ -50,7 +65,9 @@
 	</tr>
 	<tr>
 		<td width="100">등록지점</td>
-		<td colspan="3"><input type="text" name="ct_code"class="input-sm" value="${dto.ct_code}"></td>
+		<td colspan="3"><input type="text" name="ct_code"  class="form-control" value="${dto.ct_code}">
+		
+		</td>
 	</tr>
 
 
@@ -58,6 +75,19 @@
 </div>
 </div>
 <div class="row">
+<<<<<<< HEAD
+<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-6">
+			<button class="btn pull-right" type="submit">
+			<span class="glyphicon glyphicon-ok"></span>  Save </button>
+		</div>
+		<div class="col-md-6">
+			<button class="btn pull-left"type="reset">
+			<span class="glyphicon glyphicon-remove"></span>  Cancle </button>
+		</div>
+	</div>
+=======
 <div class="col-sm-6">
 <button class="btn pull-left" type="submit">
 <span class="glyphicon glyphicon-ok" ></span>  Update </button>
@@ -65,6 +95,7 @@
 <div class="col-sm-6">
 <button class="btn pull-right" type="reset">
 <span class="glyphicon glyphicon-remove" ></span>  Cancle </button>
+>>>>>>> de98b345ec8707bede78dc3a1d74e9122b55c671
 </div>
 	</div>
 	</form>

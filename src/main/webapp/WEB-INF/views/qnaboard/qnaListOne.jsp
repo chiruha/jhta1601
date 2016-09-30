@@ -6,7 +6,7 @@
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 <h3 class="text-center">Read QnA</h3>
-
+<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> <a href="<c:url value='/qnaselectAll'/>">전체보기</a></h5>
 <input type="hidden" value="${dto.qna_num }">
 <div class="row">
 <div class="col-md-12">

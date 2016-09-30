@@ -482,7 +482,7 @@ $(document).ready(function(){
 <!-- 회원번호를 select해서 input="text"에 집어넣기!! -->
 <div class="col-md-12">
 	<p >
-		<span class="glyphicon glyphicon-pencil"></span> New member sign-up page
+		<span class="glyphicon glyphicon-pencil"></span> Subject Registration
 	</p>
 <table class="table th" width="1000">
 	<tr>

@@ -14,7 +14,7 @@
 			</c:choose>
 		</div>
 		<div class="col-sm-6">
-			<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span><a href="<c:url value='/regiSelect?mnum=${mnum}'/>"> 전체보기</a></h5>
+			<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span><a href="eventSelectAll">최신글보기</a></h5>
 		</div>
 	</div>
 </div>

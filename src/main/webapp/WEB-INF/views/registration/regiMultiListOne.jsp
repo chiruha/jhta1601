@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div id="contact" class="container">
 	<h3 class="text-center">복합과목 수강정보 상세보기</h3>
-	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> <a href="<c:url value='/regiSelect?mnum=${mnum}'/>"> 전체보기</a></h5>
+	<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span><a href="regiSelect">목록보기</a></h5>
 <div class="row">
 
 수강등록번호 :${dto1.rg_num }

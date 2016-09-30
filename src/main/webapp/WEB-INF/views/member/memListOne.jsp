@@ -6,7 +6,7 @@ $(document).ready(function () {
 		$("button").click(function(event) {
 			event.preventDefault();
 			var id=event.target.getAttribute('id');
-			alert($(this).attr('id')); // id 찍어보기 
+			//alert($(this).attr('id')); // id 찍어보기 
 			//alert("id : "+id);
 			var form=document.detailform;
 			form.action=id;
@@ -24,6 +24,7 @@ $(document).ready(function () {
 <form method="post" name="detailform" enctype="multipart/form-data">
 <div class="row">
 <div class="col-md-12">
+<h5 class="text-right"><span class="glyphicon glyphicon-align-justify"></span> <a href="memselectAll">목록보기</a></h5>
 <table border="1" class="table th" >
 	
 	<tr>
@@ -76,9 +77,12 @@ $(document).ready(function () {
 </div>
 <div class="row">
 <div class="col-md-12">
-<button id="memUpdateList?mem_num=${dto.mem_num }" class="btn">수정</button>
-<button id="memDelete?mem_num=${dto.mem_num }" class="btn">삭제</button>
-
+	<div class="col-md-6">
+		<button class="btn pull-right" id="memUpdateList?mem_num=${dto.mem_num }" class="btn">Update</button>
+	</div>
+	<div class="col-md-6">
+		<button class="btn pull-left" id="memDelete?mem_num=${dto.mem_num }" class="btn">Delete</button>
+	</div>
 </div>
 	</div>
 	</form>

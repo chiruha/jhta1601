@@ -4,11 +4,9 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#ct_name").on("change",function(event){
-		//alert($(this).val());
-		
-		//$('#ct_name2').submit();
+	$("#ct_name").on("change",function(event){		
 		location.href="gxRegisterView?ct_name="+$(this).val();
+		
 		
 	});    
        

@@ -32,6 +32,9 @@ public class GxregisterService {
 	public String searchGx(String ct_name){
 		return gxregisterDao.searchGx(ct_name);
 	}
+	public int ct_nameupdate(GxregisterDto dto){
+		return gxregisterDao.ct_nameupdate(dto);
+	}
 	
 	
 }

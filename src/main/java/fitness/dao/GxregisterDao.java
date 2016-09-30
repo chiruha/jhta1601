@@ -19,6 +19,7 @@ public class GxregisterDao {
 		System.out.println("GxregisterDto:"+dto);
 		return sqlSession.insert(NAMESPACE+".gxinsert",dto);
 	}
+	
 	public GxregisterDto detail(int gx_num){
 		return sqlSession.selectOne(NAMESPACE+".getInfo",gx_num);
 	}
@@ -30,6 +31,9 @@ public class GxregisterDao {
 	}
 	public String searchGx(String ct_name){
 		return sqlSession.selectOne(NAMESPACE+".searchGx",ct_name);
+	}
+	public int ct_nameupdate(GxregisterDto dto){
+		return sqlSession.update(NAMESPACE+".ct_nameupdate",dto);
 	}
 	
 }

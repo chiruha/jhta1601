@@ -58,8 +58,7 @@
 	</select>
 
 	<!--////////// gx관련 - 작성자 : 고석곤 //////////-->
-	<insert id="gxinsert" parameterType="fitness.dto.GxregisterDto">
-		<if test="gx_num==0">
+	<insert id="gxinsert" parameterType="fitness.dto.GxregisterDto">		
 		insert into gx_register values(
 			gx_seq.nextval,#{stf_num},#{ct_name},#{mon09},#{tue09},#{wed09},#{thu09},#{fri09},#{sat09},#{sun09}
 			,#{mon10},#{tue10},#{wed10},#{thu10},#{fri10},#{sat10},#{sun10}
@@ -67,10 +66,10 @@
 			,#{mon18},#{tue18},#{wed18},#{thu18},#{fri18},#{sat18},#{sun18}
 			,#{mon19},#{tue19},#{wed19},#{thu19},#{fri19},#{sat19},#{sun19}
 			,#{mon20},#{tue20},#{wed20},#{thu20},#{fri20},#{sat20},#{sun20}
-		)
-		</if>
-		<if test="gx_num!=0">
-			update gx_register set 
+		)			
+	</insert>
+	<update id="ct_nameupdate" parameterType="fitness.dto.GxregisterDto">
+		update gx_register set 
 			 ct_name=#{ct_name},mon09=#{mon09},tue09=#{tue09},wed09=#{wed09},thu09=#{thu09},fri09=#{fri09},sat09=#{sat09},sun09=#{sun09}
 			,mon10=#{mon10},tue10=#{tue10},wed10=#{wed10},thu10=#{thu10},fri10=#{fri10},sat10=#{sat10},sun10=#{sun10}
 			,mon11=#{mon11},tue11=#{tue11},wed11=#{wed11},thu11=#{thu11},fri11=#{fri11},sat11=#{sat11},sun11=#{sun11}
@@ -78,8 +77,7 @@
 			,mon19=#{mon19},tue19=#{tue19},wed19=#{wed19},thu19=#{thu19},fri19=#{fri19},sat19=#{sat19},sun19=#{sun19}
 			,mon20=#{mon20},tue20=#{tue20},wed20=#{wed20},thu20=#{thu20},fri20=#{fri20},sat20=#{sat20},sun20=#{sun20}
 			where gx_num=#{gx_num}
-		</if>
-	</insert>
+	</update>
 	
 	<select id="getInfo" resultType="fitness.dto.GxregisterDto" parameterType="int">
 		select * from gx_register where gx_num=#{value}

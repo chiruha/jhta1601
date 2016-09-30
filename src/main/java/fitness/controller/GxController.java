@@ -47,21 +47,25 @@ public class GxController {
 		gxdto.setStf_num(snum);		
 		System.out.println("gxdto:"+gxdto);
 		String ct_name=gxdto.getCt_name();
-		session.setAttribute("ct_name", ct_name);
-		System.out.println(ct_name);
+		int gx_num=service.gxlist(ct_name).getGx_num();
 		
-		ct_name=service.searchGx(ct_name);
-		if(ct_name==null){
+		gxdto.setGx_num(gx_num);
+		
+		session.setAttribute("ct_name", ct_name);
+		System.out.println(ct_name);		
+		
+		String ct_name1=service.searchGx(ct_name);
+		if(ct_name1==null){
 			service.insert(gxdto);
+		}else{			
+			service.ct_nameupdate(gxdto);
 		}
 				
 		
 		return "redirect:/gxRegisterView";
 	}
 	@RequestMapping(value="/gxRegisterView")
-	public String gxRegisterView(ModelMap modelMap,HttpSession session,HttpServletRequest request,String ct_name){
-		
-		System.out.println("ct_name,,,,,,,,,,,,,");
+	public String gxRegisterView(ModelMap modelMap,HttpSession session,HttpServletRequest request,String ct_name){		
 		
 	//	ct_name=(String)session.getAttribute("ct_name");
 		List<CenterDto> ctlist=cts.listService();

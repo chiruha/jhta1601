@@ -49,7 +49,7 @@ $(document).ready(function() {
     				
     		 		<select name="ct_name select input-sm" id="ct_name">
 					<c:forEach var="clist"  items="${ctlist}">						
-						<option value="${clist.ct_name }" ${(clist.ct_name eq ct_name) ? "selected":""  }>${clist.ct_name}</option>						
+						<option value="${clist.ct_name }" ${clist.ct_name eq ct_name ? "selected":""  }>${clist.ct_name}</option>						
 					</c:forEach>	
 					</select>
 					</form>					

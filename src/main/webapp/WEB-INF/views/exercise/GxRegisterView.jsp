@@ -2,7 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#ct_name").on("change",function(event){		
+		location.href="gxRegisterView?ct_name="+$(this).val();
+		
+	});    
+       
+});
+</script>
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
 	<h3 class="text-center">Group Exercise Schedule</h3><br>
@@ -35,12 +43,14 @@
     </thead>
     <tbody> 
     		<tr>
-    			<td>지점선택
+    			<td>지점선택 
+    				<form id="ct_name2" action="gxRegisterView">   				
     		 		<select name="ct_name" id="ct_name">
 					<c:forEach var="clist"  items="${ctlist}">						
-						<option value="${clist.ct_name }" ${param.ctlist eq "${clist.ct_name}" ? "selected":""  } >${clist.ct_name}</option>	
+						<option value="${clist.ct_name }" ${clist.ct_name eq ct_name ? "selected":""  }>${clist.ct_name}</option>						
 					</c:forEach>	
 					</select>
+					</form>					
 				</td>
     		</tr>
     		<tr><td colspan="8">오전시간표    			

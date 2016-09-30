@@ -59,23 +59,31 @@ public class GxController {
 		return "redirect:/gxRegisterView";
 	}
 	@RequestMapping(value="/gxRegisterView")
-	public String gxRegisterView(ModelMap modelMap,HttpSession session,HttpServletRequest request){		
-		String ct_name=(String)session.getAttribute("ct_name");
+	public String gxRegisterView(ModelMap modelMap,HttpSession session,HttpServletRequest request,String ct_name){
+		
+		System.out.println("ct_name,,,,,,,,,,,,,");
+		
+	//	ct_name=(String)session.getAttribute("ct_name");
 		List<CenterDto> ctlist=cts.listService();
 		System.out.println("ctlist:"+ctlist);
-		session.setAttribute("ctlist",ctlist);
-		
-		
-		
-		if(ct_name==null){
-			 ct_name ="화정지점";
+		session.setAttribute("ctlist",ctlist);	
+		GxregisterDto gxlist = null;
+		if((String)session.getAttribute("ct_name")!=null ){
+			ct_name=(String)session.getAttribute("ct_name");
+			 gxlist = service.gxlist(ct_name);
+		}else if(ct_name!=null){
+			 gxlist = service.gxlist(ct_name);
+		}else{
+			ct_name = "화정지점";
+			gxlist = service.gxlist(ct_name);
 		}
-			System.out.println("ct_name:"+ct_name);
 		
-		GxregisterDto gxlist = service.gxlist(ct_name);
+		System.out.println("ct_name:"+ct_name);
+		
+		 
 		System.out.println("gxlist:"+gxlist);
 		modelMap.addAttribute("gxlist",gxlist);
-		
+		request.setAttribute("ct_name", ct_name);
 		return ".exercise.GxRegisterView";
 	}
 	

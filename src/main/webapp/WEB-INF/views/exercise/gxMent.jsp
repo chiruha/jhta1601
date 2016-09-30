@@ -33,13 +33,13 @@
     </thead>
     <tbody> 
     		
-    		<tr><td colspan="8">오전시간표    			
-    		 지점선택
+    		<tr><td colspan="8"> 		
     		 <select name="ct_name" id="ct_name">
 					<c:forEach var="clist"  items="${ctlist}">
 						<option value="${clist.ct_name }">${clist.ct_name}</option>	
 					</c:forEach>	
 					</select></td></tr>   	
+					<tr><td colspan="8">오전시간표</td></tr>
 	       <tr>	
 	       		<td>
 	       			09:00<br>~<br>09:50	       			

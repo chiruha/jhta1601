@@ -43,9 +43,10 @@ $(document).ready(function() {
     </thead>
     <tbody> 
     		<tr>
-    			<td>지점선택 
+    			<td colspan="8">
     				<form id="ct_name2" action="gxRegisterView">   				
-    		 		<select name="ct_name" id="ct_name">
+    				
+    		 		<select name="ct_name select input-sm" id="ct_name">
 					<c:forEach var="clist"  items="${ctlist}">						
 						<option value="${clist.ct_name }" ${clist.ct_name eq ct_name ? "selected":""  }>${clist.ct_name}</option>						
 					</c:forEach>	
